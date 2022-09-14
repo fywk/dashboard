@@ -16,7 +16,7 @@ const Home: NextPage = () => {
           content="width=device-width, initial-scale=1, viewport-fit=cover"
         />
       </Head>
-      <div className="mx-auto grid min-h-[calc(100vh-32px)] max-w-[1920px] grid-cols-1 gap-x-10 gap-y-8 px-4 py-8 sm:px-6 md:px-8 [@media(min-width:1440px)]:grid-cols-2">
+      <div className="mx-auto grid min-h-[calc(100vh-32px)] max-w-[1920px] grid-cols-1 gap-x-10 gap-y-8 px-4 py-8 sm:px-6 md:px-8 1.5xl:grid-cols-[55%_45%]">
         <Profile />
         <Music />
         <Weather />

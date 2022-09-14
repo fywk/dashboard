@@ -55,7 +55,7 @@ const AlbumGrid = () => {
             >
               {album.name}
             </h4>
-            <p className="text-[10px] text-gray-400 sm:text-xs">
+            <p className="text-[10px] sm:text-xs">
               {`${album.playcount} plays`}
             </p>
           </div>

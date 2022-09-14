@@ -20,9 +20,9 @@ const Category = ({
   icon?: React.ReactNode;
 }) => {
   return (
-    <div className="flex w-full flex-col items-center justify-center text-[15px] font-semibold leading-5 tracking-tight odd:text-secondary even:text-primary sm:text-base">
+    <div className="flex w-full flex-col items-center justify-center text-[15px] font-semibold leading-5 tracking-tight odd:text-secondary even:text-primary">
       {icon}
-      <span className="mt-2">{title}</span>
+      <span className="mt-1">{title}</span>
       <span>{value > 0 ? value : "---"}</span>
     </div>
   );

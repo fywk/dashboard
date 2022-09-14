@@ -19,6 +19,7 @@ const Avatar = ({ name }: { name: string }) => {
   return (
     <Image
       src={data?.url}
+      className="h-full w-full object-cover"
       width={data?.width}
       height={data?.height}
       alt=""
@@ -69,7 +70,7 @@ const ArtistsGrid = () => {
             <h4 className="truncate text-xs font-semibold text-gray-100 sm:text-sm">
               {artist.name}
             </h4>
-            <p className="text-[10px] text-gray-400 sm:text-xs">{`${artist.playcount} plays`}</p>
+            <p className="text-[10px] sm:text-xs">{`${artist.playcount} plays`}</p>
           </div>
         </div>
       ))}

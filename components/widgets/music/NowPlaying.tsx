@@ -58,7 +58,7 @@ const NowPlaying = ({ track }: { track?: RecentTrack["track"] }) => {
   return (
     <div className="flex items-center gap-3 overflow-hidden rounded-md border border-primary/50 p-2 sm:gap-3.5 md:border-secondary/50">
       <div
-        className="relative aspect-square basis-1/4 overflow-hidden rounded"
+        className="relative aspect-square basis-1/4 overflow-hidden rounded ring-1 ring-gray-900"
         id="track-album-art"
       >
         <Image
@@ -72,7 +72,7 @@ const NowPlaying = ({ track }: { track?: RecentTrack["track"] }) => {
       </div>
       <div className="basis-3/4 overflow-hidden tracking-tight">
         <p
-          className="flex items-center gap-x-1 text-[13px] font-medium text-[#1ed760] sm:text-[15px]"
+          className="flex items-center gap-x-1 text-[13px] font-medium text-[#1ed760] sm:text-sm"
           id="track-status"
         >
           {track.timestamp ? (
@@ -85,13 +85,13 @@ const NowPlaying = ({ track }: { track?: RecentTrack["track"] }) => {
           )}
         </p>
         <h4
-          className="truncate text-sm font-semibold text-gray-100 sm:text-base"
+          className="truncate text-sm font-semibold text-gray-100 sm:text-[15px]"
           id="track-name"
         >
           {track.name}
         </h4>
         <p
-          className="truncate text-[13px] font-medium text-gray-400 sm:text-[15px]"
+          className="truncate text-[13px] sm:text-sm"
           id="track-artist-and-album-title"
         >
           {`${track.artist} — ${track.album}`}

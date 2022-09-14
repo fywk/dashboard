@@ -22,6 +22,9 @@ module.exports = {
       opacity: {
         85: ".85",
       },
+      screens: {
+        "1.5xl": "1440px",
+      },
       spacing: {
         4.5: "1.125rem",
         5.5: "1.375rem",
