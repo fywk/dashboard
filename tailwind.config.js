@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 const colors = require("tailwindcss/colors");
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   content: [
@@ -21,6 +22,9 @@ module.exports = {
       },
       opacity: {
         85: ".85",
+      },
+      fontFamily: {
+        mono: ["Oxanium", ...defaultTheme.fontFamily.mono],
       },
       screens: {
         "1.5xl": "1440px",
