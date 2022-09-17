@@ -1,7 +1,8 @@
 import {
   Album,
   Artist,
-  LastfmAPIParams,
+  LastfmParams,
+  Period,
   RecentTrack,
   TopAlbums,
   TopArtists,
@@ -15,17 +16,15 @@ const USERNAME = process.env.LASTFM_USERNAME;
 
 const API_ROOT = "https://ws.audioscrobbler.com/2.0/";
 
-const generateURL = (params: LastfmAPIParams) => {
+const generateURL = (params: LastfmParams) => {
   const stringifyParams = Object.entries(params)
     .map(([key, val]) => typeof val !== "undefined" && `${key}=${val}`)
     .join("&");
   return `${API_ROOT}?${stringifyParams}&user=${USERNAME}&api_key=${API_KEY}&format=json`;
 };
 
-export const getRecentTrack = async (
-  from: LastfmAPIParams["from"]
-): Promise<RecentTrack> => {
-  const GET_RECENT_TRACKS: LastfmAPIParams = {
+export const getRecentTrack = async (from: number): Promise<RecentTrack> => {
+  const GET_RECENT_TRACKS: LastfmParams = {
     method: "user.getrecenttracks",
     limit: 1,
     from,
@@ -57,10 +56,10 @@ export const getRecentTrack = async (
 };
 
 export const getTopTracks = async (
-  period: LastfmAPIParams["period"],
-  limit: LastfmAPIParams["limit"] = 6 // default to 6
+  period: Period,
+  limit = 6 // default to 6
 ): Promise<TopTracks> => {
-  const GET_TOP_TRACKS: LastfmAPIParams = {
+  const GET_TOP_TRACKS: LastfmParams = {
     method: "user.gettoptracks",
     period,
     limit,
@@ -80,10 +79,10 @@ export const getTopTracks = async (
 };
 
 export const getTopAlbums = async (
-  period: LastfmAPIParams["period"],
-  limit: LastfmAPIParams["limit"] = 6 // default to 6
+  period: Period,
+  limit = 6 // default to 6
 ): Promise<TopAlbums> => {
-  const GET_TOP_ALBUMS: LastfmAPIParams = {
+  const GET_TOP_ALBUMS: LastfmParams = {
     method: "user.gettopalbums",
     period,
     limit,
@@ -105,10 +104,10 @@ export const getTopAlbums = async (
 };
 
 export const getTopArtists = async (
-  period: LastfmAPIParams["period"],
-  limit: LastfmAPIParams["limit"] = 6 // default to 6
+  period: Period,
+  limit = 6 // default to 6
 ): Promise<TopArtists> => {
-  const GET_TOP_ARTISTS: LastfmAPIParams = {
+  const GET_TOP_ARTISTS: LastfmParams = {
     method: "user.gettopartists",
     period,
     limit,
@@ -127,12 +126,11 @@ export const getTopArtists = async (
   return artists;
 };
 
-export const getTrackTotal = async (
-  period: LastfmAPIParams["period"]
-): Promise<TotalStats> => {
-  const GET_TRACK_TOTAL: LastfmAPIParams = {
+export const getTrackTotal = async (period: Period): Promise<TotalStats> => {
+  const GET_TRACK_TOTAL: LastfmParams = {
     method: "user.gettoptracks",
     period,
+    limit: 1, // set limit to 1 for smaller response
   };
 
   const res = await fetch(generateURL(GET_TRACK_TOTAL));
@@ -141,12 +139,11 @@ export const getTrackTotal = async (
   return { total: toptracks["@attr"]["total"] };
 };
 
-export const getAlbumTotal = async (
-  period: LastfmAPIParams["period"]
-): Promise<TotalStats> => {
-  const GET_ALBUM_TOTAL: LastfmAPIParams = {
+export const getAlbumTotal = async (period: Period): Promise<TotalStats> => {
+  const GET_ALBUM_TOTAL: LastfmParams = {
     method: "user.gettopalbums",
     period,
+    limit: 1,
   };
 
   const res = await fetch(generateURL(GET_ALBUM_TOTAL));
@@ -155,12 +152,11 @@ export const getAlbumTotal = async (
   return { total: topalbums["@attr"]["total"] };
 };
 
-export const getArtistTotal = async (
-  period: LastfmAPIParams["period"]
-): Promise<TotalStats> => {
-  const GET_ARTIST_TOTAL: LastfmAPIParams = {
+export const getArtistTotal = async (period: Period): Promise<TotalStats> => {
+  const GET_ARTIST_TOTAL: LastfmParams = {
     method: "user.gettopartists",
     period,
+    limit: 1,
   };
 
   const res = await fetch(generateURL(GET_ARTIST_TOTAL));

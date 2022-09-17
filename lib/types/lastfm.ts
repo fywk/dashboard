@@ -9,17 +9,18 @@ export const PERIOD = [
 
 export type Period = typeof PERIOD[number];
 
-export type LastfmAPIParams = {
-  method:
-    | "user.getrecenttracks"
-    | "user.gettopalbums"
-    | "user.gettopartists"
-    | "user.gettoptracks";
-  period?: Period;
-  limit?: number;
-  from?: number;
-  extended?: "0" | "1";
-};
+type MethodParams =
+  | {
+      method: "user.getrecenttracks";
+      from: number;
+      extended: "0" | "1";
+    }
+  | {
+      method: "user.gettopalbums" | "user.gettopartists" | "user.gettoptracks";
+      period: Period;
+    };
+
+export type LastfmParams = MethodParams & { limit: number };
 
 export type Track = {
   name: string;

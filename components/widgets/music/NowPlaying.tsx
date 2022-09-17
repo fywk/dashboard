@@ -41,7 +41,7 @@ const EqualizerIcon = ({ className }: { className?: string }) => {
 const NowPlaying = ({ track }: { track?: RecentTrack["track"] }) => {
   if (!track) {
     return (
-      <div className="flex items-center gap-3 overflow-hidden rounded-md border border-primary/50 p-2 sm:gap-3.5 md:border-secondary/50">
+      <div className="flex items-center gap-3 overflow-hidden rounded-md border border-primary/75 p-2 sm:gap-3.5 md:border-secondary/75">
         <div className="aspect-square basis-1/4 rounded bg-gray-900"></div>
         <div className="basis-3/4 space-y-2 sm:space-y-2.5">
           <div className="h-2.5 w-1/2 rounded bg-gray-900 sm:h-3"></div>
@@ -79,19 +79,21 @@ const NowPlaying = ({ track }: { track?: RecentTrack["track"] }) => {
             <TimeAgo datetime={Number(track.timestamp) * 1000} />
           ) : (
             <>
-              <EqualizerIcon className="h-3 w-3 sm:h-4 sm:w-4" />
+              <EqualizerIcon className="h-3 w-3 sm:h-[15px] sm:w-[15px]" />
               Now playing
             </>
           )}
         </p>
         <h4
           className="truncate text-sm font-semibold text-gray-100 sm:text-[15px]"
+          title={track.name}
           id="track-name"
         >
           {track.name}
         </h4>
         <p
           className="truncate text-[13px] sm:text-sm"
+          title={`${track.artist} — ${track.album}`}
           id="track-artist-and-album-title"
         >
           {`${track.artist} — ${track.album}`}

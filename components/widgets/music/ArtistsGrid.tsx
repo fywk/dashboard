@@ -18,10 +18,10 @@ const Avatar = ({ name }: { name: string }) => {
 
   return (
     <Image
-      src={data?.url}
+      src={data.url}
       className="h-full w-full object-cover"
-      width={data?.width}
-      height={data?.height}
+      width={data.width}
+      height={data.height}
       alt=""
       unoptimized
     />
