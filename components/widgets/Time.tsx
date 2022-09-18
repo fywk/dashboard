@@ -19,7 +19,7 @@ const City = ({
           <span className="sm:hidden">{abbr}</span>
           <span className="hidden tracking-tight sm:inline">{name}</span>
         </p>
-        <p className="font-mono text-gray-100 md:text-sm">{time}</p>
+        <p className="font-oxanium text-gray-100 md:text-sm">{time}</p>
       </div>
     </div>
   );
@@ -72,7 +72,7 @@ const Time = () => {
               height="100%"
               xmlns="http://www.w3.org/1999/xhtml"
             >
-              <h2 className="font-mono text-8xl text-gray-100">{local}</h2>
+              <h2 className="font-oxanium text-8xl text-gray-100">{local}</h2>
             </foreignObject>
           </svg>
         </div>
@@ -91,7 +91,7 @@ const Time = () => {
               height="100%"
               xmlns="http://www.w3.org/1999/xhtml"
             >
-              <h2 className="font-mono text-8xl">{utc}</h2>
+              <h2 className="font-oxanium text-8xl text-gray-500">{utc}</h2>
             </foreignObject>
           </svg>
         </div>
