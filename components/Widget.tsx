@@ -20,7 +20,7 @@ const Widget = ({ title, accentColor, children }: Props) => {
         <span className="brightness-[2.5]">{title}</span>
         <div className="mb-px h-px bg-primary/50"></div>
       </h2>
-      <div className="px-0.5 sm:px-1 md:px-1.5">{children}</div>
+      <div className="px-0.5 sm:px-1">{children}</div>
     </div>
   );
 };

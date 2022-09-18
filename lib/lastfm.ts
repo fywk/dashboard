@@ -24,14 +24,14 @@ const generateURL = (params: LastfmParams) => {
 };
 
 export const getRecentTrack = async (from: number): Promise<RecentTrack> => {
-  const GET_RECENT_TRACKS: LastfmParams = {
+  const params: LastfmParams = {
     method: "user.getrecenttracks",
     limit: 1,
     from,
     extended: "1",
   };
 
-  const res = await fetch(generateURL(GET_RECENT_TRACKS));
+  const res = await fetch(generateURL(params));
   const { recenttracks } = await res.json();
 
   // Get the first/latest track
@@ -59,13 +59,13 @@ export const getTopTracks = async (
   period: Period,
   limit = 6 // default to 6
 ): Promise<TopTracks> => {
-  const GET_TOP_TRACKS: LastfmParams = {
+  const params: LastfmParams = {
     method: "user.gettoptracks",
     period,
     limit,
   };
 
-  const res = await fetch(generateURL(GET_TOP_TRACKS));
+  const res = await fetch(generateURL(params));
   const { toptracks } = await res.json();
 
   const tracks: TopTracks = toptracks.track.map(
@@ -82,13 +82,13 @@ export const getTopAlbums = async (
   period: Period,
   limit = 6 // default to 6
 ): Promise<TopAlbums> => {
-  const GET_TOP_ALBUMS: LastfmParams = {
+  const params: LastfmParams = {
     method: "user.gettopalbums",
     period,
     limit,
   };
 
-  const res = await fetch(generateURL(GET_TOP_ALBUMS));
+  const res = await fetch(generateURL(params));
   const { topalbums } = await res.json();
 
   const albums: TopAlbums = topalbums.album.map(
@@ -107,13 +107,13 @@ export const getTopArtists = async (
   period: Period,
   limit = 6 // default to 6
 ): Promise<TopArtists> => {
-  const GET_TOP_ARTISTS: LastfmParams = {
+  const params: LastfmParams = {
     method: "user.gettopartists",
     period,
     limit,
   };
 
-  const res = await fetch(generateURL(GET_TOP_ARTISTS));
+  const res = await fetch(generateURL(params));
   const { topartists } = await res.json();
 
   const artists: TopArtists = topartists.artist.map(
@@ -127,39 +127,39 @@ export const getTopArtists = async (
 };
 
 export const getTrackTotal = async (period: Period): Promise<TotalStats> => {
-  const GET_TRACK_TOTAL: LastfmParams = {
+  const params: LastfmParams = {
     method: "user.gettoptracks",
     period,
     limit: 1, // set limit to 1 for smaller response
   };
 
-  const res = await fetch(generateURL(GET_TRACK_TOTAL));
+  const res = await fetch(generateURL(params));
   const { toptracks } = await res.json();
 
   return { total: toptracks["@attr"]["total"] };
 };
 
 export const getAlbumTotal = async (period: Period): Promise<TotalStats> => {
-  const GET_ALBUM_TOTAL: LastfmParams = {
+  const params: LastfmParams = {
     method: "user.gettopalbums",
     period,
     limit: 1,
   };
 
-  const res = await fetch(generateURL(GET_ALBUM_TOTAL));
+  const res = await fetch(generateURL(params));
   const { topalbums } = await res.json();
 
   return { total: topalbums["@attr"]["total"] };
 };
 
 export const getArtistTotal = async (period: Period): Promise<TotalStats> => {
-  const GET_ARTIST_TOTAL: LastfmParams = {
+  const params: LastfmParams = {
     method: "user.gettopartists",
     period,
     limit: 1,
   };
 
-  const res = await fetch(generateURL(GET_ARTIST_TOTAL));
+  const res = await fetch(generateURL(params));
   const { topartists } = await res.json();
 
   return { total: topartists["@attr"]["total"] };

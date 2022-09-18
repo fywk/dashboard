@@ -72,7 +72,7 @@ const NowPlaying = ({ track }: { track?: RecentTrack["track"] }) => {
       </div>
       <div className="basis-3/4 overflow-hidden tracking-tight">
         <p
-          className="flex items-center gap-x-1 text-[13px] font-medium text-[#1ed760] sm:text-sm"
+          className="flex items-center gap-x-1 text-[13px] font-semibold text-[#1ed760] sm:text-sm"
           id="track-status"
         >
           {track.timestamp ? (
