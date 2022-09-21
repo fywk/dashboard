@@ -4,6 +4,7 @@ import {
   LastfmParams,
   Period,
   RecentTrack,
+  Timestamp,
   TopAlbums,
   TopArtists,
   TopTracks,
@@ -23,7 +24,7 @@ const generateURL = (params: LastfmParams) => {
   return `${API_ROOT}?${stringifyParams}&user=${USERNAME}&api_key=${API_KEY}&format=json`;
 };
 
-export const getRecentTrack = async (from: number): Promise<RecentTrack> => {
+export const getRecentTrack = async (from: Timestamp): Promise<RecentTrack> => {
   const params: LastfmParams = {
     method: "user.getrecenttracks",
     limit: 1,
@@ -45,7 +46,7 @@ export const getRecentTrack = async (from: number): Promise<RecentTrack> => {
     name,
     artist: artist.name,
     album: album["#text"],
-    image: image.at(2)["#text"], // Large (174x174) image URL
+    image: image.at(2)["#text"], // 174x174
     timestamp,
     loved: loved === "1",
   };

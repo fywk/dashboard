@@ -7,7 +7,7 @@ import { ArtistImage } from "../../../lib/types/spotify";
 
 const Avatar = ({ name }: { name: string }) => {
   const { data } = useSWR<ArtistImage>(
-    `api/music/artist-image?name=${name}`,
+    `/api/music/artist-image?name=${name}`,
     fetcher,
     {
       refreshInterval: 3_600_000, // 1 hour in milliseconds
@@ -30,7 +30,7 @@ const Avatar = ({ name }: { name: string }) => {
 
 const ArtistsGrid = () => {
   const { data } = useSWR<TopArtists>(
-    "api/music/top-artists?period=1month",
+    "/api/music/top-artists?period=1month",
     fetcher,
     {
       refreshInterval: 3_600_000, // 1 hour in milliseconds

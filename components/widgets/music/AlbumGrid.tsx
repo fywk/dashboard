@@ -6,7 +6,7 @@ import { TopAlbums } from "../../../lib/types/lastfm";
 
 const AlbumGrid = () => {
   const { data } = useSWR<TopAlbums>(
-    "api/music/top-albums?period=3month",
+    "/api/music/top-albums?period=3month",
     fetcher,
     {
       refreshInterval: 3_600_000, // 1 hour in milliseconds

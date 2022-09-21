@@ -2,7 +2,7 @@ import clsx from "clsx";
 import Image from "next/future/image";
 import TimeAgo from "timeago-react";
 
-import { RecentTrack } from "../../../lib/types/lastfm";
+import useRecentTrack from "../../../lib/hooks/useRecentTrack";
 
 const EqualizerIcon = ({ className }: { className?: string }) => {
   return (
@@ -38,8 +38,10 @@ const EqualizerIcon = ({ className }: { className?: string }) => {
   );
 };
 
-const NowPlaying = ({ track }: { track?: RecentTrack["track"] }) => {
-  if (!track) {
+const NowPlaying = () => {
+  const { recentTrack, isLoading, isError } = useRecentTrack();
+
+  if (!recentTrack || isLoading || isError) {
     return (
       <div className="flex items-center gap-3 overflow-hidden rounded-md border border-primary/75 p-2 sm:gap-3.5 md:border-secondary/75">
         <div className="aspect-square basis-1/4 rounded bg-gray-900"></div>
@@ -54,6 +56,8 @@ const NowPlaying = ({ track }: { track?: RecentTrack["track"] }) => {
       </div>
     );
   }
+
+  const track = recentTrack.track;
 
   return (
     <div className="flex items-center gap-3 overflow-hidden rounded-md border border-primary/50 p-2 sm:gap-3.5 md:border-secondary/50">

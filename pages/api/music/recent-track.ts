@@ -7,7 +7,7 @@ export const config = {
 
 export default async function handler(req: NextRequest) {
   const SECONDS_IN_WEEK = 604_800;
-  const unixTimestamp = Math.floor(Date.now() / 1000); // Current UNIX timestamp in seconds
+  const unixTimestamp = Math.floor(Date.now() / 1000); // current Unix timestamp (seconds, 10-digit)
   const _7DaysAgo = unixTimestamp - SECONDS_IN_WEEK;
 
   const recentTrack = await getRecentTrack(_7DaysAgo);
