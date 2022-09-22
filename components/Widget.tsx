@@ -8,7 +8,7 @@ type Props = {
 
 const Widget = ({ title, accentColor, children }: Props) => {
   return (
-    <div className="mx-auto grid w-full max-w-[1040px] grid-rows-[auto_1fr]">
+    <div className="mx-auto grid w-full max-w-[800px] grid-rows-[auto_1fr] 1.5xl:max-w-[1040px]">
       <h2
         className={clsx(
           "mb-4 border-t-2 border-b py-1 text-lg font-bold uppercase text-primary",
