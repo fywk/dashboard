@@ -4,7 +4,7 @@ const nextConfig = {
     domains: ["lastfm.freetls.fastly.net"],
   },
   reactStrictMode: true,
-  swcMinify: true,
+  swcMinify: false,
 };
 
 module.exports = nextConfig;
