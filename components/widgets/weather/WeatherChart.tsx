@@ -9,7 +9,6 @@ import {
   LineElement,
   PointElement
 } from "chart.js";
-import clsx from "clsx";
 import { Line } from "react-chartjs-2";
 
 import dayjs from "../../../lib/dayjs";
@@ -29,6 +28,12 @@ const WeatherChart = () => {
   const { current } = useCurrentWeather();
   const { forecast } = useWeatherForecast();
 
+  if (!current || !forecast) {
+    return (
+      <div className="h-full min-h-[170px] w-full rounded bg-gray-900/50"></div>
+    );
+  }
+
   let timestamps: string[] = [];
   let temperatures: number[] = [];
 
@@ -37,16 +42,14 @@ const WeatherChart = () => {
     temperatures.push(item.main.temp);
   });
 
-  const labels = ["Now", ...timestamps];
-
   const data: ChartData<"line"> = {
-    labels: labels,
+    labels: ["Now", ...timestamps],
     datasets: [
       {
         backgroundColor: "rgb(110 242 255 / 0.1)",
         borderColor: "rgb(110 242 255 / 0.75)",
         borderWidth: 2,
-        data: [current?.main.temp!, ...temperatures],
+        data: [current.main.temp, ...temperatures],
         fill: true,
         pointBorderColor: "rgb(110 242 255)",
         pointStyle: "rectRot",
@@ -71,7 +74,7 @@ const WeatherChart = () => {
           borderWidth: 2,
         },
         ticks: {
-          color: "rgb(113 113 122)",
+          color: "rgb(161 161 170)",
         },
       },
       y: {
@@ -81,10 +84,10 @@ const WeatherChart = () => {
         suggestedMin: Math.min(...temperatures) - 3,
         suggestedMax: Math.max(...temperatures) + 2,
         ticks: {
-          callback: function (value: string | number) {
+          callback: function (value) {
             return `${value}°`;
           },
-          color: "rgb(113 113 122)",
+          color: "rgb(161 161 170)",
           stepSize: 1,
         },
       },
@@ -92,15 +95,8 @@ const WeatherChart = () => {
   };
 
   return (
-    <div
-      className={clsx(
-        !forecast && "rounded ring-1 ring-primary/[.15]",
-        "relative h-full min-h-[170px] w-full overflow-hidden"
-      )}
-    >
-      {forecast && (
-        <Line options={options} data={data} width="100%" height="170px" />
-      )}
+    <div className="relative h-full min-h-[170px] w-full overflow-hidden">
+      <Line data={data} options={options} width="100%" height="170px" />
     </div>
   );
 };

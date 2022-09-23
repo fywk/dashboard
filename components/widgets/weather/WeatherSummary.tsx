@@ -49,8 +49,8 @@ const WeatherSummary = ({ city, country }: Props) => {
 
   let temperatures: number[] = [];
   forecast?.list.forEach((item) => temperatures.push(item.main.temp));
-  const maxTemp = Math.round(Math.max(...temperatures)) || 0;
-  const minTemp = Math.round(Math.min(...temperatures)) || 0;
+  const maxTemp = forecast ? Math.round(Math.max(...temperatures)) : 0;
+  const minTemp = forecast ? Math.round(Math.min(...temperatures)) : 0;
 
   return (
     <div className="grid w-full grid-cols-[55%_1fr] gap-4 md:grid-cols-none md:grid-rows-[max-content_max-content]">
@@ -96,7 +96,7 @@ const WeatherSummary = ({ city, country }: Props) => {
               </label>
               <progress
                 id="pressure"
-                className="[&[value]]:h-1.5 [&[value]]:w-full [&[value]]:appearance-none [&[value]::-webkit-progress-bar]:rounded-full [&[value]::-webkit-progress-bar]:bg-gray-700 [&[value]::-webkit-progress-value]:rounded-full [&[value]::-webkit-progress-value]:bg-gradient-to-r [&[value]::-webkit-progress-value]:from-purple-400 [&[value]::-webkit-progress-value]:to-purple-500"
+                className="[&[value]]:h-1.5 [&[value]]:w-full [&[value]]:appearance-none [&[value]::-webkit-progress-bar]:rounded-full [&[value]::-webkit-progress-bar]:bg-gray-700 [&[value]::-webkit-progress-value]:rounded-full [&[value]::-webkit-progress-value]:bg-gradient-to-r [&[value]::-webkit-progress-value]:from-fuchsia-400 [&[value]::-webkit-progress-value]:to-fuchsia-500"
                 value={(pressure - 975.75) / (1050.75 - 975.75)}
               >
                 {`${pressure} hPa`}
@@ -106,7 +106,7 @@ const WeatherSummary = ({ city, country }: Props) => {
         </div>
       </div>
       <div className="w-full overflow-hidden">
-        <div className="flex h-full flex-col items-end justify-between gap-x-2 md:flex-row md:items-center md:justify-start">
+        <div className="flex h-full flex-col items-end justify-between gap-x-2 sm:gap-x-2.5 md:flex-row md:items-center md:justify-start">
           <WeatherIcon
             id={id}
             code={iconCode}

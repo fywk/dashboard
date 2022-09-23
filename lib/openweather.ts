@@ -19,7 +19,7 @@ export const getForecastWeather = async (
   lat: string,
   long: string
 ): Promise<ForecastWeatherData> => {
-  const forecast_endpoint = `${API_ROOT}/forecast?lat=${lat}&lon=${long}&appid=${API_KEY}&units=metric&cnt=11`;
+  const forecast_endpoint = `${API_ROOT}/forecast?lat=${lat}&lon=${long}&appid=${API_KEY}&units=metric&cnt=10`;
 
   const response = await fetch(forecast_endpoint);
 
