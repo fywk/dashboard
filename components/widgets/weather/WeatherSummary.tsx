@@ -1,15 +1,12 @@
 import { IconDropCircle, IconGauge } from "@tabler/icons";
 
+import { useGeoContext } from "../../../lib/contexts/GeoContext";
 import useCurrentWeather from "../../../lib/hooks/useCurrentWeather";
 import useWeatherForecast from "../../../lib/hooks/useWeatherForecast";
 import WeatherIcon from "./WeatherIcon";
 
-type Props = {
-  city: string;
-  country: string;
-};
-
-const WeatherSummary = ({ city, country }: Props) => {
+const WeatherSummary = () => {
+  const { city, country } = useGeoContext();
   const { current } = useCurrentWeather();
   const { forecast } = useWeatherForecast();
 
