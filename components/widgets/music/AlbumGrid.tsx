@@ -40,13 +40,7 @@ const AlbumGrid = () => {
           key={album.name}
         >
           <div className="aspect-square basis-[30%]">
-            <Image
-              src={album.image}
-              width={174}
-              height={174}
-              alt=""
-              unoptimized
-            />
+            <Image src={album.image} width={174} height={174} alt="" />
           </div>
           <div className="basis-[70%] overflow-hidden tracking-tight sm:space-y-0.5">
             <h4

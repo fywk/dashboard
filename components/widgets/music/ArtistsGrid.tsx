@@ -23,7 +23,6 @@ const Avatar = ({ name }: { name: string }) => {
       width={data.width}
       height={data.height}
       alt=""
-      unoptimized
     />
   );
 };
