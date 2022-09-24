@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export const config = {
-  matcher: ["/", "/api/weather/current", "/api/weather/forecast"],
+  matcher: ["/", "/api/weather/:path*"],
 };
 
 export function middleware(req: NextRequest) {

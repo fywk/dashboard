@@ -1,6 +1,5 @@
 import type { NextRequest } from "next/server";
-import { getTrackTotal } from "../../../lib/lastfm";
-import { isValidPeriod } from "../../../lib/utils";
+import { getTrackTotal, isValidPeriod } from "../../../lib/lastfm";
 
 export const config = {
   runtime: "experimental-edge",

@@ -1,6 +1,5 @@
 import type { NextRequest } from "next/server";
-import { getAlbumTotal } from "../../../lib/lastfm";
-import { isValidPeriod } from "../../../lib/utils";
+import { getAlbumTotal, isValidPeriod } from "../../../lib/lastfm";
 
 export const config = {
   runtime: "experimental-edge",

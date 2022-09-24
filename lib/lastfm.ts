@@ -2,6 +2,7 @@ import {
   Album,
   Artist,
   LastfmParams,
+  PERIOD,
   Period,
   RecentTrack,
   Timestamp,
@@ -22,6 +23,10 @@ const generateURL = (params: LastfmParams) => {
     .map(([key, val]) => typeof val !== "undefined" && `${key}=${val}`)
     .join("&");
   return `${API_ROOT}?${stringifyParams}&user=${USERNAME}&api_key=${API_KEY}&format=json`;
+};
+
+export const isValidPeriod = (period: string | null): period is Period => {
+  return PERIOD.includes(period as Period);
 };
 
 export const getRecentTrack = async (from: Timestamp): Promise<RecentTrack> => {
