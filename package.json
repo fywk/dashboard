@@ -9,7 +9,8 @@
   "dependencies": {
     "next": "12.3.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "sharp": "^0.31.0"
   },
   "devDependencies": {
     "@tabler/icons": "^1.95.0",

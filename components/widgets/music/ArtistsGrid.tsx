@@ -60,7 +60,7 @@ const ArtistsGrid = () => {
       {data?.map((artist) => (
         <div
           className="grid grid-cols-1 gap-y-2 p-2 sm:gap-y-2.5 sm:p-2.5 md:gap-y-3 md:p-3 [&:nth-last-child(-n+2)]:hidden md:[&:nth-last-child(-n+2)]:grid"
-          key={artist.name}
+          key={artist.name.replace(/ /g, "_")} // replace spaces with underscores
         >
           <div className="aspect-square overflow-hidden rounded-full bg-gray-900 ring-1 ring-gray-900">
             <Avatar name={artist.name} />
