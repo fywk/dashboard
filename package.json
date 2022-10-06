@@ -7,29 +7,29 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "12.3.0",
+    "next": "12.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "sharp": "^0.31.0"
+    "sharp": "^0.31.1"
   },
   "devDependencies": {
-    "@tabler/icons": "^1.95.0",
-    "@types/node": "18.7.16",
-    "@types/react": "18.0.18",
+    "@tabler/icons": "^1.101.0",
+    "@types/node": "18.8.2",
+    "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
-    "autoprefixer": "^10.4.8",
+    "autoprefixer": "^10.4.12",
     "chart.js": "^3.9.1",
     "clsx": "^1.2.1",
     "dayjs": "^1.11.5",
-    "eslint": "8.23.0",
-    "eslint-config-next": "12.3.0",
-    "postcss": "^8.4.16",
+    "eslint": "8.24.0",
+    "eslint-config-next": "12.3.1",
+    "postcss": "^8.4.17",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.13",
     "react-chartjs-2": "^4.3.1",
     "swr": "^1.3.0",
     "tailwindcss": "^3.1.8",
     "timeago-react": "^3.0.5",
-    "typescript": "4.8.3"
+    "typescript": "4.8.4"
   }
 }
