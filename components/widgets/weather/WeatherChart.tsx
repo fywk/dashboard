@@ -43,7 +43,7 @@ const WeatherChart = () => {
   });
 
   const data: ChartData<"line"> = {
-    labels: ["Now", ...timestamps],
+    labels: [dayjs().format("HH:mm"), ...timestamps],
     datasets: [
       {
         backgroundColor: "rgb(110 242 255 / 0.1)",
@@ -81,7 +81,7 @@ const WeatherChart = () => {
         grid: {
           color: "rgba(110, 242, 255, 0.15)",
         },
-        suggestedMin: Math.min(...temperatures) - 3,
+        suggestedMin: Math.min(...temperatures) - 2,
         suggestedMax: Math.max(...temperatures) + 2,
         ticks: {
           callback: function (value) {

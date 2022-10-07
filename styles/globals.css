@@ -16,21 +16,25 @@
   .eq-bar {
     transform: scale(1, -1) translate(0, -24px);
   }
+
   .eq-bar--1 {
     animation-name: bar-1;
     animation-duration: 0.8s;
     animation-iteration-count: infinite;
   }
+
   .eq-bar--2 {
     animation-name: bar-2;
     animation-duration: 0.8s;
     animation-iteration-count: infinite;
   }
+
   .eq-bar--3 {
     animation-name: bar-3;
     animation-duration: 0.8s;
     animation-iteration-count: infinite;
   }
+
   @keyframes bar-1 {
     0% {
       height: 5px;
@@ -42,6 +46,7 @@
       height: 5px;
     }
   }
+
   @keyframes bar-2 {
     0% {
       height: 15px;
@@ -53,6 +58,7 @@
       height: 15px;
     }
   }
+
   @keyframes bar-3 {
     0% {
       height: 10px;

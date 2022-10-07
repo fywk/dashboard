@@ -15,7 +15,7 @@ const WeatherSummary = () => {
       <div className="grid w-full grid-cols-[55%_1fr] gap-4 md:grid-cols-none md:grid-rows-[max-content_max-content]">
         <div className="w-full overflow-hidden sm:space-y-px">
           <h3
-            className="truncate font-oxanium text-xl font-bold uppercase text-gray-100 sm:text-2xl"
+            className="truncate font-oxanium text-2xl font-bold uppercase text-gray-100 sm:text-[1.75rem]"
             title={`${city}, ${country}`}
           >
             {city}
@@ -53,7 +53,7 @@ const WeatherSummary = () => {
     <div className="grid w-full grid-cols-[55%_1fr] gap-4 md:grid-cols-none md:grid-rows-[max-content_max-content]">
       <div className="w-full overflow-hidden sm:space-y-px">
         <h3
-          className="truncate font-oxanium text-xl font-bold uppercase text-gray-100 sm:text-2xl"
+          className="truncate font-oxanium text-2xl font-bold uppercase text-gray-100 sm:text-[1.75rem]"
           title={`${city}, ${country}`}
         >
           {city}

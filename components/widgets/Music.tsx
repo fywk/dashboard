@@ -5,7 +5,7 @@ import NowPlaying from "./music/NowPlaying";
 import Statistics from "./music/Statistics";
 
 const Music = () => {
-  const SUBTITLE_STYLE = "mb-2 font-medium text-gray-600";
+  const SUBTITLE_STYLE = "mb-2 text-gray-600";
 
   return (
     <Widget title="Music" accentColor="secondary">
