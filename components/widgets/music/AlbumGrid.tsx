@@ -18,7 +18,7 @@ const AlbumGrid = () => {
       <div className="grid grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-3 md:gap-y-3.5 md:gap-x-4">
         {[...Array(6)].map((_, i) => (
           <div
-            className="flex items-center gap-x-2.5 overflow-hidden rounded pr-2.5 sm:gap-x-3 sm:pr-3 [&:nth-last-child(-n+2)]:hidden md:[&:nth-last-child(-n+2)]:flex"
+            className="flex items-center gap-x-2.5 overflow-hidden rounded pr-2.5 sm:gap-x-3 sm:pr-3"
             key={i}
           >
             <div className="aspect-square basis-[30%] bg-gray-900"></div>
@@ -36,7 +36,7 @@ const AlbumGrid = () => {
     <div className="grid grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-3 md:gap-y-3.5 md:gap-x-4">
       {data?.map((album) => (
         <div
-          className="flex items-center gap-x-2.5 overflow-hidden rounded bg-gray-900 pr-2.5 ring-1 ring-gray-800/75 sm:gap-x-3 sm:pr-3 [&:nth-last-child(-n+2)]:hidden md:[&:nth-last-child(-n+2)]:flex"
+          className="flex items-center gap-x-2.5 overflow-hidden rounded bg-gray-900 pr-2.5 ring-1 ring-gray-800/75 sm:gap-x-3 sm:pr-3"
           key={album.name}
         >
           <div className="aspect-square basis-[30%]">
