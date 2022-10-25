@@ -46,7 +46,7 @@ const WeatherChart = () => {
     labels: [dayjs().format("HH:mm"), ...timestamps],
     datasets: [
       {
-        backgroundColor: "rgb(110 242 255 / 0.1)",
+        backgroundColor: "rgb(110 242 255 / 0.075)",
         borderColor: "rgb(110 242 255 / 0.75)",
         borderWidth: 2,
         data: [current.main.temp, ...temperatures],
@@ -74,7 +74,7 @@ const WeatherChart = () => {
           borderWidth: 2,
         },
         ticks: {
-          color: "rgb(161 161 170)",
+          color: "rgb(161 161 170)", // text-gray-400
         },
       },
       y: {
@@ -87,7 +87,7 @@ const WeatherChart = () => {
           callback: function (value) {
             return `${value}°`;
           },
-          color: "rgb(161 161 170)",
+          color: "rgb(161 161 170)", // text-gray-400
           stepSize: 1,
         },
       },
