@@ -34,8 +34,8 @@ const WeatherChart = () => {
     );
   }
 
-  let timestamps: string[] = [];
-  let temperatures: number[] = [];
+  let timestamps = [dayjs().format("HH:mm")];
+  let temperatures = [current.main.temp];
 
   forecast?.list.forEach((item) => {
     timestamps.push(dayjs.unix(item.dt).format("HH:mm"));
@@ -43,13 +43,13 @@ const WeatherChart = () => {
   });
 
   const data: ChartData<"line"> = {
-    labels: [dayjs().format("HH:mm"), ...timestamps],
+    labels: timestamps,
     datasets: [
       {
         backgroundColor: "rgb(110 242 255 / 0.075)",
         borderColor: "rgb(110 242 255 / 0.75)",
         borderWidth: 2,
-        data: [current.main.temp, ...temperatures],
+        data: temperatures,
         fill: true,
         pointBorderColor: "rgb(110 242 255)",
         pointStyle: "rectRot",
