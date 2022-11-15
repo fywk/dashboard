@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import Image from "next/future/image";
+import Image from "next/image";
 import TimeAgo from "timeago-react";
 
 import useRecentTrack from "../../../lib/hooks/useRecentTrack";

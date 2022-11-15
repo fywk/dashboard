@@ -24,7 +24,7 @@ module.exports = {
         85: ".85",
       },
       fontFamily: {
-        oxanium: ["Oxanium", ...defaultTheme.fontFamily.mono],
+        oxanium: ["var(--font-oxanium)", ...defaultTheme.fontFamily.mono],
       },
       screens: {
         "1.5xl": "1440px",
