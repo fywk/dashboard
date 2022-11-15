@@ -1,4 +1,4 @@
-import Image from "next/future/image";
+import Image from "next/image";
 import useSWR from "swr";
 
 import fetcher from "../../../lib/fetcher";
@@ -20,8 +20,8 @@ const Avatar = ({ name }: { name: string }) => {
     <Image
       src={data.url}
       className="h-full w-full object-cover"
-      width={data.width}
-      height={data.height}
+      width={Number(data.width)}
+      height={Number(data.height)}
       alt=""
     />
   );
