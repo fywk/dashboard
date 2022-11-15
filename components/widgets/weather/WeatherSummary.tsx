@@ -44,7 +44,7 @@ const WeatherSummary = () => {
   const { id, description, icon: iconCode } = current.weather[0];
   const { temp, pressure, humidity } = current.main;
 
-  let temperatures: number[] = [];
+  let temperatures = [temp]; // include the current temperature to the array for calculating the min and max temperatures
   forecast?.list.forEach((item) => temperatures.push(item.main.temp));
   const maxTemp = forecast ? Math.round(Math.max(...temperatures)) : 0;
   const minTemp = forecast ? Math.round(Math.min(...temperatures)) : 0;
