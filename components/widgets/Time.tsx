@@ -14,7 +14,7 @@ const City = ({
 }) => {
   return (
     <div className="w-full py-1 sm:py-1.5">
-      <div className="-mx-0.5 bg-gray-950 py-0.5 text-center text-[8px] leading-[10px] sm:pt-1 sm:pb-px sm:text-[10px] sm:leading-3 md:text-xs">
+      <div className="-mx-0.5 bg-gray-950 py-0.5 text-center text-[8px] leading-[10px] sm:pb-px sm:text-[10px] sm:leading-[13px] md:pt-1 md:text-xs md:leading-[15px]">
         <p className="uppercase">
           <span className="sm:hidden">{abbr}</span>
           <span className="hidden tracking-tight sm:inline">{name}</span>
