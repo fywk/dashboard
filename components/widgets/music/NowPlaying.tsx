@@ -43,7 +43,7 @@ const NowPlaying = () => {
 
   if (!recentTrack || isLoading || isError) {
     return (
-      <div className="flex items-center gap-3 overflow-hidden rounded-md border border-primary/75 p-2 sm:gap-3.5 md:border-secondary/75">
+      <div className="flex items-center gap-3 overflow-hidden rounded-md border border-primary/60 p-2 sm:gap-3.5">
         <div className="aspect-square basis-1/4 rounded bg-gray-900"></div>
         <div className="basis-3/4 space-y-2 sm:space-y-2.5">
           <div className="h-2.5 w-1/2 rounded bg-gray-900 sm:h-3"></div>
@@ -60,7 +60,7 @@ const NowPlaying = () => {
   const track = recentTrack.track;
 
   return (
-    <div className="flex items-center gap-3 overflow-hidden rounded-md border border-primary/50 p-2 sm:gap-3.5 md:border-secondary/50">
+    <div className="flex items-center gap-3 overflow-hidden rounded-md border border-primary/60 p-2 sm:gap-3.5">
       <div
         className="relative aspect-square basis-1/4 overflow-hidden rounded ring-1 ring-gray-900"
         id="track-album-art"
@@ -76,7 +76,7 @@ const NowPlaying = () => {
       </div>
       <div className="basis-3/4 overflow-hidden tracking-tight">
         <p
-          className="flex items-center gap-x-1 text-[13px] font-semibold text-[#1ed760] sm:text-sm"
+          className="flex items-center gap-x-1 text-[13px] font-medium text-[#1ed760] sm:text-sm"
           id="track-status"
         >
           {track.timestamp ? (
@@ -89,7 +89,7 @@ const NowPlaying = () => {
           )}
         </p>
         <h4
-          className="truncate text-sm font-semibold text-gray-100 sm:text-[15px]"
+          className="truncate text-sm font-medium text-gray-100 sm:text-[15px]"
           title={track.name}
           id="track-name"
         >

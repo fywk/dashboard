@@ -22,7 +22,7 @@ const AlbumGrid = () => {
             key={i}
           >
             <div className="aspect-square basis-[30%] bg-gray-900"></div>
-            <div className="basis-[70%] space-y-1.5 sm:space-y-2">
+            <div className="basis-[70%] space-y-1.5 sm:space-y-[7px]">
               <div className="h-2.5 w-full rounded bg-gray-900 sm:h-3"></div>
               <div className="h-2 w-1/2 rounded bg-gray-900 sm:h-2.5"></div>
             </div>
@@ -42,9 +42,9 @@ const AlbumGrid = () => {
           <div className="aspect-square basis-[30%]">
             <Image src={album.image} width={174} height={174} alt="" />
           </div>
-          <div className="basis-[70%] overflow-hidden tracking-tight sm:space-y-0.5">
+          <div className="basis-[70%] overflow-hidden tracking-tight sm:space-y-px">
             <h4
-              className="truncate text-xs font-semibold text-gray-100 sm:text-sm"
+              className="truncate text-xs font-medium text-gray-100 sm:text-sm"
               title={`${album.artist} – ${album.name}`}
             >
               {album.name}

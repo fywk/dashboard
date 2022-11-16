@@ -107,13 +107,13 @@ const WeatherSummary = () => {
           <WeatherIcon
             id={id}
             code={iconCode}
-            className="h-8 w-8 text-gray-200 sm:h-9 sm:w-9"
+            className="h-8 w-8 text-gray-100 sm:h-9 sm:w-9"
           />
           <div className="flex flex-col items-end md:items-start">
-            <p className="truncate text-xs font-medium capitalize tracking-tight text-gray-300 sm:text-sm">
+            <p className="truncate text-xs font-medium capitalize tracking-tight text-gray-100 sm:text-sm">
               {description}
             </p>
-            <p className="text-[10px] font-medium leading-3 tracking-tight sm:text-xs">
+            <p className="text-[10px] leading-3 tracking-tight sm:text-xs">
               {`H: ${Math.round(maxTemp)}° L: ${Math.round(minTemp)}°`}
             </p>
           </div>

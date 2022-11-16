@@ -48,7 +48,7 @@ const WeatherChart = () => {
       {
         backgroundColor: "rgb(110 242 255 / 0.075)",
         borderColor: "rgb(110 242 255 / 0.75)",
-        borderWidth: 2,
+        borderWidth: 1.5,
         data: temperatures,
         fill: true,
         pointBorderColor: "rgb(110 242 255)",
@@ -69,7 +69,7 @@ const WeatherChart = () => {
     scales: {
       x: {
         grid: {
-          color: "rgb(110 242 255 / 0.15)",
+          color: "rgb(110 242 255 / 0.125)",
           borderColor: "rgb(110 242 255 / 0.5)",
           borderWidth: 2,
         },
@@ -79,7 +79,7 @@ const WeatherChart = () => {
       },
       y: {
         grid: {
-          color: "rgba(110, 242, 255, 0.15)",
+          color: "rgb(110 242 255 / 0.125)",
         },
         suggestedMin: Math.min(...temperatures) - 2,
         suggestedMax: Math.max(...temperatures) + 2,

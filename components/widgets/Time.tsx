@@ -14,12 +14,14 @@ const City = ({
 }) => {
   return (
     <div className="w-full py-1 sm:py-1.5">
-      <div className="-mx-0.5 bg-gray-950 py-0.5 text-center text-[8px] font-medium leading-[10px] sm:pt-1 sm:pb-px sm:text-[10px] sm:leading-3 md:text-xs">
+      <div className="-mx-0.5 bg-gray-950 py-0.5 text-center text-[8px] leading-[10px] sm:pt-1 sm:pb-px sm:text-[10px] sm:leading-3 md:text-xs">
         <p className="uppercase">
           <span className="sm:hidden">{abbr}</span>
           <span className="hidden tracking-tight sm:inline">{name}</span>
         </p>
-        <p className="font-oxanium text-gray-100 md:text-sm">{time}</p>
+        <p className="font-oxanium font-medium text-gray-100 md:text-sm">
+          {time}
+        </p>
       </div>
     </div>
   );
@@ -95,7 +97,7 @@ const Time = () => {
             </foreignObject>
           </svg>
         </div>
-        <div className="col-span-full flex justify-evenly divide-x divide-primary/75 rounded-sm border border-primary/75">
+        <div className="col-span-full flex justify-evenly divide-x divide-primary/60 rounded-sm border border-primary/60">
           <City name="Los Angeles" abbr="LA" time={los_angeles} />
           <City name="New York City" abbr="NYC" time={new_york_city} />
           <City name="London" abbr="LON" time={london} />

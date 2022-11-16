@@ -5,12 +5,13 @@ import { Oxanium } from "@next/font/google";
 import type { AppProps } from "next/app";
 
 const oxanium = Oxanium({
+  display: "swap",
   variable: "--font-oxanium",
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <main className={`${oxanium.variable}`}>
+    <main className={oxanium.variable}>
       <Component {...pageProps} />
     </main>
   );

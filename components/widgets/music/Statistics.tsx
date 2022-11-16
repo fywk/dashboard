@@ -21,7 +21,7 @@ const Category = ({
   icon?: React.ReactNode;
 }) => {
   return (
-    <div className="flex w-full flex-col items-center justify-center text-sm font-semibold tracking-tight odd:text-secondary even:text-primary sm:text-[15px]">
+    <div className="flex w-full flex-col items-center justify-center text-sm font-medium tracking-tight odd:text-secondary even:text-primary sm:text-[15px] md:odd:text-primary md:even:text-secondary">
       {icon}
       <span className="mt-1">{title}</span>
       <span>{value > 0 ? value : "---"}</span>
@@ -59,27 +59,24 @@ const Statistics = () => {
         title="Plays"
         value={Number(recentTrack?.total)}
         icon={
-          <IconPlayerPlay className="h-7.5 w-7.5 sm:h-8 sm:w-8" stroke={2} />
+          <IconPlayerPlay className="h-7.5 w-7.5 sm:h-8 sm:w-8" stroke={1.75} />
         }
       />
       <Category
         title="Tracks"
         value={Number(tracks?.total)}
-        icon={<IconMusic className="h-7.5 w-7.5 sm:h-8 sm:w-8" stroke={1.75} />}
+        icon={<IconMusic className="h-7.5 w-7.5 sm:h-8 sm:w-8" stroke={1.5} />}
       />
       <Category
         title="Albums"
         value={Number(albums?.total)}
-        icon={<IconVinyl className="h-7.5 w-7.5 sm:h-8 sm:w-8" stroke={1.75} />}
+        icon={<IconVinyl className="h-7.5 w-7.5 sm:h-8 sm:w-8" stroke={1.5} />}
       />
       <Category
         title="Artists"
         value={Number(artists?.total)}
         icon={
-          <IconMicrophone2
-            className="h-7.5 w-7.5 sm:h-8 sm:w-8"
-            stroke={1.75}
-          />
+          <IconMicrophone2 className="h-7.5 w-7.5 sm:h-8 sm:w-8" stroke={1.5} />
         }
       />
     </div>
