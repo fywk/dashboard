@@ -21,10 +21,6 @@ const Home: NextPage<Props> = ({ city, country }) => {
     <>
       <Head>
         <title>Dashboard – Francis Yeong</title>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, viewport-fit=cover"
-        />
       </Head>
       <div className="mx-auto grid w-full max-w-[1920px] grid-cols-1 gap-x-10 gap-y-7 px-4 py-8 sm:px-6 md:gap-y-8 md:px-8 min-[1440px]:grid-cols-[55%_auto]">
         <Profile />
