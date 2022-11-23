@@ -43,14 +43,14 @@ const NowPlaying = () => {
 
   if (!recentTrack || isLoading || isError) {
     return (
-      <div className="flex items-center gap-3 overflow-hidden rounded-md border border-primary/60 p-2 sm:gap-3.5">
+      <div className="flex items-center gap-[13px] overflow-hidden rounded-md border border-primary/60 p-2">
         <div className="aspect-square basis-1/4 rounded bg-gray-900"></div>
         <div className="basis-3/4 space-y-2 sm:space-y-2.5">
           <div className="h-2.5 w-1/2 rounded bg-gray-900 sm:h-3"></div>
           <div className="h-3 w-full rounded bg-gray-900 sm:h-3.5"></div>
           <div className="h-2.5 w-3/4 rounded bg-gray-900 sm:h-3"></div>
         </div>
-        <div className="mr-3 text-xl font-medium text-transparent sm:mr-4">
+        <div className="w-9 text-xl font-medium text-transparent sm:w-11">
           {"♡"}
         </div>
       </div>
@@ -60,7 +60,7 @@ const NowPlaying = () => {
   const track = recentTrack.track;
 
   return (
-    <div className="flex items-center gap-3 overflow-hidden rounded-md border border-primary/60 p-2 sm:gap-3.5">
+    <div className="flex items-center gap-[13px] overflow-hidden rounded-md border border-primary/60 p-2">
       <div
         className="relative aspect-square basis-1/4 overflow-hidden rounded ring-1 ring-gray-900"
         id="track-album-art"
@@ -105,7 +105,7 @@ const NowPlaying = () => {
       </div>
       <div
         className={clsx(
-          "mr-3 text-xl font-medium sm:mr-4",
+          "w-9 text-xl font-medium sm:w-11",
           track.loved ? "text-[#1ed760]" : "text-gray-500"
         )}
       >
