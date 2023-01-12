@@ -43,7 +43,10 @@ const ArtistsGrid = () => {
             <ArtistAvatar name={artist.name} />
           </div>
           <div className="text-center tracking-tight sm:space-y-px">
-            <h4 className="truncate text-xs font-medium text-gray-100 sm:text-sm">
+            <h4
+              className="truncate text-xs font-medium text-gray-100 sm:text-sm"
+              title={artist.name}
+            >
               {artist.name}
             </h4>
             <p className="text-[10px] sm:text-xs">{`${artist.playcount} plays`}</p>
