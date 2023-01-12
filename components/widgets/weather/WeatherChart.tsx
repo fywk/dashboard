@@ -25,19 +25,24 @@ ChartJS.register(
 );
 
 const WeatherChart = () => {
-  const { current } = useCurrentWeather();
-  const { forecast } = useWeatherForecast();
+  const { currentWeather, isLoadingCurrentWeather } = useCurrentWeather();
+  const { weatherForecast, isLoadingWeatherForecast } = useWeatherForecast();
 
-  if (!current || !forecast) {
+  if (
+    !currentWeather ||
+    isLoadingCurrentWeather ||
+    !weatherForecast ||
+    isLoadingWeatherForecast
+  ) {
     return (
       <div className="h-full min-h-[170px] w-full rounded bg-gray-900/50"></div>
     );
   }
 
   let timestamps = [dayjs().format("HH:mm")];
-  let temperatures = [current.main.temp];
+  let temperatures = [currentWeather.main.temp];
 
-  forecast?.list.forEach((item) => {
+  weatherForecast?.list.forEach((item) => {
     timestamps.push(dayjs.unix(item.dt).format("HH:mm"));
     temperatures.push(item.main.temp);
   });

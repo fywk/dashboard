@@ -4,15 +4,14 @@ import fetcher from "../fetcher";
 import { ForecastWeatherData } from "../types/openweather";
 
 const useWeatherForecast = () => {
-  const { data, error } = useSWRImmutable<ForecastWeatherData>(
+  const { data, isLoading } = useSWRImmutable<ForecastWeatherData>(
     "/api/weather/forecast",
     fetcher
   );
 
   return {
-    forecast: data,
-    isLoading: !error && !data,
-    isError: error,
+    weatherForecast: data,
+    isLoadingWeatherForecast: isLoading,
   };
 };
 

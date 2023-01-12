@@ -1,34 +1,11 @@
-import Image from "next/image";
 import useSWR from "swr";
 
 import fetcher from "../../../lib/fetcher";
 import { TopArtists } from "../../../lib/types/lastfm";
-import { ArtistImage } from "../../../lib/types/spotify";
-
-const Avatar = ({ name }: { name: string }) => {
-  const { data } = useSWR<ArtistImage>(
-    `/api/music/artist-image?name=${name}`,
-    fetcher,
-    {
-      refreshInterval: 3_600_000, // 1 hour in milliseconds
-    }
-  );
-
-  if (!data) return null;
-
-  return (
-    <Image
-      src={data.url}
-      className="h-full w-full object-cover"
-      width={Number(data.width)}
-      height={Number(data.height)}
-      alt=""
-    />
-  );
-};
+import ArtistAvatar from "./ArtistAvatar";
 
 const ArtistsGrid = () => {
-  const { data } = useSWR<TopArtists>(
+  const { data, isLoading } = useSWR<TopArtists>(
     "/api/music/top-artists?period=1month",
     fetcher,
     {
@@ -36,7 +13,7 @@ const ArtistsGrid = () => {
     }
   );
 
-  if (!data) {
+  if (isLoading) {
     return (
       <div className="grid w-full grid-cols-4 gap-2 sm:gap-2.5 md:grid-cols-6 md:gap-3">
         {[...Array(6)].map((_, i) => (
@@ -63,7 +40,7 @@ const ArtistsGrid = () => {
           key={artist.name.replace(/ /g, "_")} // replace spaces with underscores
         >
           <div className="aspect-square overflow-hidden rounded-full bg-gray-900 ring-1 ring-gray-900">
-            <Avatar name={artist.name} />
+            <ArtistAvatar name={artist.name} />
           </div>
           <div className="text-center tracking-tight sm:space-y-px">
             <h4 className="truncate text-xs font-medium text-gray-100 sm:text-sm">

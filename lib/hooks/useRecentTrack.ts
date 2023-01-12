@@ -4,7 +4,7 @@ import fetcher from "../fetcher";
 import { RecentTrack } from "../types/lastfm";
 
 const useRecentTrack = () => {
-  const { data, error } = useSWR<RecentTrack>(
+  const { data, isLoading } = useSWR<RecentTrack>(
     "/api/music/recent-track",
     fetcher,
     {
@@ -14,8 +14,7 @@ const useRecentTrack = () => {
 
   return {
     recentTrack: data,
-    isLoading: !error && !data,
-    isError: error,
+    isLoadingRecentTrack: isLoading,
   };
 };
 

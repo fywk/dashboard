@@ -39,9 +39,9 @@ const EqualizerIcon = ({ className }: { className?: string }) => {
 };
 
 const NowPlaying = () => {
-  const { recentTrack, isLoading, isError } = useRecentTrack();
+  const { recentTrack, isLoadingRecentTrack } = useRecentTrack();
 
-  if (!recentTrack || isLoading || isError) {
+  if (!recentTrack || isLoadingRecentTrack) {
     return (
       <div className="flex items-center gap-[13px] overflow-hidden rounded-md border border-primary/60 p-2">
         <div className="aspect-square basis-1/4 rounded bg-gray-900"></div>

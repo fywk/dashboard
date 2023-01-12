@@ -5,7 +5,7 @@ import fetcher from "../../../lib/fetcher";
 import { TopAlbums } from "../../../lib/types/lastfm";
 
 const AlbumGrid = () => {
-  const { data } = useSWR<TopAlbums>(
+  const { data, isLoading } = useSWR<TopAlbums>(
     "/api/music/top-albums?period=3month",
     fetcher,
     {
@@ -13,7 +13,7 @@ const AlbumGrid = () => {
     }
   );
 
-  if (!data) {
+  if (isLoading) {
     return (
       <div className="grid grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-3 md:gap-y-3.5 md:gap-x-4">
         {[...Array(6)].map((_, i) => (

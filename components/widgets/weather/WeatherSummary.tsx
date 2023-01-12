@@ -7,10 +7,10 @@ import WeatherIcon from "./WeatherIcon";
 
 const WeatherSummary = () => {
   const { city, country } = useGeoContext();
-  const { current } = useCurrentWeather();
-  const { forecast } = useWeatherForecast();
+  const { currentWeather, isLoadingCurrentWeather } = useCurrentWeather();
+  const { weatherForecast } = useWeatherForecast();
 
-  if (!current) {
+  if (!currentWeather || isLoadingCurrentWeather) {
     return (
       <div className="grid w-full grid-cols-[55%_1fr] gap-4 md:grid-cols-none md:grid-rows-[max-content_max-content]">
         <div className="w-full overflow-hidden sm:space-y-px">
@@ -41,13 +41,13 @@ const WeatherSummary = () => {
     );
   }
 
-  const { id, description, icon: iconCode } = current.weather[0];
-  const { temp, pressure, humidity } = current.main;
+  const { id, description, icon: iconCode } = currentWeather.weather[0];
+  const { temp, pressure, humidity } = currentWeather.main;
 
   let temperatures = [temp]; // include the current temperature to the array for calculating the min and max temperatures
-  forecast?.list.forEach((item) => temperatures.push(item.main.temp));
-  const maxTemp = forecast ? Math.round(Math.max(...temperatures)) : 0;
-  const minTemp = forecast ? Math.round(Math.min(...temperatures)) : 0;
+  weatherForecast?.list.forEach((item) => temperatures.push(item.main.temp));
+  const maxTemp = weatherForecast ? Math.round(Math.max(...temperatures)) : 0;
+  const minTemp = weatherForecast ? Math.round(Math.min(...temperatures)) : 0;
 
   return (
     <div className="grid w-full grid-cols-[55%_1fr] gap-4 md:grid-cols-none md:grid-rows-[max-content_max-content]">
