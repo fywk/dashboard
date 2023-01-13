@@ -28,12 +28,8 @@ const WeatherChart = () => {
   const { currentWeather, isLoadingCurrentWeather } = useCurrentWeather();
   const { weatherForecast, isLoadingWeatherForecast } = useWeatherForecast();
 
-  if (
-    !currentWeather ||
-    isLoadingCurrentWeather ||
-    !weatherForecast ||
-    isLoadingWeatherForecast
-  ) {
+  // prettier-ignore
+  if (!currentWeather || isLoadingCurrentWeather || !weatherForecast || isLoadingWeatherForecast) {
     return (
       <div className="h-full min-h-[170px] w-full rounded bg-gray-900/50"></div>
     );
@@ -73,13 +69,18 @@ const WeatherChart = () => {
     maintainAspectRatio: false,
     scales: {
       x: {
+        border: {
+          color: "rgb(110 242 255 / 0.5)",
+          width: 2,
+        },
         grid: {
           color: "rgb(110 242 255 / 0.125)",
-          borderColor: "rgb(110 242 255 / 0.5)",
-          borderWidth: 2,
         },
         ticks: {
           color: "rgb(161 161 170)", // text-gray-400
+          font: {
+            size: 11,
+          },
         },
       },
       y: {
@@ -93,6 +94,9 @@ const WeatherChart = () => {
             return `${value}°`;
           },
           color: "rgb(161 161 170)", // text-gray-400
+          font: {
+            size: 11,
+          },
           stepSize: 1,
         },
       },
