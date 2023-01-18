@@ -7,13 +7,13 @@ import {
   IconVinyl
 } from "@tabler/icons";
 
-import {
-  fetchTotalAlbums,
-  fetchTotalArtists,
-  fetchTotalPlays,
-  fetchTotalTracks
-} from "../../../lib/music";
 import { RecentTrack, TotalStats } from "../../../lib/types/lastfm";
+import {
+  getRecentTrack,
+  getTotalAlbums,
+  getTotalArtists,
+  getTotalTracks
+} from "../../../lib/utils/lastfm";
 
 const TotalPlays = async ({ promise }: { promise: Promise<RecentTrack> }) => {
   const plays = await promise;
@@ -53,11 +53,15 @@ const Category = ({
   );
 };
 
-const Statistics = async () => {
-  const playsData = fetchTotalPlays();
-  const tracksData = fetchTotalTracks();
-  const albumsData = fetchTotalAlbums();
-  const artistsData = fetchTotalArtists();
+const Statistics = () => {
+  const ONE_WEEK_IN_SECONDS = 604_800;
+  const unixTimestamp = Math.floor(Date.now() / 1000); // current Unix timestamp (seconds, 10-digit)
+  const timestamp7DaysAgo = unixTimestamp - ONE_WEEK_IN_SECONDS;
+
+  const playsData = getRecentTrack(timestamp7DaysAgo);
+  const tracksData = getTotalTracks("7day");
+  const albumsData = getTotalAlbums("7day");
+  const artistsData = getTotalArtists("7day");
 
   return (
     <div className="flex w-full items-center justify-between py-1">

@@ -1,10 +1,11 @@
 import Image from "next/image";
 import { Suspense } from "react";
 
-import { fetchArtistAvatar, fetchTopArtists } from "../../../lib/music";
+import { getArtistImage } from "../../../lib/spotify";
+import { getTopArtists } from "../../../lib/utils/lastfm";
 
 const ArtistAvatar = async ({ name }: { name: string }) => {
-  const data = await fetchArtistAvatar(name);
+  const data = await getArtistImage(name);
 
   return (
     <Image
@@ -37,7 +38,7 @@ const TopArtistsSkeleton = () => {
 };
 
 const TopArtists = async () => {
-  const data = await fetchTopArtists();
+  const data = await getTopArtists("1month");
 
   return (
     <>

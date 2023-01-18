@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Suspense } from "react";
 
-import { fetchTopAlbums } from "../../../lib/music";
+import { getTopAlbums } from "../../../lib/utils/lastfm";
 
 const TopAlbumsPlaceholder = () => {
   return (
@@ -23,7 +23,7 @@ const TopAlbumsPlaceholder = () => {
 };
 
 const TopAlbums = async () => {
-  const data = await fetchTopAlbums();
+  const data = await getTopAlbums("3month");
 
   return (
     <>

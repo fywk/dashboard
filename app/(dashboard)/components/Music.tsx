@@ -21,7 +21,6 @@ const Music = () => {
           <h3 className={SUBTITLE_STYLE}>
             Statistics <small className="pl-0.5">Last 7 days</small>
           </h3>
-          {/* @ts-expect-error Server Component */}
           <Statistics />
         </div>
         <div className="md:order-3 md:col-span-full">
