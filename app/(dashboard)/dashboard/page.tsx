@@ -11,13 +11,11 @@ type Props = {
 };
 
 const DashboardPage: NextPage<Props> = ({ searchParams }) => {
-  const { city, country } = searchParams;
-
   return (
     <div className="mx-auto grid w-full max-w-[1920px] grid-cols-1 gap-x-10 gap-y-7 px-4 py-8 sm:px-6 md:gap-y-8 md:px-8 min-[1440px]:grid-cols-[55%_auto]">
       <Profile />
       <Music />
-      <Weather city={city} country={country} />
+      <Weather {...searchParams} />
       <Time />
     </div>
   );

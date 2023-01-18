@@ -1,6 +1,6 @@
 export type SearchParams = {
-  city?: string;
-  country?: string;
-  latitude?: string;
-  longitude?: string;
+  city: string;
+  country: string;
+  latitude: string;
+  longitude: string;
 };

@@ -1,4 +1,4 @@
-import { CurrentWeatherData, ForecastWeatherData } from "./types/openweather";
+import { CurrentWeatherData, WeatherForecastData } from "./types/openweather";
 
 const API_KEY = process.env.OPENWEATHER_API_KEY;
 
@@ -18,7 +18,7 @@ export const getCurrentWeather = async (
 export const getForecastWeather = async (
   lat: string,
   long: string
-): Promise<ForecastWeatherData> => {
+): Promise<WeatherForecastData> => {
   const forecast_endpoint = `${API_ROOT}/forecast?lat=${lat}&lon=${long}&appid=${API_KEY}&units=metric&cnt=10`;
 
   const response = await fetch(forecast_endpoint);
