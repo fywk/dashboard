@@ -2,13 +2,13 @@
 
 import clsx from "clsx";
 import Image from "next/image";
-import useSWR, { preload } from "swr";
+import useSWR from "swr";
 import TimeAgo from "timeago-react";
 
 import fetcher from "../../../lib/fetcher";
 import { RecentTrack } from "../../../lib/types/lastfm";
 
-preload("/api/music/recent-track", fetcher);
+// preload("/api/music/recent-track", fetcher);
 
 const EqualizerIcon = ({ className }: { className?: string }) => {
   return (
