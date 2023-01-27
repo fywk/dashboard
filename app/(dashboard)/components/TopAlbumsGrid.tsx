@@ -33,7 +33,7 @@ const TopAlbums = async () => {
           key={album.name}
         >
           <div className="aspect-square basis-[30%]">
-            <Image src={album.image} width={174} height={174} alt="" />
+            <Image src={album.image} width={300} height={300} alt="" />
           </div>
           <div className="basis-[70%] overflow-hidden tracking-tight sm:space-y-px">
             <h4

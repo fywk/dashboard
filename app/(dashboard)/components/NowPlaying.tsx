@@ -79,8 +79,8 @@ const NowPlaying = () => {
       >
         <Image
           src={track.image}
-          width={174}
-          height={174}
+          width={300}
+          height={300}
           alt=""
           priority
           unoptimized

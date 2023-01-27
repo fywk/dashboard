@@ -21,6 +21,7 @@ const generateURL = (params: LastfmParams) => {
   const stringifyParams = Object.entries(params)
     .map(([key, val]) => typeof val !== "undefined" && `${key}=${val}`)
     .join("&");
+
   return `${API_ROOT}?${stringifyParams}&user=${USERNAME}&api_key=${API_KEY}&format=json`;
 };
 
@@ -46,7 +47,7 @@ export const getRecentTrack = async (from: Timestamp): Promise<RecentTrack> => {
     name,
     artist: artist.name,
     album: album["#text"],
-    image: image.at(2)["#text"], // 174x174
+    image: image.at(3)["#text"], // 300x300
     timestamp,
     loved: loved === "1",
   };
@@ -96,7 +97,7 @@ export const getTopAlbums = async (
     (album: any): Album => ({
       name: album.name,
       artist: album.artist.name,
-      image: album.image.at(2)["#text"],
+      image: album.image.at(3)["#text"], // 300x300
       playcount: album.playcount,
     })
   );

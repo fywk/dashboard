@@ -44,9 +44,9 @@ export const getArtistImage = async (
   const { artists } = await response.json();
 
   const image: ArtistImage = {
-    url: artists.items[0].images[2].url,
-    width: artists.items[0].images[2].width,
-    height: artists.items[0].images[2].height,
+    url: artists.items[0].images[1].url,
+    width: artists.items[0].images[1].width,
+    height: artists.items[0].images[1].height,
   };
 
   return image;
