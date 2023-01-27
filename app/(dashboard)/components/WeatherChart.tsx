@@ -54,16 +54,26 @@ const WeatherChart = () => {
         borderWidth: 1.5,
         data: temperatures,
         fill: true,
-        pointBorderColor: "rgb(110 242 255)",
+        pointBorderColor: function () {
+          const colours = [
+            "rgb(110 242 255)",
+            "rgb(110 242 255)",
+            "rgb(110 242 255)",
+            "rgb(250 207 6)",
+          ];
+          return colours[Math.floor(Math.random() * colours.length)];
+        },
+        pointBorderWidth: 1.5,
+        pointRadius: 6,
         pointStyle: "rectRot",
-        pointRadius: 5,
-        tension: 0.4,
+        tension: 0.25,
       },
     ],
   };
 
   const options: ChartOptions<"line"> = {
     devicePixelRatio: 2,
+    events: [],
     plugins: {
       legend: { display: false },
       tooltip: { enabled: false },
