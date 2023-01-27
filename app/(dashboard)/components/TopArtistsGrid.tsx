@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { Suspense } from "react";
 
-import { getArtistImage } from "../../../lib/spotify";
 import { getTopArtists } from "../../../lib/utils/lastfm";
+import { getArtistImage } from "../../../lib/utils/spotify";
 
 const ArtistAvatar = async ({ name }: { name: string }) => {
   const data = await getArtistImage(name);
@@ -70,7 +70,7 @@ const TopArtists = async () => {
 
 const TopArtistGrid = () => {
   return (
-    <div className="grid w-full grid-flow-col gap-x-2 overflow-x-auto sm:gap-x-2.5 md:gap-x-3">
+    <div className="grid w-full auto-cols-[1fr] grid-flow-col gap-x-2 overflow-x-auto sm:gap-x-2.5 md:gap-x-3">
       <Suspense fallback={<TopArtistsSkeleton />}>
         {/* @ts-expect-error Server Component */}
         <TopArtists />

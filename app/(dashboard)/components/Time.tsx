@@ -61,7 +61,7 @@ const Time = () => {
   return (
     <Widget title="Time" accentColor="secondary">
       <div className="-mt-2 grid grid-cols-2 gap-y-2 gap-x-4 sm:-mt-0.5 sm:gap-x-4.5 sm:gap-y-2.5 md:gap-x-5 md:gap-y-3">
-        <div className="w-full space-y-0.5">
+        <div className="w-full space-y-0.5 md:space-y-1">
           <span className="rounded-sm px-1 text-[10px] font-bold leading-3 tracking-tighter text-primary ring-1 ring-primary md:text-xs">
             LOCAL
           </span>
@@ -80,7 +80,7 @@ const Time = () => {
             </foreignObject>
           </svg>
         </div>
-        <div className="w-full space-y-0.5">
+        <div className="w-full space-y-0.5 md:space-y-1">
           <span className="rounded-sm px-1 text-[10px] font-bold leading-3 tracking-tighter text-secondary ring-1 ring-secondary md:text-xs">
             UTC
           </span>
