@@ -23,7 +23,7 @@ const TopArtistsSkeleton = () => {
     <>
       {[...Array(6)].map((_, i) => (
         <div
-          className="grid grid-cols-1 gap-y-2 p-2 sm:gap-y-2.5 sm:p-2.5 md:gap-y-3 md:p-3 [&:nth-last-child(-n+2)]:hidden md:[&:nth-last-child(-n+2)]:grid"
+          className="grid min-w-[80px] grid-cols-1 gap-y-2 p-2 xs:min-w-[96px] sm:gap-y-2.5 sm:p-2.5 md:gap-y-3 md:p-3"
           key={i}
         >
           <div className="aspect-square overflow-hidden rounded-full bg-gray-900"></div>
@@ -44,7 +44,7 @@ const TopArtists = async () => {
     <>
       {data?.map((artist) => (
         <div
-          className="grid grid-cols-1 gap-y-2 p-2 sm:gap-y-2.5 sm:p-2.5 md:gap-y-3 md:p-3 [&:nth-last-child(-n+2)]:hidden md:[&:nth-last-child(-n+2)]:grid"
+          className="grid min-w-[80px] grid-cols-1 gap-y-2 p-2 xs:min-w-[96px] sm:gap-y-2.5 sm:p-2.5 md:gap-y-3 md:p-3"
           key={artist.name.replace(/ /g, "_")} // replace spaces with underscores
         >
           <div className="aspect-square overflow-hidden rounded-full bg-gray-900 ring-1 ring-gray-900">
@@ -70,7 +70,7 @@ const TopArtists = async () => {
 
 const TopArtistGrid = () => {
   return (
-    <div className="grid w-full grid-cols-4 gap-2 sm:gap-2.5 md:grid-cols-6 md:gap-3">
+    <div className="grid w-full grid-flow-col gap-x-2 overflow-x-auto sm:gap-x-2.5 md:gap-x-3">
       <Suspense fallback={<TopArtistsSkeleton />}>
         {/* @ts-expect-error Server Component */}
         <TopArtists />
