@@ -11,7 +11,7 @@ const Music = () => {
     <Widget title="Music" accentColor="secondary">
       <div className="grid grid-cols-1 gap-3 md:grid-cols-[1fr_1fr] md:gap-x-9">
         <div className="grid grid-rows-[auto_1fr] md:order-2" id="recent-track">
-          <h3 className={SUBTITLE_STYLE}>Recent Track</h3>
+          <h3 className={SUBTITLE_STYLE}>Recently Played</h3>
           <NowPlaying />
         </div>
         <div
