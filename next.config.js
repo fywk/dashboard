@@ -28,6 +28,10 @@ const nextConfig = {
         source: "/",
         destination: "/dashboard",
       },
+      {
+        source: "//",
+        destination: "/dashboard",
+      },
     ];
   },
 };
