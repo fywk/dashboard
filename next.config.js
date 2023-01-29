@@ -22,15 +22,12 @@ const nextConfig = {
       { loader: "@next/font/google", options: { subsets: ["latin"] } },
     ],
   },
-  async rewrites() {
+  async redirects() {
     return [
       {
         source: "/",
         destination: "/dashboard",
-      },
-      {
-        source: "//",
-        destination: "/dashboard",
+        permanent: false,
       },
     ];
   },
