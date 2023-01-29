@@ -1,10 +1,10 @@
 "use client";
 
+import useCurrentWeather from "@/hooks/useCurrentWeather";
+import useWeatherForecast from "@/hooks/useWeatherForecast";
+import { SearchParams } from "@/types/misc";
 import { IconDropCircle, IconGauge } from "@tabler/icons";
 
-import useCurrentWeather from "../../../lib/hooks/useCurrentWeather";
-import useWeatherForecast from "../../../lib/hooks/useWeatherForecast";
-import { SearchParams } from "../../../lib/types/misc";
 import WeatherIcon from "./WeatherIcon";
 
 const WeatherSummary = ({ city, country }: SearchParams) => {

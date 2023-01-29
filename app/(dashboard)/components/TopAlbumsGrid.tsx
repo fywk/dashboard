@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Suspense } from "react";
 
-import { getTopAlbums } from "../../../lib/utils/lastfm";
+import { getTopAlbums } from "@/utils/lastfm";
 
 const TopAlbumsPlaceholder = () => {
   return (

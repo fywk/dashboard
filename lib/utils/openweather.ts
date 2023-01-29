@@ -1,4 +1,4 @@
-import { CurrentWeatherData, WeatherForecastData } from "../types/openweather";
+import { CurrentWeatherData, WeatherForecastData } from "@/types/openweather";
 
 const API_KEY = process.env.OPENWEATHER_API_KEY;
 

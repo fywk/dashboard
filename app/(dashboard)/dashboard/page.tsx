@@ -1,6 +1,7 @@
 import { NextPage } from "next";
 
-import { SearchParams } from "../../../lib/types/misc";
+import { SearchParams } from "@/types/misc";
+
 import Music from "../components/Music";
 import Profile from "../components/Profile";
 import Time from "../components/Time";

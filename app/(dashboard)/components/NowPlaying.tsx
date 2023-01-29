@@ -5,8 +5,8 @@ import Image from "next/image";
 import useSWR from "swr";
 import TimeAgo from "timeago-react";
 
-import { RecentTrack } from "../../../lib/types/lastfm";
-import fetcher from "../../../lib/utils/fetcher";
+import { RecentTrack } from "@/types/lastfm";
+import fetcher from "@/utils/fetcher";
 
 // preload("/api/music/recent-track", fetcher);
 

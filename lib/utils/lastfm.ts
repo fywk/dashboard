@@ -10,7 +10,7 @@ import {
   TopTracks,
   TotalStats,
   Track
-} from "../types/lastfm";
+} from "@/types/lastfm";
 
 const API_KEY = process.env.LASTFM_API_KEY;
 const USERNAME = process.env.LASTFM_USERNAME;

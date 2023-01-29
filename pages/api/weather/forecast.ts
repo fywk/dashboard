@@ -1,5 +1,6 @@
+import { getWeatherForecast } from "@/utils/openweather";
+
 import type { NextRequest } from "next/server";
-import { getWeatherForecast } from "../../../lib/utils/openweather";
 
 export const config = {
   runtime: "edge",

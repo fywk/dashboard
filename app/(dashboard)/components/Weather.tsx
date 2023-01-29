@@ -1,4 +1,5 @@
-import { SearchParams } from "../../../lib/types/misc";
+import { SearchParams } from "@/types/misc";
+
 import WeatherChart from "./WeatherChart";
 import WeatherSummary from "./WeatherSummary";
 import Widget from "./Widget";
