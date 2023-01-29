@@ -11,6 +11,14 @@ const nextConfig = {
     formats: ["image/avif", "image/webp"],
   },
   reactStrictMode: true,
+  rewrites: async function () {
+    return [
+      {
+        source: "/",
+        destination: "/dashboard",
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
