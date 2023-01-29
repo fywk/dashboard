@@ -33,7 +33,7 @@ export const getRecentTrack = async (from: Timestamp): Promise<RecentTrack> => {
     extended: "1",
   };
 
-  const res = await fetch(generateURL(params), { cache: "no-store" });
+  const res = await fetch(generateURL(params));
   const { recenttracks } = await res.json();
 
   // Get the first/latest track
