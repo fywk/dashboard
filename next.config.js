@@ -22,18 +22,6 @@ const nextConfig = {
       { loader: "@next/font/google", options: { subsets: ["latin"] } },
     ],
   },
-  async rewrites() {
-    return [
-      {
-        source: "/",
-        destination: "/dashboard",
-      },
-      {
-        source: "//",
-        destination: "/dashboard",
-      },
-    ];
-  },
 };
 
 module.exports = nextConfig;

@@ -4,7 +4,7 @@ const Head = () => {
   return (
     <>
       <DefaultHeadTags />
-      <title>Dashboard (New) – Francis Yeong</title>
+      <title>Francis Yeong</title>
     </>
   );
 };
