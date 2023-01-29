@@ -13,9 +13,9 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
-import dayjs from "../../../lib/dayjs";
 import useCurrentWeather from "../../../lib/hooks/useCurrentWeather";
 import useWeatherForecast from "../../../lib/hooks/useWeatherForecast";
+import dayjs from "../../../lib/utils/dayjs";
 
 ChartJS.register(
   CategoryScale,

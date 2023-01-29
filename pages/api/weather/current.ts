@@ -1,5 +1,5 @@
 import type { NextRequest } from "next/server";
-import { getCurrentWeather } from "../../../lib/openweather";
+import { getCurrentWeather } from "../../../lib/utils/openweather";
 
 export const config = {
   runtime: "edge",

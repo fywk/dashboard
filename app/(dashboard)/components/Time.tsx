@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import dayjs from "../../../lib/dayjs";
+import dayjs from "../../../lib/utils/dayjs";
 import Widget from "./Widget";
 
 const City = ({

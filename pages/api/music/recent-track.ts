@@ -1,5 +1,5 @@
 import type { NextRequest } from "next/server";
-import { getRecentTrack } from "../../../lib/lastfm";
+import { getRecentTrack } from "../../../lib/utils/lastfm";
 
 export const config = {
   runtime: "edge",
