@@ -31,7 +31,7 @@ const WeatherSummary = ({ city, country }: SearchParams) => {
         </div>
         <div className="w-full overflow-hidden">
           <div className="flex h-full flex-col items-end justify-between gap-x-2 md:flex-row md:items-center md:justify-start">
-            <div className="h-8 w-8 rounded bg-gray-900 sm:h-9 sm:w-9"></div>
+            <div className="h-8.5 w-8.5 rounded bg-gray-900 sm:h-9 sm:w-9"></div>
             <div className="flex w-full flex-col items-end gap-y-1.5 md:w-auto md:grow md:items-start">
               <div className="h-2.5 w-3/4 rounded bg-gray-900 sm:h-3"></div>
               <div className="h-2 w-1/2 rounded bg-gray-900 sm:h-2.5"></div>
@@ -108,7 +108,7 @@ const WeatherSummary = ({ city, country }: SearchParams) => {
           <WeatherIcon
             id={id}
             code={iconCode}
-            className="h-8 w-8 text-gray-100 sm:h-9 sm:w-9"
+            className="h-8.5 w-8.5 text-gray-100 sm:h-9 sm:w-9"
           />
           <div className="flex flex-col items-end md:items-start">
             <p className="truncate text-xs font-medium capitalize tracking-tight text-gray-100 sm:text-sm">
