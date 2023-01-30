@@ -37,7 +37,7 @@ const WeatherChart = () => {
     );
   }
 
-  let timestamps = [dayjs().format("HH:mm")];
+  let timestamps = [dayjs.unix(currentWeather.dt).format("HH:mm")];
   let temperatures = [currentWeather.main.temp];
 
   weatherForecast?.list.forEach((item) => {
