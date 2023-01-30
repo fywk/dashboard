@@ -1,4 +1,4 @@
-import DefaultHeadTags from "app/components/DefaultHeadTags";
+import DefaultHeadTags from "@/app/components/DefaultHeadTags";
 
 const Head = () => {
   return (

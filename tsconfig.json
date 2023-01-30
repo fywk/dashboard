@@ -16,6 +16,7 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
+      "@/*": ["./*"],
       "@/hooks/*": ["lib/hooks/*"],
       "@/types/*": ["lib/types/*"],
       "@/utils/*": ["lib/utils/*"]
