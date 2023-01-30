@@ -37,7 +37,7 @@ const WeatherChart = () => {
     );
   }
 
-  let timestamps = [dayjs.unix(currentWeather.dt).format("HH:mm")];
+  let timestamps: string[] = [];
   let temperatures = [currentWeather.main.temp];
 
   weatherForecast?.list.forEach((item) => {
@@ -53,7 +53,7 @@ const WeatherChart = () => {
         borderColor: "rgb(110 242 255 / 0.75)",
         borderWidth: 1.5,
         data: temperatures,
-        fill: true,
+        fill: "start",
         pointBorderColor: function () {
           const colours = [
             "rgb(110 242 255)",
