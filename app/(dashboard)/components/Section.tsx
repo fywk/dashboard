@@ -6,9 +6,9 @@ type Props = {
   children: React.ReactNode;
 };
 
-const Widget = ({ title, accentColor, children }: Props) => {
+const Section = ({ title, accentColor, children }: Props) => {
   return (
-    <div className="mx-auto grid w-full max-w-[800px] grid-rows-[auto_1fr] min-[1440px]:max-w-[1040px]">
+    <section className="mx-auto grid w-full max-w-[800px] grid-rows-[auto_1fr] min-[1440px]:max-w-[1040px]">
       <h2
         className={clsx(
           "mb-4 border-t-2 border-b py-1 text-lg font-bold uppercase text-primary",
@@ -21,8 +21,8 @@ const Widget = ({ title, accentColor, children }: Props) => {
         <div className="mb-px h-px bg-primary/50"></div>
       </h2>
       <div className="px-0.5 sm:px-1">{children}</div>
-    </div>
+    </section>
   );
 };
 
-export default Widget;
+export default Section;
