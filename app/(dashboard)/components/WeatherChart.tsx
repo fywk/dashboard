@@ -41,7 +41,12 @@ const WeatherChart = () => {
   let temperatures = [currentWeather.main.temp];
 
   weatherForecast?.list.forEach((item) => {
-    timestamps.push(dayjs.unix(item.dt).format("HH:mm"));
+    timestamps.push(
+      dayjs
+        .unix(item.dt)
+        .utcOffset(weatherForecast.city.timezone / 60)
+        .format("HH:mm")
+    );
     temperatures.push(item.main.temp);
   });
 
