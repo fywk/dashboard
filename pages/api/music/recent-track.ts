@@ -1,8 +1,9 @@
+import { getRecentTrack } from "@/utils/lastfm";
+
 import type { NextRequest } from "next/server";
-import { getRecentTrack } from "../../../lib/lastfm";
 
 export const config = {
-  runtime: "experimental-edge",
+  runtime: "edge",
 };
 
 export default async function handler(req: NextRequest) {

@@ -60,7 +60,7 @@ interface Wind {
   gust: number;
 }
 
-export interface ForecastWeatherData {
+export interface WeatherForecastData {
   cod: string;
   message: number;
   cnt: number;

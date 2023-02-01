@@ -1,16 +1,22 @@
+import { getWeatherForecast } from "@/utils/openweather";
+
 import type { NextRequest } from "next/server";
-import { getForecastWeather } from "../../../lib/openweather";
 
 export const config = {
-  runtime: "experimental-edge",
+  runtime: "edge",
 };
 
 export default async function handler(req: NextRequest) {
-  const { searchParams } = new URL(req.url);
+  const { searchParams } = req.nextUrl;
   const latitude = searchParams.get("latitude")!;
   const longitude = searchParams.get("longitude")!;
 
-  const forecast = await getForecastWeather(latitude, longitude);
+  const forecast = await getWeatherForecast(latitude, longitude);
 
-  return new Response(JSON.stringify(forecast));
+  return new Response(JSON.stringify(forecast), {
+    status: 200,
+    headers: {
+      "content-type": "application/json",
+    },
+  });
 }
