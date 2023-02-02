@@ -3,7 +3,7 @@
 import useCurrentWeather from "@/hooks/useCurrentWeather";
 import useWeatherForecast from "@/hooks/useWeatherForecast";
 import { SearchParams } from "@/types/misc";
-import { IconDropCircle, IconGauge } from "@tabler/icons";
+import { IconDropCircle, IconGauge } from "@tabler/icons-react";
 
 import WeatherIcon from "./WeatherIcon";
 

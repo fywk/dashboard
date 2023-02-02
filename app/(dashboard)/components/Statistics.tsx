@@ -12,7 +12,7 @@ import {
   IconMusic,
   IconPlayerPlay,
   IconVinyl
-} from "@tabler/icons";
+} from "@tabler/icons-react";
 
 const TotalPlays = async ({ promise }: { promise: Promise<RecentTrack> }) => {
   const plays = await promise;
