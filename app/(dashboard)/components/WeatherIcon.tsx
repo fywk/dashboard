@@ -8,14 +8,13 @@ import {
   IconMoon,
   IconSnowflake,
   IconSun,
-  IconTornado,
-  TablerIcon
-} from "@tabler/icons";
+  IconTornado
+} from "@tabler/icons-react";
 
 type WeatherIconProps = { id: number; code: string; [props: string]: any };
 
 const WeatherIcon = ({ id, code, ...props }: WeatherIconProps) => {
-  let Icon: TablerIcon;
+  let Icon: React.ElementType;
 
   switch (true) {
     case id >= 200 && id <= 299:
