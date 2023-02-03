@@ -47,8 +47,12 @@ const WeatherSummary = ({ city, country }: SearchParams) => {
 
   let temperatures = [temp]; // include the current temperature to the array for calculating the min and max temperatures
   weatherForecast?.list.forEach((item) => temperatures.push(item.main.temp));
-  const maxTemp = weatherForecast ? Math.round(Math.max(...temperatures)) : 0;
-  const minTemp = weatherForecast ? Math.round(Math.min(...temperatures)) : 0;
+  const maxTemp = weatherForecast
+    ? Math.round(Math.max(...temperatures))
+    : "--";
+  const minTemp = weatherForecast
+    ? Math.round(Math.min(...temperatures))
+    : "--";
 
   return (
     <div className="grid w-full grid-cols-[55%_1fr] gap-4 md:grid-cols-none md:grid-rows-[max-content_max-content]">
@@ -115,7 +119,7 @@ const WeatherSummary = ({ city, country }: SearchParams) => {
               {description}
             </p>
             <p className="text-[10px] leading-3 tracking-tight sm:text-xs">
-              {`H: ${Math.round(maxTemp)}° L: ${Math.round(minTemp)}°`}
+              {`H: ${maxTemp}° L: ${minTemp}°`}
             </p>
           </div>
         </div>
