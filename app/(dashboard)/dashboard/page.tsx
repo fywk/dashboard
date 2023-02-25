@@ -1,4 +1,4 @@
-import { NextPage } from "next";
+import { Metadata, NextPage } from "next";
 
 import { SearchParams } from "@/types/misc";
 
@@ -9,6 +9,10 @@ import Weather from "../components/Weather";
 
 type Props = {
   searchParams: SearchParams;
+};
+
+export const metadata: Metadata = {
+  title: "Dashboard",
 };
 
 const DashboardPage: NextPage<Props> = ({ searchParams }) => {
