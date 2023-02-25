@@ -1,9 +1,9 @@
 import "./dashboard.css";
 
-import { Oxanium } from "@next/font/google";
+import { Oxanium } from "next/font/google";
 
 const oxanium = Oxanium({
-  display: "swap",
+  subsets: ["latin"],
   variable: "--font-oxanium",
 });
 
