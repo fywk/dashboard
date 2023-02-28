@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import useSWRImmutable from "swr/immutable";
 
+import fetcher from "@/lib/utils/fetcher";
 import dayjs from "@/utils/dayjs";
 
 import Section from "./Section";
@@ -34,6 +36,11 @@ const Time = () => {
   const INITIAL_TIME = "00:00:00";
   const TIME_FORMAT = "HH:mm:ss";
 
+  const { data } = useSWRImmutable<number>("/api/get-created-at", fetcher);
+
+  const createdAt = data && data;
+
+  const [uptime, setUptime] = useState("");
   const [utc, setUTC] = useState(INITIAL_TIME);
   const [local, setLocal] = useState(INITIAL_TIME);
   const [los_angeles, setLosAngeles] = useState(INITIAL_TIME);
@@ -46,6 +53,13 @@ const Time = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       const UTC = dayjs().utc();
+      const diffSinceCreated = UTC.diff(createdAt);
+      const totalDays = Math.floor(dayjs.duration(diffSinceCreated).asDays());
+      const totalHmmss = dayjs
+        .duration(diffSinceCreated)
+        .format("H[h], mm[m], ss[s]");
+
+      setUptime(`${totalDays}d, ${totalHmmss}`);
       setUTC(UTC.format(TIME_FORMAT));
       setLocal(UTC.local().format(TIME_FORMAT));
       setLosAngeles(dayjs().tz("America/Los_Angeles").format(TIME_FORMAT));
@@ -57,10 +71,14 @@ const Time = () => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [createdAt]);
 
   return (
-    <Section title="Time" accentColor="secondary">
+    <Section
+      title="Time"
+      subtitle={uptime && `Uptime: ${uptime}`}
+      accentColor="secondary"
+    >
       <div className="-mt-2 grid grid-cols-2 gap-y-2 gap-x-4 sm:-mt-0.5 sm:gap-x-4.5 sm:gap-y-2.5 md:gap-x-5 md:gap-y-3">
         <div className="w-full space-y-0.5 md:space-y-1">
           <span className="rounded-sm px-1 text-[10px] font-bold leading-3 tracking-tighter text-primary ring-1 ring-primary md:text-xs">
