@@ -2,9 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  body {
-    padding-left: env(safe-area-inset-left);
-    padding-right: env(safe-area-inset-right);
+@layer components {
+  #content {
+    /* px-4 */
+    padding-left: max(1rem, calc(0.5rem + env(safe-area-inset-left)));
+    padding-right: max(1rem, calc(0.5rem + env(safe-area-inset-right)));
+  }
+
+  /* sm */
+  @media (min-width: 640px) {
+    #content {
+      /* px-6 */
+      padding-left: max(1.5rem, calc(0.5rem + env(safe-area-inset-left)));
+      padding-right: max(1.5rem, calc(0.5rem + env(safe-area-inset-right)));
+    }
+  }
+
+  /* md */
+  @media (min-width: 768px) {
+    #content {
+      /* px-8 */
+      padding-left: max(2rem, calc(0.5rem + env(safe-area-inset-left)));
+      padding-right: max(2rem, calc(0.5rem + env(safe-area-inset-right)));
+    }
   }
 }

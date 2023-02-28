@@ -1,4 +1,4 @@
-import { NextPage } from "next";
+import { Metadata, NextPage } from "next";
 
 import { SearchParams } from "@/types/misc";
 
@@ -11,14 +11,21 @@ type Props = {
   searchParams: SearchParams;
 };
 
+export const metadata: Metadata = {
+  title: "Dashboard",
+};
+
 const DashboardPage: NextPage<Props> = ({ searchParams }) => {
   return (
-    <div className="mx-auto grid w-full max-w-[1920px] grid-cols-1 gap-x-10 gap-y-7 px-4 py-8 sm:px-6 md:gap-y-8 md:px-8 min-[1440px]:grid-cols-[55%_auto]">
+    <main
+      className="mx-auto grid w-full max-w-[1920px] grid-cols-1 gap-x-10 gap-y-7 py-8 md:gap-y-8 min-[1440px]:grid-cols-[55%_auto]"
+      id="content"
+    >
       <Profile />
       <Music />
       <Weather {...searchParams} />
       <Time />
-    </div>
+    </main>
   );
 };
 
