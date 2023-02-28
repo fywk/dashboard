@@ -2,7 +2,7 @@ import clsx from "clsx";
 
 type Props = {
   title: string;
-  subtitle?: string | number;
+  subtitle?: React.ReactNode;
   accentColor: "primary" | "secondary";
   children: React.ReactNode;
 };
@@ -18,15 +18,11 @@ const Section = ({ title, subtitle, accentColor, children }: Props) => {
             : "[border-top-color:rgb(var(--color-secondary)/.35)] [border-bottom-color:rgb(var(--color-secondary)/1)]"
         )}
       >
-        <div className="flex items-center justify-between font-oxanium text-primary">
-          <h2 className="text-lg font-bold">
+        <div className="flex items-center justify-between py-1.5">
+          <h2 className="-mb-0.5 font-oxanium text-lg font-bold leading-none text-primary">
             <span className="uppercase brightness-[2.5]">{title}</span>
           </h2>
-          {subtitle && (
-            <p className="text-[10px] font-semibold brightness-200 sm:text-xs md:text-sm">
-              {subtitle}
-            </p>
-          )}
+          {subtitle}
         </div>
         <div className="mb-px h-px w-full bg-primary/50"></div>
       </div>

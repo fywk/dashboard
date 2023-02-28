@@ -9,6 +9,15 @@ import dayjs from "@/utils/dayjs";
 
 import Section from "./Section";
 
+const UptimeString = ({ content }: { content: string }) => {
+  return (
+    <p className="-mt-px font-mono text-[11px] font-semibold !leading-none tracking-tighter sm:-mt-0.5 sm:text-xs md:text-sm">
+      <span className="text-secondary">Uptime</span>
+      {content && <span className="text-gray-300">{content}</span>}
+    </p>
+  );
+};
+
 const City = ({
   name,
   abbr,
@@ -56,12 +65,11 @@ const Time = () => {
       const UTC = dayjs().utc();
       const diffSinceCreated = UTC.diff(createdAt);
       const durationSinceCreated = dayjs.duration(diffSinceCreated);
-      const totalDays = pluralize(
-        Math.floor(durationSinceCreated.asDays()),
-        "day"
-      );
-      const totalHours = pluralize(durationSinceCreated.hours(), "hour");
-      const totalMinutes = pluralize(durationSinceCreated.minutes(), "min");
+      const totalDays =
+        pluralize(Math.floor(durationSinceCreated.asDays()), "day") || 0;
+      const totalHours = pluralize(durationSinceCreated.hours(), "hour") || 0;
+      const totalMinutes =
+        pluralize(durationSinceCreated.minutes(), "min") || 0;
 
       setUptime(`${totalDays}, ${totalHours}, ${totalMinutes}`);
       setUTC(UTC.format(TIME_FORMAT));
@@ -80,7 +88,7 @@ const Time = () => {
   return (
     <Section
       title="Time"
-      subtitle={createdAt && `Uptime: ${uptime}`}
+      subtitle={uptime && <UptimeString content={`: ${uptime}`} />}
       accentColor="secondary"
     >
       <div className="-mt-2 grid grid-cols-2 gap-y-2 gap-x-4 sm:-mt-0.5 sm:gap-x-4.5 sm:gap-y-2.5 md:gap-x-5 md:gap-y-3">
