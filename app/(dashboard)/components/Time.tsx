@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import useSWRImmutable from "swr/immutable";
 
 import fetcher from "@/lib/utils/fetcher";
+import { pluralize } from "@/lib/utils/pluralize";
 import dayjs from "@/utils/dayjs";
 
 import Section from "./Section";
@@ -54,12 +55,15 @@ const Time = () => {
     const interval = setInterval(() => {
       const UTC = dayjs().utc();
       const diffSinceCreated = UTC.diff(createdAt);
-      const totalDays = Math.floor(dayjs.duration(diffSinceCreated).asDays());
-      const totalHmmss = dayjs
-        .duration(diffSinceCreated)
-        .format("H[h], mm[m], ss[s]");
+      const durationSinceCreated = dayjs.duration(diffSinceCreated);
+      const totalDays = pluralize(
+        Math.floor(durationSinceCreated.asDays()),
+        "day"
+      );
+      const totalHours = pluralize(durationSinceCreated.hours(), "hour");
+      const totalMinutes = pluralize(durationSinceCreated.minutes(), "min");
 
-      setUptime(`${totalDays}d, ${totalHmmss}`);
+      setUptime(`${totalDays}, ${totalHours}, ${totalMinutes}`);
       setUTC(UTC.format(TIME_FORMAT));
       setLocal(UTC.local().format(TIME_FORMAT));
       setLosAngeles(dayjs().tz("America/Los_Angeles").format(TIME_FORMAT));
@@ -76,7 +80,7 @@ const Time = () => {
   return (
     <Section
       title="Time"
-      subtitle={uptime && `Uptime: ${uptime}`}
+      subtitle={createdAt && `Uptime: ${uptime}`}
       accentColor="secondary"
     >
       <div className="-mt-2 grid grid-cols-2 gap-y-2 gap-x-4 sm:-mt-0.5 sm:gap-x-4.5 sm:gap-y-2.5 md:gap-x-5 md:gap-y-3">

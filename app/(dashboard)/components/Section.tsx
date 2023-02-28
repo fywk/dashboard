@@ -18,14 +18,12 @@ const Section = ({ title, subtitle, accentColor, children }: Props) => {
             : "[border-top-color:rgb(var(--color-secondary)/.35)] [border-bottom-color:rgb(var(--color-secondary)/1)]"
         )}
       >
-        <div className="flex items-center justify-between font-oxanium">
+        <div className="flex items-center justify-between font-oxanium text-primary">
           <h2 className="text-lg font-bold">
-            <span className="uppercase text-primary brightness-[2.5]">
-              {title}
-            </span>
+            <span className="uppercase brightness-[2.5]">{title}</span>
           </h2>
           {subtitle && (
-            <p className="text-[10px] font-medium text-gray-300 sm:text-xs md:text-sm">
+            <p className="text-[10px] font-semibold brightness-200 sm:text-xs md:text-sm">
               {subtitle}
             </p>
           )}
