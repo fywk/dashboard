@@ -2,6 +2,7 @@
 
 import clsx from "clsx";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import useSWR from "swr";
 import TimeAgo from "timeago-react";
 
@@ -45,6 +46,7 @@ const EqualizerIcon = ({ className }: { className?: string }) => {
 };
 
 const NowPlaying = () => {
+  const [imageURL, setImageURL] = useState("");
   const { data, isLoading } = useSWR<RecentTrack>(
     "/api/music/recent-track",
     fetcher,
@@ -52,6 +54,10 @@ const NowPlaying = () => {
       refreshInterval: 30_000, // 30 seconds in milliseconds
     }
   );
+
+  useEffect(() => {
+    data && setImageURL(data.track.image);
+  }, [data]);
 
   if (!data || isLoading) {
     return (
@@ -78,12 +84,13 @@ const NowPlaying = () => {
         id="track-album-art"
       >
         <Image
-          src={track.image}
+          src={imageURL}
           width={300}
           height={300}
           alt=""
           priority
           unoptimized
+          onError={() => setImageURL("/images/album-error.jpg")}
         />
       </div>
       <div className="basis-3/4 overflow-hidden tracking-tight">
