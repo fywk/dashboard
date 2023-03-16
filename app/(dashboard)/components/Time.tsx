@@ -11,7 +11,10 @@ import Section from "./Section";
 
 const UptimeString = ({ content }: { content: string }) => {
   return (
-    <p className="-mt-px text-[11px] font-medium !leading-none sm:-mt-0.5 sm:text-xs md:-mt-[3px] md:text-sm">
+    <p
+      className="-mt-px text-[11px] font-medium !leading-none sm:-mt-0.5 sm:text-xs md:-mt-[3px] md:text-sm"
+      title="Time since last build"
+    >
       <span className="text-secondary">Uptime</span>
       {content && <span className="text-gray-300">{content}</span>}
     </p>
