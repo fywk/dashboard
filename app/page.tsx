@@ -1,18 +1,18 @@
 import { Metadata, NextPage } from "next";
 
+import Music from "@/components/Music";
+import Profile from "@/components/Profile";
+import Time from "@/components/Time";
+import Weather from "@/components/Weather";
+import { siteConfig } from "@/lib/utils/site-config";
 import { SearchParams } from "@/types/misc";
-
-import Music from "../components/Music";
-import Profile from "../components/Profile";
-import Time from "../components/Time";
-import Weather from "../components/Weather";
 
 type Props = {
   searchParams: SearchParams;
 };
 
 export const metadata: Metadata = {
-  title: "Dashboard",
+  title: `Dashboard ${siteConfig.titleSeparator} ${siteConfig.title}`,
 };
 
 const DashboardPage: NextPage<Props> = ({ searchParams }) => {
