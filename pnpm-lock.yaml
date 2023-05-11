@@ -7,6 +7,9 @@ dependencies:
   next:
     specifier: 13.3.4
     version: 13.3.4(react-dom@18.2.0)(react@18.2.0)
+  postcss-pxtorem:
+    specifier: ^6.0.0
+    version: 6.0.0(postcss@8.4.23)
   react:
     specifier: 18.2.0
     version: 18.2.0
@@ -2179,6 +2182,14 @@ packages:
       postcss-selector-parser: 6.0.12
     dev: true
 
+  /postcss-pxtorem@6.0.0(postcss@8.4.23):
+    resolution: {integrity: sha512-ZRXrD7MLLjLk2RNGV6UA4f5Y7gy+a/j1EqjAfp9NdcNYVjUMvg5HTYduTjSkKBkRkfqbg/iKrjMO70V4g1LZeg==}
+    peerDependencies:
+      postcss: ^8.0.0
+    dependencies:
+      postcss: 8.4.23
+    dev: false
+
   /postcss-selector-parser@6.0.12:
     resolution: {integrity: sha512-NdxGCAZdRrwVI1sy59+Wzrh+pMMHxapGnpfenDVlMEXoOcvt4pGE0JLK9YY2F5dLxcFYA/YbVQKhcGU+FtSYQg==}
     engines: {node: '>=4'}
@@ -2207,7 +2218,6 @@ packages:
       nanoid: 3.3.6
       picocolors: 1.0.0
       source-map-js: 1.0.2
-    dev: true
 
   /prebuild-install@7.1.1:
     resolution: {integrity: sha512-jAXscXWMcCK8GgCoHOfIr0ODh5ai8mj63L2nWrjuAgXE6tDyYGnx4/8o/rCgU+B4JSyZBKbeZqzhtwtC3ovxjw==}
