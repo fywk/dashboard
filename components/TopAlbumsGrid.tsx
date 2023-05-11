@@ -54,7 +54,7 @@ const TopAlbums = async () => {
 
 const TopAlbumsGrid = () => {
   return (
-    <div className="grid grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-3 md:gap-y-3.5 md:gap-x-4">
+    <div className="grid grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-3 md:gap-x-4 md:gap-y-3.5">
       <Suspense fallback={<TopAlbumsPlaceholder />}>
         {/* @ts-expect-error Server Component */}
         <TopAlbums />

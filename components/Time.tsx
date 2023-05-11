@@ -32,7 +32,7 @@ const City = ({
 }) => {
   return (
     <div className="w-full py-1 sm:py-1.5">
-      <div className="-mx-0.5 bg-gray-950 py-0.5 text-center text-[8px] leading-[10px] sm:pb-px sm:text-[10px] sm:leading-[13px] md:pt-1 md:text-xs md:leading-[15px]">
+      <div className="-mx-0.5 bg-gray-950 py-0.5 text-center text-[8px]/[10px] sm:pb-px sm:text-[10px]/[13px] md:pt-1 md:text-xs/[15px]">
         <p className="uppercase">
           <span className="sm:hidden">{abbr}</span>
           <span className="hidden tracking-tight sm:inline">{name}</span>
@@ -95,7 +95,7 @@ const Time = () => {
       subtitle={uptime && <UptimeString content={`: ${uptime}`} />}
       accentColor="secondary"
     >
-      <div className="-mt-2 grid grid-cols-2 gap-y-2 gap-x-4 sm:-mt-0.5 sm:gap-x-4.5 sm:gap-y-2.5 md:gap-x-5 md:gap-y-3">
+      <div className="-mt-2 grid grid-cols-2 gap-x-4 gap-y-2 sm:-mt-0.5 sm:gap-x-4.5 sm:gap-y-2.5 md:gap-x-5 md:gap-y-3">
         <div className="w-full space-y-0.5 md:space-y-1">
           <span className="rounded-sm px-1 text-[10px] font-bold leading-3 tracking-tighter text-primary ring-1 ring-primary md:text-xs">
             LOCAL

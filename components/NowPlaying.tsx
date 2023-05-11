@@ -61,7 +61,7 @@ const NowPlaying = () => {
 
   if (!data || isLoading) {
     return (
-      <div className="flex items-center gap-[13px] overflow-hidden rounded-md border border-primary/60 p-2">
+      <div className="flex items-center gap-3 overflow-hidden rounded-md border border-primary/60 p-2">
         <div className="aspect-square basis-1/4 rounded bg-gray-900"></div>
         <div className="basis-3/4 space-y-2 sm:space-y-2.5">
           <div className="h-2.5 w-1/2 rounded bg-gray-900 sm:h-3"></div>
@@ -78,9 +78,9 @@ const NowPlaying = () => {
   const track = data.track;
 
   return (
-    <div className="flex items-center gap-[13px] overflow-hidden rounded-md border border-primary/60 p-2">
+    <div className="flex items-center gap-3 overflow-hidden rounded-md border border-primary/60 p-2">
       <div
-        className="relative aspect-square basis-1/4 overflow-hidden rounded ring-1 ring-gray-900"
+        className="relative aspect-square basis-1/4 overflow-hidden rounded bg-gray-900 ring-1 ring-gray-800/75"
         id="track-album-art"
       >
         <Image
@@ -102,7 +102,7 @@ const NowPlaying = () => {
             <TimeAgo datetime={Number(track.timestamp) * 1000} />
           ) : (
             <>
-              <EqualizerIcon className="h-3 w-3 sm:h-[15px] sm:w-[15px]" />
+              <EqualizerIcon className="h-3 w-3 sm:h-15px sm:w-15px" />
               Now playing
             </>
           )}

@@ -27,7 +27,7 @@ const TopArtistsSkeleton = () => {
           key={i}
         >
           <div className="aspect-square overflow-hidden rounded-full bg-gray-900"></div>
-          <div className="flex flex-col items-center space-y-1.5 pt-[3px] pb-1 sm:space-y-[7px] sm:pt-1">
+          <div className="flex flex-col items-center space-y-1.5 pb-1 pt-[3px] sm:space-y-[7px] sm:pt-1">
             <div className="h-2.5 w-full rounded bg-gray-900 sm:h-3"></div>
             <div className="h-2 w-1/2 rounded bg-gray-900 sm:h-2.5"></div>
           </div>
@@ -47,7 +47,7 @@ const TopArtists = async () => {
           className="grid min-w-[80px] grid-cols-1 gap-y-2 p-2 xs:min-w-[96px] sm:gap-y-2.5 sm:p-2.5 md:gap-y-3 md:p-3"
           key={artist.name.replace(/ /g, "_")} // replace spaces with underscores
         >
-          <div className="aspect-square overflow-hidden rounded-full bg-gray-900 ring-1 ring-gray-900">
+          <div className="aspect-square overflow-hidden rounded-full bg-gray-900 ring-1 ring-gray-800/75">
             <Suspense fallback="">
               {/* @ts-expect-error Server Component */}
               <ArtistAvatar name={artist.name} />

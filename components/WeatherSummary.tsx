@@ -81,7 +81,7 @@ const WeatherSummary = ({ city, country }: SearchParams) => {
               </label>
               <progress
                 id="humidity"
-                className="[&[value]]:h-1.5 [&[value]]:w-full [&[value]]:appearance-none [&[value]::-webkit-progress-bar]:rounded-full [&[value]::-webkit-progress-bar]:bg-gray-700 [&[value]::-webkit-progress-value]:rounded-full [&[value]::-webkit-progress-value]:bg-gradient-to-r [&[value]::-webkit-progress-value]:from-secondary [&[value]::-webkit-progress-value]:to-primary"
+                className="[&[value]::-webkit-progress-bar]:rounded-full [&[value]::-webkit-progress-bar]:bg-gray-700 [&[value]::-webkit-progress-value]:rounded-full [&[value]::-webkit-progress-value]:bg-gradient-to-r [&[value]::-webkit-progress-value]:from-secondary [&[value]::-webkit-progress-value]:to-primary [&[value]]:h-1.5 [&[value]]:w-full [&[value]]:appearance-none"
                 max={100}
                 value={humidity}
               >
@@ -98,7 +98,7 @@ const WeatherSummary = ({ city, country }: SearchParams) => {
               </label>
               <progress
                 id="pressure"
-                className="[&[value]]:h-1.5 [&[value]]:w-full [&[value]]:appearance-none [&[value]::-webkit-progress-bar]:rounded-full [&[value]::-webkit-progress-bar]:bg-gray-700 [&[value]::-webkit-progress-value]:rounded-full [&[value]::-webkit-progress-value]:bg-gradient-to-r [&[value]::-webkit-progress-value]:from-fuchsia-400 [&[value]::-webkit-progress-value]:to-fuchsia-500"
+                className="[&[value]::-webkit-progress-bar]:rounded-full [&[value]::-webkit-progress-bar]:bg-gray-700 [&[value]::-webkit-progress-value]:rounded-full [&[value]::-webkit-progress-value]:bg-gradient-to-r [&[value]::-webkit-progress-value]:from-fuchsia-400 [&[value]::-webkit-progress-value]:to-fuchsia-500 [&[value]]:h-1.5 [&[value]]:w-full [&[value]]:appearance-none"
                 value={(pressure - 975.75) / (1050.75 - 975.75)}
               >
                 {`${pressure} hPa`}
