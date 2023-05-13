@@ -1,15 +1,9 @@
-/** @type {import('tailwindcss').Config} */
-
 const colors = require("tailwindcss/colors");
 const defaultTheme = require("tailwindcss/defaultTheme");
 
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./app/**/*.{js,ts,jsx,tsx}",
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-  ],
-  dark: "",
+  content: ["./app/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       borderWidth: {
@@ -17,9 +11,12 @@ module.exports = {
         3: "3px",
       },
       colors: {
-        gray: { 950: "#0e0e10", ...colors.zinc },
+        gray: colors.zinc,
         primary: "rgb(var(--color-primary) / <alpha-value>)",
         secondary: "rgb(var(--color-secondary) / <alpha-value>)",
+      },
+      containers: {
+        "1.5xl": "39rem",
       },
       opacity: {
         85: ".85",
