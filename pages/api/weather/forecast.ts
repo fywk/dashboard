@@ -6,10 +6,9 @@ export const config = {
   runtime: "edge",
 };
 
-export default async function handler(req: NextRequest) {
-  const { searchParams } = req.nextUrl;
-  const latitude = searchParams.get("latitude")!;
-  const longitude = searchParams.get("longitude")!;
+export default async function handler(request: NextRequest) {
+  const latitude = request.geo?.latitude ?? "3.1415";
+  const longitude = request.geo?.longitude ?? "101.6865";
 
   const forecast = await getWeatherForecast(latitude, longitude);
 
