@@ -8,13 +8,13 @@ const TopAlbumsPlaceholder = () => {
     <>
       {[...Array(6)].map((_, i) => (
         <div
-          className="flex items-center gap-x-2.5 overflow-hidden rounded pr-2.5 sm:gap-x-3 sm:pr-3"
+          className="flex items-center gap-x-2.5 overflow-hidden rounded pr-2.5 @1.5xl/section:gap-x-3 @1.5xl/section:pr-3"
           key={i}
         >
           <div className="aspect-square basis-[30%] bg-gray-900"></div>
-          <div className="basis-[70%] space-y-1.5 sm:space-y-[7px]">
-            <div className="h-2.5 w-full rounded bg-gray-900 sm:h-3"></div>
-            <div className="h-2 w-1/2 rounded bg-gray-900 sm:h-2.5"></div>
+          <div className="basis-[70%] space-y-1.5 @1.5xl/section:space-y-[7px]">
+            <div className="h-2.5 w-full rounded bg-gray-900 @xl/section:h-[11px] @1.5xl/section:h-3"></div>
+            <div className="h-2 w-1/2 rounded bg-gray-900 @xl/section:h-[9px] @1.5xl/section:h-2.5"></div>
           </div>
         </div>
       ))}
@@ -29,20 +29,20 @@ const TopAlbums = async () => {
     <>
       {data.map((album) => (
         <div
-          className="flex items-center gap-x-2.5 overflow-hidden rounded bg-gray-900 pr-2.5 ring-1 ring-gray-800/75 sm:gap-x-3 sm:pr-3"
+          className="flex items-center gap-x-2.5 overflow-hidden rounded bg-gray-900 pr-2.5 ring-1 ring-gray-800/75 @1.5xl/section:gap-x-3 @1.5xl/section:pr-3"
           key={album.name}
         >
           <div className="aspect-square basis-[30%]">
             <Image src={album.image} width={300} height={300} alt="" />
           </div>
-          <div className="basis-[70%] overflow-hidden tracking-tight sm:space-y-px">
+          <div className="basis-[70%] overflow-hidden tracking-tight @xl/section:space-y-px">
             <h4
-              className="truncate text-xs font-medium text-gray-100 sm:text-sm"
+              className="truncate text-xs font-medium text-gray-100 @xl/section:text-[13px] @1.5xl/section:text-sm"
               title={`${album.artist} – ${album.name}`}
             >
               {album.name}
             </h4>
-            <p className="text-[10px] sm:text-xs">
+            <p className="text-[10px] @xl/section:text-[11px] @1.5xl/section:text-xs">
               {`${album.playcount} plays`}
             </p>
           </div>
@@ -54,7 +54,7 @@ const TopAlbums = async () => {
 
 const TopAlbumsGrid = () => {
   return (
-    <div className="grid grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-3 md:gap-x-4 md:gap-y-3.5">
+    <div className="grid grid-cols-2 gap-2.5 @xl/section:grid-cols-3 @xl/section:gap-3 @1.5xl/section:gap-x-4 @1.5xl/section:gap-y-3.5">
       <Suspense fallback={<TopAlbumsPlaceholder />}>
         {/* @ts-expect-error Server Component */}
         <TopAlbums />

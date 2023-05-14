@@ -17,15 +17,17 @@ export const metadata: Metadata = {
 
 const DashboardPage: NextPage<Props> = ({ searchParams }) => {
   return (
-    <main
-      className="mx-auto grid w-full max-w-[1920px] grid-cols-1 gap-x-9 gap-y-7 py-8 md:gap-y-8 min-[1280px]:grid-cols-2 min-[1440px]:grid-cols-[52.5%_auto] min-[1440px]:gap-x-10 min-[1680px]:grid-cols-[55%_auto]"
+    <div
+      className="mx-auto grid min-h-[100dvh] max-w-[1680px] grid-cols-1 content-between gap-y-8 py-8"
       id="content"
     >
-      <Profile />
-      <Music />
-      <Weather {...searchParams} />
-      <Time />
-    </main>
+      <main className="grid grid-cols-[repeat(1,minmax(0,800px))] justify-center gap-x-9 gap-y-7 md:gap-y-8 min-[1280px]:grid-cols-[repeat(2,minmax(0,800px))] min-[1440px]:grid-cols-[52.5%_1fr] min-[1440px]:gap-x-10">
+        <Profile />
+        <Music />
+        <Weather {...searchParams} />
+        <Time />
+      </main>
+    </div>
   );
 };
 

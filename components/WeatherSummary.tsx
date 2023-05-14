@@ -13,16 +13,16 @@ const WeatherSummary = ({ city, country }: SearchParams) => {
 
   if (!currentWeather || isLoadingCurrentWeather) {
     return (
-      <div className="grid w-full grid-cols-[55%_1fr] gap-4 md:grid-cols-none md:grid-rows-[max-content_max-content]">
-        <div className="w-full overflow-hidden sm:space-y-px md:space-y-0.5">
+      <div className="grid w-full grid-cols-[55%_1fr] gap-4 @lg/section:grid-cols-none @lg/section:grid-rows-[max-content_max-content]">
+        <div className="w-full overflow-hidden @lg/section:space-y-px @xl/section:space-y-0.5">
           <h3
-            className="truncate font-oxanium text-2xl font-bold uppercase text-gray-100 sm:text-[1.75rem]"
+            className="truncate font-oxanium text-2xl font-bold uppercase text-gray-100 @xl/section:text-[1.625rem] @1.5xl/section:text-[1.75rem]"
             title={`${city}, ${country}`}
           >
             {city}
           </h3>
-          <div className="flex items-center gap-2">
-            <div className="h-9 w-28 rounded bg-gray-900 sm:h-11"></div>
+          <div className="flex items-center gap-x-2 @lg/section:gap-x-2.5">
+            <div className="h-9 w-28 rounded bg-gray-900 @xl/section:h-10 @1.5xl/section:h-11"></div>
             <div className="flex w-full flex-col space-y-2.5">
               <div className="h-1.5 w-full rounded-full bg-gray-900"></div>
               <div className="h-1.5 w-full rounded-full bg-gray-900"></div>
@@ -30,11 +30,11 @@ const WeatherSummary = ({ city, country }: SearchParams) => {
           </div>
         </div>
         <div className="w-full overflow-hidden">
-          <div className="flex h-full flex-col items-end justify-between gap-x-2 md:flex-row md:items-center md:justify-start">
-            <div className="h-8.5 w-8.5 rounded bg-gray-900 sm:h-9 sm:w-9"></div>
-            <div className="flex w-full flex-col items-end gap-y-1.5 md:w-auto md:grow md:items-start">
-              <div className="h-2.5 w-3/4 rounded bg-gray-900 sm:h-3"></div>
-              <div className="h-2 w-1/2 rounded bg-gray-900 sm:h-2.5"></div>
+          <div className="flex h-full flex-col items-end justify-between gap-x-2 @lg/section:flex-row @lg/section:items-center @lg/section:justify-start @lg/section:gap-x-2.5">
+            <div className="h-8.5 w-8.5 rounded bg-gray-900 @lg/section:h-9 @lg/section:w-9"></div>
+            <div className="flex w-full flex-col items-end gap-y-1.5 @lg/section:w-auto @lg/section:grow @lg/section:items-start">
+              <div className="h-2.5 w-3/4 rounded bg-gray-900 @lg/section:h-3"></div>
+              <div className="h-2 w-1/2 rounded bg-gray-900 @lg/section:h-2.5"></div>
             </div>
           </div>
         </div>
@@ -55,24 +55,24 @@ const WeatherSummary = ({ city, country }: SearchParams) => {
     : "--";
 
   return (
-    <div className="grid w-full grid-cols-[55%_1fr] gap-4 md:grid-cols-none md:grid-rows-[max-content_max-content]">
-      <div className="w-full overflow-hidden sm:space-y-px md:space-y-0.5">
+    <div className="grid w-full grid-cols-[55%_1fr] gap-4 @lg/section:grid-cols-none @lg/section:grid-rows-[max-content_max-content]">
+      <div className="w-full overflow-hidden @lg/section:space-y-px @xl/section:space-y-0.5">
         <h3
-          className="truncate font-oxanium text-2xl font-bold uppercase text-gray-100 sm:text-[1.75rem]"
+          className="truncate font-oxanium text-2xl font-bold uppercase text-gray-100 @xl/section:text-[1.625rem] @1.5xl/section:text-[1.75rem]"
           title={`${city}, ${country}`}
         >
           {city}
         </h3>
-        <div className="flex items-center gap-x-2">
+        <div className="flex items-center gap-x-2 @lg/section:gap-x-2.5">
           <h4
-            className="-mb-1 font-oxanium text-[2.5rem] font-medium leading-10 tracking-tight text-gray-200 sm:text-5xl"
+            className="-mb-1 font-oxanium text-[2.5rem] font-medium leading-10 tracking-tight text-gray-200 @xl/section:text-[2.75rem] @1.5xl/section:text-5xl"
             title={`${String(temp)} °C`}
           >
             {`${Math.round(temp)}°`}
           </h4>
           <div className="flex w-full flex-col">
             <div
-              className="flex items-center gap-x-1 sm:gap-x-1.5"
+              className="flex items-center gap-x-1 @lg/section:gap-x-1.5"
               title={`Humidity: ${humidity}%`}
             >
               <IconDropCircle className="h-4 w-4" stroke={2.25} />
@@ -89,7 +89,7 @@ const WeatherSummary = ({ city, country }: SearchParams) => {
               </progress>
             </div>
             <div
-              className="flex items-center gap-x-1 sm:gap-x-1.5"
+              className="flex items-center gap-x-1 @lg/section:gap-x-1.5"
               title={`Pressure: ${pressure} hPa`}
             >
               <IconGauge className="h-4 w-4" stroke={2.25} />
@@ -108,17 +108,17 @@ const WeatherSummary = ({ city, country }: SearchParams) => {
         </div>
       </div>
       <div className="w-full overflow-hidden">
-        <div className="flex h-full flex-col items-end justify-between gap-x-2 sm:gap-x-2.5 md:flex-row md:items-center md:justify-start">
+        <div className="flex h-full flex-col items-end justify-between gap-x-2 @lg/section:flex-row @lg/section:items-center @lg/section:justify-start @lg/section:gap-x-2.5">
           <WeatherIcon
             id={id}
             code={iconCode}
-            className="h-8.5 w-8.5 text-gray-100 sm:h-9 sm:w-9"
+            className="h-8.5 w-8.5 text-gray-100 @lg/section:h-9 @lg/section:w-9"
           />
-          <div className="flex flex-col items-end md:items-start">
-            <p className="truncate text-xs font-medium capitalize tracking-tight text-gray-100 sm:text-sm">
+          <div className="flex flex-col items-end @lg/section:items-start">
+            <p className="truncate text-xs font-medium capitalize tracking-tight text-gray-100 @lg/section:text-sm">
               {description}
             </p>
-            <p className="text-[10px] leading-3 tracking-tight sm:text-xs">
+            <p className="text-[10px] leading-3 tracking-tight @lg/section:text-xs">
               {`H: ${maxTemp}° L: ${minTemp}°`}
             </p>
           </div>

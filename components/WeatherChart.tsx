@@ -9,7 +9,7 @@ import {
   LinearScale,
   LineController,
   LineElement,
-  PointElement
+  PointElement,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 

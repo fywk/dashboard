@@ -12,10 +12,10 @@ import Section from "./Section";
 const UptimeString = ({ content }: { content: string }) => {
   return (
     <p
-      className="-mt-px text-[11px] font-medium !leading-none sm:-mt-0.5 sm:text-xs md:-mt-[3px] md:text-sm"
+      className="-mt-px font-oxanium text-[11px] font-semibold !leading-none @sm/section:-mt-0.5 @md/section:text-xs @lg/section:text-[13px] @1.5xl/section:text-sm"
       title="Time since last build"
     >
-      <span className="text-secondary">Uptime</span>
+      <span className="text-primary">Uptime</span>
       {content && <span className="text-gray-300">{content}</span>}
     </p>
   );
@@ -31,13 +31,15 @@ const City = ({
   time: string;
 }) => {
   return (
-    <div className="w-full py-1 sm:py-1.5">
-      <div className="-mx-0.5 bg-gray-950 py-0.5 text-center text-[8px]/[10px] sm:pb-px sm:text-[10px]/[13px] md:pt-1 md:text-xs/[15px]">
-        <p className="uppercase">
-          <span className="sm:hidden">{abbr}</span>
-          <span className="hidden tracking-tight sm:inline">{name}</span>
+    <div className="w-full py-1 @xl/section:py-1.5">
+      <div className="-mx-0.5 space-y-0.5 bg-gray-950 py-0.5 text-center @lg/section:space-y-1 @1.5xl/section:py-1">
+        <p className="text-[9px] uppercase !leading-none @lg/section:text-[10px] @1.5xl/section:text-[11px] @[45rem]/section:text-xs">
+          <abbr className="@xl/section:hidden">{abbr}</abbr>
+          <span className="hidden tracking-tight @xl/section:inline">
+            {name}
+          </span>
         </p>
-        <p className="font-oxanium font-medium text-gray-100 md:text-sm">
+        <p className="font-oxanium text-[9px] font-medium !leading-none text-gray-100 @sm/section:text-[10px] @xl/section:text-xs @1.5xl/section:text-sm">
           {time}
         </p>
       </div>
@@ -95,44 +97,22 @@ const Time = () => {
       subtitle={uptime && <UptimeString content={`: ${uptime}`} />}
       accentColor="secondary"
     >
-      <div className="-mt-2 grid grid-cols-2 gap-x-4 gap-y-2 sm:-mt-0.5 sm:gap-x-4.5 sm:gap-y-2.5 md:gap-x-5 md:gap-y-3">
-        <div className="w-full space-y-0.5 md:space-y-1">
-          <span className="rounded-sm px-1 text-[10px] font-bold leading-3 tracking-tighter text-primary ring-1 ring-primary md:text-xs">
+      <div className="-mt-2 grid grid-cols-2 gap-x-4 gap-y-2.5 @lg/section:gap-y-3 @xl/section:-mt-0.5 @xl/section:gap-x-4.5 @xl/section:gap-y-3.5 @1.5xl/section:gap-x-5">
+        <div className="-mb-1 w-full space-y-0.5 @container @sm/section:-mb-1.5 @sm/section:space-y-1 @md/section:-mb-2">
+          <span className="rounded-sm px-1 text-[10px] font-bold leading-3 tracking-tighter text-primary ring-1 ring-primary @lg/section:text-[11px] @1.5xl/section:text-xs">
             LOCAL
           </span>
-          <svg
-            width="100%"
-            height="100%"
-            viewBox="0 0 400 85.5"
-            preserveAspectRatio="xMinYMin meet"
-          >
-            <foreignObject
-              width="100%"
-              height="100%"
-              xmlns="http://www.w3.org/1999/xhtml"
-            >
-              <h2 className="font-oxanium text-8xl text-gray-100">{local}</h2>
-            </foreignObject>
-          </svg>
+          <h2 className="font-oxanium text-[24cqi]/none text-gray-100">
+            {local}
+          </h2>
         </div>
-        <div className="w-full space-y-0.5 md:space-y-1">
-          <span className="rounded-sm px-1 text-[10px] font-bold leading-3 tracking-tighter text-secondary ring-1 ring-secondary md:text-xs">
+        <div className="-mb-1 w-full space-y-0.5 @container @sm/section:-mb-1.5 @sm/section:space-y-1 @md/section:-mb-2">
+          <span className="rounded-sm px-1 text-[10px] font-bold leading-3 tracking-tighter text-secondary ring-1 ring-secondary @lg/section:text-[11px] @1.5xl/section:text-xs">
             UTC
           </span>
-          <svg
-            width="100%"
-            height="100%"
-            viewBox="0 0 400 85.5"
-            preserveAspectRatio="xMinYMin meet"
-          >
-            <foreignObject
-              width="100%"
-              height="100%"
-              xmlns="http://www.w3.org/1999/xhtml"
-            >
-              <h2 className="font-oxanium text-8xl text-gray-500">{utc}</h2>
-            </foreignObject>
-          </svg>
+          <h2 className="font-oxanium text-[24cqi]/none text-gray-500">
+            {utc}
+          </h2>
         </div>
         <div className="col-span-full flex justify-evenly divide-x divide-primary/60 rounded-sm border border-primary/60">
           <City name="Los Angeles" abbr="LA" time={los_angeles} />

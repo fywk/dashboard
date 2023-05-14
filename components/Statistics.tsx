@@ -5,13 +5,13 @@ import {
   getRecentTrack,
   getTotalAlbums,
   getTotalArtists,
-  getTotalTracks
+  getTotalTracks,
 } from "@/utils/lastfm";
 import {
   IconMicrophone2,
   IconMusic,
   IconPlayerPlay,
-  IconVinyl
+  IconVinyl,
 } from "@tabler/icons-react";
 
 const TotalPlays = async ({ promise }: { promise: Promise<RecentTrack> }) => {
@@ -44,9 +44,9 @@ const Category = ({
   children: React.ReactNode;
 }) => {
   return (
-    <div className="flex w-full flex-col items-center justify-center text-[15px] font-medium leading-5 tracking-tight odd:text-secondary even:text-primary md:odd:text-primary md:even:text-secondary">
+    <div className="flex w-full flex-col items-center justify-center text-sm font-medium leading-5 tracking-tight odd:text-secondary even:text-primary @lg/section:odd:text-primary @lg/section:even:text-secondary @1.5xl/section:text-[15px]">
       {icon}
-      <span className="mt-1">{title}</span>
+      <span className="mt-[3px] @1.5xl/section:mt-1">{title}</span>
       <span>{children}</span>
     </div>
   );
@@ -67,7 +67,10 @@ const Statistics = () => {
       <Category
         title="Plays"
         icon={
-          <IconPlayerPlay className="h-7.5 w-7.5 sm:h-8 sm:w-8" stroke={1.75} />
+          <IconPlayerPlay
+            className="h-7.5 w-7.5 @1.5xl/section:h-8 @1.5xl/section:w-8"
+            stroke={1.75}
+          />
         }
       >
         <Suspense fallback="---">
@@ -77,7 +80,12 @@ const Statistics = () => {
       </Category>
       <Category
         title="Tracks"
-        icon={<IconMusic className="h-7.5 w-7.5 sm:h-8 sm:w-8" stroke={1.5} />}
+        icon={
+          <IconMusic
+            className="h-7.5 w-7.5 @1.5xl/section:h-8 @1.5xl/section:w-8"
+            stroke={1.5}
+          />
+        }
       >
         <Suspense fallback="---">
           {/* @ts-expect-error Server Component */}
@@ -86,7 +94,12 @@ const Statistics = () => {
       </Category>
       <Category
         title="Albums"
-        icon={<IconVinyl className="h-7.5 w-7.5 sm:h-8 sm:w-8" stroke={1.5} />}
+        icon={
+          <IconVinyl
+            className="h-7.5 w-7.5 @1.5xl/section:h-8 @1.5xl/section:w-8"
+            stroke={1.5}
+          />
+        }
       >
         <Suspense fallback="---">
           {/* @ts-expect-error Server Component */}
@@ -96,7 +109,10 @@ const Statistics = () => {
       <Category
         title="Artists"
         icon={
-          <IconMicrophone2 className="h-7.5 w-7.5 sm:h-8 sm:w-8" stroke={1.5} />
+          <IconMicrophone2
+            className="h-7.5 w-7.5 @1.5xl/section:h-8 @1.5xl/section:w-8"
+            stroke={1.5}
+          />
         }
       >
         <Suspense fallback="---">

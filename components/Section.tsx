@@ -9,24 +9,24 @@ type Props = {
 
 const Section = ({ title, subtitle, accentColor, children }: Props) => {
   return (
-    <section className="mx-auto grid w-full max-w-[800px] grid-rows-[auto_1fr] min-[1440px]:max-w-[1040px]">
+    <section className="grid w-full grid-rows-[auto_1fr] gap-y-4 @container/section min-[1440px]:gap-y-4.5">
       <div
         className={clsx(
-          "mb-4 border-b border-t-2 py-1",
+          "border-b border-t-2 py-1",
           accentColor === "primary"
             ? "[border-bottom-color:rgb(var(--color-primary)/1)] [border-top-color:rgb(var(--color-primary)/.35)]"
             : "[border-bottom-color:rgb(var(--color-secondary)/1)] [border-top-color:rgb(var(--color-secondary)/.35)]"
         )}
       >
         <div className="flex items-center justify-between px-px py-1.5">
-          <h2 className="-mb-px font-oxanium text-lg font-bold leading-none text-primary">
-            <span className="uppercase brightness-[2.5]">{title}</span>
+          <h2 className="-mb-px font-oxanium text-[17px] font-[650] uppercase !leading-none text-gray-50 [text-shadow:0_0_0.5rem_rgb(var(--color-primary))] @1.5xl/section:text-lg">
+            {title}
           </h2>
           {subtitle}
         </div>
         <div className="mb-px h-px w-full bg-primary/50"></div>
       </div>
-      <div className="px-0.5 sm:px-1">{children}</div>
+      <div className="px-0.5 @1.5xl/section:px-1">{children}</div>
     </section>
   );
 };
