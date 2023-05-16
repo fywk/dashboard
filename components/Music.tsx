@@ -5,31 +5,28 @@ import TopAlbumsGrid from "./TopAlbumsGrid";
 import TopArtistsGrid from "./TopArtistsGrid";
 
 const Music = () => {
-  const SUBTITLE_STYLE = "mb-2 text-gray-600";
+  const SUBTITLE_STYLE = "mb-2 text-gray-600 text-sm @1.5xl/section:text-base";
 
   return (
     <Section title="Music" accentColor="secondary">
-      <div className="grid grid-cols-1 gap-3 md:grid-cols-[1fr_1fr] md:gap-x-9">
-        <div className="grid grid-rows-[auto_1fr] md:order-2" id="recent-track">
+      <div className="grid grid-cols-1 gap-3.5 @lg/section:grid-cols-2 @lg/section:gap-x-7 @xl/section:gap-x-7.5 @1.5xl/section:gap-x-8 @2xl/section:gap-x-9">
+        <div className="grid grid-rows-[auto_1fr] @container/now-playing @lg/section:order-2">
           <h3 className={SUBTITLE_STYLE}>Recently Played</h3>
           <NowPlaying />
         </div>
-        <div
-          className="grid grid-rows-[auto_1fr] md:order-1"
-          id="music-stats-past-week"
-        >
+        <div className="grid grid-rows-[auto_1fr] @lg/section:order-1">
           <h3 className={SUBTITLE_STYLE}>
             Statistics <small className="pl-0.5">Last 7 days</small>
           </h3>
           <Statistics />
         </div>
-        <div className="md:order-3 md:col-span-full">
+        <div className="@lg/section:order-3 @lg/section:col-span-full">
           <h3 className={SUBTITLE_STYLE}>
             Top Artists <small className="pl-0.5">Last 30 days</small>
           </h3>
           <TopArtistsGrid />
         </div>
-        <div className="w-full md:order-5 md:col-span-full">
+        <div className="w-full @lg/section:order-5 @lg/section:col-span-full">
           <h3 className={SUBTITLE_STYLE}>
             Top Albums <small className="pl-0.5">Last 90 days</small>
           </h3>

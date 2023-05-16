@@ -9,7 +9,7 @@ import {
   LinearScale,
   LineController,
   LineElement,
-  PointElement
+  PointElement,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
@@ -33,7 +33,7 @@ const WeatherChart = () => {
   // prettier-ignore
   if (!currentWeather || isLoadingCurrentWeather || !weatherForecast || isLoadingWeatherForecast) {
     return (
-      <div className="h-full min-h-[170px] w-full rounded bg-gray-900/50"></div>
+      <div className="h-[10rem] w-full rounded @1.5xl:h-[11rem] bg-gray-900/50"></div>
     );
   }
 
@@ -121,8 +121,8 @@ const WeatherChart = () => {
   };
 
   return (
-    <div className="relative h-full min-h-[170px] w-full overflow-hidden">
-      <Line data={data} options={options} width="100%" height="170px" />
+    <div className="relative h-[10rem] w-full overflow-hidden @1.5xl:h-[11rem]">
+      <Line data={data} options={options} />
     </div>
   );
 };

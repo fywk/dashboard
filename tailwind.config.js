@@ -1,15 +1,9 @@
-/** @type {import('tailwindcss').Config} */
-
 const colors = require("tailwindcss/colors");
 const defaultTheme = require("tailwindcss/defaultTheme");
 
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./app/**/*.{js,ts,jsx,tsx}",
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-  ],
-  dark: "",
+  content: ["./app/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       borderWidth: {
@@ -17,9 +11,12 @@ module.exports = {
         3: "3px",
       },
       colors: {
-        gray: { 950: "#0e0e10", ...colors.zinc },
+        gray: colors.zinc,
         primary: "rgb(var(--color-primary) / <alpha-value>)",
         secondary: "rgb(var(--color-secondary) / <alpha-value>)",
+      },
+      containers: {
+        "1.5xl": "39rem",
       },
       opacity: {
         85: ".85",
@@ -31,15 +28,16 @@ module.exports = {
         xs: "475px",
       },
       spacing: {
-        4.5: "1.125rem",
-        5.5: "1.375rem",
-        6.5: "1.625rem",
-        7.5: "1.825rem",
-        8.5: "2.125rem",
-        9.5: "2.375rem",
-        10.5: "2.625rem",
+        "15px": "0.9375rem",
+        4.5: "1.125rem", // 18px
+        5.5: "1.375rem", // 22px
+        6.5: "1.625rem", // 26px
+        7.5: "1.875rem", // 30px
+        8.5: "2.125rem", // 34px
+        9.5: "2.375rem", // 38px
+        10.5: "2.625rem", // 42px
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/container-queries")],
 };
