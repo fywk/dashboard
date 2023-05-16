@@ -12,7 +12,7 @@ import Section from "./Section";
 const UptimeString = ({ content }: { content: string }) => {
   return (
     <p
-      className="-mt-px font-oxanium text-[11px] font-semibold !leading-none @sm/section:-mt-0.5 @md/section:text-xs @lg/section:text-[13px] @1.5xl/section:text-sm"
+      className="-mt-px font-oxanium text-[11px] font-[550] !leading-none @sm/section:-mt-0.5 @md/section:text-xs @lg/section:text-[13px] @1.5xl/section:text-sm"
       title="Time since last build"
     >
       <span className="text-primary">Uptime</span>
@@ -31,7 +31,7 @@ const City = ({
   time: string;
 }) => {
   return (
-    <div className="w-full py-1 @xl/section:py-1.5">
+    <div className="w-full py-1 @xl/section:-mb-px @xl/section:py-1.5 @2xl/section:py-2">
       <div className="-mx-0.5 space-y-0.5 bg-gray-950 py-0.5 text-center @lg/section:space-y-1 @1.5xl/section:py-1">
         <p className="text-[9px] uppercase !leading-none @lg/section:text-[10px] @1.5xl/section:text-[11px] @[45rem]/section:text-xs">
           <abbr className="@xl/section:hidden">{abbr}</abbr>
@@ -97,8 +97,8 @@ const Time = () => {
       subtitle={uptime && <UptimeString content={`: ${uptime}`} />}
       accentColor="secondary"
     >
-      <div className="-mt-2 grid grid-cols-2 gap-x-4 gap-y-2.5 @lg/section:gap-y-3 @xl/section:-mt-0.5 @xl/section:gap-x-4.5 @xl/section:gap-y-3.5 @1.5xl/section:gap-x-5">
-        <div className="-mb-1 w-full space-y-0.5 @container @sm/section:-mb-1.5 @sm/section:space-y-1 @md/section:-mb-2">
+      <div className="-mt-[3px] grid grid-cols-2 gap-x-4 gap-y-2.5 @lg/section:gap-y-3 @xl/section:-mt-px @xl/section:gap-x-4.5 @xl/section:gap-y-3.5 @1.5xl/section:gap-x-5">
+        <div className="-mb-1 w-full space-y-1 @container @sm/section:-mb-1.5 @sm/section:space-y-1.5 @md/section:-mb-2">
           <span className="rounded-sm px-1 text-[10px] font-bold leading-3 tracking-tighter text-primary ring-1 ring-primary @lg/section:text-[11px] @1.5xl/section:text-xs">
             LOCAL
           </span>
@@ -106,7 +106,7 @@ const Time = () => {
             {local}
           </h2>
         </div>
-        <div className="-mb-1 w-full space-y-0.5 @container @sm/section:-mb-1.5 @sm/section:space-y-1 @md/section:-mb-2">
+        <div className="-mb-1 w-full space-y-1 @container @sm/section:-mb-1.5 @sm/section:space-y-1.5 @md/section:-mb-2">
           <span className="rounded-sm px-1 text-[10px] font-bold leading-3 tracking-tighter text-secondary ring-1 ring-secondary @lg/section:text-[11px] @1.5xl/section:text-xs">
             UTC
           </span>

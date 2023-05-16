@@ -10,11 +10,11 @@ const Music = () => {
   return (
     <Section title="Music" accentColor="secondary">
       <div className="grid grid-cols-1 gap-3.5 @lg/section:grid-cols-2 @lg/section:gap-x-7 @xl/section:gap-x-7.5 @1.5xl/section:gap-x-8 @2xl/section:gap-x-9">
-        <div className="@container/now-playing @lg/section:order-2">
+        <div className="grid grid-rows-[auto_1fr] @container/now-playing @lg/section:order-2">
           <h3 className={SUBTITLE_STYLE}>Recently Played</h3>
           <NowPlaying />
         </div>
-        <div className="@lg/section:order-1">
+        <div className="grid grid-rows-[auto_1fr] @lg/section:order-1">
           <h3 className={SUBTITLE_STYLE}>
             Statistics <small className="pl-0.5">Last 7 days</small>
           </h3>

@@ -18,7 +18,7 @@ const Section = ({ title, subtitle, accentColor, children }: Props) => {
             : "[border-bottom-color:rgb(var(--color-secondary)/1)] [border-top-color:rgb(var(--color-secondary)/.35)]"
         )}
       >
-        <div className="flex items-center justify-between px-px py-1.5">
+        <div className="flex items-center justify-between px-px py-1.5 @xl/section:px-0.5">
           <h2 className="-mb-px font-oxanium text-[17px] font-[650] uppercase !leading-none text-gray-50 [text-shadow:0_0_0.5rem_rgb(var(--color-primary))] @1.5xl/section:text-lg">
             {title}
           </h2>

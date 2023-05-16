@@ -59,14 +59,14 @@ const NowPlaying = () => {
 
   if (!data || isLoading) {
     return (
-      <div className="flex items-center gap-2.5 overflow-hidden rounded-md border border-primary/60 p-2 @xs/now-playing:gap-[0.6875rem] @[340px]/now-playing:gap-3">
-        <div className="aspect-square min-w-[3.5rem] max-w-[4.5rem] basis-1/4 rounded bg-gray-900 ring-1 ring-gray-900"></div>
-        <div className="grow space-y-2 @[340px]/now-playing:space-y-[9px]">
+      <div className="grid grid-cols-[4rem_1fr_2.25rem] items-center gap-2.5 overflow-hidden rounded-md border border-primary/60 p-2 @xs/now-playing:gap-[0.6875rem] @[21.25rem]/now-playing:grid-cols-[4.5rem_1fr_2.25rem] @sm/now-playing:grid-cols-[5rem_1fr_2.25rem] @[340px]/now-playing:gap-3">
+        <div className="aspect-square rounded bg-gray-900 ring-1 ring-gray-900"></div>
+        <div className="space-y-2 @[340px]/now-playing:space-y-[9px]">
           <div className="h-2.5 w-1/2 rounded bg-gray-900 @[340px]/now-playing:h-3"></div>
           <div className="h-3 w-full rounded bg-gray-900 @[340px]/now-playing:h-3.5"></div>
           <div className="h-2.5 w-3/4 rounded bg-gray-900 @[340px]/now-playing:h-3"></div>
         </div>
-        <div className="w-9 text-lg font-medium text-transparent @[340px]/now-playing:w-10 @[340px]/now-playing:text-xl">
+        <div className="text-lg font-medium text-transparent @[340px]/now-playing:text-xl">
           {"♡"}
         </div>
       </div>
@@ -76,9 +76,9 @@ const NowPlaying = () => {
   const track = data.track;
 
   return (
-    <div className="flex items-center gap-2.5 overflow-hidden rounded-md border border-primary/60 p-2 @xs/now-playing:gap-[0.6875rem] @[340px]/now-playing:gap-3">
+    <div className="grid grid-cols-[4rem_1fr_2.25rem] items-center gap-2.5 overflow-hidden rounded-md border border-primary/60 p-2 @xs/now-playing:gap-[0.6875rem] @[21.25rem]/now-playing:grid-cols-[4.5rem_1fr_2.25rem] @sm/now-playing:grid-cols-[5rem_1fr_2.25rem] @[340px]/now-playing:gap-3">
       <div
-        className="relative aspect-square min-w-[3.5rem] max-w-[4.5rem] basis-1/4 overflow-hidden rounded bg-gray-900 ring-1 ring-gray-800/75"
+        className="relative aspect-square overflow-hidden rounded bg-gray-900 ring-1 ring-gray-800/75"
         id="track-album-art"
       >
         <Image
@@ -91,7 +91,7 @@ const NowPlaying = () => {
           onError={() => setImageURL("/images/album-error.jpg")}
         />
       </div>
-      <div className="grow overflow-hidden tracking-tight">
+      <div className="overflow-hidden tracking-tight">
         <p
           className="flex items-center gap-x-[3px] text-[13px] font-medium text-[#1ed760] @[340px]/now-playing:gap-x-1 @[340px]/now-playing:text-sm"
           id="track-status"
@@ -122,7 +122,7 @@ const NowPlaying = () => {
       </div>
       <div
         className={clsx(
-          "w-9 text-lg font-medium @[340px]/now-playing:w-10 @[340px]/now-playing:text-xl",
+          "text-lg font-medium @[340px]/now-playing:text-xl",
           track.loved ? "text-[#1ed760]" : "text-gray-500"
         )}
       >
