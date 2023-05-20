@@ -1,6 +1,11 @@
-import { CurrentWeatherData, WeatherForecastData } from "@/types/openweather";
+import { env } from "@/lib/env.mjs";
 
-const API_KEY = process.env.OPENWEATHER_API_KEY;
+import type {
+  CurrentWeatherData,
+  WeatherForecastData,
+} from "@/types/openweather";
+
+const API_KEY = env.OPENWEATHER_API_KEY;
 
 const API_ROOT = "https://api.openweathermap.org/data/2.5";
 

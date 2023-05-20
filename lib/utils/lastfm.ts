@@ -1,4 +1,6 @@
-import {
+import { env } from "@/lib/env.mjs";
+
+import type {
   Album,
   Artist,
   LastfmParams,
@@ -9,11 +11,11 @@ import {
   TopArtists,
   TopTracks,
   TotalStats,
-  Track
+  Track,
 } from "@/types/lastfm";
 
-const API_KEY = process.env.LASTFM_API_KEY;
-const USERNAME = process.env.LASTFM_USERNAME;
+const API_KEY = env.LASTFM_API_KEY;
+const USERNAME = env.LASTFM_USERNAME;
 
 const API_ROOT = "https://ws.audioscrobbler.com/2.0/";
 
