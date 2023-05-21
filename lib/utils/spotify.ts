@@ -1,8 +1,10 @@
-import { ArtistImage } from "@/types/spotify";
+import { env } from "@/lib/env.mjs";
 
-const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
-const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
-const REFRESH_TOKEN = process.env.SPOTIFY_REFRESH_TOKEN;
+import type { ArtistImage } from "@/types/spotify";
+
+const CLIENT_ID = env.SPOTIFY_CLIENT_ID;
+const CLIENT_SECRET = env.SPOTIFY_CLIENT_SECRET;
+const REFRESH_TOKEN = env.SPOTIFY_REFRESH_TOKEN;
 
 const TOKEN_ENDPOINT = "https://accounts.spotify.com/api/token";
 const SEARCH_ENDPOINT = "https://api.spotify.com/v1/search";
@@ -17,7 +19,7 @@ const getAccessToken = async () => {
     }),
     cache: "no-store",
     headers: {
-      "Authorization": `Basic ${authToken}`,
+      Authorization: `Basic ${authToken}`,
       "Content-Type": "application/x-www-form-urlencoded",
     },
     method: "POST",

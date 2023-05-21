@@ -1,3 +1,5 @@
+import { env } from "@/lib/env.mjs";
+
 import type { NextRequest } from "next/server";
 
 export const config = {
@@ -5,10 +7,10 @@ export const config = {
 };
 
 export default async function handler(req: NextRequest) {
-  const url = process.env.NEXT_PUBLIC_VERCEL_URL ?? process.env.SITE_BASE_URL;
+  const url = process.env.NEXT_PUBLIC_VERCEL_URL ?? env.SITE_BASE_URL;
   const res = await fetch(`https://api.vercel.com/v6/deployments/${url}`, {
     headers: {
-      Authorization: `Bearer ${process.env.VERCEL_ACCESS_TOKEN}`,
+      Authorization: `Bearer ${env.VERCEL_ACCESS_TOKEN}`,
     },
   });
 
