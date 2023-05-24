@@ -21,6 +21,9 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
+  env: {
+    APP_START_TIME: String(Date.now()),
+  },
 };
 
 export default nextConfig;

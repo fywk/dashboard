@@ -1,9 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import useSWRImmutable from "swr/immutable";
 
-import fetcher from "@/lib/utils/fetcher";
 import { pluralize } from "@/lib/utils/pluralize";
 import dayjs from "@/utils/dayjs";
 
@@ -51,9 +49,13 @@ const Time = () => {
   const INITIAL_TIME = "00:00:00";
   const TIME_FORMAT = "HH:mm:ss";
 
-  const { data } = useSWRImmutable<number>("/api/get-created-at", fetcher);
+  // const { data } = useSWRImmutable<number>("/api/get-created-at", fetcher);
 
-  const createdAt = data && data;
+  // const createdAt =
+  //   process.env.NODE_ENV === "development"
+  //     ? Number(process.env.BUILD_TIME)
+  //     : data ?? 1_000_000_000_000; // one trillion milliseconds since Unix epoch
+  const createdAt = Number(process.env.APP_START_TIME);
 
   const [uptime, setUptime] = useState("");
   const [utc, setUTC] = useState(INITIAL_TIME);
@@ -70,14 +72,14 @@ const Time = () => {
       const UTC = dayjs().utc();
       const diffSinceCreated = UTC.diff(createdAt);
       const durationSinceCreated = dayjs.duration(diffSinceCreated);
-      const d = durationSinceCreated
-        ? Math.floor(durationSinceCreated.asDays())
-        : 0;
-      const totalDays = d >= 0 && pluralize(d, "day");
+      const days = Math.floor(durationSinceCreated.asDays());
+      const totalDays = days >= 1 ? pluralize(days, "day") : undefined;
       const totalHours = pluralize(durationSinceCreated.hours(), "hour");
       const totalMinutes = pluralize(durationSinceCreated.minutes(), "min");
 
-      setUptime(`${totalDays}, ${totalHours}, ${totalMinutes}`);
+      setUptime(
+        [totalDays, totalHours, totalMinutes].filter(Boolean).join(", ")
+      );
       setUTC(UTC.format(TIME_FORMAT));
       setLocal(UTC.local().format(TIME_FORMAT));
       setLosAngeles(dayjs().tz("America/Los_Angeles").format(TIME_FORMAT));
