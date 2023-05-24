@@ -1,12 +1,10 @@
 import { getRecentTrack } from "@/utils/lastfm";
 
-import type { NextRequest } from "next/server";
-
 export const config = {
   runtime: "edge",
 };
 
-export default async function handler(req: NextRequest) {
+export default async function handler() {
   const ONE_WEEK_IN_SECONDS = 604_800;
   const unixTimestamp = Math.floor(Date.now() / 1000); // current Unix timestamp (seconds, 10-digit)
   const _7DaysAgo = unixTimestamp - ONE_WEEK_IN_SECONDS;

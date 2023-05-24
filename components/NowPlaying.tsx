@@ -6,8 +6,9 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 import TimeAgo from "timeago-react";
 
-import { RecentTrack } from "@/types/lastfm";
 import fetcher from "@/utils/fetcher";
+
+import type { RecentTrack } from "@/types/lastfm";
 
 const EqualizerIcon = ({ className }: { className?: string }) => {
   return (

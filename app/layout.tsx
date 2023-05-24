@@ -1,7 +1,8 @@
+import { Oxanium } from "next/font/google";
+
 import "./globals.css";
 
-import { Metadata } from "next";
-import { Oxanium } from "next/font/google";
+import type { Metadata } from "next";
 
 const oxanium = Oxanium({
   subsets: ["latin"],

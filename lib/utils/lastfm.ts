@@ -1,17 +1,17 @@
 import { env } from "@/lib/env.mjs";
 
 import type {
-  Album,
-  Artist,
   LastfmParams,
   Period,
   RecentTrack,
   Timestamp,
   TopAlbums,
+  TopAlbumsResponse,
   TopArtists,
+  TopArtistsResponse,
   TopTracks,
+  TopTracksResponse,
   TotalStats,
-  Track,
 } from "@/types/lastfm";
 
 const API_KEY = env.LASTFM_API_KEY;
@@ -70,14 +70,12 @@ export const getTopTracks = async (
   };
 
   const res = await fetch(generateURL(params), { cache: "no-store" });
-  const { toptracks } = await res.json();
+  const { toptracks }: { toptracks: TopTracksResponse } = await res.json();
 
-  const tracks: TopTracks = toptracks.track.map(
-    (track: any): Track => ({
-      name: String(track.name),
-      artist: String(track.artist.name),
-    })
-  );
+  const tracks: TopTracks = toptracks.track.map((track) => ({
+    name: track.name,
+    artist: track.artist.name,
+  }));
 
   return tracks;
 };
@@ -93,16 +91,14 @@ export const getTopAlbums = async (
   };
 
   const res = await fetch(generateURL(params), { cache: "no-store" });
-  const { topalbums } = await res.json();
+  const { topalbums }: { topalbums: TopAlbumsResponse } = await res.json();
 
-  const albums: TopAlbums = topalbums.album.map(
-    (album: any): Album => ({
-      name: album.name,
-      artist: album.artist.name,
-      image: album.image.at(3)["#text"], // 300x300
-      playcount: album.playcount,
-    })
-  );
+  const albums: TopAlbums = topalbums.album.map((album) => ({
+    name: album.name,
+    artist: album.artist.name,
+    image: album.image.at(3)?.["#text"] ?? "/images/album-error.jpg",
+    playcount: album.playcount,
+  }));
 
   return albums;
 };
@@ -118,14 +114,12 @@ export const getTopArtists = async (
   };
 
   const res = await fetch(generateURL(params), { cache: "no-store" });
-  const { topartists } = await res.json();
+  const { topartists }: { topartists: TopArtistsResponse } = await res.json();
 
-  const artists: TopArtists = topartists.artist.map(
-    (artist: any): Artist => ({
-      name: artist.name,
-      playcount: artist.playcount,
-    })
-  );
+  const artists: TopArtists = topartists.artist.map((artist) => ({
+    name: artist.name,
+    playcount: artist.playcount,
+  }));
 
   return artists;
 };

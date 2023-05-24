@@ -1,18 +1,19 @@
-import { Suspense } from "react";
-
-import { RecentTrack, TotalStats } from "@/types/lastfm";
-import {
-  getRecentTrack,
-  getTotalAlbums,
-  getTotalArtists,
-  getTotalTracks,
-} from "@/utils/lastfm";
 import {
   IconMicrophone2,
   IconMusic,
   IconPlayerPlay,
   IconVinyl,
 } from "@tabler/icons-react";
+import { Suspense } from "react";
+
+import {
+  getRecentTrack,
+  getTotalAlbums,
+  getTotalArtists,
+  getTotalTracks,
+} from "@/utils/lastfm";
+
+import type { RecentTrack, TotalStats } from "@/types/lastfm";
 
 const TotalPlays = async ({ promise }: { promise: Promise<RecentTrack> }) => {
   const plays = await promise;
