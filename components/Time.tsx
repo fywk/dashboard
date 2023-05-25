@@ -73,8 +73,9 @@ const Time = () => {
       const diffSinceCreated = UTC.diff(createdAt);
       const durationSinceCreated = dayjs.duration(diffSinceCreated);
       const days = Math.floor(durationSinceCreated.asDays());
-      const totalDays = days >= 1 ? pluralize(days, "day") : undefined;
-      const totalHours = pluralize(durationSinceCreated.hours(), "hour");
+      const hours = durationSinceCreated.hours();
+      const totalDays = days >= 1 ? pluralize(days, "day") : days;
+      const totalHours = hours >= 1 ? pluralize(hours, "hour") : hours;
       const totalMinutes = pluralize(durationSinceCreated.minutes(), "min");
 
       setUptime(
