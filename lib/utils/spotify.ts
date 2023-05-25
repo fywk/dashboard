@@ -15,7 +15,7 @@ const getAccessToken = async () => {
   const response = await fetch(TOKEN_ENDPOINT, {
     body: new URLSearchParams({
       grant_type: "refresh_token",
-      refresh_token: REFRESH_TOKEN!,
+      refresh_token: REFRESH_TOKEN,
     }),
     cache: "no-store",
     headers: {

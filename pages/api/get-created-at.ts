@@ -1,12 +1,10 @@
 import { env } from "@/lib/env.mjs";
 
-import type { NextRequest } from "next/server";
-
 export const config = {
   runtime: "edge",
 };
 
-export default async function handler(req: NextRequest) {
+export default async function handler() {
   const url = process.env.NEXT_PUBLIC_VERCEL_URL ?? env.SITE_BASE_URL;
   const res = await fetch(`https://api.vercel.com/v6/deployments/${url}`, {
     headers: {

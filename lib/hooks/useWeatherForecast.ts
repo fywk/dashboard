@@ -1,7 +1,8 @@
 import useSWRImmutable from "swr/immutable";
 
-import { WeatherForecastData } from "@/types/openweather";
 import fetcher from "@/utils/fetcher";
+
+import type { WeatherForecastData } from "@/types/openweather";
 
 const useWeatherForecast = () => {
   const { data, isLoading } = useSWRImmutable<WeatherForecastData>(

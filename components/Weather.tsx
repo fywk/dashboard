@@ -1,8 +1,8 @@
-import { SearchParams } from "@/types/misc";
-
 import Section from "./Section";
 import WeatherChart from "./WeatherChart";
 import WeatherSummary from "./WeatherSummary";
+
+import type { SearchParams } from "@/types/misc";
 
 const Weather = ({ ...searchParams }: SearchParams) => {
   return (

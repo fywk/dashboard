@@ -1,11 +1,12 @@
-import { Metadata, NextPage } from "next";
-
 import Music from "@/components/Music";
 import Profile from "@/components/Profile";
 import Time from "@/components/Time";
 import Weather from "@/components/Weather";
 import { siteConfig } from "@/lib/utils/site-config";
-import { SearchParams } from "@/types/misc";
+
+import type { Metadata, NextPage } from "next";
+
+import type { SearchParams } from "@/types/misc";
 
 type Props = {
   searchParams: SearchParams;

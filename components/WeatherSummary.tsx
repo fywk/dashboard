@@ -1,11 +1,13 @@
 "use client";
 
-import useCurrentWeather from "@/hooks/useCurrentWeather";
-import useWeatherForecast from "@/hooks/useWeatherForecast";
-import { SearchParams } from "@/types/misc";
 import { IconDropCircle, IconGauge } from "@tabler/icons-react";
 
+import useCurrentWeather from "@/hooks/useCurrentWeather";
+import useWeatherForecast from "@/hooks/useWeatherForecast";
+
 import WeatherIcon from "./WeatherIcon";
+
+import type { SearchParams } from "@/types/misc";
 
 const WeatherSummary = ({ city, country }: SearchParams) => {
   const { currentWeather, isLoadingCurrentWeather } = useCurrentWeather();
@@ -45,7 +47,7 @@ const WeatherSummary = ({ city, country }: SearchParams) => {
   const { id, description, icon: iconCode } = currentWeather.weather[0];
   const { temp, pressure, humidity } = currentWeather.main;
 
-  let temperatures = [temp]; // include the current temperature to the array for calculating the min and max temperatures
+  const temperatures = [temp]; // include the current temperature to the array for calculating the min and max temperatures
   weatherForecast?.list.forEach((item) => temperatures.push(item.main.temp));
   const maxTemp = weatherForecast
     ? Math.round(Math.max(...temperatures))

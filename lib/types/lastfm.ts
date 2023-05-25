@@ -7,7 +7,7 @@ export const PERIOD = [
   "12month",
 ] as const;
 
-export type Period = typeof PERIOD[number];
+export type Period = (typeof PERIOD)[number];
 
 export type Timestamp = string | number;
 
@@ -61,3 +61,20 @@ export type TopAlbums = Album[];
 export type TopArtists = Artist[];
 
 export type TotalStats = { total: Total };
+
+export type TopTracksResponse = {
+  track: (Omit<Track, "artist"> & {
+    artist: { name: string };
+  })[];
+};
+
+export type TopAlbumsResponse = {
+  album: (Omit<Album, "artist" | "image"> & {
+    artist: { name: string };
+    image: { ["#text"]: string }[];
+  })[];
+};
+
+export type TopArtistsResponse = {
+  artist: Artist[];
+};

@@ -3,8 +3,6 @@
 import {
   CategoryScale,
   Chart as ChartJS,
-  ChartData,
-  ChartOptions,
   Filler,
   LinearScale,
   LineController,
@@ -16,6 +14,8 @@ import { Line } from "react-chartjs-2";
 import useCurrentWeather from "@/hooks/useCurrentWeather";
 import useWeatherForecast from "@/hooks/useWeatherForecast";
 import dayjs from "@/utils/dayjs";
+
+import type { ChartData, ChartOptions } from "chart.js";
 
 ChartJS.register(
   CategoryScale,
@@ -37,8 +37,8 @@ const WeatherChart = () => {
     );
   }
 
-  let timestamps: string[] = [];
-  let temperatures = [currentWeather.main.temp];
+  const timestamps: string[] = [];
+  const temperatures = [currentWeather.main.temp];
 
   weatherForecast?.list.forEach((item) => {
     timestamps.push(
