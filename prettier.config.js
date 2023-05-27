@@ -14,4 +14,6 @@ module.exports = {
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,
   importOrderCaseInsensitive: true,
+  tailwindAttributes: ["customClasses"],
+  tailwindFunctions: ["clsx"],
 };
