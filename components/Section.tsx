@@ -30,14 +30,16 @@ const Section = ({
         )}
       >
         <div className="flex items-center justify-between px-px py-1.5 @xl/section:px-0.5">
-          <h2 className="-mb-px font-oxanium text-[17px] font-[650] uppercase !leading-none text-gray-50 [text-shadow:0_0_0.5rem_rgb(var(--color-primary))] xl:text-lg">
+          <h2 className="-mb-px font-oxanium text-[17px] font-[650] uppercase !leading-none text-gray-50 [text-shadow:0_0_0.5rem_rgb(var(--color-primary))] @1.5xl/quadrant:text-lg @1.5xl/section:text-lg">
             {title}
           </h2>
           {subtitle}
         </div>
         <div className="mb-px h-px w-full bg-primary/50"></div>
       </div>
-      <div className="px-0.5 @1.5xl/section:px-1">{children}</div>
+      <div className="px-0.5 @1.5xl/quadrant:px-1 @1.5xl/section:px-1">
+        {children}
+      </div>
     </section>
   );
 };
