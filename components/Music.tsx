@@ -1,3 +1,5 @@
+import clsx from "clsx";
+
 import NowPlaying from "./NowPlaying";
 import Section from "./Section";
 import Statistics from "./Statistics";
@@ -5,7 +7,9 @@ import TopAlbumsGrid from "./TopAlbumsGrid";
 import TopArtistsGrid from "./TopArtistsGrid";
 
 const Music = () => {
-  const SUBTITLE_STYLE = "mb-2 text-gray-600 text-sm @1.5xl/section:text-base";
+  const SUBTITLE_STYLE = clsx(
+    "mb-2 text-sm text-gray-600 @1.5xl/section:text-base"
+  );
 
   return (
     <Section title="Music" accentColor="secondary">

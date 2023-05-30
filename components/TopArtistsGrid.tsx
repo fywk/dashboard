@@ -40,32 +40,28 @@ const TopArtistsSkeleton = () => {
 const TopArtists = async () => {
   const data = await getTopArtists("1month");
 
-  return (
-    <>
-      {data?.map((artist) => (
-        <div
-          className="grid min-w-[80px] grid-cols-1 gap-y-2 p-2 @xl/section:gap-y-2.5 @xl/section:p-2.5 @1.5xl/section:gap-y-3 @1.5xl/section:p-3 xs:min-w-[96px]"
-          key={artist.name.replace(/ /g, "_")} // replace spaces with underscores
+  return data?.map((artist) => (
+    <div
+      className="grid min-w-[80px] grid-cols-1 gap-y-2 p-2 @xl/section:gap-y-2.5 @xl/section:p-2.5 @1.5xl/section:gap-y-3 @1.5xl/section:p-3 xs:min-w-[96px]"
+      key={artist.name.replace(/ /g, "_")} // replace spaces with underscores
+    >
+      <div className="aspect-square overflow-hidden rounded-full bg-gray-900 ring-1 ring-gray-800/75">
+        <Suspense fallback="">
+          {/* @ts-expect-error Server Component */}
+          <ArtistAvatar name={artist.name} />
+        </Suspense>
+      </div>
+      <div className="text-center tracking-tight @xl/section:space-y-px">
+        <h4
+          className="truncate text-xs font-medium text-gray-100 @xl/section:text-[13px] @1.5xl/section:text-sm"
+          title={artist.name}
         >
-          <div className="aspect-square overflow-hidden rounded-full bg-gray-900 ring-1 ring-gray-800/75">
-            <Suspense fallback="">
-              {/* @ts-expect-error Server Component */}
-              <ArtistAvatar name={artist.name} />
-            </Suspense>
-          </div>
-          <div className="text-center tracking-tight @xl/section:space-y-px">
-            <h4
-              className="truncate text-xs font-medium text-gray-100 @xl/section:text-[13px] @1.5xl/section:text-sm"
-              title={artist.name}
-            >
-              {artist.name}
-            </h4>
-            <p className="text-[10px] @xl/section:text-[11px] @1.5xl/section:text-xs">{`${artist.playcount} plays`}</p>
-          </div>
-        </div>
-      ))}
-    </>
-  );
+          {artist.name}
+        </h4>
+        <p className="text-[10px] @xl/section:text-[11px] @1.5xl/section:text-xs">{`${artist.playcount} plays`}</p>
+      </div>
+    </div>
+  ));
 };
 
 const TopArtistGrid = () => {

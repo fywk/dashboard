@@ -6,6 +6,7 @@
   :root {
     --color-primary: 110 242 255; /* #6EF2FF */
     --color-secondary: 250 207 6; /* #FACF06 */
+    --border-accent-color: var(--color-primary);
   }
 }
 

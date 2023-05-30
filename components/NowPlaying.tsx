@@ -10,11 +10,11 @@ import fetcher from "@/utils/fetcher";
 
 import type { RecentTrack } from "@/types/lastfm";
 
-const EqualizerIcon = ({ className }: { className?: string }) => {
+const EqualizerIcon = ({ customClasses }: { customClasses?: string }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className={className}
+      className={customClasses}
       id="equalizer"
       viewBox="0 0 24 24"
       fill="currentColor"
@@ -101,7 +101,7 @@ const NowPlaying = () => {
             <TimeAgo datetime={Number(track.timestamp) * 1000} />
           ) : (
             <>
-              <EqualizerIcon className="h-[13px] w-[13px] @[340px]/now-playing:h-15px @[340px]/now-playing:w-15px" />
+              <EqualizerIcon customClasses="h-[13px] w-[13px] @[340px]/now-playing:h-15px @[340px]/now-playing:w-15px" />
               Now playing
             </>
           )}
