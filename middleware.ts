@@ -3,7 +3,16 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export const config = {
-  matcher: ["/"],
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - favicon.ico (favicon file)
+     * - assets (static assets)
+     */
+    "/((?!api|_next/static|favicon.ico|assets).*)",
+  ],
 };
 
 export function middleware(request: NextRequest) {
