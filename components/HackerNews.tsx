@@ -6,7 +6,7 @@ import { pluralize } from "@/lib/utils/pluralize";
 
 import Section from "./Section";
 
-const MAX_NEWS_AMOUNT = 8;
+const MAX_STORIES_COUNT = 8;
 const HN_BASE_URL = "https://news.ycombinator.com";
 
 const Story = async ({ storyID }: { storyID: number }) => {
@@ -15,21 +15,27 @@ const Story = async ({ storyID }: { storyID: number }) => {
   const hnItemPage = `${HN_BASE_URL}/item?id=${storyID}`;
 
   return (
-    <li className="flex flex-col gap-y-0.5 tracking-tight">
+    <li className="flex flex-col gap-y-px tracking-tight @2xl/quadrant:gap-y-0.5">
       <h4>
         <a
           href={story.url ?? hnItemPage}
           target="_blank"
-          className="line-clamp-2 w-fit text-sm font-medium text-gray-100"
+          className="line-clamp-2 w-fit text-[13px]/[1.125rem] font-medium text-gray-100 @2xl/quadrant:text-sm"
         >
           {story.title}
         </a>
       </h4>
-      <div className="flex items-center text-xs">
+      <div className="flex items-center text-[11px]/4 @2xl/quadrant:text-xs">
         <p className="text-primary after:px-1 after:text-gray-600 after:content-['/']">
           {pluralize(story.score ?? 0, "point")}
         </p>
-        <p className="text-secondary after:px-1 after:text-gray-600 after:content-['/']">
+        <p
+          className="text-secondary after:px-1 after:text-gray-600 after:content-['/']"
+          title={dayjs
+            .unix(story.time ?? 0)
+            .utc()
+            .format()}
+        >
           {dayjs.unix(story.time ?? 0).fromNow()}
         </p>
         <a
@@ -54,7 +60,7 @@ const StorySkeleton = () => {
 };
 
 const TopStories = async () => {
-  const stories = await getTopStories(MAX_NEWS_AMOUNT);
+  const stories = await getTopStories(MAX_STORIES_COUNT);
 
   return stories?.map((story) => (
     <Suspense fallback={<StorySkeleton />} key={story}>

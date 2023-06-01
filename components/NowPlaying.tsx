@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 import TimeAgo from "timeago-react";
 
+import dayjs from "@/lib/utils/dayjs";
 import fetcher from "@/utils/fetcher";
 
 import type { RecentTrack } from "@/types/lastfm";
@@ -98,7 +99,10 @@ const NowPlaying = () => {
           id="track-status"
         >
           {track.timestamp ? (
-            <TimeAgo datetime={Number(track.timestamp) * 1000} />
+            <TimeAgo
+              datetime={Number(track.timestamp) * 1000}
+              title={dayjs.unix(Number(track.timestamp)).utc().format()}
+            />
           ) : (
             <>
               <EqualizerIcon customClasses="h-[13px] w-[13px] @[340px]/now-playing:h-15px @[340px]/now-playing:w-15px" />
