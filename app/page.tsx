@@ -3,7 +3,7 @@ import Music from "@/components/Music";
 import Profile from "@/components/Profile";
 import Time from "@/components/Time";
 import Weather from "@/components/Weather";
-import { siteConfig } from "@/lib/utils/site-config";
+import { siteConfig as site } from "@/lib/utils/site-config";
 
 import type { Metadata, NextPage } from "next";
 
@@ -14,7 +14,7 @@ type Props = {
 };
 
 export const metadata: Metadata = {
-  title: `Dashboard ${siteConfig.titleSeparator} ${siteConfig.title}`,
+  title: ["Dashboard", site.title].join(site.titleSeparator),
 };
 
 const DashboardPage: NextPage<Props> = ({ searchParams }) => {
