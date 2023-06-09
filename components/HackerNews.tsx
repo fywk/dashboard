@@ -12,13 +12,15 @@ const HN_BASE_URL = "https://news.ycombinator.com";
 const Story = async ({ storyID }: { storyID: number }) => {
   const story = await getStoryItem(storyID);
 
-  const hnItemPage = `${HN_BASE_URL}/item?id=${storyID}`;
+  const hnItemURL = `${HN_BASE_URL}/item?id=${storyID}`;
+  const humanizedTimestamp = dayjs.unix(story.time ?? 0).utc().format(); // prettier-ignore
+  const timeSincePosted = dayjs.unix(story.time ?? 0).fromNow();
 
   return (
     <li className="flex flex-col gap-y-px tracking-tight @2xl/quadrant:gap-y-0.5">
       <h4>
         <a
-          href={story.url ?? hnItemPage}
+          href={story.url ?? hnItemURL}
           target="_blank"
           className="line-clamp-2 w-fit text-[13px]/[1.125rem] font-medium text-gray-100 @2xl/quadrant:text-sm"
         >
@@ -26,20 +28,17 @@ const Story = async ({ storyID }: { storyID: number }) => {
         </a>
       </h4>
       <div className="flex items-center text-[11px]/4 @2xl/quadrant:text-xs">
-        <p className="text-primary after:px-1 after:text-gray-600 after:content-['/']">
+        <p className="text-primary after:px-0.5 after:text-gray-600 after:content-['｜']">
           {pluralize(story.score ?? 0, "point")}
         </p>
         <p
-          className="text-secondary after:px-1 after:text-gray-600 after:content-['/']"
-          title={dayjs
-            .unix(story.time ?? 0)
-            .utc()
-            .format()}
+          className="text-secondary after:px-0.5 after:text-gray-600 after:content-['｜']"
+          title={humanizedTimestamp}
         >
-          {dayjs.unix(story.time ?? 0).fromNow()}
+          {timeSincePosted}
         </p>
         <a
-          href={hnItemPage}
+          href={hnItemURL}
           className="w-fit decoration-from-font hover:underline"
           target="_blank"
         >
@@ -80,7 +79,7 @@ const HackerNews = () => {
       }
       customClasses="order-last @xl/quadrant:order-first"
     >
-      <ol className="grid h-full max-h-[514px] min-h-[416px] list-inside list-decimal grid-cols-1 justify-between gap-y-2">
+      <ol className="grid h-full max-h-[514px] min-h-[458px] grid-cols-1 justify-between gap-y-2.5">
         <Suspense>
           {/* @ts-expect-error Server Component */}
           <TopStories />
