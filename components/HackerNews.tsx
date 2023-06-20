@@ -66,7 +66,6 @@ const TopStories = async () => {
 
   return stories?.map((story) => (
     <Suspense fallback={<StorySkeleton />} key={story}>
-      {/* @ts-expect-error Server Component */}
       <Story storyID={story} />
     </Suspense>
   ));
@@ -84,7 +83,6 @@ const HackerNews = () => {
     >
       <ol className="flex h-[514px] flex-col justify-between gap-y-1.5">
         <Suspense>
-          {/* @ts-expect-error Server Component */}
           <TopStories />
         </Suspense>
       </ol>

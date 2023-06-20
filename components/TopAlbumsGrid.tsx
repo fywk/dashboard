@@ -52,7 +52,6 @@ const TopAlbumsGrid = () => {
   return (
     <div className="grid grid-cols-2 gap-2.5 @xl/section:grid-cols-3 @xl/section:gap-3 @1.5xl/section:gap-x-4 @1.5xl/section:gap-y-3.5">
       <Suspense fallback={<TopAlbumsSkeleton />}>
-        {/* @ts-expect-error Server Component */}
         <TopAlbums />
       </Suspense>
     </div>

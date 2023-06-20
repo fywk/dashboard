@@ -47,7 +47,6 @@ const TopArtists = async () => {
     >
       <div className="aspect-square overflow-hidden rounded-full bg-gray-900 ring-1 ring-gray-800/75">
         <Suspense fallback="">
-          {/* @ts-expect-error Server Component */}
           <ArtistAvatar name={artist.name} />
         </Suspense>
       </div>
@@ -68,7 +67,6 @@ const TopArtistGrid = () => {
   return (
     <div className="grid w-full auto-cols-[1fr] grid-flow-col gap-x-2 overflow-x-auto @xl/section:gap-x-2.5 @1.5xl/section:gap-x-3">
       <Suspense fallback={<TopArtistsSkeleton />}>
-        {/* @ts-expect-error Server Component */}
         <TopArtists />
       </Suspense>
     </div>
