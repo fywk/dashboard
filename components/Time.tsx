@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { pluralize } from "@/lib/utils/pluralize";
+import { pluralize } from "@/lib/utils/string";
 import dayjs from "@/utils/dayjs";
 
 import Section from "./Section";
@@ -67,10 +67,11 @@ const Time = () => {
       const diffSinceCreated = dayjsUTC.diff(createdAt);
       const durationSinceCreated = dayjs.duration(diffSinceCreated);
       const days = Math.floor(durationSinceCreated.asDays());
-      const hours = durationSinceCreated.hours();
-      const totalDays = days >= 1 ? pluralize(days, "day") : days;
-      const totalHours = hours >= 1 ? pluralize(hours, "hour") : hours;
-      const totalMinutes = pluralize(durationSinceCreated.minutes(), "min");
+      const hours = durationSinceCreated.hours(); // 0-23
+      const minutes = durationSinceCreated.minutes(); // 0-59
+      const totalDays = days >= 1 ? pluralize("day", days, true) : days;
+      const totalHours = hours >= 1 ? pluralize("hour", hours, true) : hours;
+      const totalMinutes = pluralize("min", minutes, true);
 
       setUptime(
         [totalDays, totalHours, totalMinutes].filter(Boolean).join(", ")

@@ -3,6 +3,7 @@ module.exports = {
     "@trivago/prettier-plugin-sort-imports",
     "prettier-plugin-tailwindcss",
   ],
+  // @trivago/prettier-plugin-sort-imports
   importOrder: [
     "<THIRD_PARTY_MODULES>",
     "^[@/]/(.*)$",
@@ -14,6 +15,7 @@ module.exports = {
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,
   importOrderCaseInsensitive: true,
+  // prettier-plugin-tailwindcss
   tailwindAttributes: ["customClasses"],
   tailwindFunctions: ["clsx"],
 };
