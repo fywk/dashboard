@@ -75,7 +75,6 @@ const Statistics = () => {
         }
       >
         <Suspense fallback="---">
-          {/* @ts-expect-error Server Component */}
           <TotalPlays promise={playsData} />
         </Suspense>
       </Category>
@@ -89,7 +88,6 @@ const Statistics = () => {
         }
       >
         <Suspense fallback="---">
-          {/* @ts-expect-error Server Component */}
           <TotalTracks promise={tracksData} />
         </Suspense>
       </Category>
@@ -103,7 +101,6 @@ const Statistics = () => {
         }
       >
         <Suspense fallback="---">
-          {/* @ts-expect-error Server Component */}
           <TotalAlbums promise={albumsData} />
         </Suspense>
       </Category>
@@ -117,7 +114,6 @@ const Statistics = () => {
         }
       >
         <Suspense fallback="---">
-          {/* @ts-expect-error Server Component */}
           <TotalArtists promise={artistsData} />
         </Suspense>
       </Category>

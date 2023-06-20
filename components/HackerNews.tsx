@@ -2,7 +2,7 @@ import { Suspense } from "react";
 
 import dayjs from "@/lib/utils/dayjs";
 import { getStoryItem, getTopStories } from "@/lib/utils/hackernews";
-import { pluralize } from "@/lib/utils/pluralize";
+import { pluralize } from "@/lib/utils/string";
 
 import Section from "./Section";
 
@@ -13,23 +13,25 @@ const Story = async ({ storyID }: { storyID: number }) => {
   const story = await getStoryItem(storyID);
 
   const hnItemURL = `${HN_BASE_URL}/item?id=${storyID}`;
+  const points = story.score ?? 0;
   const humanizedTimestamp = dayjs.unix(story.time ?? 0).utc().format(); // prettier-ignore
   const timeSincePosted = dayjs.unix(story.time ?? 0).fromNow();
+  const comments = story.descendants ?? 0;
 
   return (
-    <li className="flex flex-col gap-y-px tracking-tight @2xl/quadrant:gap-y-0.5">
+    <li className="flex flex-col gap-y-0.5 tracking-tight">
       <h4>
         <a
           href={story.url ?? hnItemURL}
           target="_blank"
-          className="line-clamp-2 w-fit text-[13px]/[1.125rem] font-medium text-gray-100 @2xl/quadrant:text-sm"
+          className="line-clamp-2 w-fit text-sm font-medium text-gray-100"
         >
           {story.title}
         </a>
       </h4>
-      <div className="flex items-center text-[11px]/4 @2xl/quadrant:text-xs">
+      <div className="flex items-center text-xs">
         <p className="text-primary after:px-0.5 after:text-gray-600 after:content-['｜']">
-          {pluralize(story.score ?? 0, "point")}
+          {pluralize("point", points, true)}
         </p>
         <p
           className="text-secondary after:px-0.5 after:text-gray-600 after:content-['｜']"
@@ -42,7 +44,7 @@ const Story = async ({ storyID }: { storyID: number }) => {
           className="w-fit decoration-from-font hover:underline"
           target="_blank"
         >
-          {pluralize(story.descendants ?? 0, "comment")}
+          {pluralize("comment", comments, true)}
         </a>
       </div>
     </li>
@@ -52,8 +54,9 @@ const Story = async ({ storyID }: { storyID: number }) => {
 const StorySkeleton = () => {
   return (
     <li className="flex flex-col gap-y-2">
-      <div className="h-3 w-full rounded-full bg-gray-900"></div>
-      <div className="h-3 w-3/4 rounded-full bg-gray-900"></div>
+      <div className="h-2.5 w-full rounded bg-gray-900"></div>
+      <div className="h-2.5 w-3/4 rounded bg-gray-900"></div>
+      <div className="h-2 w-1/2 rounded bg-gray-900"></div>
     </li>
   );
 };
@@ -63,7 +66,6 @@ const TopStories = async () => {
 
   return stories?.map((story) => (
     <Suspense fallback={<StorySkeleton />} key={story}>
-      {/* @ts-expect-error Server Component */}
       <Story storyID={story} />
     </Suspense>
   ));
@@ -79,9 +81,8 @@ const HackerNews = () => {
       }
       customClasses="order-last @xl/quadrant:order-first"
     >
-      <ol className="grid h-full max-h-[514px] min-h-[458px] grid-cols-1 justify-between gap-y-2.5">
+      <ol className="flex h-[514px] flex-col justify-between gap-y-1.5">
         <Suspense>
-          {/* @ts-expect-error Server Component */}
           <TopStories />
         </Suspense>
       </ol>
