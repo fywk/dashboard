@@ -1,8 +1,8 @@
 "use client";
 
+import pluralize from "pluralize";
 import { useEffect, useState } from "react";
 
-import { pluralize } from "@/lib/utils/string";
 import dayjs from "@/utils/dayjs";
 
 import Section from "./Section";

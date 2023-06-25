@@ -1,8 +1,8 @@
+import pluralize from "pluralize";
 import { Suspense } from "react";
 
 import dayjs from "@/lib/utils/dayjs";
 import { getStoryItem, getTopStories } from "@/lib/utils/hackernews";
-import { pluralize } from "@/lib/utils/string";
 
 import Section from "./Section";
 
