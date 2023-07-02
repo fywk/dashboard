@@ -19,22 +19,22 @@ const Story = async ({ storyID }: { storyID: number }) => {
   const comments = story.descendants ?? 0;
 
   return (
-    <li className="flex flex-col gap-y-0.5 tracking-tight">
+    <li className="flex flex-col gap-y-0.5 tracking-tight @1.5xl/quadrant:gap-y-1">
       <h4>
         <a
           href={story.url ?? hnItemURL}
           target="_blank"
-          className="line-clamp-2 w-fit text-sm font-medium text-gray-100"
+          className="line-clamp-2 w-fit text-[13px]/4 font-medium text-gray-100 @1.5xl/quadrant:text-sm/[18px]"
         >
           {story.title}
         </a>
       </h4>
-      <div className="flex items-center text-xs">
-        <p className="text-primary after:px-0.5 after:text-gray-600 after:content-['｜']">
+      <div className="flex items-center text-[11px]/4 @1.5xl/quadrant:text-xs">
+        <p className="text-primary after:px-1.5 after:text-gray-600 after:content-['/']">
           {pluralize("point", points, true)}
         </p>
         <p
-          className="text-secondary after:px-0.5 after:text-gray-600 after:content-['｜']"
+          className="text-secondary after:px-1.5 after:text-gray-600 after:content-['/']"
           title={humanizedTimestamp}
         >
           {timeSincePosted}
@@ -81,7 +81,7 @@ const HackerNews = () => {
       }
       customClasses="order-last @xl/quadrant:order-first"
     >
-      <ol className="flex h-[514px] flex-col justify-between gap-y-1.5">
+      <ol className="flex h-full min-h-[480px] flex-col justify-between gap-y-1.5 @1.5xl/quadrant:gap-y-2 xl:min-h-full">
         <Suspense>
           <TopStories />
         </Suspense>
