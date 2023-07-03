@@ -1,9 +1,10 @@
-import HackerNews from "@/components/HackerNews";
-import Music from "@/components/Music";
-import Profile from "@/components/Profile";
-import Time from "@/components/Time";
-import Weather from "@/components/Weather";
 import { siteConfig as site } from "@/lib/utils/site-config";
+
+import HackerNews from "./components/HackerNews";
+import Music from "./components/Music";
+import Profile from "./components/Profile";
+import Time from "./components/Time";
+import Weather from "./components/Weather";
 
 import type { Metadata, NextPage } from "next";
 
