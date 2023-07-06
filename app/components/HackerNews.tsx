@@ -64,9 +64,9 @@ const StorySkeleton = () => {
 const TopStories = async () => {
   const stories = await getTopStories(MAX_STORIES_COUNT);
 
-  return stories?.map((story) => (
-    <Suspense fallback={<StorySkeleton />} key={story}>
-      <Story storyID={story} />
+  return stories?.map((storyID) => (
+    <Suspense fallback={<StorySkeleton />} key={storyID}>
+      <Story storyID={storyID} />
     </Suspense>
   ));
 };

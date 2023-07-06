@@ -49,7 +49,7 @@ const Time = () => {
   const INITIAL_TIME = "00:00:00";
   const TIME_FORMAT = "HH:mm:ss";
 
-  const createdAt = Number(process.env.APP_START_TIME);
+  const appCreatedAt = Number(process.env.APP_START_TIME ?? 0);
 
   const [uptime, setUptime] = useState("");
   const [utc, setUTC] = useState(INITIAL_TIME);
@@ -64,7 +64,7 @@ const Time = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       const dayjsUTC = dayjs().utc();
-      const diffSinceCreated = dayjsUTC.diff(createdAt);
+      const diffSinceCreated = dayjsUTC.diff(appCreatedAt);
       const durationSinceCreated = dayjs.duration(diffSinceCreated);
       const days = Math.floor(durationSinceCreated.asDays());
       const hours = durationSinceCreated.hours(); // 0-23
@@ -87,7 +87,7 @@ const Time = () => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [createdAt]);
+  }, [appCreatedAt]);
 
   return (
     <Section
