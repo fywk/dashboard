@@ -15,7 +15,8 @@ type Props = {
 };
 
 export const metadata: Metadata = {
-  title: ["Dashboard", site.title].join(site.titleSeparator),
+  title: [site.title, site.user].join(site.titleSeparator),
+  description: site.description,
 };
 
 const DashboardPage: NextPage<Props> = ({ searchParams }) => {
