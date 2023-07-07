@@ -19,7 +19,7 @@ const USERNAME = env.LASTFM_USERNAME;
 
 const API_ROOT = "https://ws.audioscrobbler.com/2.0/";
 
-const generateURL = (params: LastfmParams) => {
+const generateURL = (params: LastfmParams): string => {
   const stringifyParams = Object.entries(params)
     .map(([key, val]) => typeof val !== "undefined" && `${key}=${val}`)
     .join("&");

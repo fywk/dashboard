@@ -2,9 +2,6 @@ await import("./lib/env.mjs");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
   env: {
     APP_START_TIME: String(Date.now()),
   },

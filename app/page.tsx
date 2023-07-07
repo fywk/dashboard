@@ -1,6 +1,8 @@
 import { siteConfig as site } from "@/lib/utils/site-config";
 
 import HackerNews from "./components/HackerNews";
+import Header from "./components/Header";
+import Logo from "./components/Logo";
 import Music from "./components/Music";
 import Profile from "./components/Profile";
 import Time from "./components/Time";
@@ -15,26 +17,37 @@ type Props = {
 };
 
 export const metadata: Metadata = {
-  title: ["Dashboard", site.title].join(site.titleSeparator),
+  title: [site.title, site.user].join(site.titleSeparator),
+  description: site.description,
 };
 
 const DashboardPage: NextPage<Props> = ({ searchParams }) => {
   return (
     <div
-      className="mx-auto grid min-h-[100dvh] max-w-[1680px] grid-cols-1 content-between gap-y-8 py-8"
+      className="mx-auto flex min-h-[100dvh] max-w-[1680px] items-center py-8"
       id="content"
     >
-      <main className="grid grid-cols-[repeat(1,minmax(0,800px))] justify-center gap-x-9 gap-y-7 md:gap-y-8 xl:grid-cols-[repeat(2,minmax(0,800px))] min-[1440px]:grid-cols-[52.5%_1fr] min-[1440px]:gap-x-10">
-        <div className="@container/quadrant">
-          <div className="grid h-full gap-x-9 gap-y-7 @xl/quadrant:grid-cols-[45%_1fr] @1.5xl/quadrant:grid-cols-[42.5%_1fr] @2xl/quadrant:grid-cols-[40%_1fr] @2xl:gap-x-10 @[45rem]/quadrant:grid-cols-[37.5%_1fr] @3xl/quadrant:grid-cols-[35%_1fr] md:gap-y-8">
-            <Profile />
-            <HackerNews />
+      <div className="mx-auto grid w-full max-w-[800px] grid-cols-1 items-center gap-x-9 gap-y-6 sm:grid-cols-[1fr_auto] xl:max-w-none min-[1440px]:gap-x-10">
+        <Header />
+        <a
+          href="/"
+          title="Refresh"
+          className="order-last mt-8 flex w-20 items-center justify-self-center rounded-[10px] rounded-r-none border-3 border-r-0 border-primary p-1 pr-0 sm:order-none sm:mt-0 sm:w-[5.5rem]"
+        >
+          <Logo customClasses="h-auto w-auto text-primary" />
+        </a>
+        <main className="col-span-full grid grid-cols-1 justify-center gap-x-9 gap-y-7 md:gap-y-8 xl:grid-cols-2 min-[1440px]:grid-cols-[52.5%_1fr] min-[1440px]:gap-x-10">
+          <div className="@container/quadrant">
+            <div className="grid h-full gap-x-9 gap-y-7 @xl/quadrant:grid-cols-[45%_1fr] @1.5xl/quadrant:grid-cols-[42.5%_1fr] @2xl/quadrant:grid-cols-[40%_1fr] @2xl:gap-x-10 @[45rem]/quadrant:grid-cols-[37.5%_1fr] @3xl/quadrant:grid-cols-[35%_1fr] md:gap-y-8">
+              <Profile />
+              <HackerNews />
+            </div>
           </div>
-        </div>
-        <Music />
-        <Weather {...searchParams} />
-        <Time />
-      </main>
+          <Music />
+          <Weather {...searchParams} />
+          <Time />
+        </main>
+      </div>
     </div>
   );
 };
