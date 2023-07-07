@@ -1,6 +1,7 @@
 export const siteConfig = {
-  title: "Dashboard",
-  description: "My Tron-inpired personal dashboard",
   user: "Francis Yeong",
+  title: "Dashboard",
   titleSeparator: " – ",
+  description: "My Tron-inspired personal dashboard",
+  homeURL: "https://fywk.xyz",
 };
