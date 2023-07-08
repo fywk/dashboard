@@ -2,7 +2,7 @@ import dayjs from "@/lib/utils/dayjs";
 import { siteConfig as site } from "@/lib/utils/site-config";
 
 const Header = () => {
-  const appCreatedAt = Number(process.env.APP_START_TIME ?? 0);
+  const appCreatedAt = +(process.env.APP_START_TIME ?? 0);
   const versionYYMMDD = dayjs(appCreatedAt).utc().format("YYMMDD");
   const versionHHmm = dayjs(appCreatedAt).utc().format("HHmm");
 

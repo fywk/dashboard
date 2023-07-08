@@ -49,7 +49,7 @@ const Time = () => {
   const INITIAL_TIME = "00:00:00";
   const TIME_FORMAT = "HH:mm:ss";
 
-  const appCreatedAt = Number(process.env.APP_START_TIME ?? 0);
+  const appCreatedAt = +(process.env.APP_START_TIME ?? 0);
 
   const [uptime, setUptime] = useState<string>();
   const [utc, setUTC] = useState(INITIAL_TIME);

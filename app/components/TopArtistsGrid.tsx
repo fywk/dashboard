@@ -11,8 +11,8 @@ const ArtistAvatar = async ({ name }: { name: string }) => {
     <Image
       src={data.url}
       className="h-full w-full object-cover"
-      width={Number(data.width)}
-      height={Number(data.height)}
+      width={+data.width}
+      height={+data.height}
       alt=""
     />
   );
