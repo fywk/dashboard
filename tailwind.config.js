@@ -28,7 +28,7 @@ module.exports = {
         oxanium: ["var(--font-oxanium)", ...defaultTheme.fontFamily.mono],
       },
       screens: {
-        xs: "475px",
+        xs: "480px",
       },
       spacing: {
         "15px": "0.9375rem",
