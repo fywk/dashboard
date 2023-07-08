@@ -71,7 +71,7 @@ const WeatherChart = () => {
         pointBorderWidth: 1.5,
         pointRadius: 6,
         pointStyle: "rectRot",
-        tension: 0.25,
+        tension: 0.375,
       },
     ],
   };
@@ -84,6 +84,7 @@ const WeatherChart = () => {
       tooltip: { enabled: false },
     },
     maintainAspectRatio: false,
+    resizeDelay: 100,
     scales: {
       x: {
         border: {
@@ -104,7 +105,7 @@ const WeatherChart = () => {
         grid: {
           color: "rgb(110 242 255 / 0.125)",
         },
-        suggestedMin: Math.min(...temperatures) - 2,
+        suggestedMin: Math.min(...temperatures) - 3,
         suggestedMax: Math.max(...temperatures) + 2,
         ticks: {
           callback: function (value) {
