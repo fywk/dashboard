@@ -27,14 +27,14 @@ const DashboardPage: NextPage<Props> = ({ searchParams }) => {
       className="mx-auto flex min-h-[100dvh] max-w-[1680px] items-center py-8"
       id="content"
     >
-      <div className="mx-auto grid w-full max-w-[800px] grid-cols-1 items-center gap-x-9 gap-y-6 sm:grid-cols-[1fr_auto] xl:max-w-none min-[1440px]:gap-x-10">
+      <div className="mx-auto grid w-full max-w-[800px] grid-cols-[1fr_auto] items-center gap-x-8 gap-y-6 sm:gap-x-9 xl:max-w-none min-[1440px]:gap-x-10">
         <Header />
         <a
           href="/"
           title="Refresh"
-          className="order-last mt-8 flex w-20 items-center justify-self-center rounded-[10px] rounded-r-none border-3 border-r-0 border-primary p-1 pr-0 sm:order-none sm:mt-0 sm:w-[5.5rem]"
+          className="flex w-[5.5rem] items-center rounded-[10px] rounded-r-none border-3 border-r-0 border-primary p-1 pr-0 text-primary"
         >
-          <Logo customClasses="h-auto w-auto text-primary" />
+          <Logo />
         </a>
         <main className="col-span-full grid grid-cols-1 justify-center gap-x-9 gap-y-7 md:gap-y-8 xl:grid-cols-2 min-[1440px]:grid-cols-[52.5%_1fr] min-[1440px]:gap-x-10">
           <div className="@container/quadrant">

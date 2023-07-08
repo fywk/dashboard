@@ -3,18 +3,18 @@ import { siteConfig as site } from "@/lib/utils/site-config";
 
 const Header = () => {
   const appCreatedAt = Number(process.env.APP_START_TIME ?? 0);
-  const versionYYMMDD = dayjs.utc(appCreatedAt).format("YYMMDD");
-  const versionHHmm = dayjs.utc(appCreatedAt).format("HHmm");
+  const versionYYMMDD = dayjs(appCreatedAt).utc().format("YYMMDD");
+  const versionHHmm = dayjs(appCreatedAt).utc().format("HHmm");
 
   return (
-    <header className="flex items-center justify-between border-y border-primary/25 px-px py-1.5 text-[11px] uppercase !leading-none tracking-tight sm:px-0.5 sm:text-xs">
+    <header className="flex items-center justify-between border-y border-primary/25 px-px py-1.5 text-[11px] uppercase !leading-none tracking-tight xs:px-0.5">
       <h2>
         <span className="font-medium text-gray-50">{site.title}</span>
-        <span className="text-primary">{` V`}</span>
+        <span className="text-primary">{" V"}</span>
         <span className="text-secondary">{versionYYMMDD}</span>
         <span className="text-gray-500">{`.${versionHHmm}`}</span>
       </h2>
-      <nav>
+      <nav className="hidden xs:block">
         <ul className="flex divide-x divide-primary/25">
           <li className="pr-2">
             <a
