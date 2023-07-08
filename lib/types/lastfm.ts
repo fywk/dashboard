@@ -9,7 +9,7 @@ export const PERIOD = [
 
 export type Period = (typeof PERIOD)[number];
 
-export type Timestamp = string | number;
+export type Timestamp = number;
 
 type MethodParams =
   | {

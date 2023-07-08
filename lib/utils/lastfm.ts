@@ -41,8 +41,8 @@ export const getRecentTrack = async (from: Timestamp): Promise<RecentTrack> => {
   // Get the first/latest track
   const firstTrack = recenttracks.track.at(0);
   const { artist, image, album, name, loved } = firstTrack;
-  const timestamp = Object.prototype.hasOwnProperty.call(firstTrack, "date")
-    ? firstTrack["date"]["uts"]
+  const timestamp = Object.hasOwn(firstTrack, "date")
+    ? +firstTrack["date"]["uts"]
     : null;
 
   const track: RecentTrack["track"] = {

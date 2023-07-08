@@ -51,7 +51,7 @@ const Time = () => {
 
   const appCreatedAt = Number(process.env.APP_START_TIME ?? 0);
 
-  const [uptime, setUptime] = useState("");
+  const [uptime, setUptime] = useState<string>();
   const [utc, setUTC] = useState(INITIAL_TIME);
   const [local, setLocal] = useState(INITIAL_TIME);
   const [losAngeles, setLosAngeles] = useState(INITIAL_TIME);

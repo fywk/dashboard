@@ -46,7 +46,7 @@ const EqualizerIcon = () => {
 };
 
 const NowPlaying = () => {
-  const [imageURL, setImageURL] = useState("");
+  const [imageURL, setImageURL] = useState<string>();
   const { data, isLoading } = useSWR<RecentTrack>(
     "/api/music/recent-track",
     fetcher,
@@ -83,15 +83,17 @@ const NowPlaying = () => {
         className="relative aspect-square overflow-hidden rounded bg-gray-900 ring-1 ring-gray-800/75"
         id="track-album-art"
       >
-        <Image
-          src={imageURL}
-          width={300}
-          height={300}
-          alt=""
-          priority
-          unoptimized
-          onError={() => setImageURL("/images/album-error.jpg")}
-        />
+        {imageURL && (
+          <Image
+            src={imageURL}
+            width={300}
+            height={300}
+            alt=""
+            priority
+            unoptimized
+            onError={() => setImageURL("/images/album-error.jpg")}
+          />
+        )}
       </div>
       <div className="flex flex-col gap-y-1.5 overflow-hidden tracking-tight">
         <p
@@ -100,8 +102,8 @@ const NowPlaying = () => {
         >
           {track.timestamp ? (
             <TimeAgo
-              datetime={Number(track.timestamp) * 1000}
-              title={dayjs.unix(Number(track.timestamp)).utc().format()}
+              datetime={track.timestamp * 1000}
+              title={dayjs.unix(track.timestamp).utc().format()}
             />
           ) : (
             <>

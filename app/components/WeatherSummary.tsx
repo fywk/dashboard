@@ -68,7 +68,7 @@ const WeatherSummary = ({ city, country }: SearchParams) => {
         <div className="flex items-center gap-x-2 @lg/section:gap-x-2.5">
           <h4
             className="-mb-1 font-oxanium text-[2.5rem] font-medium leading-10 tracking-tight text-gray-200 @xl/section:text-[2.75rem] @1.5xl/section:text-5xl"
-            title={`${String(temp)} °C`}
+            title={`${temp} °C`}
           >
             {`${Math.round(temp)}°`}
           </h4>
