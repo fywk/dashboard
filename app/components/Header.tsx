@@ -24,7 +24,7 @@ const Header = () => {
               Home
             </a>
           </li>
-          <li className="pl-2 text-gray-500" aria-current="page">
+          <li className="pl-2" aria-current="page">
             {site.title}
           </li>
         </ul>
