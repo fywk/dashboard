@@ -29,7 +29,7 @@ const Section = ({
           "border-b border-t-2 py-1 [border-bottom-color:rgb(var(--border-accent-color)/1)] [border-top-color:rgb(var(--border-accent-color)/.35)]"
         )}
       >
-        <div className="flex items-center justify-between px-px py-1.5 @xl/section:px-0.5">
+        <div className="flex items-center justify-between px-px py-1.5 xs:px-0.5">
           <h2 className="-mb-px font-oxanium text-[17px] font-[650] uppercase !leading-none text-gray-50 [text-shadow:0_0_0.5rem_rgb(var(--color-primary))] @1.5xl/quadrant:text-lg @1.5xl/section:text-lg">
             {title}
           </h2>

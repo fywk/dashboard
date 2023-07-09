@@ -16,7 +16,7 @@ const WeatherSummary = ({ city, country }: SearchParams) => {
   if (!currentWeather || isLoadingCurrentWeather) {
     return (
       <div className="grid w-full grid-cols-[55%_1fr] gap-4 @lg/section:grid-cols-none @lg/section:grid-rows-[max-content_max-content]">
-        <div className="w-full overflow-hidden @lg/section:space-y-px @xl/section:space-y-0.5">
+        <div className="flex w-full flex-col overflow-hidden @lg/section:gap-y-px @xl/section:gap-y-0.5">
           <h3
             className="truncate font-oxanium text-2xl font-bold uppercase text-gray-100 @xl/section:text-[1.625rem] @1.5xl/section:text-[1.75rem]"
             title={`${city}, ${country}`}
@@ -25,7 +25,7 @@ const WeatherSummary = ({ city, country }: SearchParams) => {
           </h3>
           <div className="flex items-center gap-x-2 @lg/section:gap-x-2.5">
             <div className="h-9 w-28 rounded bg-gray-900 @xl/section:h-10 @1.5xl/section:h-11"></div>
-            <div className="flex w-full flex-col space-y-2.5">
+            <div className="flex w-full flex-col gap-y-2.5">
               <div className="h-1.5 w-full rounded-full bg-gray-900"></div>
               <div className="h-1.5 w-full rounded-full bg-gray-900"></div>
             </div>
@@ -58,7 +58,7 @@ const WeatherSummary = ({ city, country }: SearchParams) => {
 
   return (
     <div className="grid w-full grid-cols-[55%_1fr] gap-4 @lg/section:grid-cols-none @lg/section:grid-rows-[max-content_max-content]">
-      <div className="w-full overflow-hidden @lg/section:space-y-px @xl/section:space-y-0.5">
+      <div className="flex w-full flex-col overflow-hidden @lg/section:gap-y-px @xl/section:gap-y-0.5">
         <h3
           className="truncate font-oxanium text-2xl font-bold uppercase text-gray-100 @xl/section:text-[1.625rem] @1.5xl/section:text-[1.75rem]"
           title={`${city}, ${country}`}
@@ -68,7 +68,7 @@ const WeatherSummary = ({ city, country }: SearchParams) => {
         <div className="flex items-center gap-x-2 @lg/section:gap-x-2.5">
           <h4
             className="-mb-1 font-oxanium text-[2.5rem] font-medium leading-10 tracking-tight text-gray-200 @xl/section:text-[2.75rem] @1.5xl/section:text-5xl"
-            title={`${String(temp)} °C`}
+            title={`${temp} °C`}
           >
             {`${Math.round(temp)}°`}
           </h4>

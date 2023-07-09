@@ -19,17 +19,18 @@ const Story = async ({ storyID }: { storyID: number }) => {
   const comments = story.descendants ?? 0;
 
   return (
-    <li className="flex flex-col gap-y-0.5 tracking-tight @1.5xl/quadrant:gap-y-1">
+    <li className="flex flex-col gap-y-0.5 @1.5xl/quadrant:gap-y-1">
       <h4>
         <a
           href={story.url ?? hnItemURL}
+          className="line-clamp-2 w-fit text-[13px]/4 font-medium text-gray-100 [text-wrap:balance] @1.5xl/quadrant:text-sm/[18px]"
+          title={story.title}
           target="_blank"
-          className="line-clamp-2 w-fit text-[13px]/4 font-medium text-gray-100 @1.5xl/quadrant:text-sm/[18px]"
         >
           {story.title}
         </a>
       </h4>
-      <div className="flex items-center text-[11px]/4 @1.5xl/quadrant:text-xs">
+      <div className="flex items-center text-[11px]/4 tracking-tight @1.5xl/quadrant:text-xs">
         <p className="text-primary after:px-1.5 after:text-gray-600 after:content-['/']">
           {pluralize("point", points, true)}
         </p>

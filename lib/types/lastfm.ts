@@ -9,7 +9,7 @@ export const PERIOD = [
 
 export type Period = (typeof PERIOD)[number];
 
-export type Timestamp = string | number;
+export type Timestamp = number;
 
 type MethodParams =
   | {
@@ -48,7 +48,7 @@ export type RecentTrack = {
   track: Track & {
     album: string;
     image: string;
-    timestamp: Timestamp | null;
+    timestamp?: Timestamp;
     loved: boolean;
   };
   total: Total;

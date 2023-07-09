@@ -29,15 +29,15 @@ const City = ({
   time: string;
 }) => {
   return (
-    <div className="w-full py-1 @xl/section:-mb-px @xl/section:py-1.5 @2xl/section:py-2">
-      <div className="-mx-0.5 space-y-0.5 bg-gray-950 py-0.5 text-center @lg/section:space-y-1 @1.5xl/section:py-1">
-        <p className="text-[9px] uppercase !leading-none @lg/section:text-[10px] @1.5xl/section:text-[11px] @[45rem]/section:text-xs">
+    <div className="w-full py-1 @xl/section:py-1.5 @2xl/section:py-2">
+      <div className="-mx-0.5 flex flex-col gap-y-0.5 bg-gray-950 py-0.5 text-center @sm/section:gap-y-1 @1.5xl/section:gap-y-1.5 @1.5xl/section:py-1">
+        <p className="text-[9px] uppercase !leading-none @lg/section:text-[10px] @1.5xl/section:text-[11px] @[45rem]/section:text-[11.5px]">
           <abbr className="@xl/section:hidden">{abbr}</abbr>
           <span className="hidden tracking-tight @xl/section:inline">
             {name}
           </span>
         </p>
-        <p className="font-oxanium text-[9px] font-medium !leading-none text-gray-100 @sm/section:text-[10px] @xl/section:text-xs @1.5xl/section:text-sm">
+        <p className="font-oxanium text-[9px] font-medium !leading-none text-gray-100 @sm/section:text-[10px] @xl/section:-mb-px @xl/section:text-xs @1.5xl/section:text-sm">
           {time}
         </p>
       </div>
@@ -49,9 +49,9 @@ const Time = () => {
   const INITIAL_TIME = "00:00:00";
   const TIME_FORMAT = "HH:mm:ss";
 
-  const appCreatedAt = Number(process.env.APP_START_TIME ?? 0);
+  const appCreatedAt = +(process.env.APP_START_TIME ?? 0);
 
-  const [uptime, setUptime] = useState("");
+  const [uptime, setUptime] = useState<string>();
   const [utc, setUTC] = useState(INITIAL_TIME);
   const [local, setLocal] = useState(INITIAL_TIME);
   const [losAngeles, setLosAngeles] = useState(INITIAL_TIME);
@@ -95,20 +95,20 @@ const Time = () => {
       subtitle={uptime && <UptimeString content={uptime} />}
       accentColor="secondary"
     >
-      <div className="-mt-[3px] grid grid-cols-2 gap-x-4 gap-y-2.5 @lg/section:gap-y-3 @xl/section:-mt-px @xl/section:gap-x-4.5 @xl/section:gap-y-3.5 @1.5xl/section:gap-x-5">
-        <div className="-mb-1 w-full space-y-1 @container @sm/section:-mb-1.5 @sm/section:space-y-1.5 @md/section:-mb-2">
-          <span className="rounded-sm px-1 text-[10px] font-bold leading-3 tracking-tighter text-primary ring-1 ring-primary @lg/section:text-[11px] @1.5xl/section:text-xs">
+      <div className="mt-1 grid grid-cols-2 gap-x-4 gap-y-1 @md/section:mt-[5px] @xl/section:gap-x-4.5 @1.5xl/section:gap-x-5">
+        <div className="flex flex-col gap-y-2 @container @sm/section:gap-y-2.5">
+          <span className="ml-1 w-fit rounded-[3px] px-1 text-[10px] font-bold !leading-tight tracking-tighter text-primary ring-1 ring-primary @lg/section:text-[11px] @1.5xl/section:text-xs">
             LOCAL
           </span>
-          <h2 className="font-oxanium text-[24cqi]/none text-gray-100">
+          <h2 className="text-center font-oxanium text-[24cqw]/none text-gray-100">
             {local}
           </h2>
         </div>
-        <div className="-mb-1 w-full space-y-1 @container @sm/section:-mb-1.5 @sm/section:space-y-1.5 @md/section:-mb-2">
-          <span className="rounded-sm px-1 text-[10px] font-bold leading-3 tracking-tighter text-secondary ring-1 ring-secondary @lg/section:text-[11px] @1.5xl/section:text-xs">
+        <div className="flex flex-col gap-y-2 @container @sm/section:gap-y-2.5">
+          <span className="ml-1 w-fit rounded-[3px] px-1 text-[10px] font-bold !leading-tight tracking-tighter text-secondary ring-1 ring-secondary @lg/section:text-[11px] @1.5xl/section:text-xs">
             UTC
           </span>
-          <h2 className="font-oxanium text-[24cqi]/none text-gray-500">
+          <h2 className="text-center font-oxanium text-[24cqw]/none text-gray-500">
             {utc}
           </h2>
         </div>

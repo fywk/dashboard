@@ -12,7 +12,7 @@ const TopAlbumsSkeleton = () => {
           key={i}
         >
           <div className="aspect-square basis-[30%] rounded bg-gray-900 ring-1 ring-gray-900"></div>
-          <div className="basis-[70%] space-y-1.5 @1.5xl/section:space-y-[7px]">
+          <div className="flex basis-[70%] flex-col gap-y-1.5 @1.5xl/section:gap-y-[7px]">
             <div className="h-2.5 w-full rounded bg-gray-900 @xl/section:h-[11px] @1.5xl/section:h-3"></div>
             <div className="h-2 w-1/2 rounded bg-gray-900 @xl/section:h-[9px] @1.5xl/section:h-2.5"></div>
           </div>
@@ -33,7 +33,7 @@ const TopAlbums = async () => {
       <div className="aspect-square basis-[30%] overflow-hidden rounded bg-gray-900 ring-1 ring-gray-800/75">
         <Image src={album.image} width={300} height={300} alt="" />
       </div>
-      <div className="basis-[70%] overflow-hidden tracking-tight @xl/section:space-y-px">
+      <div className="flex basis-[70%] flex-col overflow-hidden tracking-tight @xl/section:gap-y-px">
         <h4
           className="truncate text-xs font-medium text-gray-100 @xl/section:text-[13px] @1.5xl/section:text-sm"
           title={`${album.artist} – ${album.name}`}
