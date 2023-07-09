@@ -41,16 +41,15 @@ export const getRecentTrack = async (from: Timestamp): Promise<RecentTrack> => {
   // Get the first/latest track
   const firstTrack = recenttracks.track.at(0);
   const { artist, image, album, name, loved } = firstTrack;
-  const timestamp = Object.hasOwn(firstTrack, "date")
-    ? +firstTrack["date"]["uts"]
-    : null;
+  const timestamp =
+    Object.hasOwn(firstTrack, "date") && +firstTrack["date"]["uts"];
 
   const track: RecentTrack["track"] = {
     name,
     artist: artist.name,
     album: album["#text"],
     image: image.at(3)["#text"], // 300x300
-    timestamp,
+    ...(timestamp && { timestamp }),
     loved: loved === "1",
   };
 

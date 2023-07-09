@@ -48,7 +48,7 @@ export type RecentTrack = {
   track: Track & {
     album: string;
     image: string;
-    timestamp: Timestamp | null;
+    timestamp?: Timestamp;
     loved: boolean;
   };
   total: Total;
