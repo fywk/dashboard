@@ -15,7 +15,7 @@ const EqualizerIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-[13px] w-[13px] @[340px]/now-playing:h-15px @[340px]/now-playing:w-15px"
+      className="h-[13px] w-[13px] @[340px]/now-playing:h-[15px] @[340px]/now-playing:w-[15px]"
       id="equalizer"
       viewBox="0 0 24 24"
       fill="currentColor"
@@ -61,7 +61,7 @@ const NowPlaying = () => {
 
   if (!data || isLoading) {
     return (
-      <div className="grid grid-cols-[4rem_1fr_2.25rem] items-center gap-2.5 overflow-hidden rounded-md border border-primary/50 p-2 @xs/now-playing:gap-[0.6875rem] @[21.25rem]/now-playing:grid-cols-[4.5rem_1fr_2.25rem] @sm/now-playing:grid-cols-[5rem_1fr_2.25rem] @[340px]/now-playing:gap-3">
+      <div className="grid grid-cols-[4rem_1fr_2.25rem] items-center gap-2.5 overflow-hidden rounded-md border border-primary/55 p-2 @xs/now-playing:gap-[0.6875rem] @[21.25rem]/now-playing:grid-cols-[4.5rem_1fr_2.25rem] @sm/now-playing:grid-cols-[5rem_1fr_2.25rem] @[340px]/now-playing:gap-3">
         <div className="aspect-square rounded bg-gray-900 ring-1 ring-gray-900"></div>
         <div className="flex flex-col gap-y-2 @[340px]/now-playing:gap-y-[9px]">
           <div className="h-2.5 w-1/2 rounded bg-gray-900 @[340px]/now-playing:h-3"></div>
@@ -78,7 +78,7 @@ const NowPlaying = () => {
   const track = data.track;
 
   return (
-    <div className="grid grid-cols-[4rem_1fr_2.25rem] items-center gap-2.5 overflow-hidden rounded-md border border-primary/50 p-2 @xs/now-playing:gap-[0.6875rem] @[21.25rem]/now-playing:grid-cols-[4.5rem_1fr_2.25rem] @sm/now-playing:grid-cols-[5rem_1fr_2.25rem] @[340px]/now-playing:gap-3">
+    <div className="grid grid-cols-[4rem_1fr_2.25rem] items-center gap-2.5 overflow-hidden rounded-md border border-primary/55 p-2 @xs/now-playing:gap-[0.6875rem] @[21.25rem]/now-playing:grid-cols-[4.5rem_1fr_2.25rem] @sm/now-playing:grid-cols-[5rem_1fr_2.25rem] @[340px]/now-playing:gap-3">
       <div
         className="relative aspect-square overflow-hidden rounded bg-gray-900 ring-1 ring-gray-800/75"
         id="track-album-art"

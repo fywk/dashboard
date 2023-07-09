@@ -29,15 +29,15 @@ const City = ({
   time: string;
 }) => {
   return (
-    <div className="w-full py-1 @xl/section:-mb-px @xl/section:py-1.5 @2xl/section:py-2">
-      <div className="-mx-0.5 flex flex-col gap-y-0.5 bg-gray-950 py-0.5 text-center @lg/section:gap-y-1 @1.5xl/section:py-1">
-        <p className="text-[9px] uppercase !leading-none @lg/section:text-[10px] @1.5xl/section:text-[11px] @[45rem]/section:text-xs">
+    <div className="w-full py-1 @xl/section:py-1.5 @2xl/section:py-2">
+      <div className="-mx-0.5 flex flex-col gap-y-0.5 bg-gray-950 py-0.5 text-center @sm/section:gap-y-1 @1.5xl/section:gap-y-1.5 @1.5xl/section:py-1">
+        <p className="text-[9px] uppercase !leading-none @lg/section:text-[10px] @1.5xl/section:text-[11px] @[45rem]/section:text-[11.5px]">
           <abbr className="@xl/section:hidden">{abbr}</abbr>
           <span className="hidden tracking-tight @xl/section:inline">
             {name}
           </span>
         </p>
-        <p className="font-oxanium text-[9px] font-medium !leading-none text-gray-100 @sm/section:text-[10px] @xl/section:text-xs @1.5xl/section:text-sm">
+        <p className="font-oxanium text-[9px] font-medium !leading-none text-gray-100 @sm/section:text-[10px] @xl/section:-mb-px @xl/section:text-xs @1.5xl/section:text-sm">
           {time}
         </p>
       </div>

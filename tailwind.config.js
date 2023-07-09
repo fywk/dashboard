@@ -22,6 +22,7 @@ module.exports = {
         "1.5xl": "39rem",
       },
       opacity: {
+        55: ".55",
         85: ".85",
       },
       fontFamily: {
@@ -31,7 +32,6 @@ module.exports = {
         xs: "480px",
       },
       spacing: {
-        "15px": "0.9375rem",
         4.5: "1.125rem", // 18px
         5.5: "1.375rem", // 22px
         6.5: "1.625rem", // 26px
