@@ -3,6 +3,7 @@ import { Suspense } from "react";
 
 import dayjs from "@/lib/utils/dayjs";
 import { getStoryItem, getTopStories } from "@/lib/utils/hackernews";
+import { siteConfig as site } from "@/lib/utils/site-config";
 
 import Section from "./Section";
 
@@ -14,8 +15,10 @@ const Story = async ({ storyID }: { storyID: number }) => {
 
   const hnItemURL = `${HN_BASE_URL}/item?id=${storyID}`;
   const points = story.score ?? 0;
-  const humanizedTimestamp = dayjs.unix(story.time ?? 0).utc().format(); // prettier-ignore
-  const timeSincePosted = dayjs.unix(story.time ?? 0).fromNow();
+  const publishTime = dayjs.unix(story.time ?? 0).utc();
+  const dateTime = publishTime.format();
+  const humanizedDateTime = publishTime.format(site.dateFormat);
+  const relativeTimeSincePosted = dayjs.unix(story.time ?? 0).fromNow();
   const comments = story.descendants ?? 0;
 
   return (
@@ -34,12 +37,13 @@ const Story = async ({ storyID }: { storyID: number }) => {
         <p className="text-primary after:px-1.5 after:text-gray-600 after:content-['/']">
           {pluralize("point", points, true)}
         </p>
-        <p
+        <time
           className="text-secondary after:px-1.5 after:text-gray-600 after:content-['/']"
-          title={humanizedTimestamp}
+          title={humanizedDateTime}
+          dateTime={dateTime}
         >
-          {timeSincePosted}
-        </p>
+          {relativeTimeSincePosted}
+        </time>
         <a
           href={hnItemURL}
           className="w-fit decoration-from-font hover:underline"
