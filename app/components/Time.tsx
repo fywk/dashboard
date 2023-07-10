@@ -8,9 +8,9 @@ import dayjs from "@/utils/dayjs";
 import Section from "./Section";
 
 type UptimeProps = {
-  minutes: number;
-  isoDuration: string;
-  humanizedDuration: string;
+  display: boolean;
+  duration: string;
+  durationISO: string;
 };
 
 type CityProps = {
@@ -20,7 +20,7 @@ type CityProps = {
 };
 
 const Uptime = (props: UptimeProps) => {
-  if (props.minutes < 1) return;
+  if (!props.display) return;
 
   return (
     <p
@@ -29,7 +29,7 @@ const Uptime = (props: UptimeProps) => {
     >
       <span className="text-primary">Uptime</span>
       <span className="text-gray-300">
-        : <time dateTime={props.isoDuration}>{props.humanizedDuration}</time>
+        : <time dateTime={props.durationISO}>{props.duration}</time>
       </span>
     </p>
   );
@@ -77,17 +77,18 @@ const Time = () => {
       const days = Math.floor(durationSinceCreated.asDays());
       const hours = durationSinceCreated.hours(); // 0-23
       const minutes = durationSinceCreated.minutes(); // 0-59
-      const totalDays = days >= 1 ? pluralize("day", days, true) : days;
-      const totalHours = hours >= 1 ? pluralize("hour", hours, true) : hours;
-      const totalMinutes =
+      const pluralizedDays = days >= 1 ? pluralize("day", days, true) : days;
+      const pluralizedHours =
+        hours >= 1 ? pluralize("hour", hours, true) : hours;
+      const pluralizedMinutes =
         minutes >= 1 ? pluralize("min", minutes, true) : minutes;
 
       setUptime({
-        minutes: durationSinceCreated.asMinutes(),
-        isoDuration: dayjs.duration({ days, hours, minutes }).toISOString(),
-        humanizedDuration: [totalDays, totalHours, totalMinutes]
+        display: durationSinceCreated.asMinutes() >= 1,
+        duration: [pluralizedDays, pluralizedHours, pluralizedMinutes]
           .filter(Boolean)
           .join(", "),
+        durationISO: dayjs.duration({ days, hours, minutes }).toISOString(),
       });
       setTimeUTC(dayjsUTC.format(TIME_FORMAT));
       setTimeLocal(dayjsUTC.local().format(TIME_FORMAT));
