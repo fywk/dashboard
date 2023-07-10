@@ -15,27 +15,27 @@ import {
 
 import type { RecentTrack, TotalStats } from "@/types/lastfm";
 
-const TotalPlays = async ({ promise }: { promise: Promise<RecentTrack> }) => {
+async function TotalPlays(promise: Promise<RecentTrack>): Promise<string> {
   const plays = await promise;
   return plays.total;
-};
+}
 
-const TotalTracks = async ({ promise }: { promise: Promise<TotalStats> }) => {
+async function TotalTracks(promise: Promise<TotalStats>): Promise<string> {
   const tracks = await promise;
   return tracks.total;
-};
+}
 
-const TotalAlbums = async ({ promise }: { promise: Promise<TotalStats> }) => {
+async function TotalAlbums(promise: Promise<TotalStats>): Promise<string> {
   const albums = await promise;
   return albums.total;
-};
+}
 
-const TotalArtists = async ({ promise }: { promise: Promise<TotalStats> }) => {
+async function TotalArtists(promise: Promise<TotalStats>): Promise<string> {
   const artists = await promise;
   return artists.total;
-};
+}
 
-const Category = ({
+function Category({
   title,
   icon,
   children,
@@ -43,7 +43,7 @@ const Category = ({
   title: "Plays" | "Albums" | "Artists" | "Tracks";
   icon?: React.ReactNode;
   children: React.ReactNode;
-}) => {
+}) {
   return (
     <div className="flex w-full flex-col items-center justify-center text-sm font-medium leading-5 tracking-tight odd:text-secondary even:text-primary @lg/section:odd:text-primary @lg/section:even:text-secondary @1.5xl/section:text-[15px]">
       {icon}
@@ -51,9 +51,9 @@ const Category = ({
       <span>{children}</span>
     </div>
   );
-};
+}
 
-const Statistics = () => {
+export default function Statistics() {
   const ONE_WEEK_IN_SECONDS = 604_800;
   const unixTimestamp = Math.floor(Date.now() / 1000); // current Unix timestamp (seconds, 10-digit)
   const timestamp7DaysAgo = unixTimestamp - ONE_WEEK_IN_SECONDS;
@@ -75,7 +75,7 @@ const Statistics = () => {
         }
       >
         <Suspense fallback="---">
-          <TotalPlays promise={playsData} />
+          <TotalPlays {...playsData} />
         </Suspense>
       </Category>
       <Category
@@ -88,7 +88,7 @@ const Statistics = () => {
         }
       >
         <Suspense fallback="---">
-          <TotalTracks promise={tracksData} />
+          <TotalTracks {...tracksData} />
         </Suspense>
       </Category>
       <Category
@@ -101,7 +101,7 @@ const Statistics = () => {
         }
       >
         <Suspense fallback="---">
-          <TotalAlbums promise={albumsData} />
+          <TotalAlbums {...albumsData} />
         </Suspense>
       </Category>
       <Category
@@ -114,11 +114,9 @@ const Statistics = () => {
         }
       >
         <Suspense fallback="---">
-          <TotalArtists promise={artistsData} />
+          <TotalArtists {...artistsData} />
         </Suspense>
       </Category>
     </div>
   );
-};
-
-export default Statistics;
+}

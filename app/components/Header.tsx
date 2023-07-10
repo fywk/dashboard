@@ -1,7 +1,7 @@
 import dayjs from "@/lib/utils/dayjs";
 import { siteConfig as site } from "@/lib/utils/site-config";
 
-const Header = () => {
+export default function Header() {
   const appCreatedAt = +(process.env.APP_START_TIME ?? 0);
   const versionYYMMDD = dayjs(appCreatedAt).utc().format("YYMMDD");
   const versionHHmm = dayjs(appCreatedAt).utc().format("HHmm");
@@ -31,6 +31,4 @@ const Header = () => {
       </nav>
     </header>
   );
-};
-
-export default Header;
+}

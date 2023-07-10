@@ -8,7 +8,7 @@ import Profile from "./components/Profile";
 import Time from "./components/Time";
 import Weather from "./components/Weather";
 
-import type { Metadata, NextPage } from "next";
+import type { Metadata } from "next";
 
 import type { SearchParams } from "@/types/misc";
 
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   description: site.description,
 };
 
-const DashboardPage: NextPage<Props> = ({ searchParams }) => {
+export default function Page({ searchParams }: Props) {
   return (
     <div
       className="mx-auto flex min-h-[100dvh] max-w-[1680px] items-center py-8"
@@ -50,6 +50,4 @@ const DashboardPage: NextPage<Props> = ({ searchParams }) => {
       </div>
     </div>
   );
-};
-
-export default DashboardPage;
+}

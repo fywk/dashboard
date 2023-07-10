@@ -10,7 +10,7 @@ import Section from "./Section";
 const MAX_STORIES_COUNT = 8;
 const HN_BASE_URL = "https://news.ycombinator.com";
 
-const Story = async ({ storyID }: { storyID: number }) => {
+async function Story({ storyID }: { storyID: number }) {
   const story = await getStoryItem(storyID);
 
   const hnItemURL = `${HN_BASE_URL}/item?id=${storyID}`;
@@ -54,9 +54,9 @@ const Story = async ({ storyID }: { storyID: number }) => {
       </div>
     </li>
   );
-};
+}
 
-const StorySkeleton = () => {
+function StorySkeleton() {
   return (
     <li className="flex flex-col gap-y-2">
       <div className="h-2.5 w-full rounded bg-gray-900"></div>
@@ -64,9 +64,9 @@ const StorySkeleton = () => {
       <div className="h-2 w-1/2 rounded bg-gray-900"></div>
     </li>
   );
-};
+}
 
-const TopStories = async () => {
+async function TopStories() {
   const stories = await getTopStories(MAX_STORIES_COUNT);
 
   return stories?.map((storyID) => (
@@ -74,9 +74,9 @@ const TopStories = async () => {
       <Story storyID={storyID} />
     </Suspense>
   ));
-};
+}
 
-const HackerNews = () => {
+export default function HackerNews() {
   return (
     <Section
       title={
@@ -93,6 +93,4 @@ const HackerNews = () => {
       </ol>
     </Section>
   );
-};
-
-export default HackerNews;
+}

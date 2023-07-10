@@ -19,15 +19,15 @@ const USERNAME = env.LASTFM_USERNAME;
 
 const API_ROOT = "https://ws.audioscrobbler.com/2.0/";
 
-const generateURL = (params: LastfmParams): string => {
+function generateURL(params: LastfmParams): string {
   const stringifyParams = Object.entries(params)
     .map(([key, val]) => typeof val !== "undefined" && `${key}=${val}`)
     .join("&");
 
   return `${API_ROOT}?${stringifyParams}&user=${USERNAME}&api_key=${API_KEY}&format=json`;
-};
+}
 
-export const getRecentTrack = async (from: Timestamp): Promise<RecentTrack> => {
+export async function getRecentTrack(from: Timestamp): Promise<RecentTrack> {
   const params: LastfmParams = {
     method: "user.getrecenttracks",
     limit: 1,
@@ -56,12 +56,12 @@ export const getRecentTrack = async (from: Timestamp): Promise<RecentTrack> => {
   const total: RecentTrack["total"] = recenttracks["@attr"]["total"];
 
   return { track, total };
-};
+}
 
-export const getTopTracks = async (
+export async function getTopTracks(
   period: Period,
   limit = 6 // default to 6
-): Promise<TopTracks> => {
+): Promise<TopTracks> {
   const params: LastfmParams = {
     method: "user.gettoptracks",
     period,
@@ -77,12 +77,12 @@ export const getTopTracks = async (
   }));
 
   return tracks;
-};
+}
 
-export const getTopAlbums = async (
+export async function getTopAlbums(
   period: Period,
   limit = 6 // default to 6
-): Promise<TopAlbums> => {
+): Promise<TopAlbums> {
   const params: LastfmParams = {
     method: "user.gettopalbums",
     period,
@@ -100,12 +100,12 @@ export const getTopAlbums = async (
   }));
 
   return albums;
-};
+}
 
-export const getTopArtists = async (
+export async function getTopArtists(
   period: Period,
   limit = 6 // default to 6
-): Promise<TopArtists> => {
+): Promise<TopArtists> {
   const params: LastfmParams = {
     method: "user.gettopartists",
     period,
@@ -121,9 +121,9 @@ export const getTopArtists = async (
   }));
 
   return artists;
-};
+}
 
-export const getTotalTracks = async (period: Period): Promise<TotalStats> => {
+export async function getTotalTracks(period: Period): Promise<TotalStats> {
   const params: LastfmParams = {
     method: "user.gettoptracks",
     period,
@@ -134,9 +134,9 @@ export const getTotalTracks = async (period: Period): Promise<TotalStats> => {
   const { toptracks } = await res.json();
 
   return { total: toptracks["@attr"]["total"] };
-};
+}
 
-export const getTotalAlbums = async (period: Period): Promise<TotalStats> => {
+export async function getTotalAlbums(period: Period): Promise<TotalStats> {
   const params: LastfmParams = {
     method: "user.gettopalbums",
     period,
@@ -147,9 +147,9 @@ export const getTotalAlbums = async (period: Period): Promise<TotalStats> => {
   const { topalbums } = await res.json();
 
   return { total: topalbums["@attr"]["total"] };
-};
+}
 
-export const getTotalArtists = async (period: Period): Promise<TotalStats> => {
+export async function getTotalArtists(period: Period): Promise<TotalStats> {
   const params: LastfmParams = {
     method: "user.gettopartists",
     period,
@@ -160,4 +160,4 @@ export const getTotalArtists = async (period: Period): Promise<TotalStats> => {
   const { topartists } = await res.json();
 
   return { total: topartists["@attr"]["total"] };
-};
+}

@@ -12,7 +12,7 @@ import fetcher from "@/utils/fetcher";
 
 import type { RecentTrack } from "@/types/lastfm";
 
-const EqualizerIcon = () => {
+function EqualizerIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -44,9 +44,9 @@ const EqualizerIcon = () => {
       ></rect>
     </svg>
   );
-};
+}
 
-const NowPlaying = () => {
+export default function NowPlaying() {
   const [imageURL, setImageURL] = useState<string>();
   const { data, isLoading } = useSWR<RecentTrack>(
     "/api/music/recent-track",
@@ -144,6 +144,4 @@ const NowPlaying = () => {
       </div>
     </div>
   );
-};
-
-export default NowPlaying;
+}

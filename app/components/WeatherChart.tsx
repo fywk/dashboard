@@ -26,7 +26,7 @@ ChartJS.register(
   PointElement
 );
 
-const WeatherChart = () => {
+export default function WeatherChart() {
   const { currentWeather, isLoadingCurrentWeather } = useCurrentWeather();
   const { weatherForecast, isLoadingWeatherForecast } = useWeatherForecast();
 
@@ -126,6 +126,4 @@ const WeatherChart = () => {
       <Line data={data} options={options} />
     </div>
   );
-};
-
-export default WeatherChart;
+}

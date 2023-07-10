@@ -8,13 +8,13 @@ type Props = {
   children: React.ReactNode;
 };
 
-const Section = ({
+export default function Section({
   title,
   subtitle,
   accentColor,
   customClasses,
   children,
-}: Props) => {
+}: Props) {
   return (
     <section
       className={clsx(
@@ -42,6 +42,4 @@ const Section = ({
       </div>
     </section>
   );
-};
-
-export default Section;
+}

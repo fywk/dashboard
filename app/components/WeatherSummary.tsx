@@ -9,7 +9,7 @@ import WeatherIcon from "./WeatherIcon";
 
 import type { SearchParams } from "@/types/misc";
 
-const WeatherSummary = ({ city, country }: SearchParams) => {
+export default function WeatherSummary({ city, country }: SearchParams) {
   const { currentWeather, isLoadingCurrentWeather } = useCurrentWeather();
   const { weatherForecast } = useWeatherForecast();
 
@@ -128,6 +128,4 @@ const WeatherSummary = ({ city, country }: SearchParams) => {
       </div>
     </div>
   );
-};
-
-export default WeatherSummary;
+}
