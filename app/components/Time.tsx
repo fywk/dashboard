@@ -8,8 +8,9 @@ import dayjs from "@/utils/dayjs";
 import Section from "./Section";
 
 type UptimeProps = {
-  durationISO: string;
-  durationHumanized: string;
+  minutes: number;
+  isoDuration: string;
+  humanizedDuration: string;
 };
 
 type CityProps = {
@@ -18,7 +19,9 @@ type CityProps = {
   time: string;
 };
 
-const Uptime = ({ durationISO, durationHumanized }: UptimeProps) => {
+const Uptime = (props: UptimeProps) => {
+  if (props.minutes < 1) return;
+
   return (
     <p
       className="font-oxanium text-[11px] font-[550] !leading-[1.125] @md/section:text-xs @lg/section:text-[13px] @1.5xl/section:text-sm"
@@ -26,7 +29,7 @@ const Uptime = ({ durationISO, durationHumanized }: UptimeProps) => {
     >
       <span className="text-primary">Uptime</span>
       <span className="text-gray-300">
-        : <time dateTime={durationISO}>{durationHumanized}</time>
+        : <time dateTime={props.isoDuration}>{props.humanizedDuration}</time>
       </span>
     </p>
   );
@@ -80,8 +83,9 @@ const Time = () => {
         minutes >= 1 ? pluralize("min", minutes, true) : minutes;
 
       setUptime({
-        durationISO: dayjs.duration({ days, hours, minutes }).toISOString(),
-        durationHumanized: [totalDays, totalHours, totalMinutes]
+        minutes: durationSinceCreated.asMinutes(),
+        isoDuration: dayjs.duration({ days, hours, minutes }).toISOString(),
+        humanizedDuration: [totalDays, totalHours, totalMinutes]
           .filter(Boolean)
           .join(", "),
       });
