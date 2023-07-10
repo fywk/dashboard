@@ -15,23 +15,25 @@ import {
 
 import type { RecentTrack, TotalStats } from "@/types/lastfm";
 
-async function TotalPlays(promise: Promise<RecentTrack>): Promise<string> {
-  const plays = await promise;
+type Data<T extends RecentTrack | TotalStats> = { data: Promise<T> };
+
+async function TotalPlays({ data }: Data<RecentTrack>): Promise<string> {
+  const plays = await data;
   return plays.total;
 }
 
-async function TotalTracks(promise: Promise<TotalStats>): Promise<string> {
-  const tracks = await promise;
+async function TotalTracks({ data }: Data<TotalStats>): Promise<string> {
+  const tracks = await data;
   return tracks.total;
 }
 
-async function TotalAlbums(promise: Promise<TotalStats>): Promise<string> {
-  const albums = await promise;
+async function TotalAlbums({ data }: Data<TotalStats>): Promise<string> {
+  const albums = await data;
   return albums.total;
 }
 
-async function TotalArtists(promise: Promise<TotalStats>): Promise<string> {
-  const artists = await promise;
+async function TotalArtists({ data }: Data<TotalStats>): Promise<string> {
+  const artists = await data;
   return artists.total;
 }
 
@@ -75,7 +77,7 @@ export default function Statistics() {
         }
       >
         <Suspense fallback="---">
-          <TotalPlays {...playsData} />
+          <TotalPlays data={playsData} />
         </Suspense>
       </Category>
       <Category
@@ -88,7 +90,7 @@ export default function Statistics() {
         }
       >
         <Suspense fallback="---">
-          <TotalTracks {...tracksData} />
+          <TotalTracks data={tracksData} />
         </Suspense>
       </Category>
       <Category
@@ -101,7 +103,7 @@ export default function Statistics() {
         }
       >
         <Suspense fallback="---">
-          <TotalAlbums {...albumsData} />
+          <TotalAlbums data={albumsData} />
         </Suspense>
       </Category>
       <Category
@@ -114,7 +116,7 @@ export default function Statistics() {
         }
       >
         <Suspense fallback="---">
-          <TotalArtists {...artistsData} />
+          <TotalArtists data={artistsData} />
         </Suspense>
       </Category>
     </div>
