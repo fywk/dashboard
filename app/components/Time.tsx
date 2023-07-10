@@ -7,27 +7,32 @@ import dayjs from "@/utils/dayjs";
 
 import Section from "./Section";
 
-const UptimeString = ({ content }: { content: string }) => {
+type UptimeProps = {
+  durationISO: string;
+  durationHumanized: string;
+};
+
+type CityProps = {
+  name: string;
+  abbr: string;
+  time: string;
+};
+
+const Uptime = ({ durationISO, durationHumanized }: UptimeProps) => {
   return (
     <p
       className="font-oxanium text-[11px] font-[550] !leading-[1.125] @md/section:text-xs @lg/section:text-[13px] @1.5xl/section:text-sm"
       title="Time since last build"
     >
       <span className="text-primary">Uptime</span>
-      {content && <span className="text-gray-300">{`: ${content}`}</span>}
+      <span className="text-gray-300">
+        : <time dateTime={durationISO}>{durationHumanized}</time>
+      </span>
     </p>
   );
 };
 
-const City = ({
-  name,
-  abbr,
-  time,
-}: {
-  name: string;
-  abbr: string;
-  time: string;
-}) => {
+const City = ({ name, abbr, time }: CityProps) => {
   return (
     <div className="w-full py-1 @xl/section:py-1.5 @2xl/section:py-2">
       <div className="-mx-0.5 flex flex-col gap-y-0.5 bg-gray-950 py-0.5 text-center @sm/section:gap-y-1 @1.5xl/section:gap-y-1.5 @1.5xl/section:py-1">
@@ -37,9 +42,9 @@ const City = ({
             {name}
           </span>
         </p>
-        <p className="font-oxanium text-[9px] font-medium !leading-none text-gray-100 @sm/section:text-[10px] @xl/section:-mb-px @xl/section:text-xs @1.5xl/section:text-sm">
+        <time className="font-oxanium text-[9px] font-medium !leading-none text-gray-100 @sm/section:text-[10px] @xl/section:-mb-px @xl/section:text-xs @1.5xl/section:text-sm">
           {time}
-        </p>
+        </time>
       </div>
     </div>
   );
@@ -51,15 +56,15 @@ const Time = () => {
 
   const appCreatedAt = +(process.env.APP_START_TIME ?? 0);
 
-  const [uptime, setUptime] = useState<string>();
-  const [utc, setUTC] = useState(INITIAL_TIME);
-  const [local, setLocal] = useState(INITIAL_TIME);
-  const [losAngeles, setLosAngeles] = useState(INITIAL_TIME);
-  const [newYorkCity, setNewYorkCity] = useState(INITIAL_TIME);
-  const [london, setLondon] = useState(INITIAL_TIME);
-  const [singapore, setSingapore] = useState(INITIAL_TIME);
-  const [dubai, setDubai] = useState(INITIAL_TIME);
-  const [sydney, setSydney] = useState(INITIAL_TIME);
+  const [uptime, setUptime] = useState<UptimeProps>();
+  const [timeUTC, setTimeUTC] = useState(INITIAL_TIME);
+  const [timeLocal, setTimeLocal] = useState(INITIAL_TIME);
+  const [timeLA, setTimeLA] = useState(INITIAL_TIME);
+  const [timeNYC, setTimeNYC] = useState(INITIAL_TIME);
+  const [timeLON, setTimeLON] = useState(INITIAL_TIME);
+  const [timeSIN, setTimeSIN] = useState(INITIAL_TIME);
+  const [timeDUB, setTimeDUB] = useState(INITIAL_TIME);
+  const [timeSYD, setTimeSYD] = useState(INITIAL_TIME);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -71,19 +76,23 @@ const Time = () => {
       const minutes = durationSinceCreated.minutes(); // 0-59
       const totalDays = days >= 1 ? pluralize("day", days, true) : days;
       const totalHours = hours >= 1 ? pluralize("hour", hours, true) : hours;
-      const totalMinutes = pluralize("min", minutes, true);
+      const totalMinutes =
+        minutes >= 1 ? pluralize("min", minutes, true) : minutes;
 
-      setUptime(
-        [totalDays, totalHours, totalMinutes].filter(Boolean).join(", ")
-      );
-      setUTC(dayjsUTC.format(TIME_FORMAT));
-      setLocal(dayjsUTC.local().format(TIME_FORMAT));
-      setLosAngeles(dayjs().tz("America/Los_Angeles").format(TIME_FORMAT));
-      setNewYorkCity(dayjs().tz("America/New_York").format(TIME_FORMAT));
-      setLondon(dayjs().tz("Europe/London").format(TIME_FORMAT));
-      setDubai(dayjs().tz("Asia/Dubai").format(TIME_FORMAT));
-      setSingapore(dayjs().tz("Asia/Singapore").format(TIME_FORMAT));
-      setSydney(dayjs().tz("Australia/Sydney").format(TIME_FORMAT));
+      setUptime({
+        durationISO: dayjs.duration({ days, hours, minutes }).toISOString(),
+        durationHumanized: [totalDays, totalHours, totalMinutes]
+          .filter(Boolean)
+          .join(", "),
+      });
+      setTimeUTC(dayjsUTC.format(TIME_FORMAT));
+      setTimeLocal(dayjsUTC.local().format(TIME_FORMAT));
+      setTimeLA(dayjs().tz("America/Los_Angeles").format(TIME_FORMAT));
+      setTimeNYC(dayjs().tz("America/New_York").format(TIME_FORMAT));
+      setTimeLON(dayjs().tz("Europe/London").format(TIME_FORMAT));
+      setTimeDUB(dayjs().tz("Asia/Dubai").format(TIME_FORMAT));
+      setTimeSIN(dayjs().tz("Asia/Singapore").format(TIME_FORMAT));
+      setTimeSYD(dayjs().tz("Australia/Sydney").format(TIME_FORMAT));
     }, 1000);
 
     return () => clearInterval(interval);
@@ -92,7 +101,9 @@ const Time = () => {
   return (
     <Section
       title="Time"
-      subtitle={uptime && <UptimeString content={uptime} />}
+      subtitle={
+        uptime && Object.keys(uptime).length !== 0 && <Uptime {...uptime} />
+      }
       accentColor="secondary"
     >
       <div className="mt-1 grid grid-cols-2 gap-x-4 gap-y-1 @md/section:mt-[5px] @xl/section:gap-x-4.5 @1.5xl/section:gap-x-5">
@@ -101,7 +112,7 @@ const Time = () => {
             LOCAL
           </span>
           <h2 className="text-center font-oxanium text-[24cqw]/none text-gray-100">
-            {local}
+            <time>{timeLocal}</time>
           </h2>
         </div>
         <div className="flex flex-col gap-y-2 @container @sm/section:gap-y-2.5">
@@ -109,16 +120,16 @@ const Time = () => {
             UTC
           </span>
           <h2 className="text-center font-oxanium text-[24cqw]/none text-gray-500">
-            {utc}
+            <time>{timeUTC}</time>
           </h2>
         </div>
         <div className="col-span-full flex justify-evenly divide-x divide-primary/60 rounded-sm border border-primary/60">
-          <City name="Los Angeles" abbr="LA" time={losAngeles} />
-          <City name="New York City" abbr="NYC" time={newYorkCity} />
-          <City name="London" abbr="LON" time={london} />
-          <City name="Dubai" abbr="DUB" time={dubai} />
-          <City name="Singapore" abbr="SIN" time={singapore} />
-          <City name="Sydney" abbr="SYD" time={sydney} />
+          <City name="Los Angeles" abbr="LA" time={timeLA} />
+          <City name="New York City" abbr="NYC" time={timeNYC} />
+          <City name="London" abbr="LON" time={timeLON} />
+          <City name="Dubai" abbr="DUB" time={timeDUB} />
+          <City name="Singapore" abbr="SIN" time={timeSIN} />
+          <City name="Sydney" abbr="SYD" time={timeSYD} />
         </div>
       </div>
     </Section>

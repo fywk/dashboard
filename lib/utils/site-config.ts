@@ -4,4 +4,5 @@ export const siteConfig = {
   titleSeparator: " – ",
   description: "My Tron-inspired personal dashboard",
   homeURL: "https://fywk.xyz",
+  dateFormat: "D MMM YYYY, HH:mm",
 };

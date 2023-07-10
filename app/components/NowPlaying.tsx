@@ -7,6 +7,7 @@ import useSWR from "swr";
 import TimeAgo from "timeago-react";
 
 import dayjs from "@/lib/utils/dayjs";
+import { siteConfig as site } from "@/lib/utils/site-config";
 import fetcher from "@/utils/fetcher";
 
 import type { RecentTrack } from "@/types/lastfm";
@@ -77,6 +78,15 @@ const NowPlaying = () => {
 
   const track = data.track;
 
+  let dateTime = "";
+  let humanizedDateTime = "";
+
+  if (track.timestamp) {
+    const timestamp = dayjs.unix(track.timestamp).utc();
+    dateTime = timestamp.format();
+    humanizedDateTime = timestamp.format(site.dateFormat);
+  }
+
   return (
     <div className="grid grid-cols-[4rem_1fr_2.25rem] items-center gap-2.5 overflow-hidden rounded-md border border-primary/55 p-2 @xs/now-playing:gap-[0.6875rem] @[21.25rem]/now-playing:grid-cols-[4.5rem_1fr_2.25rem] @sm/now-playing:grid-cols-[5rem_1fr_2.25rem] @[340px]/now-playing:gap-3">
       <div
@@ -101,10 +111,7 @@ const NowPlaying = () => {
           id="track-status"
         >
           {track.timestamp ? (
-            <TimeAgo
-              datetime={track.timestamp * 1000}
-              title={dayjs.unix(track.timestamp).utc().format()}
-            />
+            <TimeAgo datetime={dateTime} title={humanizedDateTime} />
           ) : (
             <>
               <EqualizerIcon />
