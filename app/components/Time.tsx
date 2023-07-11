@@ -19,7 +19,7 @@ type CityProps = {
   time: string;
 };
 
-const Uptime = (props: UptimeProps) => {
+function Uptime(props: UptimeProps) {
   if (!props.display) return;
 
   return (
@@ -33,9 +33,9 @@ const Uptime = (props: UptimeProps) => {
       </span>
     </p>
   );
-};
+}
 
-const City = ({ name, abbr, time }: CityProps) => {
+function City({ name, abbr, time }: CityProps) {
   return (
     <div className="w-full py-1 @xl/section:py-1.5 @2xl/section:py-2">
       <div className="-mx-0.5 flex flex-col gap-y-0.5 bg-gray-950 py-0.5 text-center @sm/section:gap-y-1 @1.5xl/section:gap-y-1.5 @1.5xl/section:py-1">
@@ -51,9 +51,9 @@ const City = ({ name, abbr, time }: CityProps) => {
       </div>
     </div>
   );
-};
+}
 
-const Time = () => {
+export default function Time() {
   const INITIAL_TIME = "00:00:00";
   const TIME_FORMAT = "HH:mm:ss";
 
@@ -139,6 +139,4 @@ const Time = () => {
       </div>
     </Section>
   );
-};
-
-export default Time;
+}

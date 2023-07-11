@@ -26,12 +26,14 @@ export const metadata: Metadata = {
   manifest: "/favicons/site.webmanifest",
 };
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" className={oxanium.variable}>
       <body className="bg-gray-950 text-gray-400">{children}</body>
     </html>
   );
-};
-
-export default RootLayout;
+}

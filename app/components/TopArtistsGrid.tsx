@@ -4,21 +4,21 @@ import { Suspense } from "react";
 import { getTopArtists } from "@/utils/lastfm";
 import { getArtistImage } from "@/utils/spotify";
 
-const ArtistAvatar = async ({ name }: { name: string }) => {
-  const data = await getArtistImage(name);
+async function ArtistAvatar({ name }: { name: string }) {
+  const { url, width, height } = await getArtistImage(name);
 
   return (
     <Image
-      src={data.url}
+      src={url}
       className="h-full w-full object-cover"
-      width={+data.width}
-      height={+data.height}
+      width={+width}
+      height={+height}
       alt=""
     />
   );
-};
+}
 
-const TopArtistsSkeleton = () => {
+function TopArtistsSkeleton() {
   return (
     <>
       {[...Array(6)].map((_, i) => (
@@ -35,9 +35,9 @@ const TopArtistsSkeleton = () => {
       ))}
     </>
   );
-};
+}
 
-const TopArtists = async () => {
+async function TopArtists() {
   const data = await getTopArtists("1month");
 
   return data?.map((artist) => (
@@ -61,9 +61,9 @@ const TopArtists = async () => {
       </div>
     </div>
   ));
-};
+}
 
-const TopArtistGrid = () => {
+export default function TopArtistGrid() {
   return (
     <div className="grid w-full auto-cols-[1fr] grid-flow-col gap-x-2 overflow-x-auto @xl/section:gap-x-2.5 @1.5xl/section:gap-x-3">
       <Suspense fallback={<TopArtistsSkeleton />}>
@@ -71,6 +71,4 @@ const TopArtistGrid = () => {
       </Suspense>
     </div>
   );
-};
-
-export default TopArtistGrid;
+}

@@ -2,7 +2,13 @@
 
 import { useEffect } from "react";
 
-const Error = ({ error, reset }: { error: Error; reset: () => void }) => {
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error;
+  reset: () => void;
+}) {
   useEffect(() => {
     console.error(error);
   }, [error]);
@@ -13,6 +19,4 @@ const Error = ({ error, reset }: { error: Error; reset: () => void }) => {
       <button onClick={() => reset()}>Reset error boundary</button>
     </div>
   );
-};
-
-export default Error;
+}

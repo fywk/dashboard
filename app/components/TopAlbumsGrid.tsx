@@ -3,7 +3,7 @@ import { Suspense } from "react";
 
 import { getTopAlbums } from "@/utils/lastfm";
 
-const TopAlbumsSkeleton = () => {
+function TopAlbumsSkeleton() {
   return (
     <>
       {[...Array(6)].map((_, i) => (
@@ -20,9 +20,9 @@ const TopAlbumsSkeleton = () => {
       ))}
     </>
   );
-};
+}
 
-const TopAlbums = async () => {
+async function TopAlbums() {
   const data = await getTopAlbums("3month");
 
   return data.map((album) => (
@@ -46,9 +46,9 @@ const TopAlbums = async () => {
       </div>
     </div>
   ));
-};
+}
 
-const TopAlbumsGrid = () => {
+export default function TopAlbumsGrid() {
   return (
     <div className="grid grid-cols-2 gap-2.5 @xl/section:grid-cols-3 @xl/section:gap-3 @1.5xl/section:gap-x-4 @1.5xl/section:gap-y-3.5">
       <Suspense fallback={<TopAlbumsSkeleton />}>
@@ -56,6 +56,4 @@ const TopAlbumsGrid = () => {
       </Suspense>
     </div>
   );
-};
-
-export default TopAlbumsGrid;
+}

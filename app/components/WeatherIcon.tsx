@@ -13,7 +13,7 @@ import {
 
 type WeatherIconProps = { id: number; code: string; [props: string]: unknown };
 
-const WeatherIcon = ({ id, code, ...props }: WeatherIconProps) => {
+export default function WeatherIcon({ id, code, ...props }: WeatherIconProps) {
   let Icon: React.ElementType;
 
   switch (true) {
@@ -44,6 +44,4 @@ const WeatherIcon = ({ id, code, ...props }: WeatherIconProps) => {
   }
 
   return <Icon {...props} />;
-};
-
-export default WeatherIcon;
+}

@@ -4,7 +4,7 @@ import WeatherSummary from "./WeatherSummary";
 
 import type { SearchParams } from "@/types/misc";
 
-const Weather = ({ ...searchParams }: SearchParams) => {
+export default function Weather({ ...searchParams }: SearchParams) {
   return (
     <Section title="Weather" accentColor="primary">
       <div className="grid grid-cols-1 gap-x-6 gap-y-4 @lg/section:grid-cols-[minmax(auto,200px)_1fr] @1.5xl/section:grid-cols-[minmax(auto,225px)_1fr] @1.5xl/section:gap-x-7 @2xl/section:gap-x-8">
@@ -13,6 +13,4 @@ const Weather = ({ ...searchParams }: SearchParams) => {
       </div>
     </Section>
   );
-};
-
-export default Weather;
+}

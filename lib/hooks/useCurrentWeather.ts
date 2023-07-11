@@ -4,7 +4,7 @@ import fetcher from "@/utils/fetcher";
 
 import type { CurrentWeatherData } from "@/types/openweather";
 
-const useCurrentWeather = () => {
+export default function useCurrentWeather() {
   const { data, isLoading } = useSWRImmutable<CurrentWeatherData>(
     "/api/weather/current",
     fetcher
@@ -14,6 +14,4 @@ const useCurrentWeather = () => {
     currentWeather: data,
     isLoadingCurrentWeather: isLoading,
   };
-};
-
-export default useCurrentWeather;
+}

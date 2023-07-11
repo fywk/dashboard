@@ -1,6 +1,6 @@
 import Section from "./Section";
 
-const Profile = () => {
+export default function Profile() {
   return (
     <Section
       title="Profile"
@@ -9,6 +9,4 @@ const Profile = () => {
       <section className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:gap-10"></section>
     </Section>
   );
-};
-
-export default Profile;
+}
