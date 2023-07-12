@@ -1,4 +1,4 @@
-import { env } from "@/lib/env.mjs";
+import { env } from "@/app/env.mjs";
 
 import type {
   Album,
