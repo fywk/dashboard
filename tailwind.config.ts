@@ -1,8 +1,9 @@
-const colors = require("tailwindcss/colors");
-const defaultTheme = require("tailwindcss/defaultTheme");
+import colors from "tailwindcss/colors";
+import defaultTheme from "tailwindcss/defaultTheme";
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import type { Config } from "tailwindcss";
+
+export default {
   content: ["./app/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   future: {
     hoverOnlyWhenSupported: true,
@@ -43,4 +44,4 @@ module.exports = {
     },
   },
   plugins: [require("@tailwindcss/container-queries")],
-};
+} satisfies Config;

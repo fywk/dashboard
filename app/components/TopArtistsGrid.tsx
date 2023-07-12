@@ -21,7 +21,7 @@ async function ArtistAvatar({ name }: { name: string }) {
 function TopArtistsSkeleton() {
   return (
     <>
-      {[...Array(6)].map((_, i) => (
+      {[...Array<undefined>(6)].map((_, i) => (
         <div
           className="grid min-w-[80px] grid-cols-1 gap-y-2 p-2 @xl/section:gap-y-2.5 @xl/section:p-2.5 @1.5xl/section:gap-y-3 @1.5xl/section:p-3 xs:min-w-[96px]"
           key={i}
@@ -40,7 +40,7 @@ function TopArtistsSkeleton() {
 async function TopArtists() {
   const data = await getTopArtists("1month");
 
-  return data?.map((artist) => (
+  return data.map((artist) => (
     <div
       className="grid min-w-[80px] grid-cols-1 gap-y-2 p-2 @xl/section:gap-y-2.5 @xl/section:p-2.5 @1.5xl/section:gap-y-3 @1.5xl/section:p-3 xs:min-w-[96px]"
       key={artist.name.replace(/ /g, "_")} // replace spaces with underscores

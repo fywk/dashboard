@@ -101,7 +101,9 @@ export default function NowPlaying() {
             alt=""
             priority
             unoptimized
-            onError={() => setImageURL("/images/album-error.jpg")}
+            onError={() => {
+              setImageURL("/images/album-error.jpg");
+            }}
           />
         )}
       </div>

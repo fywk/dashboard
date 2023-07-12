@@ -23,11 +23,11 @@ export async function getTopStories(limit: number): Promise<number[]> {
     }
   );
 
-  return res.json();
+  return res.json() as unknown as number[];
 }
 
 export async function getStoryItem(id: number): Promise<Story> {
   const res = await fetch(`${API_ROOT}/item/${id}.json`, { cache: "no-store" });
 
-  return res.json();
+  return res.json() as unknown as Story;
 }

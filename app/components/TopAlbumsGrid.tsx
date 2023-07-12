@@ -6,7 +6,7 @@ import { getTopAlbums } from "@/utils/lastfm";
 function TopAlbumsSkeleton() {
   return (
     <>
-      {[...Array(6)].map((_, i) => (
+      {[...Array<undefined>(6)].map((_, i) => (
         <div
           className="flex items-center gap-x-2.5 pr-2.5 @1.5xl/section:gap-x-3 @1.5xl/section:pr-3"
           key={i}

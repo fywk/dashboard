@@ -1,9 +1,12 @@
-import { env } from "@/lib/env.mjs";
+import { env } from "@/app/env.mjs";
 
 import type {
+  Album,
+  Artist,
   LastfmParams,
   Period,
   RecentTrack,
+  RecentTrackResponse,
   Timestamp,
   TopAlbums,
   TopAlbumsResponse,
@@ -12,6 +15,7 @@ import type {
   TopTracks,
   TopTracksResponse,
   TotalStats,
+  Track,
 } from "@/types/lastfm";
 
 const API_KEY = env.LASTFM_API_KEY;
@@ -36,24 +40,22 @@ export async function getRecentTrack(from: Timestamp): Promise<RecentTrack> {
   };
 
   const res = await fetch(generateURL(params));
-  const { recenttracks } = await res.json();
+  const { recenttracks } = (await res.json()) as RecentTrackResponse;
 
   // Get the first/latest track
-  const firstTrack = recenttracks.track.at(0);
+  const firstTrack = recenttracks.track.at(0)!; // eslint-disable-line @typescript-eslint/no-non-null-assertion
   const { artist, image, album, name, loved } = firstTrack;
-  const timestamp =
-    Object.hasOwn(firstTrack, "date") && +firstTrack["date"]["uts"];
-
+  const timestamp = firstTrack.date !== undefined && +firstTrack.date.uts;
   const track: RecentTrack["track"] = {
     name,
     artist: artist.name,
     album: album["#text"],
-    image: image.at(3)["#text"], // 300x300
+    image: image.at(3)?.["#text"] ?? "/images/album-error.jpg",
     ...(timestamp && { timestamp }),
     loved: loved === "1",
   };
 
-  const total: RecentTrack["total"] = recenttracks["@attr"]["total"];
+  const total: RecentTrack["total"] = recenttracks["@attr"].total;
 
   return { track, total };
 }
@@ -69,12 +71,14 @@ export async function getTopTracks(
   };
 
   const res = await fetch(generateURL(params), { cache: "no-store" });
-  const { toptracks }: { toptracks: TopTracksResponse } = await res.json();
+  const { toptracks } = (await res.json()) as TopTracksResponse;
 
-  const tracks: TopTracks = toptracks.track.map((track) => ({
-    name: track.name,
-    artist: track.artist.name,
-  }));
+  const tracks: TopTracks = toptracks.track.map(
+    (track): Track => ({
+      name: track.name,
+      artist: track.artist.name,
+    })
+  );
 
   return tracks;
 }
@@ -90,14 +94,16 @@ export async function getTopAlbums(
   };
 
   const res = await fetch(generateURL(params), { cache: "no-store" });
-  const { topalbums }: { topalbums: TopAlbumsResponse } = await res.json();
+  const { topalbums } = (await res.json()) as TopAlbumsResponse;
 
-  const albums: TopAlbums = topalbums.album.map((album) => ({
-    name: album.name,
-    artist: album.artist.name,
-    image: album.image.at(3)?.["#text"] ?? "/images/album-error.jpg",
-    playcount: album.playcount,
-  }));
+  const albums: TopAlbums = topalbums.album.map(
+    (album): Album => ({
+      name: album.name,
+      artist: album.artist.name,
+      image: album.image.at(3)?.["#text"] ?? "/images/album-error.jpg",
+      playcount: album.playcount,
+    })
+  );
 
   return albums;
 }
@@ -113,12 +119,14 @@ export async function getTopArtists(
   };
 
   const res = await fetch(generateURL(params), { cache: "no-store" });
-  const { topartists }: { topartists: TopArtistsResponse } = await res.json();
+  const { topartists } = (await res.json()) as TopArtistsResponse;
 
-  const artists: TopArtists = topartists.artist.map((artist) => ({
-    name: artist.name,
-    playcount: artist.playcount,
-  }));
+  const artists: TopArtists = topartists.artist.map(
+    (artist): Artist => ({
+      name: artist.name,
+      playcount: artist.playcount,
+    })
+  );
 
   return artists;
 }
@@ -131,9 +139,9 @@ export async function getTotalTracks(period: Period): Promise<TotalStats> {
   };
 
   const res = await fetch(generateURL(params), { cache: "no-store" });
-  const { toptracks } = await res.json();
+  const { toptracks } = (await res.json()) as TopTracksResponse;
 
-  return { total: toptracks["@attr"]["total"] };
+  return { total: toptracks["@attr"].total };
 }
 
 export async function getTotalAlbums(period: Period): Promise<TotalStats> {
@@ -144,9 +152,9 @@ export async function getTotalAlbums(period: Period): Promise<TotalStats> {
   };
 
   const res = await fetch(generateURL(params), { cache: "no-store" });
-  const { topalbums } = await res.json();
+  const { topalbums } = (await res.json()) as TopAlbumsResponse;
 
-  return { total: topalbums["@attr"]["total"] };
+  return { total: topalbums["@attr"].total };
 }
 
 export async function getTotalArtists(period: Period): Promise<TotalStats> {
@@ -157,7 +165,7 @@ export async function getTotalArtists(period: Period): Promise<TotalStats> {
   };
 
   const res = await fetch(generateURL(params), { cache: "no-store" });
-  const { topartists } = await res.json();
+  const { topartists } = (await res.json()) as TopArtistsResponse;
 
-  return { total: topartists["@attr"]["total"] };
+  return { total: topartists["@attr"].total };
 }
