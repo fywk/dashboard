@@ -13,10 +13,14 @@ export default function Error({
     console.error(error);
   }, [error]);
 
+  function handleClick() {
+    reset();
+  }
+
   return (
     <div>
       <p>Something went wrong!</p>
-      <button onClick={() => reset()}>Reset error boundary</button>
+      <button onClick={handleClick}>Reset error boundary</button>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 export const siteConfig = {
   user: "Francis Yeong",
   title: "Dashboard",
-  titleSeparator: " – ",
+  titleSeparator: " ~ ",
   description: "My Tron-inspired personal dashboard",
   homeURL: "https://fywk.xyz",
   dateFormat: "D MMM YYYY, HH:mm",

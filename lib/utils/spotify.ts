@@ -1,6 +1,20 @@
 import { env } from "@/lib/env.mjs";
 
-type ArtistImage = {
+type AccessToken = {
+  access_token: string;
+  token_type: string;
+  expires_in: number;
+};
+
+type SearchArtistsResult = {
+  artists: {
+    items: {
+      images: Image[];
+    }[];
+  };
+};
+
+type Image = {
   url: string;
   width: string;
   height: string;
@@ -13,7 +27,7 @@ const REFRESH_TOKEN = env.SPOTIFY_REFRESH_TOKEN;
 const TOKEN_ENDPOINT = "https://accounts.spotify.com/api/token";
 const SEARCH_ENDPOINT = "https://api.spotify.com/v1/search";
 
-async function getAccessToken() {
+async function getAccessToken(): Promise<AccessToken> {
   const authToken = btoa(`${CLIENT_ID}:${CLIENT_SECRET}`);
 
   const response = await fetch(TOKEN_ENDPOINT, {
@@ -29,10 +43,10 @@ async function getAccessToken() {
     method: "POST",
   });
 
-  return response.json();
+  return response.json() as unknown as AccessToken;
 }
 
-export async function getArtistImage(artistName: string): Promise<ArtistImage> {
+export async function getArtistImage(artistName: string): Promise<Image> {
   const { access_token } = await getAccessToken();
 
   const response = await fetch(
@@ -45,7 +59,7 @@ export async function getArtistImage(artistName: string): Promise<ArtistImage> {
     }
   );
 
-  const { artists } = await response.json();
+  const { artists } = (await response.json()) as SearchArtistsResult;
 
   const image = {
     url: artists.items[0].images[1].url,
@@ -53,5 +67,5 @@ export async function getArtistImage(artistName: string): Promise<ArtistImage> {
     height: artists.items[0].images[1].height,
   };
 
-  return image as ArtistImage;
+  return image;
 }

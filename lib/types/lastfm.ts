@@ -62,19 +62,45 @@ export type TopArtists = Artist[];
 
 export type TotalStats = { total: Total };
 
+export type RecentTrackResponse = {
+  recenttracks: {
+    track: {
+      artist: { name: string };
+      date?: { uts: string };
+      name: string;
+      image: {
+        size: string;
+        "#text": string;
+      }[];
+      album: { "#text": string };
+      loved: "0" | "1";
+    }[];
+    "@attr": { total: Total };
+  };
+};
+
 export type TopTracksResponse = {
-  track: (Omit<Track, "artist"> & {
-    artist: { name: string };
-  })[];
+  toptracks: {
+    track: (Omit<Track, "artist"> & {
+      artist: { name: string };
+    })[];
+    "@attr": { total: Total };
+  };
 };
 
 export type TopAlbumsResponse = {
-  album: (Omit<Album, "artist" | "image"> & {
-    artist: { name: string };
-    image: { ["#text"]: string }[];
-  })[];
+  topalbums: {
+    album: (Omit<Album, "artist" | "image"> & {
+      artist: { name: string };
+      image: { ["#text"]: string }[];
+    })[];
+    "@attr": { total: Total };
+  };
 };
 
 export type TopArtistsResponse = {
-  artist: Artist[];
+  topartists: {
+    artist: Artist[];
+    "@attr": { total: Total };
+  };
 };

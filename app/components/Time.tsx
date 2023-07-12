@@ -38,8 +38,8 @@ function Uptime(props: UptimeProps) {
 function City({ name, abbr, time }: CityProps) {
   return (
     <div className="w-full py-1 @xl/section:py-1.5 @2xl/section:py-2">
-      <div className="-mx-0.5 flex flex-col gap-y-0.5 bg-gray-950 py-0.5 text-center @sm/section:gap-y-1 @1.5xl/section:gap-y-1.5 @1.5xl/section:py-1">
-        <p className="text-[9px] uppercase !leading-none @lg/section:text-[10px] @1.5xl/section:text-[11px] @[45rem]/section:text-[11.5px]">
+      <div className="-mx-0.5 flex flex-col gap-y-0.5 bg-gray-950 py-0.5 text-center @sm/section:gap-y-1 @1.5xl/section:py-1">
+        <p className="text-[9px] uppercase !leading-none @lg/section:text-[10px] @1.5xl/section:text-[11px] @[45rem]/section:text-xs">
           <abbr className="@xl/section:hidden">{abbr}</abbr>
           <span className="hidden tracking-tight @xl/section:inline">
             {name}
@@ -100,7 +100,9 @@ export default function Time() {
       setTimeSYD(dayjs().tz("Australia/Sydney").format(TIME_FORMAT));
     }, 1000);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+    };
   }, [appCreatedAt]);
 
   return (

@@ -40,7 +40,7 @@ export default function WeatherChart() {
   const timestamps: string[] = [];
   const temperatures = [currentWeather.main.temp];
 
-  weatherForecast?.list.forEach((item) => {
+  weatherForecast.list.forEach((item) => {
     timestamps.push(
       dayjs
         .unix(item.dt)

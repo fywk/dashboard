@@ -17,7 +17,7 @@ export async function getCurrentWeather(
 
   const res = await fetch(current_weather_endpoint);
 
-  return res.json();
+  return res.json() as unknown as CurrentWeatherData;
 }
 
 export async function getWeatherForecast(
@@ -28,5 +28,5 @@ export async function getWeatherForecast(
 
   const res = await fetch(weather_forecast_endpoint);
 
-  return res.json();
+  return res.json() as unknown as WeatherForecastData;
 }

@@ -1,9 +1,9 @@
 {
   "root": true,
   "extends": [
-    "next/core-web-vitals",
     "plugin:@typescript-eslint/strict-type-checked",
-    "plugin:@typescript-eslint/stylistic-type-checked"
+    "plugin:@typescript-eslint/stylistic-type-checked",
+    "next/core-web-vitals"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
