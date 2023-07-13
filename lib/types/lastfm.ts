@@ -1,3 +1,5 @@
+import type { NumericRange } from "./utility";
+
 export const PERIOD = [
   "overall",
   "7day",
@@ -14,15 +16,17 @@ export type Timestamp = number;
 type MethodParams =
   | {
       method: "user.getrecenttracks";
-      from: Timestamp;
-      extended: "0" | "1";
+      from?: Timestamp;
+      extended: "1";
     }
   | {
       method: "user.gettopalbums" | "user.gettopartists" | "user.gettoptracks";
       period: Period;
     };
 
-export type LastfmParams = MethodParams & { limit: number };
+export type Limit = NumericRange<1, 10>;
+
+export type LastfmParams = MethodParams & { limit: Limit };
 
 export type Track = {
   name: string;
@@ -61,46 +65,3 @@ export type TopAlbums = Album[];
 export type TopArtists = Artist[];
 
 export type TotalStats = { total: Total };
-
-export type RecentTrackResponse = {
-  recenttracks: {
-    track: {
-      artist: { name: string };
-      date?: { uts: string };
-      name: string;
-      image: {
-        size: string;
-        "#text": string;
-      }[];
-      album: { "#text": string };
-      loved: "0" | "1";
-    }[];
-    "@attr": { total: Total };
-  };
-};
-
-export type TopTracksResponse = {
-  toptracks: {
-    track: (Omit<Track, "artist"> & {
-      artist: { name: string };
-    })[];
-    "@attr": { total: Total };
-  };
-};
-
-export type TopAlbumsResponse = {
-  topalbums: {
-    album: (Omit<Album, "artist" | "image"> & {
-      artist: { name: string };
-      image: { ["#text"]: string }[];
-    })[];
-    "@attr": { total: Total };
-  };
-};
-
-export type TopArtistsResponse = {
-  topartists: {
-    artist: Artist[];
-    "@attr": { total: Total };
-  };
-};

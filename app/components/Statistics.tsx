@@ -7,7 +7,7 @@ import {
 import { Suspense } from "react";
 
 import {
-  getRecentTrack,
+  getRecentTracks,
   getTotalAlbums,
   getTotalArtists,
   getTotalTracks,
@@ -57,10 +57,10 @@ function Category({
 
 export default function Statistics() {
   const ONE_WEEK_IN_SECONDS = 604_800;
-  const unixTimestamp = Math.floor(Date.now() / 1000); // current Unix timestamp (seconds, 10-digit)
-  const timestamp7DaysAgo = unixTimestamp - ONE_WEEK_IN_SECONDS;
+  const unixTimestamp = Math.floor(Date.now() / 1000); // get current Unix timestamp in seconds format (10-digit)
+  const timestampOf7DaysAgo = unixTimestamp - ONE_WEEK_IN_SECONDS;
 
-  const playsData = getRecentTrack(timestamp7DaysAgo);
+  const playsData = getRecentTracks(timestampOf7DaysAgo);
   const tracksData = getTotalTracks("7day");
   const albumsData = getTotalAlbums("7day");
   const artistsData = getTotalArtists("7day");
