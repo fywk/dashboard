@@ -19,26 +19,26 @@ async function ArtistAvatar({ name }: { name: string }) {
 }
 
 function TopArtistsSkeleton() {
-  return (
-    <>
-      {[...Array<undefined>(6)].map((_, i) => (
-        <div
-          className="grid min-w-[80px] grid-cols-1 gap-y-2 p-2 @xl/section:gap-y-2.5 @xl/section:p-2.5 @1.5xl/section:gap-y-3 @1.5xl/section:p-3 xs:min-w-[96px]"
-          key={i}
-        >
-          <div className="aspect-square overflow-hidden rounded-full bg-gray-900 ring-1 ring-gray-900"></div>
-          <div className="flex flex-col items-center gap-y-1.5 pb-1 pt-[3px] @xl/section:gap-y-[7px] @1.5xl/section:pt-1">
-            <div className="h-2.5 w-full rounded bg-gray-900 @xl/section:h-[11px] @1.5xl/section:h-3"></div>
-            <div className="h-2 w-1/2 rounded bg-gray-900 @xl/section:h-[9px] @1.5xl/section:h-2.5"></div>
-          </div>
-        </div>
-      ))}
-    </>
-  );
+  return [...Array<undefined>(6)].map((_, i) => (
+    <div
+      className="grid min-w-[80px] grid-cols-1 gap-y-2 p-2 @xl/section:gap-y-2.5 @xl/section:p-2.5 @1.5xl/section:gap-y-3 @1.5xl/section:p-3 xs:min-w-[96px]"
+      key={i}
+    >
+      <div className="aspect-square overflow-hidden rounded-full bg-gray-900 ring-1 ring-gray-900"></div>
+      <div className="flex flex-col items-center gap-y-1.5 pb-1 pt-[3px] @xl/section:gap-y-[7px] @1.5xl/section:pt-1">
+        <div className="h-2.5 w-full rounded bg-gray-900 @xl/section:h-[11px] @1.5xl/section:h-3"></div>
+        <div className="h-2 w-1/2 rounded bg-gray-900 @xl/section:h-[9px] @1.5xl/section:h-2.5"></div>
+      </div>
+    </div>
+  ));
 }
 
 async function TopArtists() {
   const data = await getTopArtists("1month");
+
+  if (!data) {
+    return <TopArtistsSkeleton />;
+  }
 
   return data.map((artist) => (
     <div

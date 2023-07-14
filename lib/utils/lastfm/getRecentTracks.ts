@@ -34,7 +34,7 @@ const RecentTracksSchema = z.object({
 export async function getRecentTracks(
   from?: Timestamp,
   limit: Limit = 1
-): Promise<RecentTrack> {
+): Promise<RecentTrack | undefined> {
   const params: LastfmParams = {
     method: "user.getrecenttracks",
     limit,
@@ -42,23 +42,30 @@ export async function getRecentTracks(
     extended: "1",
   };
 
-  const res = await fetch(generateURL(params));
-  const { recenttracks } = RecentTracksSchema.parse(await res.json());
+  const response = await fetch(generateURL(params));
+  const result = RecentTracksSchema.safeParse(await response.json());
 
-  // Get the first/latest track
-  const firstTrack = recenttracks.track.at(0)!; // eslint-disable-line @typescript-eslint/no-non-null-assertion
-  const { artist, image, album, name, loved } = firstTrack;
-  const timestamp = firstTrack.date !== undefined && +firstTrack.date.uts;
-  const track: RecentTrack["track"] = {
-    name,
-    artist: artist.name,
-    album: album["#text"],
-    image: image.at(3)?.["#text"] ?? "/images/album-error.jpg",
-    ...(timestamp && { timestamp }),
-    loved: loved === "1",
-  };
+  if (!result.success) {
+    return;
+  }
 
-  const total: RecentTrack["total"] = recenttracks["@attr"].total;
+  const { recenttracks } = result.data;
+  const firstTrack = recenttracks.track.at(0);
 
-  return { track, total };
+  if (firstTrack !== undefined) {
+    const { artist, image, album, name, loved } = firstTrack;
+    const timestamp = firstTrack.date !== undefined && +firstTrack.date.uts;
+    const track: RecentTrack["track"] = {
+      name,
+      artist: artist.name,
+      album: album["#text"],
+      image: image.at(3)?.["#text"] ?? "/images/album-error.jpg",
+      ...(timestamp && { timestamp }),
+      loved: loved === "1",
+    };
+
+    const total: RecentTrack["total"] = recenttracks["@attr"].total;
+
+    return { track, total };
+  }
 }

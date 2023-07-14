@@ -15,26 +15,15 @@ import {
 
 import type { RecentTrack, TotalStats } from "@/types/lastfm";
 
-type Data<T extends RecentTrack | TotalStats> = { data: Promise<T> };
+type Data<T extends RecentTrack | TotalStats> = {
+  data: Promise<T | undefined>;
+};
 
-async function TotalPlays({ data }: Data<RecentTrack>): Promise<string> {
-  const plays = await data;
-  return plays.total;
-}
-
-async function TotalTracks({ data }: Data<TotalStats>): Promise<string> {
-  const tracks = await data;
-  return tracks.total;
-}
-
-async function TotalAlbums({ data }: Data<TotalStats>): Promise<string> {
-  const albums = await data;
-  return albums.total;
-}
-
-async function TotalArtists({ data }: Data<TotalStats>): Promise<string> {
-  const artists = await data;
-  return artists.total;
+async function Total<T extends RecentTrack | TotalStats>({
+  data,
+}: Data<T>): Promise<string> {
+  const result = await data;
+  return result?.total ?? "---";
 }
 
 function Category({
@@ -77,7 +66,7 @@ export default function Statistics() {
         }
       >
         <Suspense fallback="---">
-          <TotalPlays data={playsData} />
+          <Total data={playsData} />
         </Suspense>
       </Category>
       <Category
@@ -90,7 +79,7 @@ export default function Statistics() {
         }
       >
         <Suspense fallback="---">
-          <TotalTracks data={tracksData} />
+          <Total data={tracksData} />
         </Suspense>
       </Category>
       <Category
@@ -103,7 +92,7 @@ export default function Statistics() {
         }
       >
         <Suspense fallback="---">
-          <TotalAlbums data={albumsData} />
+          <Total data={albumsData} />
         </Suspense>
       </Category>
       <Category
@@ -116,7 +105,7 @@ export default function Statistics() {
         }
       >
         <Suspense fallback="---">
-          <TotalArtists data={artistsData} />
+          <Total data={artistsData} />
         </Suspense>
       </Category>
     </div>

@@ -48,7 +48,7 @@ function EqualizerIcon() {
 
 export default function NowPlaying() {
   const [imageURL, setImageURL] = useState<string>();
-  const { data, isLoading } = useSWR<RecentTrack>(
+  const { data, isLoading, error } = useSWR<RecentTrack, Error>(
     "/api/music/recent-track",
     fetcher,
     {
@@ -60,9 +60,12 @@ export default function NowPlaying() {
     data && setImageURL(data.track.image);
   }, [data]);
 
-  if (!data || isLoading) {
+  if (!data || isLoading || error) {
     return (
-      <div className="grid grid-cols-[4rem_1fr_2.25rem] items-center gap-2.5 overflow-hidden rounded-md border border-primary/55 p-2 @xs/now-playing:gap-[0.6875rem] @[21.25rem]/now-playing:grid-cols-[4.5rem_1fr_2.25rem] @sm/now-playing:grid-cols-[5rem_1fr_2.25rem] @[340px]/now-playing:gap-3">
+      <div
+        className="grid grid-cols-[4rem_1fr_2.25rem] items-center gap-2.5 overflow-hidden rounded-md border border-primary/55 p-2 @xs/now-playing:gap-[0.6875rem] @[21.25rem]/now-playing:grid-cols-[4.5rem_1fr_2.25rem] @sm/now-playing:grid-cols-[5rem_1fr_2.25rem] @[340px]/now-playing:gap-3"
+        title={error && "Failed to load"}
+      >
         <div className="aspect-square rounded bg-gray-900 ring-1 ring-gray-900"></div>
         <div className="flex flex-col gap-y-2 @[340px]/now-playing:gap-y-[9px]">
           <div className="h-2.5 w-1/2 rounded bg-gray-900 @[340px]/now-playing:h-3"></div>

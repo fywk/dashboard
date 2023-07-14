@@ -3,7 +3,6 @@ import { z } from "zod";
 import { generateURL } from "./generateURL";
 
 import type {
-  Album,
   LastfmParams,
   Limit,
   Period,
@@ -13,14 +12,16 @@ import type {
 
 const TopAlbumsSchema = z.object({
   topalbums: z.object({
-    album: z.array(
-      z.object({
-        artist: z.object({ name: z.string() }),
-        image: z.array(z.object({ "#text": z.string().url() })),
-        playcount: z.string(),
-        name: z.string(),
-      })
-    ),
+    album: z
+      .array(
+        z.object({
+          artist: z.object({ name: z.string() }),
+          image: z.array(z.object({ "#text": z.string().url() })).length(4),
+          playcount: z.string(),
+          name: z.string(),
+        })
+      )
+      .nonempty(),
     "@attr": z.object({ total: z.string() }),
   }),
 });
@@ -32,24 +33,27 @@ const TopAlbumsSchema = z.object({
 export async function getTopAlbums(
   period: Period,
   limit: Limit = 6
-): Promise<TopAlbums> {
+): Promise<TopAlbums | undefined> {
   const params: LastfmParams = {
     method: "user.gettopalbums",
     period,
     limit,
   };
 
-  const res = await fetch(generateURL(params), { cache: "no-store" });
-  const { topalbums } = TopAlbumsSchema.parse(await res.json());
+  const response = await fetch(generateURL(params), { cache: "no-store" });
+  const result = TopAlbumsSchema.safeParse(await response.json());
 
-  const albums: TopAlbums = topalbums.album.map(
-    (album): Album => ({
-      name: album.name,
-      artist: album.artist.name,
-      image: album.image.at(3)?.["#text"] ?? "/images/album-error.jpg",
-      playcount: album.playcount,
-    })
-  );
+  if (!result.success) {
+    return;
+  }
+
+  const { topalbums } = result.data;
+  const albums: TopAlbums = topalbums.album.map((album) => ({
+    name: album.name,
+    artist: album.artist.name,
+    image: album.image.at(3)?.["#text"] ?? "/images/album-error.jpg",
+    playcount: album.playcount,
+  }));
 
   return albums;
 }
@@ -57,15 +61,23 @@ export async function getTopAlbums(
 /**
  * @param period - The time period over which to retrieve top albums for.
  */
-export async function getTotalAlbums(period: Period): Promise<TotalStats> {
+export async function getTotalAlbums(
+  period: Period
+): Promise<TotalStats | undefined> {
   const params: LastfmParams = {
     method: "user.gettopalbums",
     period,
     limit: 1,
   };
 
-  const res = await fetch(generateURL(params), { cache: "no-store" });
-  const { topalbums } = TopAlbumsSchema.parse(await res.json());
+  const response = await fetch(generateURL(params), { cache: "no-store" });
+  const result = TopAlbumsSchema.safeParse(await response.json());
+
+  if (!result.success) {
+    return;
+  }
+
+  const { topalbums } = result.data;
 
   return { total: topalbums["@attr"].total };
 }

@@ -3,7 +3,6 @@ import { z } from "zod";
 import { generateURL } from "./generateURL";
 
 import type {
-  Artist,
   LastfmParams,
   Limit,
   Period,
@@ -13,12 +12,14 @@ import type {
 
 const TopArtistsSchema = z.object({
   topartists: z.object({
-    artist: z.array(
-      z.object({
-        name: z.string(),
-        playcount: z.string(),
-      })
-    ),
+    artist: z
+      .array(
+        z.object({
+          name: z.string(),
+          playcount: z.string(),
+        })
+      )
+      .nonempty(),
     "@attr": z.object({ total: z.string() }),
   }),
 });
@@ -30,22 +31,25 @@ const TopArtistsSchema = z.object({
 export async function getTopArtists(
   period: Period,
   limit: Limit = 6
-): Promise<TopArtists> {
+): Promise<TopArtists | undefined> {
   const params: LastfmParams = {
     method: "user.gettopartists",
     period,
     limit,
   };
 
-  const res = await fetch(generateURL(params), { cache: "no-store" });
-  const { topartists } = TopArtistsSchema.parse(await res.json());
+  const response = await fetch(generateURL(params), { cache: "no-store" });
+  const result = TopArtistsSchema.safeParse(await response.json());
 
-  const artists: TopArtists = topartists.artist.map(
-    (artist): Artist => ({
-      name: artist.name,
-      playcount: artist.playcount,
-    })
-  );
+  if (!result.success) {
+    return;
+  }
+
+  const { topartists } = result.data;
+  const artists: TopArtists = topartists.artist.map((artist) => ({
+    name: artist.name,
+    playcount: artist.playcount,
+  }));
 
   return artists;
 }
@@ -53,15 +57,23 @@ export async function getTopArtists(
 /**
  * @param period - The time period over which to retrieve top artists for.
  */
-export async function getTotalArtists(period: Period): Promise<TotalStats> {
+export async function getTotalArtists(
+  period: Period
+): Promise<TotalStats | undefined> {
   const params: LastfmParams = {
     method: "user.gettopartists",
     period,
     limit: 1,
   };
 
-  const res = await fetch(generateURL(params), { cache: "no-store" });
-  const { topartists } = TopArtistsSchema.parse(await res.json());
+  const response = await fetch(generateURL(params), { cache: "no-store" });
+  const result = TopArtistsSchema.safeParse(await response.json());
+
+  if (!result.success) {
+    return;
+  }
+
+  const { topartists } = result.data;
 
   return { total: topartists["@attr"].total };
 }
