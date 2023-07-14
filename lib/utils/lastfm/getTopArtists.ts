@@ -31,7 +31,7 @@ const TopArtistsSchema = z.object({
 export async function getTopArtists(
   period: Period,
   limit: Limit = 6
-): Promise<TopArtists | undefined> {
+): Promise<TopArtists | null> {
   const params: LastfmParams = {
     method: "user.gettopartists",
     period,
@@ -41,9 +41,7 @@ export async function getTopArtists(
   const response = await fetch(generateURL(params), { cache: "no-store" });
   const result = TopArtistsSchema.safeParse(await response.json());
 
-  if (!result.success) {
-    return;
-  }
+  if (!result.success) return null;
 
   const { topartists } = result.data;
   const artists: TopArtists = topartists.artist.map((artist) => ({
@@ -59,7 +57,7 @@ export async function getTopArtists(
  */
 export async function getTotalArtists(
   period: Period
-): Promise<TotalStats | undefined> {
+): Promise<TotalStats | null> {
   const params: LastfmParams = {
     method: "user.gettopartists",
     period,
@@ -69,9 +67,7 @@ export async function getTotalArtists(
   const response = await fetch(generateURL(params), { cache: "no-store" });
   const result = TopArtistsSchema.safeParse(await response.json());
 
-  if (!result.success) {
-    return;
-  }
+  if (!result.success) return null;
 
   const { topartists } = result.data;
 

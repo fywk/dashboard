@@ -70,7 +70,7 @@ async function Story({ storyID }: { storyID: number }) {
   );
 }
 
-async function TopStories({ data }: { data: Promise<number[] | undefined> }) {
+async function TopStories({ data }: { data: Promise<number[] | null> }) {
   const stories = await data;
 
   if (!stories) {

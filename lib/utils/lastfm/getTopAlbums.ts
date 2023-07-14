@@ -33,7 +33,7 @@ const TopAlbumsSchema = z.object({
 export async function getTopAlbums(
   period: Period,
   limit: Limit = 6
-): Promise<TopAlbums | undefined> {
+): Promise<TopAlbums | null> {
   const params: LastfmParams = {
     method: "user.gettopalbums",
     period,
@@ -43,9 +43,7 @@ export async function getTopAlbums(
   const response = await fetch(generateURL(params), { cache: "no-store" });
   const result = TopAlbumsSchema.safeParse(await response.json());
 
-  if (!result.success) {
-    return;
-  }
+  if (!result.success) return null;
 
   const { topalbums } = result.data;
   const albums: TopAlbums = topalbums.album.map((album) => ({
@@ -63,7 +61,7 @@ export async function getTopAlbums(
  */
 export async function getTotalAlbums(
   period: Period
-): Promise<TotalStats | undefined> {
+): Promise<TotalStats | null> {
   const params: LastfmParams = {
     method: "user.gettopalbums",
     period,
@@ -73,9 +71,7 @@ export async function getTotalAlbums(
   const response = await fetch(generateURL(params), { cache: "no-store" });
   const result = TopAlbumsSchema.safeParse(await response.json());
 
-  if (!result.success) {
-    return;
-  }
+  if (!result.success) return null;
 
   const { topalbums } = result.data;
 

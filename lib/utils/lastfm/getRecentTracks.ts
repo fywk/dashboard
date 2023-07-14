@@ -34,7 +34,7 @@ const RecentTracksSchema = z.object({
 export async function getRecentTracks(
   from?: Timestamp,
   limit: Limit = 1
-): Promise<RecentTrack | undefined> {
+): Promise<RecentTrack | null> {
   const params: LastfmParams = {
     method: "user.getrecenttracks",
     limit,
@@ -45,27 +45,25 @@ export async function getRecentTracks(
   const response = await fetch(generateURL(params));
   const result = RecentTracksSchema.safeParse(await response.json());
 
-  if (!result.success) {
-    return;
-  }
+  if (!result.success) return null;
 
   const { recenttracks } = result.data;
   const firstTrack = recenttracks.track.at(0);
 
-  if (firstTrack !== undefined) {
-    const { artist, image, album, name, loved } = firstTrack;
-    const timestamp = firstTrack.date !== undefined && +firstTrack.date.uts;
-    const track: RecentTrack["track"] = {
-      name,
-      artist: artist.name,
-      album: album["#text"],
-      image: image.at(3)?.["#text"] ?? "/images/album-error.jpg",
-      ...(timestamp && { timestamp }),
-      loved: loved === "1",
-    };
+  if (!firstTrack) return null;
 
-    const total: RecentTrack["total"] = recenttracks["@attr"].total;
+  const { artist, image, album, name, loved } = firstTrack;
+  const timestamp = firstTrack.date !== undefined && +firstTrack.date.uts;
+  const track: RecentTrack["track"] = {
+    name,
+    artist: artist.name,
+    album: album["#text"],
+    image: image.at(3)?.["#text"] ?? "/images/album-error.jpg",
+    ...(timestamp && { timestamp }),
+    loved: loved === "1",
+  };
 
-    return { track, total };
-  }
+  const total: RecentTrack["total"] = recenttracks["@attr"].total;
+
+  return { track, total };
 }

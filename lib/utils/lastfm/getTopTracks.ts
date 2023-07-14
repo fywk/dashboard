@@ -33,7 +33,7 @@ const TopTracksSchema = z.object({
 export async function getTopTracks(
   period: Period,
   limit: Limit = 6
-): Promise<TopTracks | undefined> {
+): Promise<TopTracks | null> {
   const params: LastfmParams = {
     method: "user.gettoptracks",
     period,
@@ -43,9 +43,7 @@ export async function getTopTracks(
   const response = await fetch(generateURL(params), { cache: "no-store" });
   const result = TopTracksSchema.safeParse(await response.json());
 
-  if (!result.success) {
-    return;
-  }
+  if (!result.success) return null;
 
   const { toptracks } = result.data;
   const tracks: TopTracks = toptracks.track.map((track) => ({
@@ -61,7 +59,7 @@ export async function getTopTracks(
  */
 export async function getTotalTracks(
   period: Period
-): Promise<TotalStats | undefined> {
+): Promise<TotalStats | null> {
   const params: LastfmParams = {
     method: "user.gettoptracks",
     period,
@@ -71,9 +69,7 @@ export async function getTotalTracks(
   const response = await fetch(generateURL(params), { cache: "no-store" });
   const result = TopTracksSchema.safeParse(await response.json());
 
-  if (!result.success) {
-    return;
-  }
+  if (!result.success) return null;
 
   const { toptracks } = result.data;
 

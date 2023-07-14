@@ -16,7 +16,7 @@ import {
 import type { RecentTrack, TotalStats } from "@/types/lastfm";
 
 type Data<T extends RecentTrack | TotalStats> = {
-  data: Promise<T | undefined>;
+  data: Promise<T | null>;
 };
 
 async function Total<T extends RecentTrack | TotalStats>({
