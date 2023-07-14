@@ -1,33 +1,53 @@
-type Story = {
-  id: number;
-  deleted?: boolean;
-  type: string;
-  by?: string;
-  time?: number;
-  text?: string;
-  dead?: boolean;
-  kids?: number[];
-  url?: string;
-  score?: number;
-  title?: string;
-  descendants?: number;
-};
+import { z } from "zod";
+
+import type { NumericRange } from "../types/utility";
+
+type Limit = NumericRange<1, 8>;
+
+type Story = z.infer<typeof StorySchema>;
 
 const API_ROOT = "https://hacker-news.firebaseio.com/v0";
 
-export async function getTopStories(limit: number): Promise<number[]> {
-  const res = await fetch(
+const TopStoriesSchema = z.array(z.number()).nonempty();
+
+const StorySchema = z.object({
+  descendants: z.number().optional(),
+  id: z.number(),
+  score: z.number().optional(),
+  time: z.number().optional(),
+  title: z.string().optional(),
+  url: z.string().optional(),
+});
+
+/**
+ * @param limit - The number of items to fetch. Positive integer only, in the range of 1-8 inclusive.
+ */
+export async function getTopStories(
+  limit: Limit
+): Promise<number[] | undefined> {
+  const response = await fetch(
     `${API_ROOT}/topstories.json?orderBy="$key"&limitToFirst=${limit}`,
     {
       cache: "no-store",
     }
   );
+  const result = TopStoriesSchema.safeParse(await response.json());
 
-  return res.json() as unknown as number[];
+  if (!result.success) return;
+
+  return result.data;
 }
 
-export async function getStoryItem(id: number): Promise<Story> {
-  const res = await fetch(`${API_ROOT}/item/${id}.json`, { cache: "no-store" });
+/**
+ * @param id - Hacker News unique item ID
+ */
+export async function getStoryItem(id: number): Promise<Story | undefined> {
+  const response = await fetch(`${API_ROOT}/item/${id}.json`, {
+    cache: "no-store",
+  });
+  const result = StorySchema.safeParse(await response.json());
 
-  return res.json() as unknown as Story;
+  if (!result.success) return;
+
+  return result.data;
 }
