@@ -5,14 +5,18 @@ import { getTopArtists } from "@/utils/lastfm";
 import { getArtistImage } from "@/utils/spotify";
 
 async function ArtistAvatar({ name }: { name: string }) {
-  const { url, width, height } = await getArtistImage(name);
+  const artistImage = await getArtistImage(name);
+
+  if (!artistImage) return null;
+
+  const { url, width, height } = artistImage;
 
   return (
     <Image
       src={url}
       className="h-full w-full object-cover"
-      width={+width}
-      height={+height}
+      width={width}
+      height={height}
       alt=""
     />
   );
