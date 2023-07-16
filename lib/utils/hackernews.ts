@@ -16,7 +16,7 @@ const StorySchema = z.object({
   score: z.number().optional(),
   time: z.number().optional(),
   title: z.string().optional(),
-  url: z.string().optional(),
+  url: z.string().url().optional(),
 });
 
 /**

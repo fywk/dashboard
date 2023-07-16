@@ -60,7 +60,7 @@ export default function NowPlaying() {
     data && setImageURL(data.track.image);
   }, [data]);
 
-  if (!data || isLoading || error) {
+  if (!data || isLoading) {
     return (
       <div
         className="grid grid-cols-[4rem_1fr_2.25rem] items-center gap-2.5 overflow-hidden rounded-md border border-primary/55 p-2 @xs/now-playing:gap-[0.6875rem] @[21.25rem]/now-playing:grid-cols-[4.5rem_1fr_2.25rem] @sm/now-playing:grid-cols-[5rem_1fr_2.25rem] @[340px]/now-playing:gap-3"
