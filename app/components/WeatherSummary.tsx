@@ -2,12 +2,12 @@
 
 import { IconDropCircle, IconGauge } from "@tabler/icons-react";
 
-import useCurrentWeather from "@/hooks/useCurrentWeather";
-import useWeatherForecast from "@/hooks/useWeatherForecast";
+import useCurrentWeather from "@/lib/hooks/useCurrentWeather";
+import useWeatherForecast from "@/lib/hooks/useWeatherForecast";
 
 import WeatherIcon from "./WeatherIcon";
 
-import type { SearchParams } from "@/types/misc";
+import type { SearchParams } from "@/lib/types/misc";
 
 export default function WeatherSummary({ city, country }: SearchParams) {
   const { data: currentWeather, isLoading: isLoadingCurrentWeather } =

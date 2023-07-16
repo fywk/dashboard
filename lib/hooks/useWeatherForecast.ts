@@ -1,8 +1,8 @@
 import useSWRImmutable from "swr/immutable";
 
-import fetcher from "@/utils/fetcher";
+import fetcher from "@/lib/utils/fetcher";
 
-import type { WeatherForecast } from "@/utils/openweather";
+import type { WeatherForecast } from "@/lib/services/openweather";
 
 export default function useWeatherForecast() {
   const { data, isLoading, error } = useSWRImmutable<WeatherForecast, Error>(

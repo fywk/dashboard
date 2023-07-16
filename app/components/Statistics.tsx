@@ -11,9 +11,9 @@ import {
   getTotalAlbums,
   getTotalArtists,
   getTotalTracks,
-} from "@/utils/lastfm";
+} from "@/lib/services/lastfm";
 
-import type { RecentTrack, TotalStats } from "@/types/lastfm";
+import type { RecentTrack, TotalStats } from "@/lib/types/lastfm";
 
 type Data<T extends RecentTrack | TotalStats> = {
   data: Promise<T | null>;

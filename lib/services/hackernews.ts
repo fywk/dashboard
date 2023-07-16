@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import type { NumericRange } from "../types/utility";
+import type { NumericRange } from "@/lib/types/utility";
 
 type Limit = NumericRange<1, 8>;
 

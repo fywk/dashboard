@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Suspense } from "react";
 
-import { getTopAlbums } from "@/utils/lastfm";
+import { getTopAlbums } from "@/lib/services/lastfm";
 
 function TopAlbumsSkeleton() {
   return [...Array<undefined>(6)].map((_, i) => (

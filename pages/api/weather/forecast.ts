@@ -1,4 +1,4 @@
-import { getWeatherForecast } from "@/utils/openweather";
+import { getWeatherForecast } from "@/lib/services/openweather";
 
 import type { NextRequest } from "next/server";
 

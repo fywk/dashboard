@@ -3,7 +3,7 @@
 import pluralize from "pluralize";
 import { useEffect, useState } from "react";
 
-import dayjs from "@/utils/dayjs";
+import dayjs from "@/lib/utils/dayjs";
 
 import Section from "./Section";
 

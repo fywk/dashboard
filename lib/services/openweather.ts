@@ -2,7 +2,7 @@ import { z } from "zod";
 
 import { env } from "@/app/env.mjs";
 
-import type { CurrentWeather } from "@/types/openweather";
+import type { CurrentWeather } from "@/lib/types/openweather";
 
 export type WeatherForecast = z.infer<typeof WeatherForecastSchema>;
 

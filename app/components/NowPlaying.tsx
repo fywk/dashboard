@@ -7,10 +7,10 @@ import useSWR from "swr";
 import TimeAgo from "timeago-react";
 
 import dayjs from "@/lib/utils/dayjs";
+import fetcher from "@/lib/utils/fetcher";
 import { siteConfig as site } from "@/lib/utils/site-config";
-import fetcher from "@/utils/fetcher";
 
-import type { RecentTrack } from "@/types/lastfm";
+import type { RecentTrack } from "@/lib/types/lastfm";
 
 function EqualizerIcon() {
   return (

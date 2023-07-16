@@ -1,4 +1,4 @@
-import { getRecentTracks } from "@/utils/lastfm";
+import { getRecentTracks } from "@/lib/services/lastfm";
 
 export const config = {
   runtime: "edge",

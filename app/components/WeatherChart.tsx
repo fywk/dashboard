@@ -11,9 +11,9 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
-import useCurrentWeather from "@/hooks/useCurrentWeather";
-import useWeatherForecast from "@/hooks/useWeatherForecast";
-import dayjs from "@/utils/dayjs";
+import useCurrentWeather from "@/lib/hooks/useCurrentWeather";
+import useWeatherForecast from "@/lib/hooks/useWeatherForecast";
+import dayjs from "@/lib/utils/dayjs";
 
 import type { ChartData, ChartOptions } from "chart.js";
 

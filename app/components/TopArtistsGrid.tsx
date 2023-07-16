@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { Suspense } from "react";
 
-import { getTopArtists } from "@/utils/lastfm";
-import { getArtistImage } from "@/utils/spotify";
+import { getTopArtists } from "@/lib/services/lastfm";
+import { getArtistImage } from "@/lib/services/spotify";
 
 async function ArtistAvatar({ name }: { name: string }) {
   const artistImage = await getArtistImage(name);
