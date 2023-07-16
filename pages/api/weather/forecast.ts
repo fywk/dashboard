@@ -10,9 +10,21 @@ export default async function handler(request: NextRequest) {
   const latitude = request.geo?.latitude ?? "3.1415";
   const longitude = request.geo?.longitude ?? "101.6865";
 
-  const forecast = await getWeatherForecast(latitude, longitude);
+  const weatherForecast = await getWeatherForecast(latitude, longitude);
 
-  return new Response(JSON.stringify(forecast), {
+  if (!weatherForecast) {
+    return new Response(
+      JSON.stringify({ error: "An error occurred while trying to fetch." }),
+      {
+        status: 400,
+        headers: {
+          "content-type": "application/json",
+        },
+      }
+    );
+  }
+
+  return new Response(JSON.stringify(weatherForecast), {
     status: 200,
     headers: {
       "content-type": "application/json",

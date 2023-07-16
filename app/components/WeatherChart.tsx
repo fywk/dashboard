@@ -27,24 +27,24 @@ ChartJS.register(
 );
 
 export default function WeatherChart() {
-  const { currentWeather, isLoadingCurrentWeather } = useCurrentWeather();
-  const { weatherForecast, isLoadingWeatherForecast } = useWeatherForecast();
+  const { data: currentWeather, isLoading: isLoadingCurrentWeather } =
+    useCurrentWeather();
+  const { data: weatherForecast, isLoading: isLoadingWeatherForecast } =
+    useWeatherForecast();
 
   // prettier-ignore
   if (!currentWeather || isLoadingCurrentWeather || !weatherForecast || isLoadingWeatherForecast) {
-    return (
-      <div className="h-[10rem] w-full rounded @1.5xl:h-[11rem] bg-gray-900/50"></div>
-    );
+    return <div className="h-[10rem] w-full rounded bg-gray-900/50 @1.5xl:h-[11rem]"></div>;
   }
 
-  const timestamps: string[] = [];
-  const temperatures = [currentWeather.main.temp];
+  const timestamps = ["Now"];
+  const temperatures = [currentWeather.temp];
 
   weatherForecast.list.forEach((item) => {
     timestamps.push(
       dayjs
         .unix(item.dt)
-        .utcOffset(weatherForecast.city.timezone / 60)
+        .utcOffset(weatherForecast.city.timezone / 60) // convert UTC offset in seconds to minutes
         .format("HH:mm")
     );
     temperatures.push(item.main.temp);

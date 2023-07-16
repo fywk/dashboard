@@ -10,8 +10,9 @@ import WeatherIcon from "./WeatherIcon";
 import type { SearchParams } from "@/types/misc";
 
 export default function WeatherSummary({ city, country }: SearchParams) {
-  const { currentWeather, isLoadingCurrentWeather } = useCurrentWeather();
-  const { weatherForecast } = useWeatherForecast();
+  const { data: currentWeather, isLoading: isLoadingCurrentWeather } =
+    useCurrentWeather();
+  const { data: weatherForecast } = useWeatherForecast();
 
   if (!currentWeather || isLoadingCurrentWeather) {
     return (
@@ -44,17 +45,24 @@ export default function WeatherSummary({ city, country }: SearchParams) {
     );
   }
 
-  const { id, description, icon: iconCode } = currentWeather.weather[0];
-  const { temp, pressure, humidity } = currentWeather.main;
+  const {
+    id,
+    description,
+    icon: iconCode,
+    temp,
+    pressure,
+    humidity,
+  } = currentWeather;
 
-  const temperatures = [temp]; // include the current temperature to the array for calculating the min and max temperatures
-  weatherForecast?.list.forEach((item) => temperatures.push(item.main.temp));
-  const maxTemp = weatherForecast
-    ? Math.round(Math.max(...temperatures))
-    : "--";
-  const minTemp = weatherForecast
-    ? Math.round(Math.min(...temperatures))
-    : "--";
+  // Calculate the min and max temperatures from the weather forecast
+  let minTemp: string | number = "--";
+  let maxTemp: string | number = "--";
+  if (weatherForecast) {
+    const temperatures = [temp]; // include the current temperature for calculating the min and max temperatures too
+    weatherForecast.list.forEach((item) => temperatures.push(item.main.temp));
+    minTemp = Math.round(Math.min(...temperatures));
+    maxTemp = Math.round(Math.max(...temperatures));
+  }
 
   return (
     <div className="grid w-full grid-cols-[55%_1fr] gap-4 @lg/section:grid-cols-none @lg/section:grid-rows-[max-content_max-content]">
