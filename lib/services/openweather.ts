@@ -43,10 +43,7 @@ const WeatherForecastSchema = z.object({
  * @param lat - Geographical latitude coordinate in decimal degrees format.
  * @param lon - Geographical longitude coordinate in decimal degrees format.
  */
-export async function getCurrentWeather(
-  lat: string,
-  lon: string
-): Promise<CurrentWeather | null> {
+export async function getCurrentWeather(lat: string, lon: string): Promise<CurrentWeather | null> {
   const currentWeatherEndpoint = `${API_ROOT}/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
 
   const response = await fetch(currentWeatherEndpoint);

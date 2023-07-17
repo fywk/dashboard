@@ -59,9 +59,7 @@ async function getAccessToken(): Promise<AccessToken | null> {
   return result.data;
 }
 
-export async function getArtistImage(
-  artistName: string
-): Promise<Image | null> {
+export async function getArtistImage(artistName: string): Promise<Image | null> {
   const responseAccessToken = await getAccessToken();
 
   if (!responseAccessToken) return null;
@@ -78,9 +76,7 @@ export async function getArtistImage(
     }
   );
 
-  const result = SearchArtistSchema.safeParse(
-    await responseSearchArtists.json()
-  );
+  const result = SearchArtistSchema.safeParse(await responseSearchArtists.json());
 
   if (!result.success) return null;
 

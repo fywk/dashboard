@@ -8,19 +8,12 @@ type Props = {
   children: React.ReactNode;
 };
 
-export default function Section({
-  title,
-  subtitle,
-  accentColor,
-  customClasses,
-  children,
-}: Props) {
+export default function Section({ title, subtitle, accentColor, customClasses, children }: Props) {
   return (
     <section
       className={clsx(
         "grid w-full grid-rows-[auto_1fr] gap-y-4 @container/section min-[1440px]:gap-y-4.5",
-        accentColor === "secondary" &&
-          "[--border-accent-color:var(--color-secondary)]",
+        accentColor === "secondary" && "[--border-accent-color:var(--color-secondary)]",
         customClasses
       )}
     >
@@ -37,9 +30,7 @@ export default function Section({
         </div>
         <div className="mb-px h-px w-full bg-primary/50"></div>
       </div>
-      <div className="px-0.5 @1.5xl/quadrant:px-1 @1.5xl/section:px-1">
-        {children}
-      </div>
+      <div className="px-0.5 @1.5xl/quadrant:px-1 @1.5xl/section:px-1">{children}</div>
     </section>
   );
 }

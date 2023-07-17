@@ -13,15 +13,12 @@ export default async function handler(request: NextRequest) {
   const currentWeather = await getCurrentWeather(latitude, longitude);
 
   if (!currentWeather) {
-    return new Response(
-      JSON.stringify({ error: "An error occurred while trying to fetch." }),
-      {
-        status: 400,
-        headers: {
-          "content-type": "application/json",
-        },
-      }
-    );
+    return new Response(JSON.stringify({ error: "An error occurred while trying to fetch." }), {
+      status: 400,
+      headers: {
+        "content-type": "application/json",
+      },
+    });
   }
 
   return new Response(JSON.stringify(currentWeather), {

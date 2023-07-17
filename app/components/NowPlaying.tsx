@@ -21,27 +21,9 @@ function EqualizerIcon() {
       viewBox="0 0 24 24"
       fill="currentColor"
     >
-      <rect
-        className="eq-bar eq-bar--1"
-        x="4"
-        y="4"
-        width="3.7"
-        height="8"
-      ></rect>
-      <rect
-        className="eq-bar eq-bar--2"
-        x="10.2"
-        y="4"
-        width="3.7"
-        height="16"
-      ></rect>
-      <rect
-        className="eq-bar eq-bar--3"
-        x="16.3"
-        y="4"
-        width="3.7"
-        height="11"
-      ></rect>
+      <rect className="eq-bar eq-bar--1" x="4" y="4" width="3.7" height="8"></rect>
+      <rect className="eq-bar eq-bar--2" x="10.2" y="4" width="3.7" height="16"></rect>
+      <rect className="eq-bar eq-bar--3" x="16.3" y="4" width="3.7" height="11"></rect>
     </svg>
   );
 }
@@ -52,7 +34,7 @@ export default function NowPlaying() {
     "/api/music/recent-track",
     fetcher,
     {
-      refreshInterval: 30_000, // 30 seconds in milliseconds
+      refreshInterval: 30_000, // refresh every 30 seconds
     }
   );
 

@@ -2,13 +2,7 @@ import { z } from "zod";
 
 import { generateURL } from "./generateURL";
 
-import type {
-  LastfmParams,
-  Limit,
-  Period,
-  TopTracks,
-  TotalStats,
-} from "@/lib/types/lastfm";
+import type { LastfmParams, Limit, Period, TopTracks, TotalStats } from "@/lib/types/lastfm";
 
 const TopTracksSchema = z.object({
   toptracks: z.object({
@@ -30,10 +24,7 @@ const TopTracksSchema = z.object({
  * @param period - The time period over which to retrieve top tracks for.
  * @param limit - The number of results to fetch. Defaults to 6. Maximum is 10.
  */
-export async function getTopTracks(
-  period: Period,
-  limit: Limit = 6
-): Promise<TopTracks | null> {
+export async function getTopTracks(period: Period, limit: Limit = 6): Promise<TopTracks | null> {
   const params: LastfmParams = {
     method: "user.gettoptracks",
     period,
@@ -57,9 +48,7 @@ export async function getTopTracks(
 /**
  * @param period - The time period over which to retrieve top tracks for.
  */
-export async function getTotalTracks(
-  period: Period
-): Promise<TotalStats | null> {
+export async function getTotalTracks(period: Period): Promise<TotalStats | null> {
   const params: LastfmParams = {
     method: "user.gettoptracks",
     period,

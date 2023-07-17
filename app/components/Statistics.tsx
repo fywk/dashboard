@@ -1,9 +1,4 @@
-import {
-  IconMicrophone2,
-  IconMusic,
-  IconPlayerPlay,
-  IconVinyl,
-} from "@tabler/icons-react";
+import { IconMicrophone2, IconMusic, IconPlayerPlay, IconVinyl } from "@tabler/icons-react";
 import { Suspense } from "react";
 
 import {
@@ -19,9 +14,7 @@ type Data<T extends RecentTrack | TotalStats> = {
   data: Promise<T | null>;
 };
 
-async function Total<T extends RecentTrack | TotalStats>({
-  data,
-}: Data<T>): Promise<string> {
+async function Total<T extends RecentTrack | TotalStats>({ data }: Data<T>): Promise<string> {
   const result = await data;
   return result?.total ?? "---";
 }
@@ -46,7 +39,7 @@ function Category({
 
 export default function Statistics() {
   const ONE_WEEK_IN_SECONDS = 604_800;
-  const unixTimestamp = Math.floor(Date.now() / 1000); // get current Unix timestamp in seconds format (10-digit)
+  const unixTimestamp = Math.floor(Date.now() / 1000); // get the current Unix timestamp in seconds format (10-digit)
   const timestampOf7DaysAgo = unixTimestamp - ONE_WEEK_IN_SECONDS;
 
   const playsData = getRecentTracks(timestampOf7DaysAgo);
@@ -72,10 +65,7 @@ export default function Statistics() {
       <Category
         title="Tracks"
         icon={
-          <IconMusic
-            className="h-7.5 w-7.5 @1.5xl/section:h-8 @1.5xl/section:w-8"
-            stroke={1.5}
-          />
+          <IconMusic className="h-7.5 w-7.5 @1.5xl/section:h-8 @1.5xl/section:w-8" stroke={1.5} />
         }
       >
         <Suspense fallback="---">
@@ -85,10 +75,7 @@ export default function Statistics() {
       <Category
         title="Albums"
         icon={
-          <IconVinyl
-            className="h-7.5 w-7.5 @1.5xl/section:h-8 @1.5xl/section:w-8"
-            stroke={1.5}
-          />
+          <IconVinyl className="h-7.5 w-7.5 @1.5xl/section:h-8 @1.5xl/section:w-8" stroke={1.5} />
         }
       >
         <Suspense fallback="---">
