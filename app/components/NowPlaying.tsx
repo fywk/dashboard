@@ -34,7 +34,7 @@ export default function NowPlaying() {
     "/api/music/recent-track",
     fetcher,
     {
-      refreshInterval: 30_000, // 30 seconds in milliseconds
+      refreshInterval: 30_000, // refresh every 30 seconds
     }
   );
 
