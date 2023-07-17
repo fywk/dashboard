@@ -2,12 +2,7 @@ import { z } from "zod";
 
 import { generateURL } from "./generateURL";
 
-import type {
-  LastfmParams,
-  Limit,
-  RecentTrack,
-  Timestamp,
-} from "@/lib/types/lastfm";
+import type { LastfmParams, Limit, RecentTrack, Timestamp } from "@/lib/types/lastfm";
 
 const RecentTracksSchema = z.object({
   recenttracks: z.object({

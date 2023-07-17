@@ -7,9 +7,7 @@ import TopAlbumsGrid from "./TopAlbumsGrid";
 import TopArtistsGrid from "./TopArtistsGrid";
 
 export default function Music() {
-  const SUBTITLE_STYLE = clsx(
-    "mb-2 text-sm text-gray-600 @1.5xl/section:text-base"
-  );
+  const SUBTITLE_STYLE = clsx("mb-2 text-sm text-gray-600 @1.5xl/section:text-base");
 
   return (
     <Section title="Music" accentColor="secondary">

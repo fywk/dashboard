@@ -41,9 +41,7 @@ function City({ name, abbr, time }: CityProps) {
       <div className="-mx-0.5 flex flex-col gap-y-0.5 bg-gray-950 py-0.5 text-center @sm/section:gap-y-1 @1.5xl/section:py-1">
         <p className="text-[9px] uppercase !leading-none @lg/section:text-[10px] @1.5xl/section:text-[11px] @[45rem]/section:text-xs">
           <abbr className="@xl/section:hidden">{abbr}</abbr>
-          <span className="hidden tracking-tight @xl/section:inline">
-            {name}
-          </span>
+          <span className="hidden tracking-tight @xl/section:inline">{name}</span>
         </p>
         <time className="font-oxanium text-[9px] font-medium !leading-none text-gray-100 @sm/section:text-[10px] @xl/section:-mb-px @xl/section:text-xs @1.5xl/section:text-sm">
           {time}
@@ -78,16 +76,12 @@ export default function Time() {
       const hours = durationSinceCreated.hours(); // 0-23
       const minutes = durationSinceCreated.minutes(); // 0-59
       const pluralizedDays = days >= 1 ? pluralize("day", days, true) : days;
-      const pluralizedHours =
-        hours >= 1 ? pluralize("hour", hours, true) : hours;
-      const pluralizedMinutes =
-        minutes >= 1 ? pluralize("min", minutes, true) : minutes;
+      const pluralizedHours = hours >= 1 ? pluralize("hour", hours, true) : hours;
+      const pluralizedMinutes = minutes >= 1 ? pluralize("min", minutes, true) : minutes;
 
       setUptime({
         display: durationSinceCreated.asMinutes() >= 1,
-        duration: [pluralizedDays, pluralizedHours, pluralizedMinutes]
-          .filter(Boolean)
-          .join(", "),
+        duration: [pluralizedDays, pluralizedHours, pluralizedMinutes].filter(Boolean).join(", "),
         durationISO: dayjs.duration({ days, hours, minutes }).toISOString(),
       });
       setTimeUTC(dayjsUTC.format(TIME_FORMAT));
@@ -108,9 +102,7 @@ export default function Time() {
   return (
     <Section
       title="Time"
-      subtitle={
-        uptime && Object.keys(uptime).length !== 0 && <Uptime {...uptime} />
-      }
+      subtitle={uptime && Object.keys(uptime).length !== 0 && <Uptime {...uptime} />}
       accentColor="secondary"
     >
       <div className="mt-1 grid grid-cols-2 gap-x-4 gap-y-1 @md/section:mt-[5px] @xl/section:gap-x-4.5 @1.5xl/section:gap-x-5">

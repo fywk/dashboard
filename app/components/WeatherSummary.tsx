@@ -10,8 +10,7 @@ import WeatherIcon from "./WeatherIcon";
 import type { SearchParams } from "@/lib/types/misc";
 
 export default function WeatherSummary({ city, country }: SearchParams) {
-  const { data: currentWeather, isLoading: isLoadingCurrentWeather } =
-    useCurrentWeather();
+  const { data: currentWeather, isLoading: isLoadingCurrentWeather } = useCurrentWeather();
   const { data: weatherForecast } = useWeatherForecast();
 
   if (!currentWeather || isLoadingCurrentWeather) {
@@ -45,14 +44,7 @@ export default function WeatherSummary({ city, country }: SearchParams) {
     );
   }
 
-  const {
-    id,
-    description,
-    icon: iconCode,
-    temp,
-    pressure,
-    humidity,
-  } = currentWeather;
+  const { id, description, icon: iconCode, temp, pressure, humidity } = currentWeather;
 
   // Calculate the min and max temperatures from the weather forecast
   let minTemp: string | number = "--";

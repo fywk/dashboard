@@ -23,12 +23,9 @@ const StorySchema = z.object({
  * @param limit - The number of items to fetch. Positive integer only, in the range of 1-8 inclusive.
  */
 export async function getTopStories(limit: Limit): Promise<number[] | null> {
-  const response = await fetch(
-    `${API_ROOT}/topstories.json?orderBy="$key"&limitToFirst=${limit}`,
-    {
-      cache: "no-store",
-    }
-  );
+  const response = await fetch(`${API_ROOT}/topstories.json?orderBy="$key"&limitToFirst=${limit}`, {
+    cache: "no-store",
+  });
   const result = TopStoriesSchema.safeParse(await response.json());
 
   if (!result.success) return null;

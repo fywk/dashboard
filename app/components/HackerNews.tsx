@@ -58,11 +58,7 @@ async function Story({ storyID }: { storyID: number }) {
         >
           {relativeTimeSincePosted}
         </time>
-        <a
-          href={hnItemURL}
-          className="w-fit decoration-from-font hover:underline"
-          target="_blank"
-        >
+        <a href={hnItemURL} className="w-fit decoration-from-font hover:underline" target="_blank">
           {pluralize("comment", comments, true)}
         </a>
       </div>

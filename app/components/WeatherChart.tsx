@@ -17,22 +17,12 @@ import dayjs from "@/lib/utils/dayjs";
 
 import type { ChartData, ChartOptions } from "chart.js";
 
-ChartJS.register(
-  CategoryScale,
-  Filler,
-  LinearScale,
-  LineController,
-  LineElement,
-  PointElement
-);
+ChartJS.register(CategoryScale, Filler, LinearScale, LineController, LineElement, PointElement);
 
 export default function WeatherChart() {
-  const { data: currentWeather, isLoading: isLoadingCurrentWeather } =
-    useCurrentWeather();
-  const { data: weatherForecast, isLoading: isLoadingWeatherForecast } =
-    useWeatherForecast();
+  const { data: currentWeather, isLoading: isLoadingCurrentWeather } = useCurrentWeather();
+  const { data: weatherForecast, isLoading: isLoadingWeatherForecast } = useWeatherForecast();
 
-  // prettier-ignore
   if (!currentWeather || isLoadingCurrentWeather || !weatherForecast || isLoadingWeatherForecast) {
     return <div className="h-[10rem] w-full rounded bg-gray-900/50 @1.5xl:h-[11rem]"></div>;
   }
