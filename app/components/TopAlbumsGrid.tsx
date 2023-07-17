@@ -1,29 +1,29 @@
 import Image from "next/image";
 import { Suspense } from "react";
 
-import { getTopAlbums } from "@/utils/lastfm";
+import { getTopAlbums } from "@/lib/services/lastfm";
 
 function TopAlbumsSkeleton() {
-  return (
-    <>
-      {[...Array<undefined>(6)].map((_, i) => (
-        <div
-          className="flex items-center gap-x-2.5 pr-2.5 @1.5xl/section:gap-x-3 @1.5xl/section:pr-3"
-          key={i}
-        >
-          <div className="aspect-square basis-[30%] rounded bg-gray-900 ring-1 ring-gray-900"></div>
-          <div className="flex basis-[70%] flex-col gap-y-1.5 @1.5xl/section:gap-y-[7px]">
-            <div className="h-2.5 w-full rounded bg-gray-900 @xl/section:h-[11px] @1.5xl/section:h-3"></div>
-            <div className="h-2 w-1/2 rounded bg-gray-900 @xl/section:h-[9px] @1.5xl/section:h-2.5"></div>
-          </div>
-        </div>
-      ))}
-    </>
-  );
+  return [...Array<undefined>(6)].map((_, i) => (
+    <div
+      className="flex items-center gap-x-2.5 pr-2.5 @1.5xl/section:gap-x-3 @1.5xl/section:pr-3"
+      key={i}
+    >
+      <div className="aspect-square basis-[30%] rounded bg-gray-900 ring-1 ring-gray-900"></div>
+      <div className="flex basis-[70%] flex-col gap-y-1.5 @1.5xl/section:gap-y-[7px]">
+        <div className="h-2.5 w-full rounded bg-gray-900 @xl/section:h-[11px] @1.5xl/section:h-3"></div>
+        <div className="h-2 w-1/2 rounded bg-gray-900 @xl/section:h-[9px] @1.5xl/section:h-2.5"></div>
+      </div>
+    </div>
+  ));
 }
 
 async function TopAlbums() {
   const data = await getTopAlbums("3month");
+
+  if (!data) {
+    return <TopAlbumsSkeleton />;
+  }
 
   return data.map((album) => (
     <div

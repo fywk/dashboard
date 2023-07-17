@@ -1,8 +1,8 @@
 import pluralize from "pluralize";
 import { Suspense } from "react";
 
+import { getStoryItem, getTopStories } from "@/lib/services/hackernews";
 import dayjs from "@/lib/utils/dayjs";
-import { getStoryItem, getTopStories } from "@/lib/utils/hackernews";
 import { siteConfig as site } from "@/lib/utils/site-config";
 
 import Section from "./Section";
@@ -10,8 +10,22 @@ import Section from "./Section";
 const MAX_STORIES_COUNT = 8;
 const HN_BASE_URL = "https://news.ycombinator.com";
 
+function StorySkeleton() {
+  return (
+    <li className="flex flex-col gap-y-2">
+      <div className="h-2.5 w-full rounded bg-gray-900"></div>
+      <div className="h-2.5 w-3/4 rounded bg-gray-900"></div>
+      <div className="h-2 w-1/2 rounded bg-gray-900"></div>
+    </li>
+  );
+}
+
 async function Story({ storyID }: { storyID: number }) {
   const story = await getStoryItem(storyID);
+
+  if (!story) {
+    return <StorySkeleton />;
+  }
 
   const hnItemURL = `${HN_BASE_URL}/item?id=${storyID}`;
   const points = story.score ?? 0;
@@ -56,18 +70,12 @@ async function Story({ storyID }: { storyID: number }) {
   );
 }
 
-function StorySkeleton() {
-  return (
-    <li className="flex flex-col gap-y-2">
-      <div className="h-2.5 w-full rounded bg-gray-900"></div>
-      <div className="h-2.5 w-3/4 rounded bg-gray-900"></div>
-      <div className="h-2 w-1/2 rounded bg-gray-900"></div>
-    </li>
-  );
-}
+async function TopStories({ data }: { data: Promise<number[] | null> }) {
+  const stories = await data;
 
-async function TopStories() {
-  const stories = await getTopStories(MAX_STORIES_COUNT);
+  if (!stories) {
+    return <StorySkeleton />;
+  }
 
   return stories.map((storyID) => (
     <Suspense fallback={<StorySkeleton />} key={storyID}>
@@ -77,6 +85,8 @@ async function TopStories() {
 }
 
 export default function HackerNews() {
+  const stories = getTopStories(MAX_STORIES_COUNT);
+
   return (
     <Section
       title={
@@ -88,7 +98,7 @@ export default function HackerNews() {
     >
       <ol className="flex h-full min-h-[480px] flex-col justify-between gap-y-1.5 @1.5xl/quadrant:gap-y-2 xl:min-h-full">
         <Suspense>
-          <TopStories />
+          <TopStories data={stories} />
         </Suspense>
       </ol>
     </Section>

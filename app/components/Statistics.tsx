@@ -7,34 +7,23 @@ import {
 import { Suspense } from "react";
 
 import {
-  getRecentTrack,
+  getRecentTracks,
   getTotalAlbums,
   getTotalArtists,
   getTotalTracks,
-} from "@/utils/lastfm";
+} from "@/lib/services/lastfm";
 
-import type { RecentTrack, TotalStats } from "@/types/lastfm";
+import type { RecentTrack, TotalStats } from "@/lib/types/lastfm";
 
-type Data<T extends RecentTrack | TotalStats> = { data: Promise<T> };
+type Data<T extends RecentTrack | TotalStats> = {
+  data: Promise<T | null>;
+};
 
-async function TotalPlays({ data }: Data<RecentTrack>): Promise<string> {
-  const plays = await data;
-  return plays.total;
-}
-
-async function TotalTracks({ data }: Data<TotalStats>): Promise<string> {
-  const tracks = await data;
-  return tracks.total;
-}
-
-async function TotalAlbums({ data }: Data<TotalStats>): Promise<string> {
-  const albums = await data;
-  return albums.total;
-}
-
-async function TotalArtists({ data }: Data<TotalStats>): Promise<string> {
-  const artists = await data;
-  return artists.total;
+async function Total<T extends RecentTrack | TotalStats>({
+  data,
+}: Data<T>): Promise<string> {
+  const result = await data;
+  return result?.total ?? "---";
 }
 
 function Category({
@@ -57,10 +46,10 @@ function Category({
 
 export default function Statistics() {
   const ONE_WEEK_IN_SECONDS = 604_800;
-  const unixTimestamp = Math.floor(Date.now() / 1000); // current Unix timestamp (seconds, 10-digit)
-  const timestamp7DaysAgo = unixTimestamp - ONE_WEEK_IN_SECONDS;
+  const unixTimestamp = Math.floor(Date.now() / 1000); // get current Unix timestamp in seconds format (10-digit)
+  const timestampOf7DaysAgo = unixTimestamp - ONE_WEEK_IN_SECONDS;
 
-  const playsData = getRecentTrack(timestamp7DaysAgo);
+  const playsData = getRecentTracks(timestampOf7DaysAgo);
   const tracksData = getTotalTracks("7day");
   const albumsData = getTotalAlbums("7day");
   const artistsData = getTotalArtists("7day");
@@ -77,7 +66,7 @@ export default function Statistics() {
         }
       >
         <Suspense fallback="---">
-          <TotalPlays data={playsData} />
+          <Total data={playsData} />
         </Suspense>
       </Category>
       <Category
@@ -90,7 +79,7 @@ export default function Statistics() {
         }
       >
         <Suspense fallback="---">
-          <TotalTracks data={tracksData} />
+          <Total data={tracksData} />
         </Suspense>
       </Category>
       <Category
@@ -103,7 +92,7 @@ export default function Statistics() {
         }
       >
         <Suspense fallback="---">
-          <TotalAlbums data={albumsData} />
+          <Total data={albumsData} />
         </Suspense>
       </Category>
       <Category
@@ -116,7 +105,7 @@ export default function Statistics() {
         }
       >
         <Suspense fallback="---">
-          <TotalArtists data={artistsData} />
+          <Total data={artistsData} />
         </Suspense>
       </Category>
     </div>

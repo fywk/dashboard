@@ -10,7 +10,7 @@ import Weather from "./components/Weather";
 
 import type { Metadata } from "next";
 
-import type { SearchParams } from "@/types/misc";
+import type { SearchParams } from "@/lib/types/misc";
 
 type Props = {
   searchParams: SearchParams;

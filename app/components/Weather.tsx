@@ -2,7 +2,7 @@ import Section from "./Section";
 import WeatherChart from "./WeatherChart";
 import WeatherSummary from "./WeatherSummary";
 
-import type { SearchParams } from "@/types/misc";
+import type { SearchParams } from "@/lib/types/misc";
 
 export default function Weather({ ...searchParams }: SearchParams) {
   return (
