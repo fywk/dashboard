@@ -4,6 +4,8 @@ import { Suspense } from "react";
 import { getTopArtists } from "@/lib/services/lastfm";
 import { getArtistImage } from "@/lib/services/spotify";
 
+import type { Period } from "@/lib/types/lastfm";
+
 async function ArtistAvatar({ name }: { name: string }) {
   const artistImage = await getArtistImage(name);
 
@@ -31,8 +33,8 @@ function TopArtistsSkeleton() {
   ));
 }
 
-async function TopArtists() {
-  const data = await getTopArtists("1month");
+async function TopArtists({ period }: { period: Period }) {
+  const data = await getTopArtists(period);
 
   if (!data) {
     return <TopArtistsSkeleton />;
@@ -61,11 +63,11 @@ async function TopArtists() {
   ));
 }
 
-export default function TopArtistGrid() {
+export default function TopArtistGrid({ period }: { period: Period }) {
   return (
     <div className="grid w-full auto-cols-[1fr] grid-flow-col gap-x-2 overflow-x-auto @xl/section:gap-x-2.5 @1.5xl/section:gap-x-3">
       <Suspense fallback={<TopArtistsSkeleton />}>
-        <TopArtists />
+        <TopArtists period={period} />
       </Suspense>
     </div>
   );
