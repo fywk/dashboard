@@ -7,8 +7,10 @@ import {
   getTotalArtists,
   getTotalTracks,
 } from "@/lib/services/lastfm";
+import dayjs from "@/lib/utils/dayjs";
+import { convertPeriodToDays } from "@/lib/utils/lastfm";
 
-import type { RecentTrack, TotalStats } from "@/lib/types/lastfm";
+import type { Period, RecentTrack, TotalStats } from "@/lib/types/lastfm";
 
 type Data<T extends RecentTrack | TotalStats> = {
   data: Promise<T | null>;
@@ -37,15 +39,22 @@ function Category({
   );
 }
 
-export default function Statistics() {
-  const ONE_WEEK_IN_SECONDS = 604_800;
-  const unixTimestamp = Math.floor(Date.now() / 1000); // get the current Unix timestamp in seconds format (10-digit)
-  const timestampOf7DaysAgo = unixTimestamp - ONE_WEEK_IN_SECONDS;
+export default function Statistics({ period }: { period: Period }) {
+  let playsData: Promise<RecentTrack | null>;
 
-  const playsData = getRecentTracks(timestampOf7DaysAgo);
-  const tracksData = getTotalTracks("7day");
-  const albumsData = getTotalAlbums("7day");
-  const artistsData = getTotalArtists("7day");
+  if (period === "overall") {
+    playsData = getRecentTracks();
+  } else {
+    const periodInSeconds = dayjs.duration(convertPeriodToDays(period), "days").asSeconds(); // convert period to seconds (e.g. 7day = 604,800 seconds)
+    const unixTimestamp = Math.floor(Date.now() / 1000); // get the current Unix timestamp in seconds format (10-digit)
+    const beginningTimestamp = unixTimestamp - periodInSeconds;
+
+    playsData = getRecentTracks(beginningTimestamp);
+  }
+
+  const tracksData = getTotalTracks(period);
+  const albumsData = getTotalAlbums(period);
+  const artistsData = getTotalArtists(period);
 
   return (
     <div className="flex w-full items-center justify-between py-1">

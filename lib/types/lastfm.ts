@@ -1,8 +1,6 @@
 import type { NumericRange } from "./utility";
 
-export const PERIOD = ["overall", "7day", "1month", "3month", "6month", "12month"] as const;
-
-export type Period = (typeof PERIOD)[number];
+export type Period = "overall" | "7day" | "1month" | "3month" | "6month" | "12month";
 
 export type Timestamp = number;
 

@@ -3,6 +3,8 @@ import { Suspense } from "react";
 
 import { getTopAlbums } from "@/lib/services/lastfm";
 
+import type { Period } from "@/lib/types/lastfm";
+
 function TopAlbumsSkeleton() {
   return [...Array<undefined>(6)].map((_, i) => (
     <div
@@ -18,8 +20,8 @@ function TopAlbumsSkeleton() {
   ));
 }
 
-async function TopAlbums() {
-  const data = await getTopAlbums("3month");
+async function TopAlbums({ period }: { period: Period }) {
+  const data = await getTopAlbums(period);
 
   if (!data) {
     return <TopAlbumsSkeleton />;
@@ -48,11 +50,11 @@ async function TopAlbums() {
   ));
 }
 
-export default function TopAlbumsGrid() {
+export default function TopAlbumsGrid({ period }: { period: Period }) {
   return (
     <div className="grid grid-cols-2 gap-2.5 @xl/section:grid-cols-3 @xl/section:gap-3 @1.5xl/section:gap-x-4 @1.5xl/section:gap-y-3.5">
       <Suspense fallback={<TopAlbumsSkeleton />}>
-        <TopAlbums />
+        <TopAlbums period={period} />
       </Suspense>
     </div>
   );
