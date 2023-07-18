@@ -1,8 +1,8 @@
 import { z } from "zod";
 
-import { generateURL } from "./generateURL";
 
 import type { LastfmParams, Limit, Period, TopAlbums, TotalStats } from "@/lib/types/lastfm";
+import { generateEndpoint } from "@/lib/utils/lastfm";
 
 const TopAlbumsSchema = z.object({
   topalbums: z.object({
@@ -31,7 +31,7 @@ export async function getTopAlbums(period: Period, limit: Limit = 6): Promise<To
     limit,
   };
 
-  const response = await fetch(generateURL(params), { cache: "no-store" });
+  const response = await fetch(generateEndpoint(params), { cache: "no-store" });
   const result = TopAlbumsSchema.safeParse(await response.json());
 
   if (!result.success) return null;
@@ -57,7 +57,7 @@ export async function getTotalAlbums(period: Period): Promise<TotalStats | null>
     limit: 1,
   };
 
-  const response = await fetch(generateURL(params), { cache: "no-store" });
+  const response = await fetch(generateEndpoint(params), { cache: "no-store" });
   const result = TopAlbumsSchema.safeParse(await response.json());
 
   if (!result.success) return null;

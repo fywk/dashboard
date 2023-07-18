@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { generateURL } from "./generateURL";
+import { generateEndpoint } from "@/lib/utils/lastfm";
 
 import type { LastfmParams, Limit, Period, TopArtists, TotalStats } from "@/lib/types/lastfm";
 
@@ -29,7 +29,7 @@ export async function getTopArtists(period: Period, limit: Limit = 6): Promise<T
     limit,
   };
 
-  const response = await fetch(generateURL(params), { cache: "no-store" });
+  const response = await fetch(generateEndpoint(params), { cache: "no-store" });
   const result = TopArtistsSchema.safeParse(await response.json());
 
   if (!result.success) return null;
@@ -53,7 +53,7 @@ export async function getTotalArtists(period: Period): Promise<TotalStats | null
     limit: 1,
   };
 
-  const response = await fetch(generateURL(params), { cache: "no-store" });
+  const response = await fetch(generateEndpoint(params), { cache: "no-store" });
   const result = TopArtistsSchema.safeParse(await response.json());
 
   if (!result.success) return null;

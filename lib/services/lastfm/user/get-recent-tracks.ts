@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { generateURL } from "./generateURL";
+import { generateEndpoint } from "@/lib/utils/lastfm";
 
 import type { LastfmParams, Limit, RecentTrack, Timestamp } from "@/lib/types/lastfm";
 
@@ -37,7 +37,7 @@ export async function getRecentTracks(
     extended: "1",
   };
 
-  const response = await fetch(generateURL(params));
+  const response = await fetch(generateEndpoint(params));
   const result = RecentTracksSchema.safeParse(await response.json());
 
   if (!result.success) return null;
