@@ -1,7 +1,7 @@
 import pluralize from "pluralize";
 import { Suspense } from "react";
 
-import { getStoryItem, getTopStories } from "@/lib/services/hackernews";
+import { getStoryItem, getTopStories } from "@/lib/services/hacker-news";
 import dayjs from "@/lib/utils/dayjs";
 import { siteConfig as site } from "@/lib/utils/site-config";
 

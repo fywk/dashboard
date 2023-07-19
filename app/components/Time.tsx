@@ -8,7 +8,7 @@ import dayjs from "@/lib/utils/dayjs";
 import Section from "./Section";
 
 type UptimeProps = {
-  display: boolean;
+  isVisible: boolean;
   duration: string;
   durationISO: string;
 };
@@ -20,7 +20,7 @@ type CityProps = {
 };
 
 function Uptime(props: UptimeProps) {
-  if (!props.display) return;
+  if (!props.isVisible) return;
 
   return (
     <p
@@ -80,7 +80,7 @@ export default function Time() {
       const pluralizedMinutes = minutes >= 1 ? pluralize("min", minutes, true) : minutes;
 
       setUptime({
-        display: durationSinceCreated.asMinutes() >= 1,
+        isVisible: durationSinceCreated.asMinutes() >= 1,
         duration: [pluralizedDays, pluralizedHours, pluralizedMinutes].filter(Boolean).join(", "),
         durationISO: dayjs.duration({ days, hours, minutes }).toISOString(),
       });

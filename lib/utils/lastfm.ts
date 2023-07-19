@@ -1,4 +1,21 @@
-import type { Period } from "@/lib/types/lastfm";
+import { env } from "@/app/env.mjs";
+
+import type { LastfmParams, Period } from "@/lib/types/lastfm";
+
+/**
+ * Generates Last.fm API endpoint from `LastfmParams`
+ */
+export function generateEndpoint(params: LastfmParams): string {
+  const API_ROOT = "https://ws.audioscrobbler.com/2.0/";
+  const API_KEY = env.LASTFM_API_KEY;
+  const USERNAME = env.LASTFM_USERNAME;
+
+  const stringifyParams = Object.entries(params)
+    .map(([key, val]) => typeof val !== "undefined" && `${key}=${val}`)
+    .join("&");
+
+  return `${API_ROOT}?${stringifyParams}&user=${USERNAME}&api_key=${API_KEY}&format=json`;
+}
 
 export function humanizePeriod(period: Period): string {
   switch (period) {
