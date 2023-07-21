@@ -14,12 +14,12 @@ export default function Section({ title, subtitle, accentColor, customClasses, c
       className={clsx(
         "grid w-full grid-rows-[auto_1fr] gap-y-4 @container/section min-[1440px]:gap-y-4.5",
         accentColor === "secondary" && "[--border-accent-color:var(--color-secondary)]",
-        customClasses
+        customClasses,
       )}
     >
       <div
         className={clsx(
-          "border-b border-t-2 py-1 [border-bottom-color:rgb(var(--border-accent-color)/1)] [border-top-color:rgb(var(--border-accent-color)/.35)]"
+          "border-b border-t-2 py-1 [border-bottom-color:rgb(var(--border-accent-color)/1)] [border-top-color:rgb(var(--border-accent-color)/.35)]",
         )}
       >
         <div className="flex items-center justify-between px-px py-1.5 xs:px-0.5">

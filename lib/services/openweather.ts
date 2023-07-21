@@ -17,7 +17,7 @@ const CurrentWeatherSchema = z.object({
         id: z.number(),
         description: z.string(),
         icon: z.string(),
-      })
+      }),
     )
     .nonempty(),
   main: z.object({
@@ -33,7 +33,7 @@ const WeatherForecastSchema = z.object({
       z.object({
         dt: z.number(),
         main: z.object({ temp: z.number() }),
-      })
+      }),
     )
     .nonempty(),
   city: z.object({ timezone: z.number() }),
@@ -71,7 +71,7 @@ export async function getCurrentWeather(lat: string, lon: string): Promise<Curre
  */
 export async function getWeatherForecast(
   lat: string,
-  lon: string
+  lon: string,
 ): Promise<WeatherForecast | null> {
   const weatherForecastEndpoint = `${API_ROOT}/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&cnt=11`;
 

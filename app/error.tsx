@@ -7,14 +7,10 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
     console.error(error);
   }, [error]);
 
-  function handleClick() {
-    reset();
-  }
-
   return (
     <div>
       <p>Something went wrong!</p>
-      <button onClick={handleClick}>Reset error boundary</button>
+      <button onClick={() => reset()}>Reset error boundary</button>
     </div>
   );
 }

@@ -36,7 +36,7 @@ export default function WeatherChart() {
       dayjs
         .unix(item.dt)
         .utcOffset(weatherForecast.city.timezone / 60) // convert UTC offset in seconds to minutes
-        .format("HH:mm")
+        .format("HH:mm"),
     );
     temperatures.push(item.main.temp);
   });

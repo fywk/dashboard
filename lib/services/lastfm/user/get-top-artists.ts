@@ -11,7 +11,7 @@ const TopArtistsSchema = z.object({
         z.object({
           name: z.string(),
           playcount: z.string(),
-        })
+        }),
       )
       .nonempty(),
     "@attr": z.object({ total: z.string() }),
