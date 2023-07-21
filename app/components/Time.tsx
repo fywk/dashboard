@@ -94,9 +94,7 @@ export default function Time() {
       setTimeSYD(dayjs().tz("Australia/Sydney").format(TIME_FORMAT));
     }, 1000);
 
-    return () => {
-      clearInterval(interval);
-    };
+    return () => clearInterval(interval);
   }, [appCreatedAt]);
 
   return (

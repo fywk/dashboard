@@ -35,7 +35,7 @@ export default function NowPlaying() {
     fetcher,
     {
       refreshInterval: 30_000, // refresh every 30 seconds
-    }
+    },
   );
 
   useEffect(() => {
@@ -124,7 +124,7 @@ export default function NowPlaying() {
       <div
         className={clsx(
           "text-lg font-medium @[340px]/now-playing:text-xl",
-          track.loved ? "text-[#1ed760]" : "text-gray-500"
+          track.loved ? "text-[#1ed760]" : "text-gray-500",
         )}
       >
         {track.loved ? "♥" : "♡"}

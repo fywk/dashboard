@@ -31,7 +31,7 @@ const SearchArtistSchema = z.object({
       .array(
         z.object({
           images: z.array(ImageSchema).nonempty(),
-        })
+        }),
       )
       .nonempty(),
   }),
@@ -73,7 +73,7 @@ export async function getArtistImage(artistName: string): Promise<Image | null> 
         Authorization: `Bearer ${access_token}`,
       },
       next: { revalidate: 3600 }, // 1 hour in seconds
-    }
+    },
   );
 
   const result = SearchArtistSchema.safeParse(await responseSearchArtists.json());

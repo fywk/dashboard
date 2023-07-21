@@ -13,7 +13,7 @@ const TopTracksSchema = z.object({
           artist: z.object({
             name: z.string(),
           }),
-        })
+        }),
       )
       .nonempty(),
     "@attr": z.object({ total: z.string() }),

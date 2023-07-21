@@ -10,12 +10,12 @@ const RecentTracksSchema = z.object({
       .array(
         z.object({
           artist: z.object({ name: z.string() }),
-          date: z.optional(z.object({ uts: z.string() })),
+          date: z.object({ uts: z.string() }).optional(),
           name: z.string(),
           image: z.array(z.object({ "#text": z.string().url() })).length(4),
           album: z.object({ "#text": z.string() }),
           loved: z.enum(["0", "1"]),
-        })
+        }),
       )
       .nonempty(),
     "@attr": z.object({ total: z.string() }),
@@ -28,7 +28,7 @@ const RecentTracksSchema = z.object({
  */
 export async function getRecentTracks(
   from?: Timestamp,
-  limit: Limit = 1
+  limit: Limit = 1,
 ): Promise<RecentTrack | null> {
   const params: LastfmParams = {
     method: "user.getrecenttracks",

@@ -1,8 +1,8 @@
 import { z } from "zod";
 
+import { generateEndpoint } from "@/lib/utils/lastfm";
 
 import type { LastfmParams, Limit, Period, TopAlbums, TotalStats } from "@/lib/types/lastfm";
-import { generateEndpoint } from "@/lib/utils/lastfm";
 
 const TopAlbumsSchema = z.object({
   topalbums: z.object({
@@ -13,7 +13,7 @@ const TopAlbumsSchema = z.object({
           image: z.array(z.object({ "#text": z.string().url() })).length(4),
           playcount: z.string(),
           name: z.string(),
-        })
+        }),
       )
       .nonempty(),
     "@attr": z.object({ total: z.string() }),

@@ -7,7 +7,7 @@ import type { WeatherForecast } from "@/lib/services/openweather";
 export default function useWeatherForecast() {
   const { data, isLoading, error } = useSWRImmutable<WeatherForecast, Error>(
     "/api/weather/forecast",
-    fetcher
+    fetcher,
   );
 
   return { data, isLoading, error };
