@@ -21,5 +21,8 @@ module.exports = {
     ],
     "@typescript-eslint/consistent-type-definitions": "off",
     "@typescript-eslint/consistent-type-imports": "warn",
+    "@typescript-eslint/no-confusing-void-expression": {
+      ignoreArrowShorthand: true,
+    },
   },
 };
