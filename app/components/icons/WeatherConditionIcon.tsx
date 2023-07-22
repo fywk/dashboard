@@ -11,9 +11,9 @@ import {
   IconTornado,
 } from "@tabler/icons-react";
 
-type WeatherIconProps = { id: number; code: string; [props: string]: unknown };
+type Props = { id: number; iconCode: string; className?: string };
 
-export default function WeatherIcon({ id, code, ...props }: WeatherIconProps) {
+export default function WeatherConditionIcon({ id, iconCode, ...props }: Props) {
   let Icon: React.ElementType;
 
   switch (true) {
@@ -35,7 +35,7 @@ export default function WeatherIcon({ id, code, ...props }: WeatherIconProps) {
       else Icon = IconMist;
       break;
     case id === 800:
-      if (code === "01d") Icon = IconSun;
+      if (iconCode === "01d") Icon = IconSun;
       else Icon = IconMoon;
       break;
     default:
