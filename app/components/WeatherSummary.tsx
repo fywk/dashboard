@@ -5,7 +5,7 @@ import { IconDropCircle, IconGauge } from "@tabler/icons-react";
 import useCurrentWeather from "@/lib/hooks/useCurrentWeather";
 import useWeatherForecast from "@/lib/hooks/useWeatherForecast";
 
-import WeatherIcon from "./WeatherIcon";
+import WeatherConditionIcon from "./icons/WeatherConditionIcon";
 
 import type { SearchParams } from "@/lib/types/misc";
 
@@ -111,9 +111,9 @@ export default function WeatherSummary({ city, country }: SearchParams) {
       </div>
       <div className="w-full overflow-hidden">
         <div className="flex h-full flex-col items-end justify-between gap-x-2 @lg/section:flex-row @lg/section:items-center @lg/section:justify-start @lg/section:gap-x-2.5">
-          <WeatherIcon
+          <WeatherConditionIcon
             id={id}
-            code={iconCode}
+            iconCode={iconCode}
             className="h-8.5 w-8.5 text-gray-100 @lg/section:h-9 @lg/section:w-9"
           />
           <div className="flex flex-col items-end @lg/section:items-start">

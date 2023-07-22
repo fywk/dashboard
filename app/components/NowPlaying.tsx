@@ -10,23 +10,10 @@ import dayjs from "@/lib/utils/dayjs";
 import fetcher from "@/lib/utils/fetcher";
 import { siteConfig as site } from "@/lib/utils/site-config";
 
-import type { RecentTrack } from "@/lib/types/lastfm";
+import EqualizerIcon from "./icons/EqualizerIcon";
+import HeartIcon from "./icons/HeartIcon";
 
-function EqualizerIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-[13px] w-[13px] @[340px]/now-playing:h-[15px] @[340px]/now-playing:w-[15px]"
-      id="equalizer"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-    >
-      <rect className="eq-bar eq-bar--1" x="4" y="4" width="3.7" height="8"></rect>
-      <rect className="eq-bar eq-bar--2" x="10.2" y="4" width="3.7" height="16"></rect>
-      <rect className="eq-bar eq-bar--3" x="16.3" y="4" width="3.7" height="11"></rect>
-    </svg>
-  );
-}
+import type { RecentTrack } from "@/lib/types/lastfm";
 
 export default function NowPlaying() {
   const [imageURL, setImageURL] = useState<string>();
@@ -54,8 +41,8 @@ export default function NowPlaying() {
           <div className="h-3 w-full rounded bg-gray-900 @[340px]/now-playing:h-3.5"></div>
           <div className="h-2.5 w-3/4 rounded bg-gray-900 @[340px]/now-playing:h-3"></div>
         </div>
-        <div className="text-lg font-medium text-transparent @[340px]/now-playing:text-xl">
-          {"♡"}
+        <div className="text-transparent">
+          <HeartIcon isFilled={false} />
         </div>
       </div>
     );
@@ -84,11 +71,9 @@ export default function NowPlaying() {
             width={300}
             height={300}
             alt=""
-            priority
+            onError={() => setImageURL("/images/album-error.jpg")}
+            loading="eager"
             unoptimized
-            onError={() => {
-              setImageURL("/images/album-error.jpg");
-            }}
           />
         )}
       </div>
@@ -121,13 +106,8 @@ export default function NowPlaying() {
           {`${track.artist} — ${track.album}`}
         </p>
       </div>
-      <div
-        className={clsx(
-          "text-lg font-medium @[340px]/now-playing:text-xl",
-          track.loved ? "text-[#1ed760]" : "text-gray-500",
-        )}
-      >
-        {track.loved ? "♥" : "♡"}
+      <div className={clsx(track.loved ? "text-[#1ed760]" : "text-gray-500")}>
+        <HeartIcon isFilled={track.loved} />
       </div>
     </div>
   );
