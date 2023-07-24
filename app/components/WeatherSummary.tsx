@@ -57,7 +57,10 @@ export default function WeatherSummary({ city, country }: SearchParams) {
   }
 
   return (
-    <div className="grid w-full grid-cols-[55%_1fr] gap-4 @lg/section:grid-cols-none @lg/section:grid-rows-[max-content_max-content]">
+    <div
+      className="grid w-full grid-cols-[55%_1fr] gap-4 @lg/section:grid-cols-none @lg/section:grid-rows-[max-content_max-content]"
+      id="weather-summary"
+    >
       <div className="flex w-full flex-col overflow-hidden @lg/section:gap-y-px @xl/section:gap-y-0.5">
         <h3
           className="truncate font-oxanium text-2xl font-bold uppercase text-gray-100 @xl/section:text-[1.625rem] @1.5xl/section:text-[1.75rem]"
@@ -78,15 +81,10 @@ export default function WeatherSummary({ city, country }: SearchParams) {
               title={`Humidity: ${humidity}%`}
             >
               <IconDropCircle className="h-4 w-4" stroke={2.25} />
-              <label htmlFor="humidity" className="sr-only">
+              <label className="sr-only" htmlFor="humidity">
                 Humidity
               </label>
-              <progress
-                id="humidity"
-                className="[&[value]::-webkit-progress-bar]:rounded-full [&[value]::-webkit-progress-bar]:bg-gray-700 [&[value]::-webkit-progress-value]:rounded-full [&[value]::-webkit-progress-value]:bg-gradient-to-r [&[value]::-webkit-progress-value]:from-secondary [&[value]::-webkit-progress-value]:to-primary [&[value]]:h-1.5 [&[value]]:w-full [&[value]]:appearance-none"
-                max={100}
-                value={humidity}
-              >
+              <progress id="humidity" max={100} value={humidity}>
                 {`${humidity}%`}
               </progress>
             </div>
@@ -95,14 +93,10 @@ export default function WeatherSummary({ city, country }: SearchParams) {
               title={`Pressure: ${pressure} hPa`}
             >
               <IconGauge className="h-4 w-4" stroke={2.25} />
-              <label htmlFor="pressure" className="sr-only">
+              <label className="sr-only" htmlFor="pressure">
                 Pressure
               </label>
-              <progress
-                id="pressure"
-                className="[&[value]::-webkit-progress-bar]:rounded-full [&[value]::-webkit-progress-bar]:bg-gray-700 [&[value]::-webkit-progress-value]:rounded-full [&[value]::-webkit-progress-value]:bg-gradient-to-r [&[value]::-webkit-progress-value]:from-fuchsia-400 [&[value]::-webkit-progress-value]:to-fuchsia-500 [&[value]]:h-1.5 [&[value]]:w-full [&[value]]:appearance-none"
-                value={(pressure - 975.75) / (1050.75 - 975.75)}
-              >
+              <progress id="pressure" value={(pressure - 975.75) / (1050.75 - 975.75)}>
                 {`${pressure} hPa`}
               </progress>
             </div>
@@ -112,9 +106,9 @@ export default function WeatherSummary({ city, country }: SearchParams) {
       <div className="w-full overflow-hidden">
         <div className="flex h-full flex-col items-end justify-between gap-x-2 @lg/section:flex-row @lg/section:items-center @lg/section:justify-start @lg/section:gap-x-2.5">
           <WeatherConditionIcon
+            className="h-8.5 w-8.5 text-gray-100 @lg/section:h-9 @lg/section:w-9"
             id={id}
             iconCode={iconCode}
-            className="h-8.5 w-8.5 text-gray-100 @lg/section:h-9 @lg/section:w-9"
           />
           <div className="flex flex-col items-end @lg/section:items-start">
             <p className="truncate text-xs font-medium capitalize tracking-tight text-gray-100 @lg/section:text-sm">
