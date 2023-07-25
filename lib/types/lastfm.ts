@@ -7,7 +7,7 @@ export type Timestamp = number;
 type MethodParams =
   | {
       method: "user.getrecenttracks";
-      from?: Timestamp;
+      from: Timestamp | undefined;
       extended: "1";
     }
   | {
@@ -37,16 +37,11 @@ export type Artist = {
   image_url?: string;
 };
 
-export type Total = string;
-
-export type RecentTrack = {
-  track: Track & {
-    album: string;
-    image: string;
-    timestamp?: Timestamp;
-    loved: boolean;
-  };
-  total: Total;
+export type RecentTrack = Track & {
+  album: string;
+  image: string;
+  timestamp?: Timestamp;
+  loved: boolean;
 };
 
 export type TopTracks = Track[];
@@ -55,4 +50,4 @@ export type TopAlbums = Album[];
 
 export type TopArtists = Artist[];
 
-export type TotalStats = { total: Total };
+export type TotalStats = { total: string };

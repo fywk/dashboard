@@ -6,25 +6,23 @@ import type { LastfmParams, Limit, Period, TopTracks, TotalStats } from "@/lib/t
 
 const TopTracksSchema = z.object({
   toptracks: z.object({
-    track: z
-      .array(
-        z.object({
+    track: z.array(
+      z.object({
+        name: z.string(),
+        artist: z.object({
           name: z.string(),
-          artist: z.object({
-            name: z.string(),
-          }),
         }),
-      )
-      .nonempty(),
+      }),
+    ),
     "@attr": z.object({ total: z.string() }),
   }),
 });
 
 /**
  * @param period - The time period over which to retrieve top tracks for.
- * @param limit - The number of results to fetch. Defaults to 6. Maximum is 10.
+ * @param limit - The number of tracks to fetch.
  */
-export async function getTopTracks(period: Period, limit: Limit = 6): Promise<TopTracks | null> {
+export async function getTopTracks(period: Period, limit: Limit): Promise<TopTracks | null> {
   const params: LastfmParams = {
     method: "user.gettoptracks",
     period,

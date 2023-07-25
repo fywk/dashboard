@@ -2,22 +2,20 @@ import { z } from "zod";
 
 import { generateEndpoint } from "@/lib/utils/lastfm";
 
-import type { LastfmParams, Limit, RecentTrack, Timestamp } from "@/lib/types/lastfm";
+import type { LastfmParams, Limit, RecentTrack, Timestamp, TotalStats } from "@/lib/types/lastfm";
 
 const RecentTracksSchema = z.object({
   recenttracks: z.object({
-    track: z
-      .array(
-        z.object({
-          artist: z.object({ name: z.string() }),
-          date: z.object({ uts: z.string() }).optional(),
-          name: z.string(),
-          image: z.array(z.object({ "#text": z.string().url() })).length(4),
-          album: z.object({ "#text": z.string() }),
-          loved: z.enum(["0", "1"]),
-        }),
-      )
-      .nonempty(),
+    track: z.array(
+      z.object({
+        artist: z.object({ name: z.string() }),
+        date: z.object({ uts: z.string() }).optional(),
+        name: z.string(),
+        image: z.array(z.object({ "#text": z.string().url() })).length(4),
+        album: z.object({ "#text": z.string() }),
+        loved: z.enum(["0", "1"]),
+      }),
+    ),
     "@attr": z.object({ total: z.string() }),
   }),
 });
@@ -32,9 +30,9 @@ export async function getRecentTracks(
 ): Promise<RecentTrack | null> {
   const params: LastfmParams = {
     method: "user.getrecenttracks",
-    limit,
     from,
     extended: "1",
+    limit,
   };
 
   const response = await fetch(generateEndpoint(params));
@@ -49,7 +47,7 @@ export async function getRecentTracks(
 
   const { artist, image, album, name, loved } = firstTrack;
   const timestamp = firstTrack.date !== undefined && +firstTrack.date.uts;
-  const track: RecentTrack["track"] = {
+  const track: RecentTrack = {
     name,
     artist: artist.name,
     album: album["#text"],
@@ -58,7 +56,26 @@ export async function getRecentTracks(
     loved: loved === "1",
   };
 
-  const total: RecentTrack["total"] = recenttracks["@attr"].total;
+  return track;
+}
 
-  return { track, total };
+/**
+ * @param from - Only fetch results after this time, in Unix timestamp format (seconds, 10-digit).
+ */
+export async function getTotalPlays(from?: Timestamp): Promise<TotalStats | null> {
+  const params: LastfmParams = {
+    method: "user.getrecenttracks",
+    from,
+    extended: "1",
+    limit: 1,
+  };
+
+  const response = await fetch(generateEndpoint(params), { cache: "no-store" });
+  const result = RecentTracksSchema.safeParse(await response.json());
+
+  if (!result.success) return null;
+
+  const { recenttracks } = result.data;
+
+  return { total: recenttracks["@attr"].total };
 }

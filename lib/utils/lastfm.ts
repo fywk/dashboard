@@ -10,11 +10,12 @@ export function generateEndpoint(params: LastfmParams): string {
   const API_KEY = env.LASTFM_API_KEY;
   const USERNAME = env.LASTFM_USERNAME;
 
-  const stringifyParams = Object.entries(params)
-    .map(([key, val]) => typeof val !== "undefined" && `${key}=${val}`)
+  const paramsQueryString = Object.entries(params)
+    .filter(([, val]) => val !== undefined)
+    .map(([key, val]) => `${key}=${val}`)
     .join("&");
 
-  return `${API_ROOT}?${stringifyParams}&user=${USERNAME}&api_key=${API_KEY}&format=json`;
+  return `${API_ROOT}?${paramsQueryString}&user=${USERNAME}&api_key=${API_KEY}&format=json`;
 }
 
 export function humanizePeriod(period: Period): string {
