@@ -5,8 +5,10 @@ import { getTopAlbums } from "@/lib/services/lastfm";
 
 import type { Period } from "@/lib/types/lastfm";
 
-function TopAlbumsSkeleton() {
-  return [...Array<undefined>(6)].map((_, i) => (
+const MAX_ALBUMS_COUNT = 6;
+
+function TopAlbumsSkeleton({ count = MAX_ALBUMS_COUNT }: { count?: number }) {
+  return [...Array<undefined>(count)].map((_, i) => (
     <div
       className="flex items-center gap-x-2.5 pr-2.5 @1.5xl/section:gap-x-3 @1.5xl/section:pr-3"
       key={i}
@@ -21,33 +23,40 @@ function TopAlbumsSkeleton() {
 }
 
 async function TopAlbums({ period }: { period: Period }) {
-  const data = await getTopAlbums(period);
+  const data = await getTopAlbums(period, MAX_ALBUMS_COUNT);
 
-  if (!data) {
+  if (!data || data.length === 0) {
     return <TopAlbumsSkeleton />;
   }
 
-  return data.map((album) => (
-    <div
-      className="flex items-center gap-x-2.5 pr-2.5 @1.5xl/section:gap-x-3 @1.5xl/section:pr-3"
-      key={album.name}
-    >
-      <div className="aspect-square basis-[30%] overflow-hidden rounded bg-gray-900 ring-1 ring-gray-800/75">
-        <Image src={album.image} width={300} height={300} alt="" />
-      </div>
-      <div className="flex basis-[70%] flex-col overflow-hidden tracking-tight @xl/section:gap-y-px">
-        <h4
-          className="truncate text-xs font-medium text-gray-100 @xl/section:text-[13px] @1.5xl/section:text-sm"
-          title={`${album.artist} – ${album.name}`}
+  return (
+    <>
+      {data.map((album) => (
+        <div
+          className="flex items-center gap-x-2.5 pr-2.5 @1.5xl/section:gap-x-3 @1.5xl/section:pr-3"
+          key={album.name}
         >
-          {album.name}
-        </h4>
-        <p className="text-[10px] @xl/section:text-[11px] @1.5xl/section:text-xs">
-          {`${album.playcount} plays`}
-        </p>
-      </div>
-    </div>
-  ));
+          <div className="aspect-square basis-[30%] overflow-hidden rounded bg-gray-900 ring-1 ring-gray-800/75">
+            <Image src={album.image} width={300} height={300} alt="" />
+          </div>
+          <div className="flex basis-[70%] flex-col overflow-hidden tracking-tight @xl/section:gap-y-px">
+            <h4
+              className="truncate text-xs font-medium text-gray-100 @xl/section:text-[13px] @1.5xl/section:text-sm"
+              title={`${album.artist} – ${album.name}`}
+            >
+              {album.name}
+            </h4>
+            <p className="text-[10px] @xl/section:text-[11px] @1.5xl/section:text-xs">
+              {`${album.playcount} plays`}
+            </p>
+          </div>
+        </div>
+      ))}
+      {data.length < MAX_ALBUMS_COUNT && (
+        <TopAlbumsSkeleton count={MAX_ALBUMS_COUNT - data.length} />
+      )}
+    </>
+  );
 }
 
 export default function TopAlbumsGrid({ period }: { period: Period }) {

@@ -6,6 +6,8 @@ import { getArtistImage } from "@/lib/services/spotify";
 
 import type { Period } from "@/lib/types/lastfm";
 
+const MAX_ARTISTS_COUNT = 6;
+
 async function ArtistAvatar({ name }: { name: string }) {
   const artistImage = await getArtistImage(name);
 
@@ -18,8 +20,8 @@ async function ArtistAvatar({ name }: { name: string }) {
   );
 }
 
-function TopArtistsSkeleton() {
-  return [...Array<undefined>(6)].map((_, i) => (
+function TopArtistsSkeleton({ count = MAX_ARTISTS_COUNT }: { count?: number }) {
+  return [...Array<undefined>(count)].map((_, i) => (
     <div
       className="grid min-w-[80px] grid-cols-1 gap-y-2 p-2 @xl/section:gap-y-2.5 @xl/section:p-2.5 @1.5xl/section:gap-y-3 @1.5xl/section:p-3 xs:min-w-[96px]"
       key={i}
@@ -34,33 +36,40 @@ function TopArtistsSkeleton() {
 }
 
 async function TopArtists({ period }: { period: Period }) {
-  const data = await getTopArtists(period);
+  const data = await getTopArtists(period, MAX_ARTISTS_COUNT);
 
-  if (!data) {
+  if (!data || data.length === 0) {
     return <TopArtistsSkeleton />;
   }
 
-  return data.map((artist) => (
-    <div
-      className="grid min-w-[80px] grid-cols-1 gap-y-2 p-2 @xl/section:gap-y-2.5 @xl/section:p-2.5 @1.5xl/section:gap-y-3 @1.5xl/section:p-3 xs:min-w-[96px]"
-      key={artist.name.replace(/ /g, "_")} // replace spaces with underscores
-    >
-      <div className="aspect-square overflow-hidden rounded-full bg-gray-900 ring-1 ring-gray-800/75">
-        <Suspense fallback="">
-          <ArtistAvatar name={artist.name} />
-        </Suspense>
-      </div>
-      <div className="flex flex-col text-center tracking-tight @xl/section:gap-y-px">
-        <h4
-          className="truncate text-xs font-medium text-gray-100 @xl/section:text-[13px] @1.5xl/section:text-sm"
-          title={artist.name}
+  return (
+    <>
+      {data.map((artist) => (
+        <div
+          className="grid min-w-[80px] grid-cols-1 gap-y-2 p-2 @xl/section:gap-y-2.5 @xl/section:p-2.5 @1.5xl/section:gap-y-3 @1.5xl/section:p-3 xs:min-w-[96px]"
+          key={artist.name.replace(/ /g, "_")} // replace spaces with underscores
         >
-          {artist.name}
-        </h4>
-        <p className="text-[10px] @xl/section:text-[11px] @1.5xl/section:text-xs">{`${artist.playcount} plays`}</p>
-      </div>
-    </div>
-  ));
+          <div className="aspect-square overflow-hidden rounded-full bg-gray-900 ring-1 ring-gray-800/75">
+            <Suspense fallback="">
+              <ArtistAvatar name={artist.name} />
+            </Suspense>
+          </div>
+          <div className="flex flex-col text-center tracking-tight @xl/section:gap-y-px">
+            <h4
+              className="truncate text-xs font-medium text-gray-100 @xl/section:text-[13px] @1.5xl/section:text-sm"
+              title={artist.name}
+            >
+              {artist.name}
+            </h4>
+            <p className="text-[10px] @xl/section:text-[11px] @1.5xl/section:text-xs">{`${artist.playcount} plays`}</p>
+          </div>
+        </div>
+      ))}
+      {data.length < MAX_ARTISTS_COUNT && (
+        <TopArtistsSkeleton count={MAX_ARTISTS_COUNT - data.length} />
+      )}
+    </>
+  );
 }
 
 export default function TopArtistGrid({ period }: { period: Period }) {
