@@ -57,6 +57,37 @@
     animation-duration: 0.8s;
     animation-iteration-count: infinite;
   }
+
+  #weather-summary progress {
+    @apply h-1.5 w-full appearance-none;
+  }
+
+  #weather-summary progress,
+  #weather-summary progress::-webkit-progress-bar {
+    @apply rounded-full bg-gray-700;
+  }
+
+  /* Mozilla */
+  #weather-summary progress::-moz-progress-bar {
+    @apply rounded-full bg-gradient-to-r;
+  }
+  #weather-summary progress#humidity::-moz-progress-bar {
+    @apply from-secondary to-primary;
+  }
+  #weather-summary progress#pressure::-moz-progress-bar {
+    @apply from-fuchsia-400 to-fuchsia-500;
+  }
+
+  /* WebKit and Blink */
+  #weather-summary progress::-webkit-progress-value {
+    @apply rounded-full bg-gradient-to-r;
+  }
+  #weather-summary progress#humidity::-webkit-progress-value {
+    @apply from-secondary to-primary;
+  }
+  #weather-summary progress#pressure::-webkit-progress-value {
+    @apply from-fuchsia-400 to-fuchsia-500;
+  }
 }
 
 @layer utilities {
