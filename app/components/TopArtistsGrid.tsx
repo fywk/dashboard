@@ -36,15 +36,15 @@ function TopArtistsSkeleton({ count = MAX_ARTISTS_COUNT }: { count?: number }) {
 }
 
 async function TopArtists({ period }: { period: Period }) {
-  const data = await getTopArtists(period, MAX_ARTISTS_COUNT);
+  const artists = await getTopArtists(period, MAX_ARTISTS_COUNT);
 
-  if (!data || data.length === 0) {
+  if (!artists || artists.length === 0) {
     return <TopArtistsSkeleton />;
   }
 
   return (
     <>
-      {data.map((artist) => (
+      {artists.map((artist) => (
         <div
           className="grid min-w-[80px] grid-cols-1 gap-y-2 p-2 @xl/section:gap-y-2.5 @xl/section:p-2.5 @1.5xl/section:gap-y-3 @1.5xl/section:p-3 xs:min-w-[96px]"
           key={artist.name.replace(/ /g, "_")} // replace spaces with underscores
@@ -65,8 +65,8 @@ async function TopArtists({ period }: { period: Period }) {
           </div>
         </div>
       ))}
-      {data.length < MAX_ARTISTS_COUNT && (
-        <TopArtistsSkeleton count={MAX_ARTISTS_COUNT - data.length} />
+      {artists.length < MAX_ARTISTS_COUNT && (
+        <TopArtistsSkeleton count={MAX_ARTISTS_COUNT - artists.length} />
       )}
     </>
   );

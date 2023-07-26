@@ -23,15 +23,15 @@ function TopAlbumsSkeleton({ count = MAX_ALBUMS_COUNT }: { count?: number }) {
 }
 
 async function TopAlbums({ period }: { period: Period }) {
-  const data = await getTopAlbums(period, MAX_ALBUMS_COUNT);
+  const albums = await getTopAlbums(period, MAX_ALBUMS_COUNT);
 
-  if (!data || data.length === 0) {
+  if (!albums || albums.length === 0) {
     return <TopAlbumsSkeleton />;
   }
 
   return (
     <>
-      {data.map((album) => (
+      {albums.map((album) => (
         <div
           className="flex items-center gap-x-2.5 pr-2.5 @1.5xl/section:gap-x-3 @1.5xl/section:pr-3"
           key={album.name}
@@ -52,8 +52,8 @@ async function TopAlbums({ period }: { period: Period }) {
           </div>
         </div>
       ))}
-      {data.length < MAX_ALBUMS_COUNT && (
-        <TopAlbumsSkeleton count={MAX_ALBUMS_COUNT - data.length} />
+      {albums.length < MAX_ALBUMS_COUNT && (
+        <TopAlbumsSkeleton count={MAX_ALBUMS_COUNT - albums.length} />
       )}
     </>
   );
