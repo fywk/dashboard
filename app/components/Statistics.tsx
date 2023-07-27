@@ -2,21 +2,17 @@ import { IconMicrophone2, IconMusic, IconPlayerPlay, IconVinyl } from "@tabler/i
 import { Suspense } from "react";
 
 import {
-  getRecentTracks,
   getTotalAlbums,
   getTotalArtists,
+  getTotalPlays,
   getTotalTracks,
 } from "@/lib/services/lastfm";
 import dayjs from "@/lib/utils/dayjs";
 import { convertPeriodToDays } from "@/lib/utils/lastfm";
 
-import type { Period, RecentTrack, TotalStats } from "@/lib/types/lastfm";
+import type { Period, TotalStats } from "@/lib/types/lastfm";
 
-type Data<T extends RecentTrack | TotalStats> = {
-  data: Promise<T | null>;
-};
-
-async function Total<T extends RecentTrack | TotalStats>({ data }: Data<T>): Promise<string> {
+async function Total({ data }: { data: Promise<TotalStats | null> }): Promise<string> {
   const result = await data;
   return result?.total ?? "---";
 }
@@ -40,16 +36,16 @@ function Category({
 }
 
 export default function Statistics({ period }: { period: Period }) {
-  let playsData: Promise<RecentTrack | null>;
+  let playsData: Promise<TotalStats | null>;
 
   if (period === "overall") {
-    playsData = getRecentTracks();
+    playsData = getTotalPlays();
   } else {
     const periodInSeconds = dayjs.duration(convertPeriodToDays(period), "days").asSeconds(); // convert period to seconds (e.g. 7day = 604,800 seconds)
     const unixTimestamp = Math.floor(Date.now() / 1000); // get the current Unix timestamp in seconds format (10-digit)
     const beginningTimestamp = unixTimestamp - periodInSeconds;
 
-    playsData = getRecentTracks(beginningTimestamp);
+    playsData = getTotalPlays(beginningTimestamp);
   }
 
   const tracksData = getTotalTracks(period);

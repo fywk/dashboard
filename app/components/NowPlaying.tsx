@@ -17,7 +17,7 @@ import type { RecentTrack } from "@/lib/types/lastfm";
 
 export default function NowPlaying() {
   const [imageURL, setImageURL] = useState<string>();
-  const { data, isLoading, error } = useSWR<RecentTrack, Error>(
+  const { data: track, isLoading } = useSWR<RecentTrack, Error>(
     "/api/music/recent-track",
     fetcher,
     {
@@ -26,15 +26,12 @@ export default function NowPlaying() {
   );
 
   useEffect(() => {
-    data && setImageURL(data.track.image);
-  }, [data]);
+    track && setImageURL(track.image);
+  }, [track]);
 
-  if (!data || isLoading) {
+  if (!track || isLoading) {
     return (
-      <div
-        className="grid grid-cols-[4rem_1fr_2.25rem] items-center gap-2.5 overflow-hidden rounded-md border border-primary/55 p-2 @xs/now-playing:gap-[0.6875rem] @[21.25rem]/now-playing:grid-cols-[4.5rem_1fr_2.25rem] @sm/now-playing:grid-cols-[5rem_1fr_2.25rem] @[340px]/now-playing:gap-3"
-        title={error && "Failed to load"}
-      >
+      <div className="grid grid-cols-[4rem_1fr_2.25rem] items-center gap-2.5 overflow-hidden rounded-md border border-primary/55 p-2 @xs/now-playing:gap-[0.6875rem] @[21.25rem]/now-playing:grid-cols-[4.5rem_1fr_2.25rem] @sm/now-playing:grid-cols-[5rem_1fr_2.25rem] @[340px]/now-playing:gap-3">
         <div className="aspect-square rounded bg-gray-900 ring-1 ring-gray-900"></div>
         <div className="flex flex-col gap-y-2 @[340px]/now-playing:gap-y-[9px]">
           <div className="h-2.5 w-1/2 rounded bg-gray-900 @[340px]/now-playing:h-3"></div>
@@ -47,8 +44,6 @@ export default function NowPlaying() {
       </div>
     );
   }
-
-  const track = data.track;
 
   let dateTime = "";
   let humanizedDateTime = "";
