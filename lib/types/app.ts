@@ -6,7 +6,7 @@ export type AppConfig = {
   /**
    * The default date format to be used in the app.
    *
-   * See https://day.js.org/docs/en/display/format for list of valid formats.
+   * See https://day.js.org/docs/en/display/format for list of valid formats and syntax.
    */
   defaultDateFormat: string;
   /**
