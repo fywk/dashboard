@@ -6,9 +6,9 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 import TimeAgo from "timeago-react";
 
+import { app } from "@/lib/app-config";
 import dayjs from "@/lib/utils/dayjs";
 import fetcher from "@/lib/utils/fetcher";
-import { siteConfig as site } from "@/lib/utils/site-config";
 
 import EqualizerIcon from "./icons/EqualizerIcon";
 import HeartIcon from "./icons/HeartIcon";
@@ -51,7 +51,7 @@ export default function NowPlaying() {
   if (track.timestamp) {
     const timestamp = dayjs.unix(track.timestamp).utc();
     dateTime = timestamp.format();
-    humanizedDateTime = timestamp.format(site.dateFormat);
+    humanizedDateTime = timestamp.format(app.defaultDateFormat);
   }
 
   return (

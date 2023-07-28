@@ -7,7 +7,7 @@ import useWeatherForecast from "@/lib/hooks/useWeatherForecast";
 
 import WeatherConditionIcon from "./icons/WeatherConditionIcon";
 
-import type { SearchParams } from "@/lib/types/misc";
+import type { SearchParams } from "@/lib/types/app";
 
 export default function WeatherSummary({ city, country }: SearchParams) {
   const { data: currentWeather, isLoading: isLoadingCurrentWeather } = useCurrentWeather();

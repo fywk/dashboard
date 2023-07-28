@@ -1,3 +1,4 @@
+import { app } from "@/lib/app-config";
 import { getWeatherForecast } from "@/lib/services/openweather";
 
 import type { NextRequest } from "next/server";
@@ -7,8 +8,8 @@ export const config = {
 };
 
 export default async function handler(request: NextRequest) {
-  const latitude = request.geo?.latitude ?? "3.1415";
-  const longitude = request.geo?.longitude ?? "101.6865";
+  const latitude = request.geo?.latitude ?? app.location.latitude;
+  const longitude = request.geo?.longitude ?? app.location.longitude;
 
   const weatherForecast = await getWeatherForecast(latitude, longitude);
 

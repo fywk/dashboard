@@ -1,9 +1,9 @@
 import pluralize from "pluralize";
 import { Suspense } from "react";
 
+import { app } from "@/lib/app-config";
 import { getStoryItem, getTopStories } from "@/lib/services/hacker-news";
 import dayjs from "@/lib/utils/dayjs";
-import { siteConfig as site } from "@/lib/utils/site-config";
 
 import Section from "./Section";
 
@@ -31,7 +31,7 @@ async function Story({ storyID }: { storyID: number }) {
   const points = story.score ?? 0;
   const publishTime = dayjs.unix(story.time ?? 0).utc();
   const dateTime = publishTime.format();
-  const humanizedDateTime = publishTime.format(site.dateFormat);
+  const humanizedDateTime = publishTime.format(app.defaultDateFormat);
   const relativeTimeSincePosted = dayjs.unix(story.time ?? 0).fromNow();
   const comments = story.descendants ?? 0;
 

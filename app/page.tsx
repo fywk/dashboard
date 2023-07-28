@@ -1,4 +1,4 @@
-import { siteConfig as site } from "@/lib/utils/site-config";
+import { app } from "@/lib/app-config";
 
 import HackerNews from "./components/HackerNews";
 import Header from "./components/Header";
@@ -10,15 +10,15 @@ import Weather from "./components/Weather";
 
 import type { Metadata } from "next";
 
-import type { SearchParams } from "@/lib/types/misc";
+import type { SearchParams } from "@/lib/types/app";
 
 type Props = {
   searchParams: SearchParams;
 };
 
 export const metadata: Metadata = {
-  title: [site.title, site.user].join(site.titleSeparator),
-  description: site.description,
+  title: [app.title, app.user].join(app.titleSeparator),
+  description: app.description,
 };
 
 export default function Page({ searchParams }: Props) {
