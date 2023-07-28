@@ -3,7 +3,7 @@ import { env } from "@/app/env.mjs";
 import type { LastfmParams, Period } from "@/lib/types/lastfm";
 
 /**
- * Generates Last.fm API endpoint from `LastfmParams`
+ * Generates Last.fm API endpoint from `LastfmParams`.
  */
 export function generateEndpoint(params: LastfmParams): string {
   const API_ROOT = "https://ws.audioscrobbler.com/2.0/";

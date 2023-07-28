@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+import { app } from "./lib/app-config";
+
 import type { NextRequest } from "next/server";
 
 export const config = {
@@ -9,11 +11,11 @@ export const config = {
 export function middleware(request: NextRequest) {
   const { nextUrl: url, geo } = request;
 
-  // Default values are set since geo object is only available in production
-  const city = geo?.city ?? "Kuala Lumpur";
-  const country = geo?.country ?? "Malaysia";
-  const latitude = geo?.latitude ?? "3.1502";
-  const longitude = geo?.longitude ?? "101.7077";
+  // Default values are set since the geo object is only available in production
+  const city = geo?.city ?? app.location.city;
+  const country = geo?.country ?? app.location.country;
+  const latitude = geo?.latitude ?? app.location.latitude;
+  const longitude = geo?.longitude ?? app.location.longitude;
 
   url.searchParams.set("city", city);
   url.searchParams.set("country", country);
