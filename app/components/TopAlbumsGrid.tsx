@@ -1,11 +1,10 @@
 import Image from "next/image";
 import { Suspense } from "react";
 
+import { MAX_ALBUMS_COUNT } from "@/lib/app-constants";
 import { getTopAlbums } from "@/lib/services/lastfm";
 
 import type { Period } from "@/lib/types/lastfm";
-
-const MAX_ALBUMS_COUNT = 6;
 
 function TopAlbumsSkeleton({ count = MAX_ALBUMS_COUNT }: { count?: number }) {
   return [...Array<undefined>(count)].map((_, i) => (

@@ -1,12 +1,11 @@
 import Image from "next/image";
 import { Suspense } from "react";
 
+import { MAX_ARTISTS_COUNT } from "@/lib/app-constants";
 import { getTopArtists } from "@/lib/services/lastfm";
 import { getArtistImage } from "@/lib/services/spotify";
 
 import type { Period } from "@/lib/types/lastfm";
-
-const MAX_ARTISTS_COUNT = 6;
 
 async function ArtistAvatar({ name }: { name: string }) {
   const artistImage = await getArtistImage(name);

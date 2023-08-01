@@ -52,20 +52,20 @@ function City({ name, abbr, time }: CityProps) {
 }
 
 export default function Time() {
-  const INITIAL_TIME = "00:00:00";
-  const TIME_FORMAT = "HH:mm:ss";
+  const initialTime = "00:00:00";
+  const timeFormat = "HH:mm:ss";
 
   const appCreatedAt = +(process.env.APP_START_TIME ?? 0);
 
   const [uptime, setUptime] = useState<UptimeProps>();
-  const [timeUTC, setTimeUTC] = useState(INITIAL_TIME);
-  const [timeLocal, setTimeLocal] = useState(INITIAL_TIME);
-  const [timeLA, setTimeLA] = useState(INITIAL_TIME);
-  const [timeNYC, setTimeNYC] = useState(INITIAL_TIME);
-  const [timeLON, setTimeLON] = useState(INITIAL_TIME);
-  const [timeSIN, setTimeSIN] = useState(INITIAL_TIME);
-  const [timeDUB, setTimeDUB] = useState(INITIAL_TIME);
-  const [timeSYD, setTimeSYD] = useState(INITIAL_TIME);
+  const [timeUTC, setTimeUTC] = useState(initialTime);
+  const [timeLocal, setTimeLocal] = useState(initialTime);
+  const [timeLA, setTimeLA] = useState(initialTime);
+  const [timeNYC, setTimeNYC] = useState(initialTime);
+  const [timeLON, setTimeLON] = useState(initialTime);
+  const [timeSIN, setTimeSIN] = useState(initialTime);
+  const [timeDUB, setTimeDUB] = useState(initialTime);
+  const [timeSYD, setTimeSYD] = useState(initialTime);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -84,14 +84,14 @@ export default function Time() {
         duration: [pluralizedDays, pluralizedHours, pluralizedMinutes].filter(Boolean).join(", "),
         durationISO: dayjs.duration({ days, hours, minutes }).toISOString(),
       });
-      setTimeUTC(dayjsUTC.format(TIME_FORMAT));
-      setTimeLocal(dayjsUTC.local().format(TIME_FORMAT));
-      setTimeLA(dayjs().tz("America/Los_Angeles").format(TIME_FORMAT));
-      setTimeNYC(dayjs().tz("America/New_York").format(TIME_FORMAT));
-      setTimeLON(dayjs().tz("Europe/London").format(TIME_FORMAT));
-      setTimeDUB(dayjs().tz("Asia/Dubai").format(TIME_FORMAT));
-      setTimeSIN(dayjs().tz("Asia/Singapore").format(TIME_FORMAT));
-      setTimeSYD(dayjs().tz("Australia/Sydney").format(TIME_FORMAT));
+      setTimeUTC(dayjsUTC.format(timeFormat));
+      setTimeLocal(dayjsUTC.local().format(timeFormat));
+      setTimeLA(dayjs().tz("America/Los_Angeles").format(timeFormat));
+      setTimeNYC(dayjs().tz("America/New_York").format(timeFormat));
+      setTimeLON(dayjs().tz("Europe/London").format(timeFormat));
+      setTimeDUB(dayjs().tz("Asia/Dubai").format(timeFormat));
+      setTimeSIN(dayjs().tz("Asia/Singapore").format(timeFormat));
+      setTimeSYD(dayjs().tz("Australia/Sydney").format(timeFormat));
     }, 1000);
 
     return () => clearInterval(interval);

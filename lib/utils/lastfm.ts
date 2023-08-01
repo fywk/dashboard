@@ -6,16 +6,16 @@ import type { LastfmParams, Period } from "@/lib/types/lastfm";
  * Generates Last.fm API endpoint from `LastfmParams`.
  */
 export function generateEndpoint(params: LastfmParams): string {
-  const API_ROOT = "https://ws.audioscrobbler.com/2.0/";
-  const API_KEY = env.LASTFM_API_KEY;
-  const USERNAME = env.LASTFM_USERNAME;
+  const apiRoot = "https://ws.audioscrobbler.com/2.0/";
+  const apiKey = env.LASTFM_API_KEY;
+  const username = env.LASTFM_USERNAME;
 
   const paramsQueryString = Object.entries(params)
     .filter(([, val]) => val !== undefined)
     .map(([key, val]) => `${key}=${val}`)
     .join("&");
 
-  return `${API_ROOT}?${paramsQueryString}&user=${USERNAME}&api_key=${API_KEY}&format=json`;
+  return `${apiRoot}?${paramsQueryString}&user=${username}&api_key=${apiKey}&format=json`;
 }
 
 export function humanizePeriod(period: Period): string {

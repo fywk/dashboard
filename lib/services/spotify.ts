@@ -6,12 +6,11 @@ type AccessToken = z.infer<typeof AccessTokenSchema>;
 
 type Image = z.infer<typeof ImageSchema>;
 
-const CLIENT_ID = env.SPOTIFY_CLIENT_ID;
-const CLIENT_SECRET = env.SPOTIFY_CLIENT_SECRET;
-const REFRESH_TOKEN = env.SPOTIFY_REFRESH_TOKEN;
-
-const TOKEN_ENDPOINT = "https://accounts.spotify.com/api/token";
-const SEARCH_ENDPOINT = "https://api.spotify.com/v1/search";
+const tokenEndpoint = "https://accounts.spotify.com/api/token";
+const searchEndpoint = "https://api.spotify.com/v1/search";
+const clientID = env.SPOTIFY_CLIENT_ID;
+const clientSecret = env.SPOTIFY_CLIENT_SECRET;
+const refreshToken = env.SPOTIFY_REFRESH_TOKEN;
 
 const AccessTokenSchema = z.object({
   access_token: z.string(),
@@ -38,12 +37,12 @@ const SearchArtistSchema = z.object({
 });
 
 async function getAccessToken(): Promise<AccessToken | null> {
-  const authToken = btoa(`${CLIENT_ID}:${CLIENT_SECRET}`);
+  const authToken = btoa(`${clientID}:${clientSecret}`);
 
-  const response = await fetch(TOKEN_ENDPOINT, {
+  const response = await fetch(tokenEndpoint, {
     body: new URLSearchParams({
       grant_type: "refresh_token",
-      refresh_token: REFRESH_TOKEN,
+      refresh_token: refreshToken,
     }),
     cache: "no-store",
     headers: {
@@ -67,7 +66,7 @@ export async function getArtistImage(artistName: string): Promise<Image | null> 
   const { access_token } = responseAccessToken;
 
   const responseSearchArtists = await fetch(
-    `${SEARCH_ENDPOINT}?q=${artistName}&type=artist&limit=1`,
+    `${searchEndpoint}?q=${artistName}&type=artist&limit=1`,
     {
       headers: {
         Authorization: `Bearer ${access_token}`,

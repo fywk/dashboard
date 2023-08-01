@@ -2,13 +2,13 @@ import pluralize from "pluralize";
 import { Suspense } from "react";
 
 import { app } from "@/lib/app-config";
+import { MAX_STORIES_COUNT } from "@/lib/app-constants";
 import { getStoryItem, getTopStories } from "@/lib/services/hacker-news";
 import dayjs from "@/lib/utils/dayjs";
 
 import Section from "./Section";
 
-const MAX_STORIES_COUNT = 8;
-const HN_BASE_URL = "https://news.ycombinator.com";
+const hackerNewsURL = "https://news.ycombinator.com";
 
 function StorySkeleton() {
   return (
@@ -27,11 +27,11 @@ async function Story({ storyID }: { storyID: number }) {
     return <StorySkeleton />;
   }
 
-  const hnItemURL = `${HN_BASE_URL}/item?id=${storyID}`;
+  const itemURL = `${hackerNewsURL}/item?id=${storyID}`;
   const points = story.score ?? 0;
-  const publishTime = dayjs.unix(story.time ?? 0).utc();
-  const dateTime = publishTime.format();
-  const humanizedDateTime = publishTime.format(app.defaultDateFormat);
+  const publishedTime = dayjs.unix(story.time ?? 0).utc();
+  const isoDate = publishedTime.format();
+  const humanizedDate = publishedTime.format(app.defaultDateFormat);
   const relativeTimeSincePosted = dayjs.unix(story.time ?? 0).fromNow();
   const comments = story.descendants ?? 0;
 
@@ -53,12 +53,12 @@ async function Story({ storyID }: { storyID: number }) {
         </p>
         <time
           className="text-secondary after:px-1.5 after:text-gray-600 after:content-['/']"
-          title={humanizedDateTime}
-          dateTime={dateTime}
+          title={humanizedDate}
+          dateTime={isoDate}
         >
           {relativeTimeSincePosted}
         </time>
-        <a href={hnItemURL} className="w-fit decoration-from-font hover:underline" target="_blank">
+        <a href={itemURL} className="decoration-from-font hover:underline" target="_blank">
           {pluralize("comment", comments, true)}
         </a>
       </div>
@@ -86,7 +86,7 @@ export default function HackerNews() {
   return (
     <Section
       title={
-        <a href={HN_BASE_URL} target="_blank">
+        <a href={hackerNewsURL} target="_blank">
           Hacker News
         </a>
       }
