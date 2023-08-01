@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
 export default function Page({ searchParams }: Props) {
   return (
-    <div className="mx-auto flex min-h-[100dvh] max-w-[1680px] items-center py-8" id="content">
+    <div className="mx-auto flex min-h-[100dvh] max-w-[1680px] items-center py-8" id="root">
       <div className="mx-auto grid w-full max-w-[800px] grid-cols-[1fr_auto] items-center gap-x-8 gap-y-6 sm:gap-x-9 xl:max-w-none min-[1440px]:gap-x-10">
         <Header />
         <a
