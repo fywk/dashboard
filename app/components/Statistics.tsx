@@ -12,20 +12,20 @@ import { convertPeriodToDays } from "@/lib/utils/lastfm";
 
 import type { Period, TotalStats } from "@/lib/types/lastfm";
 
+type CategoryProps = {
+  title: "Plays" | "Albums" | "Artists" | "Tracks";
+  icon: React.ReactNode;
+  children: React.ReactNode;
+};
+
+const placeholderString = "---";
+
 async function Total({ data }: { data: Promise<TotalStats | null> }): Promise<string> {
   const result = await data;
-  return result?.total ?? "---";
+  return result?.total ?? placeholderString;
 }
 
-function Category({
-  title,
-  icon,
-  children,
-}: {
-  title: "Plays" | "Albums" | "Artists" | "Tracks";
-  icon?: React.ReactNode;
-  children: React.ReactNode;
-}) {
+function Category({ title, icon, children }: CategoryProps) {
   return (
     <div className="flex w-full flex-col items-center justify-center text-sm font-medium leading-5 tracking-tight odd:text-secondary even:text-primary @lg/section:odd:text-primary @lg/section:even:text-secondary @1.5xl/section:text-[15px]">
       {icon}
@@ -63,7 +63,7 @@ export default function Statistics({ period }: { period: Period }) {
           />
         }
       >
-        <Suspense fallback="---">
+        <Suspense fallback={placeholderString}>
           <Total data={playsData} />
         </Suspense>
       </Category>
@@ -73,7 +73,7 @@ export default function Statistics({ period }: { period: Period }) {
           <IconMusic className="h-7.5 w-7.5 @1.5xl/section:h-8 @1.5xl/section:w-8" stroke={1.5} />
         }
       >
-        <Suspense fallback="---">
+        <Suspense fallback={placeholderString}>
           <Total data={tracksData} />
         </Suspense>
       </Category>
@@ -83,7 +83,7 @@ export default function Statistics({ period }: { period: Period }) {
           <IconVinyl className="h-7.5 w-7.5 @1.5xl/section:h-8 @1.5xl/section:w-8" stroke={1.5} />
         }
       >
-        <Suspense fallback="---">
+        <Suspense fallback={placeholderString}>
           <Total data={albumsData} />
         </Suspense>
       </Category>
@@ -96,7 +96,7 @@ export default function Statistics({ period }: { period: Period }) {
           />
         }
       >
-        <Suspense fallback="---">
+        <Suspense fallback={placeholderString}>
           <Total data={artistsData} />
         </Suspense>
       </Category>

@@ -20,17 +20,17 @@ type CityProps = {
 };
 
 function Uptime(props: UptimeProps) {
-  if (!props.isVisible) return;
+  if (!props.isVisible) return null;
 
   return (
     <p
-      className="font-oxanium text-[11px] font-[550] !leading-[1.125] @md/section:text-xs @lg/section:text-[13px] @1.5xl/section:text-sm"
+      className="-translate-y-0.5 text-[11px] !leading-none @md/section:text-xs @lg/section:text-[13px] @1.5xl/section:text-sm"
       title="Time since last build"
     >
-      <span className="text-primary">Uptime</span>
-      <span className="text-gray-300">
-        : <time dateTime={props.durationISO}>{props.duration}</time>
-      </span>
+      <span className="font-semibold text-primary">Uptime</span>
+      <time className="text-gray-200" dateTime={props.durationISO}>
+        {`: ${props.duration}`}
+      </time>
     </p>
   );
 }
@@ -105,15 +105,15 @@ export default function Time() {
     >
       <div className="mt-1 grid grid-cols-2 gap-x-4 gap-y-1 @md/section:mt-[5px] @xl/section:gap-x-4.5 @1.5xl/section:gap-x-5">
         <div className="flex flex-col gap-y-2 @container @sm/section:gap-y-2.5">
-          <span className="ml-1 w-fit rounded-[3px] px-1 text-[10px] font-bold !leading-tight tracking-tighter text-primary ring-1 ring-primary @lg/section:text-[11px] @1.5xl/section:text-xs">
-            LOCAL
+          <span className="ml-1 w-fit rounded-[3px] px-1 py-0.5 text-[10px] font-bold uppercase !leading-none tracking-tight text-primary ring-1 ring-primary @lg/section:text-[11px] @1.5xl/section:text-xs">
+            Local
           </span>
           <h2 className="text-center font-oxanium text-[24cqw]/none text-gray-100">
             <time>{timeLocal}</time>
           </h2>
         </div>
         <div className="flex flex-col gap-y-2 @container @sm/section:gap-y-2.5">
-          <span className="ml-1 w-fit rounded-[3px] px-1 text-[10px] font-bold !leading-tight tracking-tighter text-secondary ring-1 ring-secondary @lg/section:text-[11px] @1.5xl/section:text-xs">
+          <span className="ml-1 w-fit rounded-[3px] px-1 py-0.5 text-[10px] font-bold !leading-none tracking-tight text-secondary ring-1 ring-secondary @lg/section:text-[11px] @1.5xl/section:text-xs">
             UTC
           </span>
           <h2 className="text-center font-oxanium text-[24cqw]/none text-gray-500">

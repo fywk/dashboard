@@ -7,6 +7,7 @@ import useSWR from "swr";
 import TimeAgo from "timeago-react";
 
 import { app } from "@/lib/app-config";
+import { PLACEHOLDER_CHARACTER } from "@/lib/app-constants";
 import dayjs from "@/lib/utils/dayjs";
 import fetcher from "@/lib/utils/fetcher";
 
@@ -33,10 +34,16 @@ export default function NowPlaying() {
     return (
       <div className="grid grid-cols-[4rem_1fr_2.25rem] items-center gap-2.5 overflow-hidden rounded-md border border-primary/55 p-2 @xs/now-playing:gap-[0.6875rem] @[21.25rem]/now-playing:grid-cols-[4.5rem_1fr_2.25rem] @sm/now-playing:grid-cols-[5rem_1fr_2.25rem] @[340px]/now-playing:gap-3">
         <div className="aspect-square rounded bg-gray-900 ring-1 ring-gray-900"></div>
-        <div className="flex flex-col gap-y-2 @[340px]/now-playing:gap-y-[9px]">
-          <div className="h-2.5 w-1/2 rounded bg-gray-900 @[340px]/now-playing:h-3"></div>
-          <div className="h-3 w-full rounded bg-gray-900 @[340px]/now-playing:h-3.5"></div>
-          <div className="h-2.5 w-3/4 rounded bg-gray-900 @[340px]/now-playing:h-3"></div>
+        <div className="flex flex-col gap-y-1.5 text-gray-900">
+          <div className="text-[13px] !leading-none @[340px]/now-playing:text-sm">
+            {PLACEHOLDER_CHARACTER.repeat(6)}
+          </div>
+          <div className="text-sm !leading-none @[340px]/now-playing:text-[15px]">
+            {PLACEHOLDER_CHARACTER.repeat(12)}
+          </div>
+          <div className="text-[13px] !leading-none @[340px]/now-playing:text-sm">
+            {PLACEHOLDER_CHARACTER.repeat(9)}
+          </div>
         </div>
         <div className="text-transparent">
           <HeartIcon isFilled={false} />

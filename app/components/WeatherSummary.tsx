@@ -2,6 +2,7 @@
 
 import { IconDropCircle, IconGauge } from "@tabler/icons-react";
 
+import { PLACEHOLDER_CHARACTER } from "@/lib/app-constants";
 import useCurrentWeather from "@/lib/hooks/useCurrentWeather";
 import useWeatherForecast from "@/lib/hooks/useWeatherForecast";
 
@@ -34,9 +35,11 @@ export default function WeatherSummary({ city, country }: SearchParams) {
         <div className="w-full overflow-hidden">
           <div className="flex h-full flex-col items-end justify-between gap-x-2 @lg/section:flex-row @lg/section:items-center @lg/section:justify-start @lg/section:gap-x-2.5">
             <div className="h-8.5 w-8.5 rounded bg-gray-900 @lg/section:h-9 @lg/section:w-9"></div>
-            <div className="flex w-full flex-col items-end gap-y-1.5 @lg/section:w-auto @lg/section:grow @lg/section:items-start">
-              <div className="h-2.5 w-3/4 rounded bg-gray-900 @lg/section:h-3"></div>
-              <div className="h-2 w-1/2 rounded bg-gray-900 @lg/section:h-2.5"></div>
+            <div className="flex flex-col items-end text-gray-900 @lg/section:items-start">
+              <div className="text-xs @lg/section:text-sm">{PLACEHOLDER_CHARACTER.repeat(10)}</div>
+              <div className="text-[10px] leading-3 @lg/section:text-xs">
+                {PLACEHOLDER_CHARACTER.repeat(6)}
+              </div>
             </div>
           </div>
         </div>
