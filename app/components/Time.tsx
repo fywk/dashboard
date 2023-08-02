@@ -100,7 +100,7 @@ export default function Time() {
   return (
     <Section
       title="Time"
-      subtitle={uptime && Object.keys(uptime).length !== 0 && <Uptime {...uptime} />}
+      subtitle={uptime && Object.keys(uptime).length > 0 && <Uptime {...uptime} />}
       accentColor="secondary"
     >
       <div className="mt-1 grid grid-cols-2 gap-x-4 gap-y-1 @md/section:mt-[5px] @xl/section:gap-x-4.5 @1.5xl/section:gap-x-5">
