@@ -3,7 +3,7 @@ import type { AppConfig } from "./types/app";
 const appConfig: AppConfig = {
   user: "Francis Yeong",
   title: "Dashboard",
-  titleSeparator: " | ",
+  titleSeparator: "｜",
   description: "My Tron-inspired personal dashboard",
   defaultDateFormat: "D MMM YYYY, HH:mm",
   location: {
