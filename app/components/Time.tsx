@@ -19,7 +19,7 @@ type CityProps = {
   time: string;
 };
 
-function Uptime({ duration, durationISO, isVisible }: UptimeProps) {
+function Uptime({ isVisible, duration, durationISO }: UptimeProps) {
   if (!isVisible) return null;
 
   return (
