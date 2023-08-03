@@ -12,11 +12,11 @@ const hackerNewsURL = "https://news.ycombinator.com";
 
 function StorySkeleton() {
   return (
-    <li className="flex flex-col gap-y-0.5 @[52rem]/quadrant:gap-y-1">
-      <div className="break-all text-[13.5px]/tight text-gray-900 @2xl/quadrant:text-sm/snug">
+    <li className="flex flex-col gap-y-0.5 text-gray-900 @[52rem]/quadrant:gap-y-1">
+      <div className="break-all text-[13.5px]/tight @2xl/quadrant:text-sm/snug">
         {PLACEHOLDER_CHARACTER.repeat(35)}
       </div>
-      <div className="flex items-center text-[11px]/4 text-gray-900 @1.5xl/quadrant:text-xs">
+      <div className="flex items-center text-[11px]/4 @2xl/quadrant:text-xs">
         <div className="after:px-1.5 after:text-gray-800 after:content-['/']">
           {PLACEHOLDER_CHARACTER.repeat(4)}
         </div>
@@ -38,10 +38,10 @@ async function Story({ storyID }: { storyID: number }) {
 
   const itemURL = `${hackerNewsURL}/item?id=${storyID}`;
   const points = story.score ?? 0;
-  const publishedTime = dayjs.unix(story.time ?? 0).utc();
-  const isoDate = publishedTime.format();
-  const humanizedDate = publishedTime.format(app.defaultDateFormat);
-  const relativeTimeSincePosted = dayjs.unix(story.time ?? 0).fromNow();
+  const publicationTime = dayjs.unix(story.time ?? 0);
+  const pubDateISO = publicationTime.utc().format();
+  const pubDateHumanized = publicationTime.utc().format(app.defaultDateFormat);
+  const relativeTimeSincePublished = publicationTime.fromNow();
   const comments = story.descendants ?? 0;
 
   return (
@@ -62,10 +62,10 @@ async function Story({ storyID }: { storyID: number }) {
         </p>
         <time
           className="text-secondary after:px-1.5 after:text-gray-500 after:content-['/']"
-          title={humanizedDate}
-          dateTime={isoDate}
+          title={pubDateHumanized}
+          dateTime={pubDateISO}
         >
-          {relativeTimeSincePosted}
+          {relativeTimeSincePublished}
         </time>
         <a href={itemURL} className="decoration-from-font hover:underline" target="_blank">
           {pluralize("comment", comments, true)}

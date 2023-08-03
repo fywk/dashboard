@@ -113,11 +113,11 @@ export default function WeatherSummary({ city, country }: SearchParams) {
             id={id}
             iconCode={iconCode}
           />
-          <div className="flex flex-col items-end @lg/section:items-start">
-            <p className="truncate text-xs font-medium capitalize tracking-tight text-gray-100 @lg/section:text-sm">
+          <div className="flex flex-col items-end tracking-tight @lg/section:items-start">
+            <p className="truncate text-xs font-medium capitalize text-gray-100 @lg/section:text-sm">
               {description}
             </p>
-            <p className="text-[10px] leading-3 tracking-tight @lg/section:text-xs">
+            <p className="text-[10px] leading-3 @lg/section:text-xs">
               {`H: ${maxTemp}° L: ${minTemp}°`}
             </p>
           </div>

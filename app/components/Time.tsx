@@ -19,8 +19,8 @@ type CityProps = {
   time: string;
 };
 
-function Uptime(props: UptimeProps) {
-  if (!props.isVisible) return null;
+function Uptime({ duration, durationISO, isVisible }: UptimeProps) {
+  if (!isVisible) return null;
 
   return (
     <p
@@ -28,8 +28,8 @@ function Uptime(props: UptimeProps) {
       title="Time since last build"
     >
       <span className="font-semibold text-primary">Uptime</span>
-      <time className="text-gray-200" dateTime={props.durationISO}>
-        {`: ${props.duration}`}
+      <time className="text-gray-200" dateTime={durationISO}>
+        {`: ${duration}`}
       </time>
     </p>
   );
