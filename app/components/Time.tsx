@@ -105,20 +105,20 @@ export default function Time() {
     >
       <div className="mt-1 grid grid-cols-2 gap-x-4 gap-y-1 @md/section:mt-[5px] @xl/section:gap-x-4.5 @1.5xl/section:gap-x-5">
         <div className="flex flex-col gap-y-2 @container @sm/section:gap-y-2.5">
-          <span className="ml-1 w-fit rounded-[3px] px-1 py-0.5 text-[10px] font-bold uppercase !leading-none tracking-tight text-primary ring-1 ring-primary @lg/section:text-[11px] @1.5xl/section:text-xs">
+          <h3 className="ml-1 w-fit rounded-[3px] px-1 py-0.5 text-[10px] font-bold uppercase !leading-none tracking-tight text-primary ring-1 ring-primary @lg/section:text-[11px] @1.5xl/section:text-xs">
             Local
-          </span>
-          <h2 className="text-center font-oxanium text-[24cqw]/none text-gray-100">
+          </h3>
+          <h4 className="text-center font-oxanium text-[24cqw]/none text-gray-100">
             <time>{timeLocal}</time>
-          </h2>
+          </h4>
         </div>
         <div className="flex flex-col gap-y-2 @container @sm/section:gap-y-2.5">
-          <span className="ml-1 w-fit rounded-[3px] px-1 py-0.5 text-[10px] font-bold !leading-none tracking-tight text-secondary ring-1 ring-secondary @lg/section:text-[11px] @1.5xl/section:text-xs">
+          <h3 className="ml-1 w-fit rounded-[3px] px-1 py-0.5 text-[10px] font-bold !leading-none tracking-tight text-secondary ring-1 ring-secondary @lg/section:text-[11px] @1.5xl/section:text-xs">
             UTC
-          </span>
-          <h2 className="text-center font-oxanium text-[24cqw]/none text-gray-500">
+          </h3>
+          <h4 className="text-center font-oxanium text-[24cqw]/none text-gray-500">
             <time>{timeUTC}</time>
-          </h2>
+          </h4>
         </div>
         <div className="col-span-full flex justify-evenly divide-x divide-primary/60 rounded-sm border border-primary/60">
           <City name="Los Angeles" abbr="LA" time={timeLA} />
