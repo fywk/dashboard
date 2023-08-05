@@ -1,11 +1,10 @@
 import Image from "next/image";
 import { Suspense } from "react";
 
+import { MAX_ALBUMS_COUNT, PLACEHOLDER_CHARACTER } from "@/lib/app-constants";
 import { getTopAlbums } from "@/lib/services/lastfm";
 
 import type { Period } from "@/lib/types/lastfm";
-
-const MAX_ALBUMS_COUNT = 6;
 
 function TopAlbumsSkeleton({ count = MAX_ALBUMS_COUNT }: { count?: number }) {
   return [...Array<undefined>(count)].map((_, i) => (
@@ -14,9 +13,13 @@ function TopAlbumsSkeleton({ count = MAX_ALBUMS_COUNT }: { count?: number }) {
       key={i}
     >
       <div className="aspect-square basis-[30%] rounded bg-gray-900 ring-1 ring-gray-900"></div>
-      <div className="flex basis-[70%] flex-col gap-y-1.5 @1.5xl/section:gap-y-[7px]">
-        <div className="h-2.5 w-full rounded bg-gray-900 @xl/section:h-[11px] @1.5xl/section:h-3"></div>
-        <div className="h-2 w-1/2 rounded bg-gray-900 @xl/section:h-[9px] @1.5xl/section:h-2.5"></div>
+      <div className="flex basis-[70%] flex-col overflow-hidden text-gray-900 @xl/section:gap-y-px">
+        <div className="text-xs @xl/section:text-[13px] @1.5xl/section:text-sm">
+          {PLACEHOLDER_CHARACTER.repeat(10)}
+        </div>
+        <div className="text-[10px] @xl/section:text-[11px] @1.5xl/section:text-xs">
+          {PLACEHOLDER_CHARACTER.repeat(5)}
+        </div>
       </div>
     </div>
   ));

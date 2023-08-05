@@ -6,9 +6,8 @@ import type { CurrentWeather } from "@/lib/types/openweather";
 
 export type WeatherForecast = z.infer<typeof WeatherForecastSchema>;
 
-const API_KEY = env.OPENWEATHER_API_KEY;
-
-const API_ROOT = "https://api.openweathermap.org/data/2.5";
+const apiRoot = "https://api.openweathermap.org/data/2.5";
+const apiKey = env.OPENWEATHER_API_KEY;
 
 const CurrentWeatherSchema = z.object({
   weather: z
@@ -44,7 +43,7 @@ const WeatherForecastSchema = z.object({
  * @param lon - Geographical longitude coordinate in decimal degrees format.
  */
 export async function getCurrentWeather(lat: string, lon: string): Promise<CurrentWeather | null> {
-  const currentWeatherEndpoint = `${API_ROOT}/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
+  const currentWeatherEndpoint = `${apiRoot}/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
 
   const response = await fetch(currentWeatherEndpoint);
   const result = CurrentWeatherSchema.safeParse(await response.json());
@@ -73,7 +72,7 @@ export async function getWeatherForecast(
   lat: string,
   lon: string,
 ): Promise<WeatherForecast | null> {
-  const weatherForecastEndpoint = `${API_ROOT}/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&cnt=11`;
+  const weatherForecastEndpoint = `${apiRoot}/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&cnt=11`;
 
   const response = await fetch(weatherForecastEndpoint);
   const result = WeatherForecastSchema.safeParse(await response.json());

@@ -19,18 +19,18 @@ type CityProps = {
   time: string;
 };
 
-function Uptime(props: UptimeProps) {
-  if (!props.isVisible) return;
+function Uptime({ isVisible, duration, durationISO }: UptimeProps) {
+  if (!isVisible) return null;
 
   return (
     <p
-      className="font-oxanium text-[11px] font-[550] !leading-[1.125] @md/section:text-xs @lg/section:text-[13px] @1.5xl/section:text-sm"
+      className="-translate-y-0.5 text-[11px] !leading-none @md/section:text-xs @lg/section:text-[13px] @1.5xl/section:text-sm"
       title="Time since last build"
     >
-      <span className="text-primary">Uptime</span>
-      <span className="text-gray-300">
-        : <time dateTime={props.durationISO}>{props.duration}</time>
-      </span>
+      <span className="font-semibold text-primary">Uptime</span>
+      <time className="text-gray-200" dateTime={durationISO}>
+        {`: ${duration}`}
+      </time>
     </p>
   );
 }
@@ -52,20 +52,20 @@ function City({ name, abbr, time }: CityProps) {
 }
 
 export default function Time() {
-  const INITIAL_TIME = "00:00:00";
-  const TIME_FORMAT = "HH:mm:ss";
+  const initialTime = "00:00:00";
+  const timeFormat = "HH:mm:ss";
 
   const appCreatedAt = +(process.env.APP_START_TIME ?? 0);
 
   const [uptime, setUptime] = useState<UptimeProps>();
-  const [timeUTC, setTimeUTC] = useState(INITIAL_TIME);
-  const [timeLocal, setTimeLocal] = useState(INITIAL_TIME);
-  const [timeLA, setTimeLA] = useState(INITIAL_TIME);
-  const [timeNYC, setTimeNYC] = useState(INITIAL_TIME);
-  const [timeLON, setTimeLON] = useState(INITIAL_TIME);
-  const [timeSIN, setTimeSIN] = useState(INITIAL_TIME);
-  const [timeDUB, setTimeDUB] = useState(INITIAL_TIME);
-  const [timeSYD, setTimeSYD] = useState(INITIAL_TIME);
+  const [timeUTC, setTimeUTC] = useState(initialTime);
+  const [timeLocal, setTimeLocal] = useState(initialTime);
+  const [timeLA, setTimeLA] = useState(initialTime);
+  const [timeNYC, setTimeNYC] = useState(initialTime);
+  const [timeLON, setTimeLON] = useState(initialTime);
+  const [timeSIN, setTimeSIN] = useState(initialTime);
+  const [timeDUB, setTimeDUB] = useState(initialTime);
+  const [timeSYD, setTimeSYD] = useState(initialTime);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -84,14 +84,14 @@ export default function Time() {
         duration: [pluralizedDays, pluralizedHours, pluralizedMinutes].filter(Boolean).join(", "),
         durationISO: dayjs.duration({ days, hours, minutes }).toISOString(),
       });
-      setTimeUTC(dayjsUTC.format(TIME_FORMAT));
-      setTimeLocal(dayjsUTC.local().format(TIME_FORMAT));
-      setTimeLA(dayjs().tz("America/Los_Angeles").format(TIME_FORMAT));
-      setTimeNYC(dayjs().tz("America/New_York").format(TIME_FORMAT));
-      setTimeLON(dayjs().tz("Europe/London").format(TIME_FORMAT));
-      setTimeDUB(dayjs().tz("Asia/Dubai").format(TIME_FORMAT));
-      setTimeSIN(dayjs().tz("Asia/Singapore").format(TIME_FORMAT));
-      setTimeSYD(dayjs().tz("Australia/Sydney").format(TIME_FORMAT));
+      setTimeUTC(dayjsUTC.format(timeFormat));
+      setTimeLocal(dayjsUTC.local().format(timeFormat));
+      setTimeLA(dayjs().tz("America/Los_Angeles").format(timeFormat));
+      setTimeNYC(dayjs().tz("America/New_York").format(timeFormat));
+      setTimeLON(dayjs().tz("Europe/London").format(timeFormat));
+      setTimeDUB(dayjs().tz("Asia/Dubai").format(timeFormat));
+      setTimeSIN(dayjs().tz("Asia/Singapore").format(timeFormat));
+      setTimeSYD(dayjs().tz("Australia/Sydney").format(timeFormat));
     }, 1000);
 
     return () => clearInterval(interval);
@@ -100,25 +100,25 @@ export default function Time() {
   return (
     <Section
       title="Time"
-      subtitle={uptime && Object.keys(uptime).length !== 0 && <Uptime {...uptime} />}
+      subtitle={uptime && Object.keys(uptime).length > 0 && <Uptime {...uptime} />}
       accentColor="secondary"
     >
       <div className="mt-1 grid grid-cols-2 gap-x-4 gap-y-1 @md/section:mt-[5px] @xl/section:gap-x-4.5 @1.5xl/section:gap-x-5">
         <div className="flex flex-col gap-y-2 @container @sm/section:gap-y-2.5">
-          <span className="ml-1 w-fit rounded-[3px] px-1 text-[10px] font-bold !leading-tight tracking-tighter text-primary ring-1 ring-primary @lg/section:text-[11px] @1.5xl/section:text-xs">
-            LOCAL
-          </span>
-          <h2 className="text-center font-oxanium text-[24cqw]/none text-gray-100">
+          <h3 className="ml-1 w-fit rounded-[3px] px-1 py-0.5 text-[10px] font-bold uppercase !leading-none tracking-tight text-primary ring-1 ring-primary @lg/section:text-[11px] @1.5xl/section:text-xs">
+            Local
+          </h3>
+          <h4 className="text-center font-oxanium text-[24cqw]/none text-gray-100">
             <time>{timeLocal}</time>
-          </h2>
+          </h4>
         </div>
         <div className="flex flex-col gap-y-2 @container @sm/section:gap-y-2.5">
-          <span className="ml-1 w-fit rounded-[3px] px-1 text-[10px] font-bold !leading-tight tracking-tighter text-secondary ring-1 ring-secondary @lg/section:text-[11px] @1.5xl/section:text-xs">
+          <h3 className="ml-1 w-fit rounded-[3px] px-1 py-0.5 text-[10px] font-bold !leading-none tracking-tight text-secondary ring-1 ring-secondary @lg/section:text-[11px] @1.5xl/section:text-xs">
             UTC
-          </span>
-          <h2 className="text-center font-oxanium text-[24cqw]/none text-gray-500">
+          </h3>
+          <h4 className="text-center font-oxanium text-[24cqw]/none text-gray-500">
             <time>{timeUTC}</time>
-          </h2>
+          </h4>
         </div>
         <div className="col-span-full flex justify-evenly divide-x divide-primary/60 rounded-sm border border-primary/60">
           <City name="Los Angeles" abbr="LA" time={timeLA} />

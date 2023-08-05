@@ -2,20 +2,29 @@ import pluralize from "pluralize";
 import { Suspense } from "react";
 
 import { app } from "@/lib/app-config";
+import { MAX_STORIES_COUNT, PLACEHOLDER_CHARACTER } from "@/lib/app-constants";
 import { getStoryItem, getTopStories } from "@/lib/services/hacker-news";
 import dayjs from "@/lib/utils/dayjs";
 
 import Section from "./Section";
 
-const MAX_STORIES_COUNT = 8;
-const HN_BASE_URL = "https://news.ycombinator.com";
+const hackerNewsURL = "https://news.ycombinator.com";
 
 function StorySkeleton() {
   return (
-    <li className="flex flex-col gap-y-2">
-      <div className="h-2.5 w-full rounded bg-gray-900"></div>
-      <div className="h-2.5 w-3/4 rounded bg-gray-900"></div>
-      <div className="h-2 w-1/2 rounded bg-gray-900"></div>
+    <li className="flex flex-col gap-y-0.5 text-gray-900 @[52rem]/quadrant:gap-y-1">
+      <div className="break-all text-[13.5px]/tight @2xl/quadrant:text-sm/snug">
+        {PLACEHOLDER_CHARACTER.repeat(35)}
+      </div>
+      <div className="flex items-center text-[11px]/4 @2xl/quadrant:text-xs">
+        <div className="after:px-1.5 after:text-gray-800 after:content-['/']">
+          {PLACEHOLDER_CHARACTER.repeat(4)}
+        </div>
+        <div className="after:px-1.5 after:text-gray-800 after:content-['/']">
+          {PLACEHOLDER_CHARACTER.repeat(4)}
+        </div>
+        <div>{PLACEHOLDER_CHARACTER.repeat(4)}</div>
+      </div>
     </li>
   );
 }
@@ -27,38 +36,38 @@ async function Story({ storyID }: { storyID: number }) {
     return <StorySkeleton />;
   }
 
-  const hnItemURL = `${HN_BASE_URL}/item?id=${storyID}`;
+  const itemURL = `${hackerNewsURL}/item?id=${storyID}`;
   const points = story.score ?? 0;
-  const publishTime = dayjs.unix(story.time ?? 0).utc();
-  const dateTime = publishTime.format();
-  const humanizedDateTime = publishTime.format(app.defaultDateFormat);
-  const relativeTimeSincePosted = dayjs.unix(story.time ?? 0).fromNow();
+  const publicationTime = dayjs.unix(story.time ?? 0);
+  const pubDateISO = publicationTime.utc().format();
+  const pubDateHumanized = publicationTime.utc().format(app.defaultDateFormat);
+  const relativeTimeSincePublished = publicationTime.fromNow();
   const comments = story.descendants ?? 0;
 
   return (
-    <li className="flex flex-col gap-y-0.5 @1.5xl/quadrant:gap-y-1">
+    <li className="flex flex-col gap-y-0.5 @[52rem]/quadrant:gap-y-1">
       <h4>
         <a
-          href={story.url ?? hnItemURL}
-          className="line-clamp-2 w-fit text-[13px]/4 font-medium text-gray-100 [text-wrap:balance] @1.5xl/quadrant:text-sm/[18px]"
+          href={story.url ?? itemURL}
+          className="line-clamp-2 w-fit text-[13.5px]/tight font-medium text-gray-100 [text-wrap:balance] @2xl/quadrant:text-sm/snug"
           title={story.title}
           target="_blank"
         >
           {story.title}
         </a>
       </h4>
-      <div className="flex items-center text-[11px]/4 tracking-tight @1.5xl/quadrant:text-xs">
-        <p className="text-primary after:px-1.5 after:text-gray-600 after:content-['/']">
+      <div className="flex items-center text-[11px]/4 tracking-tight @2xl/quadrant:text-xs">
+        <p className="text-primary after:px-1.5 after:text-gray-500 after:content-['/']">
           {pluralize("point", points, true)}
         </p>
         <time
-          className="text-secondary after:px-1.5 after:text-gray-600 after:content-['/']"
-          title={humanizedDateTime}
-          dateTime={dateTime}
+          className="text-secondary after:px-1.5 after:text-gray-500 after:content-['/']"
+          title={pubDateHumanized}
+          dateTime={pubDateISO}
         >
-          {relativeTimeSincePosted}
+          {relativeTimeSincePublished}
         </time>
-        <a href={hnItemURL} className="w-fit decoration-from-font hover:underline" target="_blank">
+        <a href={itemURL} className="decoration-from-font hover:underline" target="_blank">
           {pluralize("comment", comments, true)}
         </a>
       </div>
@@ -66,11 +75,15 @@ async function Story({ storyID }: { storyID: number }) {
   );
 }
 
+function TopStoriesSkeleton() {
+  return [...Array<undefined>(MAX_STORIES_COUNT)].map((_, i) => <StorySkeleton key={i} />);
+}
+
 async function TopStories({ data }: { data: Promise<number[] | null> }) {
   const stories = await data;
 
   if (!stories) {
-    return <StorySkeleton />;
+    return <TopStoriesSkeleton />;
   }
 
   return stories.map((storyID) => (
@@ -86,14 +99,14 @@ export default function HackerNews() {
   return (
     <Section
       title={
-        <a href={HN_BASE_URL} target="_blank">
+        <a href={hackerNewsURL} target="_blank">
           Hacker News
         </a>
       }
       customClasses="order-last @xl/quadrant:order-first"
     >
-      <ol className="flex h-full min-h-[480px] flex-col justify-between gap-y-1.5 @1.5xl/quadrant:gap-y-2 xl:min-h-full">
-        <Suspense>
+      <ol className="flex h-full min-h-[30rem] flex-col justify-between gap-y-1.5 md:min-h-[31rem] xl:min-h-full">
+        <Suspense fallback={<TopStoriesSkeleton />}>
           <TopStories data={stories} />
         </Suspense>
       </ol>

@@ -4,14 +4,14 @@
 
 @layer base {
   :root {
-    --color-primary: 110 242 255; /* #6EF2FF */
-    --color-secondary: 250 207 6; /* #FACF06 */
+    --color-primary: 110 242 255; /* RGB values of #6EF2FF */
+    --color-secondary: 250 207 6; /* RGB values of #FACF06 */
     --border-accent-color: var(--color-primary);
   }
 }
 
 @layer components {
-  #content {
+  div#root {
     /* px-4 */
     padding-left: max(1rem, env(safe-area-inset-left));
     padding-right: max(1rem, env(safe-area-inset-right));
@@ -20,7 +20,7 @@
 
   /* sm */
   @media (min-width: 640px) {
-    #content {
+    div#root {
       /* px-6 */
       padding-left: max(1.5rem, env(safe-area-inset-left));
       padding-right: max(1.5rem, env(safe-area-inset-right));
@@ -29,7 +29,7 @@
 
   /* md */
   @media (min-width: 768px) {
-    #content {
+    div#root {
       /* px-8 */
       padding-left: max(2rem, env(safe-area-inset-left));
       padding-right: max(2rem, env(safe-area-inset-right));

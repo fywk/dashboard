@@ -1,12 +1,11 @@
 import Image from "next/image";
 import { Suspense } from "react";
 
+import { MAX_ARTISTS_COUNT, PLACEHOLDER_CHARACTER } from "@/lib/app-constants";
 import { getTopArtists } from "@/lib/services/lastfm";
 import { getArtistImage } from "@/lib/services/spotify";
 
 import type { Period } from "@/lib/types/lastfm";
-
-const MAX_ARTISTS_COUNT = 6;
 
 async function ArtistAvatar({ name }: { name: string }) {
   const artistImage = await getArtistImage(name);
@@ -23,13 +22,17 @@ async function ArtistAvatar({ name }: { name: string }) {
 function TopArtistsSkeleton({ count = MAX_ARTISTS_COUNT }: { count?: number }) {
   return [...Array<undefined>(count)].map((_, i) => (
     <div
-      className="grid min-w-[80px] grid-cols-1 gap-y-2 p-2 @xl/section:gap-y-2.5 @xl/section:p-2.5 @1.5xl/section:gap-y-3 @1.5xl/section:p-3 xs:min-w-[96px]"
+      className="flex flex-col gap-y-2 py-2 @xl/section:gap-y-2.5 @xl/section:py-2.5 @1.5xl/section:gap-y-3 @1.5xl/section:py-3"
       key={i}
     >
-      <div className="aspect-square overflow-hidden rounded-full bg-gray-900 ring-1 ring-gray-900"></div>
-      <div className="flex flex-col items-center gap-y-1.5 pb-1 pt-[3px] @xl/section:gap-y-[7px] @1.5xl/section:pt-1">
-        <div className="h-2.5 w-full rounded bg-gray-900 @xl/section:h-[11px] @1.5xl/section:h-3"></div>
-        <div className="h-2 w-1/2 rounded bg-gray-900 @xl/section:h-[9px] @1.5xl/section:h-2.5"></div>
+      <div className="mx-auto aspect-square w-[85%] max-w-[5.25rem] rounded-full bg-gray-900 ring-1 ring-gray-900 @2xl/section:max-w-[6rem]"></div>
+      <div className="flex flex-col text-center text-gray-900 @xl/section:gap-y-px">
+        <div className="text-xs @xl/section:text-[13px] @1.5xl/section:text-sm">
+          {PLACEHOLDER_CHARACTER.repeat(6)}
+        </div>
+        <div className="text-[10px] @xl/section:text-[11px] @1.5xl/section:text-xs">
+          {PLACEHOLDER_CHARACTER.repeat(4)}
+        </div>
       </div>
     </div>
   ));
@@ -46,10 +49,10 @@ async function TopArtists({ period }: { period: Period }) {
     <>
       {artists.map((artist) => (
         <div
-          className="grid min-w-[80px] grid-cols-1 gap-y-2 p-2 @xl/section:gap-y-2.5 @xl/section:p-2.5 @1.5xl/section:gap-y-3 @1.5xl/section:p-3 xs:min-w-[96px]"
+          className="flex flex-col gap-y-2 py-2 @xl/section:gap-y-2.5 @xl/section:py-2.5 @1.5xl/section:gap-y-3 @1.5xl/section:py-3"
           key={artist.name.replace(/ /g, "_")} // replace spaces with underscores
         >
-          <div className="aspect-square overflow-hidden rounded-full bg-gray-900 ring-1 ring-gray-800/75">
+          <div className="mx-auto aspect-square w-[85%] max-w-[5.25rem] overflow-hidden rounded-full bg-gray-900 ring-1 ring-gray-800/75 @2xl/section:max-w-[6rem]">
             <Suspense fallback="">
               <ArtistAvatar name={artist.name} />
             </Suspense>
@@ -74,7 +77,7 @@ async function TopArtists({ period }: { period: Period }) {
 
 export default function TopArtistGrid({ period }: { period: Period }) {
   return (
-    <div className="grid w-full auto-cols-[1fr] grid-flow-col gap-x-2 overflow-x-auto @xl/section:gap-x-2.5 @1.5xl/section:gap-x-3">
+    <div className="grid w-full auto-rows-[0] grid-cols-4 grid-rows-1 gap-x-3 overflow-y-hidden @lg/section:grid-cols-5 @xl/section:gap-x-[15px] @1.5xl/section:grid-cols-6 @1.5xl/section:gap-x-4.5">
       <Suspense fallback={<TopArtistsSkeleton />}>
         <TopArtists period={period} />
       </Suspense>
