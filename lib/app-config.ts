@@ -1,6 +1,6 @@
 import type { AppConfig } from "./types/app";
 
-const appConfig: AppConfig = {
+const appConfig: Readonly<AppConfig> = {
   user: "Francis Yeong",
   title: "Dashboard",
   titleSeparator: "｜",

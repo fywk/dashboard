@@ -10,6 +10,5 @@ export const env = createEnv({
     SPOTIFY_REFRESH_TOKEN: z.string().min(1),
     OPENWEATHER_API_KEY: z.string().min(1),
   },
-  shared: {},
   experimental__runtimeEnv: {},
 });

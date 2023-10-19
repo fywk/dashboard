@@ -15,7 +15,7 @@ export default function Header() {
       <nav className="hidden xs:block">
         <ul className="flex divide-x divide-primary/25">
           <li className="pr-2">
-            <a href="https://fywk.xyz" className="text-gray-100 hover:text-secondary">
+            <a href="https://fywk.dev" className="text-gray-100 hover:text-secondary">
               Home
             </a>
           </li>
