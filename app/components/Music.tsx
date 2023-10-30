@@ -24,7 +24,7 @@ export default function Music() {
   return (
     <Section title="Music" accentColor="secondary">
       <div className="grid grid-cols-1 gap-3.5 @lg/section:grid-cols-2 @lg/section:gap-x-7 @xl/section:gap-x-7.5 @1.5xl/section:gap-x-8 @2xl/section:gap-x-9">
-        <section className="grid grid-rows-[auto_1fr] @container/now-playing @lg/section:order-2">
+        <section className="@container/now-playing @lg/section:order-2">
           <h3 className={subtitleStyle}>Recently Played</h3>
           <NowPlaying />
         </section>
