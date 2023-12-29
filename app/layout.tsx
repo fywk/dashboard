@@ -1,6 +1,6 @@
 import { Oxanium } from "next/font/google";
 
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 import "./globals.css";
 
@@ -10,12 +10,13 @@ const oxanium = Oxanium({
   variable: "--font-oxanium",
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export const metadata: Metadata = {
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    viewportFit: "cover",
-  },
   icons: {
     icon: [
       { url: "/favicons/favicon.ico", sizes: "48x48" },
