@@ -6,7 +6,7 @@ export default function Logo() {
       height="76"
       version="1.2"
       viewBox="0 0 442 76"
-      className="h-auto w-auto"
+      className="size-auto"
       aria-label="fywk logo"
     >
       <path

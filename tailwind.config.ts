@@ -22,10 +22,6 @@ export default {
       containers: {
         "1.5xl": "39rem",
       },
-      opacity: {
-        55: ".55",
-        85: ".85",
-      },
       fontFamily: {
         oxanium: ["var(--font-oxanium)", ...defaultTheme.fontFamily.mono],
       },

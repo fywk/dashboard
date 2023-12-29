@@ -1,6 +1,6 @@
 import { Oxanium } from "next/font/google";
 
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 import "./globals.css";
 
@@ -10,12 +10,13 @@ const oxanium = Oxanium({
   variable: "--font-oxanium",
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export const metadata: Metadata = {
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    viewportFit: "cover",
-  },
   icons: {
     icon: [
       { url: "/favicons/favicon.ico", sizes: "48x48" },
@@ -30,7 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={oxanium.variable}>
       <body className="bg-gray-950 text-gray-400">
-        <div className="mx-auto flex min-h-[100dvh] max-w-[1680px] items-center py-8" id="root">
+        <div className="mx-auto flex min-h-dvh max-w-[1680px] items-center py-8" id="root">
           {children}
         </div>
       </body>

@@ -56,12 +56,7 @@ export default function Statistics({ period }: { period: Period }) {
     <div className="flex w-full items-center justify-between py-1">
       <Category
         title="Plays"
-        icon={
-          <IconPlayerPlay
-            className="h-7.5 w-7.5 @1.5xl/section:h-8 @1.5xl/section:w-8"
-            stroke={1.75}
-          />
-        }
+        icon={<IconPlayerPlay className="size-7.5 @1.5xl/section:size-8" stroke={1.75} />}
       >
         <Suspense fallback={placeholderString}>
           <Total data={playsData} />
@@ -69,9 +64,7 @@ export default function Statistics({ period }: { period: Period }) {
       </Category>
       <Category
         title="Tracks"
-        icon={
-          <IconMusic className="h-7.5 w-7.5 @1.5xl/section:h-8 @1.5xl/section:w-8" stroke={1.5} />
-        }
+        icon={<IconMusic className="size-7.5 @1.5xl/section:size-8" stroke={1.5} />}
       >
         <Suspense fallback={placeholderString}>
           <Total data={tracksData} />
@@ -79,9 +72,7 @@ export default function Statistics({ period }: { period: Period }) {
       </Category>
       <Category
         title="Albums"
-        icon={
-          <IconVinyl className="h-7.5 w-7.5 @1.5xl/section:h-8 @1.5xl/section:w-8" stroke={1.5} />
-        }
+        icon={<IconVinyl className="size-7.5 @1.5xl/section:size-8" stroke={1.5} />}
       >
         <Suspense fallback={placeholderString}>
           <Total data={albumsData} />
@@ -89,12 +80,7 @@ export default function Statistics({ period }: { period: Period }) {
       </Category>
       <Category
         title="Artists"
-        icon={
-          <IconMicrophone2
-            className="h-7.5 w-7.5 @1.5xl/section:h-8 @1.5xl/section:w-8"
-            stroke={1.5}
-          />
-        }
+        icon={<IconMicrophone2 className="size-7.5 @1.5xl/section:size-8" stroke={1.5} />}
       >
         <Suspense fallback={placeholderString}>
           <Total data={artistsData} />
