@@ -34,7 +34,7 @@ export default function WeatherSummary({ city, country }: SearchParams) {
         </div>
         <div className="w-full overflow-hidden">
           <div className="flex h-full flex-col items-end justify-between gap-x-2 @lg/section:flex-row @lg/section:items-center @lg/section:justify-start @lg/section:gap-x-2.5">
-            <div className="h-8.5 w-8.5 rounded bg-gray-900 @lg/section:h-9 @lg/section:w-9"></div>
+            <div className="size-8.5 rounded bg-gray-900 @lg/section:size-9"></div>
             <div className="flex flex-col items-end text-gray-900 @lg/section:items-start">
               <div className="text-xs @lg/section:text-sm">{PLACEHOLDER_CHARACTER.repeat(10)}</div>
               <div className="text-[10px] leading-3 @lg/section:text-xs">
@@ -83,7 +83,7 @@ export default function WeatherSummary({ city, country }: SearchParams) {
               className="flex items-center gap-x-1 @lg/section:gap-x-1.5"
               title={`Humidity: ${humidity}%`}
             >
-              <IconDropCircle className="h-4 w-4" stroke={2.25} />
+              <IconDropCircle className="size-4" stroke={2.25} />
               <label className="sr-only" htmlFor="humidity">
                 Humidity
               </label>
@@ -95,7 +95,7 @@ export default function WeatherSummary({ city, country }: SearchParams) {
               className="flex items-center gap-x-1 @lg/section:gap-x-1.5"
               title={`Pressure: ${pressure} hPa`}
             >
-              <IconGauge className="h-4 w-4" stroke={2.25} />
+              <IconGauge className="size-4" stroke={2.25} />
               <label className="sr-only" htmlFor="pressure">
                 Pressure
               </label>
@@ -109,7 +109,7 @@ export default function WeatherSummary({ city, country }: SearchParams) {
       <div className="w-full overflow-hidden">
         <div className="flex h-full flex-col items-end justify-between gap-x-2 @lg/section:flex-row @lg/section:items-center @lg/section:justify-start @lg/section:gap-x-2.5">
           <WeatherConditionIcon
-            className="h-8.5 w-8.5 text-gray-100 @lg/section:h-9 @lg/section:w-9"
+            className="size-8.5 text-gray-100 @lg/section:size-9"
             id={id}
             iconCode={iconCode}
           />

@@ -49,7 +49,7 @@ async function Story({ storyID }: { storyID: number }) {
       <h4>
         <a
           href={story.url ?? itemURL}
-          className="line-clamp-2 w-fit text-[13.5px]/tight font-medium text-gray-100 [text-wrap:balance] @2xl/quadrant:text-sm/snug"
+          className="line-clamp-2 w-fit text-balance text-[13.5px]/tight font-medium text-gray-100 @2xl/quadrant:text-sm/snug"
           title={story.title}
           target="_blank"
         >

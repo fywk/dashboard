@@ -15,7 +15,7 @@ async function ArtistAvatar({ name }: { name: string }) {
   const { url, width, height } = artistImage;
 
   return (
-    <Image src={url} className="h-full w-full object-cover" width={width} height={height} alt="" />
+    <Image src={url} className="size-full object-cover" width={width} height={height} alt="" />
   );
 }
 
@@ -25,7 +25,7 @@ function TopArtistsSkeleton({ count = MAX_ARTISTS_COUNT }: { count?: number }) {
       className="flex flex-col gap-y-2 py-2 @xl/section:gap-y-2.5 @xl/section:py-2.5 @1.5xl/section:gap-y-3 @1.5xl/section:py-3"
       key={i}
     >
-      <div className="mx-auto aspect-square w-[85%] max-w-[5.25rem] rounded-full bg-gray-900 ring-1 ring-gray-900 @2xl/section:max-w-[6rem]"></div>
+      <div className="mx-auto aspect-square w-[85%] max-w-[5.25rem] rounded-full bg-gray-900 ring-1 ring-gray-900 @2xl/section:max-w-24"></div>
       <div className="flex flex-col text-center text-gray-900 @xl/section:gap-y-px">
         <div className="text-xs @xl/section:text-[13px] @1.5xl/section:text-sm">
           {PLACEHOLDER_CHARACTER.repeat(6)}
@@ -52,7 +52,7 @@ async function TopArtists({ period }: { period: Period }) {
           className="flex flex-col gap-y-2 py-2 @xl/section:gap-y-2.5 @xl/section:py-2.5 @1.5xl/section:gap-y-3 @1.5xl/section:py-3"
           key={artist.name.replace(/ /g, "_")} // replace spaces with underscores
         >
-          <div className="mx-auto aspect-square w-[85%] max-w-[5.25rem] overflow-hidden rounded-full bg-gray-900 ring-1 ring-gray-800/75 @2xl/section:max-w-[6rem]">
+          <div className="mx-auto aspect-square w-[85%] max-w-[5.25rem] overflow-hidden rounded-full bg-gray-900 ring-1 ring-gray-800/75 @2xl/section:max-w-24">
             <Suspense fallback="">
               <ArtistAvatar name={artist.name} />
             </Suspense>
