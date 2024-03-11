@@ -1,13 +1,14 @@
 import { z } from "zod";
 
 import { env } from "@/app/env.mjs";
+import topArtists from "@/lib/data/artists.json";
 
 type AccessToken = z.infer<typeof AccessTokenSchema>;
 
 type Image = z.infer<typeof ImageSchema>;
 
 const tokenEndpoint = "https://accounts.spotify.com/api/token";
-const searchEndpoint = "https://api.spotify.com/v1/search";
+const apiEndpoint = "https://api.spotify.com/v1";
 const clientID = env.SPOTIFY_CLIENT_ID;
 const clientSecret = env.SPOTIFY_CLIENT_SECRET;
 const refreshToken = env.SPOTIFY_REFRESH_TOKEN;
@@ -22,6 +23,10 @@ const ImageSchema = z.object({
   url: z.string().url(),
   width: z.number(),
   height: z.number(),
+});
+
+const GetArtistSchema = z.object({
+  images: z.array(ImageSchema).nonempty(),
 });
 
 const SearchArtistSchema = z.object({
@@ -58,34 +63,58 @@ async function getAccessToken(): Promise<AccessToken | null> {
   return result.data;
 }
 
+function getArtistSpotifyID(artistName: string): string | null {
+  const artist = topArtists.find((artist) => artist.name === artistName);
+  return artist ? artist.id : null;
+}
+
 export async function getArtistImage(artistName: string): Promise<Image | null> {
+  const artistSpotifyID = getArtistSpotifyID(artistName);
+
   const responseAccessToken = await getAccessToken();
 
   if (!responseAccessToken) return null;
 
   const { access_token } = responseAccessToken;
 
-  const responseSearchArtists = await fetch(
-    `${searchEndpoint}?q=${artistName}&type=artist&limit=1`,
-    {
+  if (artistSpotifyID) {
+    const getArtistResponse = await fetch(`${apiEndpoint}/artists/${artistSpotifyID}`, {
       headers: {
         Authorization: `Bearer ${access_token}`,
       },
       next: { revalidate: 3600 }, // 1 hour in seconds
-    },
-  );
+    });
 
-  const result = SearchArtistSchema.safeParse(await responseSearchArtists.json());
+    const result = GetArtistSchema.safeParse(await getArtistResponse.json());
 
-  if (!result.success) return null;
+    if (!result.success) return null;
 
-  const { artists } = result.data;
+    const { images } = result.data;
 
-  const image: Image = {
-    url: artists.items[0].images[1].url,
-    width: artists.items[0].images[1].width,
-    height: artists.items[0].images[1].height,
-  };
+    return images[1];
+  } else {
+    const searchArtistsResponse = await fetch(
+      `${apiEndpoint}/search?q=${artistName.toLowerCase()}&type=artist&limit=2`,
+      {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+        next: { revalidate: 3600 }, // 1 hour in seconds
+      },
+    );
 
-  return image;
+    const result = SearchArtistSchema.safeParse(await searchArtistsResponse.json());
+
+    if (!result.success) return null;
+
+    const { artists } = result.data;
+
+    const image: Image = {
+      url: artists.items[0].images[1].url,
+      width: artists.items[0].images[1].width,
+      height: artists.items[0].images[1].height,
+    };
+
+    return image;
+  }
 }
