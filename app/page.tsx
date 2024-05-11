@@ -1,10 +1,10 @@
 import { app } from "@/lib/app-config";
 
+import Bookmarks from "./components/Bookmarks";
 import HackerNews from "./components/HackerNews";
 import Header from "./components/Header";
 import Logo from "./components/Logo";
 import Music from "./components/Music";
-import Profile from "./components/Profile";
 import Time from "./components/Time";
 import Weather from "./components/Weather";
 
@@ -36,7 +36,7 @@ export default function Page({ searchParams }: Props) {
       <main className="col-span-full grid grid-cols-1 justify-center gap-x-9 gap-y-7 md:gap-y-8 xl:grid-cols-2 2xl:grid-cols-[52.5%_1fr] 2xl:gap-x-10">
         <div className="@container/quadrant">
           <div className="grid h-full gap-x-9 gap-y-7 @xl/quadrant:grid-cols-[45%_1fr] @1.5xl/quadrant:grid-cols-[42.5%_1fr] @2xl/quadrant:grid-cols-[40%_1fr] @[45rem]/quadrant:grid-cols-[37.5%_1fr] @3xl/quadrant:grid-cols-[35%_1fr] md:gap-y-8 2xl:gap-x-10">
-            <Profile />
+            <Bookmarks />
             <HackerNews />
           </div>
         </div>
