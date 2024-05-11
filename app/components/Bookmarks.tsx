@@ -1,22 +1,49 @@
 import { IconBlockquote, IconLink, IconPhoto, IconVideo } from "@tabler/icons-react";
 import { Suspense } from "react";
 
-import { MAX_BOOKMARKS_COUNT } from "@/lib/app-constants";
+import { MAX_BOOKMARKS_COUNT, PLACEHOLDER_CHARACTER } from "@/lib/app-constants";
 import { getBookmarks } from "@/lib/services/raindrop";
 import dayjs from "@/lib/utils/dayjs";
 
 import Section from "./Section";
 
+function BookmarkItemSkeleton() {
+  return (
+    <li>
+      <div className="grid grid-cols-[auto_1fr] items-center gap-x-1.5">
+        <div className="flex h-9 w-12 items-center justify-center bg-gray-900"></div>
+        <div className="flex flex-col gap-y-0.5 text-gray-900 @[52rem]/quadrant:gap-y-1">
+          <div className="text-[13.5px]/tight @2xl/quadrant:text-sm/snug">
+            {PLACEHOLDER_CHARACTER.repeat(20)}
+          </div>
+          <div className="flex items-center text-[11px]/4 tracking-tight @2xl/quadrant:text-xs">
+            <div>{PLACEHOLDER_CHARACTER.repeat(4)}</div>
+            <div className="before:px-1.5 before:text-gray-800 before:content-['/']">
+              {PLACEHOLDER_CHARACTER.repeat(4)}
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+  );
+}
+
+function BookmarkItemsSkeleton() {
+  return [...Array<undefined>(MAX_BOOKMARKS_COUNT)].map((_, index) => (
+    <BookmarkItemSkeleton key={index} />
+  ));
+}
+
 async function BookmarkItems() {
   const bookmarks = await getBookmarks(MAX_BOOKMARKS_COUNT);
 
-  if (!bookmarks) return null;
+  if (!bookmarks) return <BookmarkItemsSkeleton />;
 
   return bookmarks.items.map((bookmark) => (
     <li className="group" key={bookmark._id}>
-      <div className="grid grid-cols-[auto_1fr] items-center gap-x-1">
+      <div className="grid grid-cols-[auto_1fr] items-center gap-x-1.5">
         <div
-          className="flex h-9 w-12 items-center justify-center transition-colors group-hover:text-primary"
+          className="flex h-9 w-12 items-center justify-center transition-colors group-hover:group-odd:text-secondary group-hover:group-even:text-primary"
           title={bookmark.type.charAt(0).toUpperCase() + bookmark.type.slice(1)}
         >
           {bookmark.type === "article" && <IconBlockquote className="size-6" stroke={1.75} />}
@@ -36,7 +63,10 @@ async function BookmarkItems() {
             {bookmark.title}
           </h4>
           <div className="flex items-center text-[11px]/4 tracking-tight @2xl/quadrant:text-xs">
-            <time className="text-secondary" dateTime={bookmark.created}>
+            <time
+              className="group-odd:text-primary group-even:text-secondary"
+              dateTime={bookmark.created}
+            >
               {dayjs(bookmark.created).format("D MMM YYYY")}
             </time>
             {bookmark.tags.length > 0 && (
@@ -57,11 +87,11 @@ export default function Bookmarks() {
       title="Bookmarks"
       customClasses="order-first [--border-accent-color:var(--color-secondary)] @xl/quadrant:order-last @xl/quadrant:[--border-accent-color:var(--color-primary)]"
     >
-      <Suspense fallback="">
-        <ol className="flex h-full min-h-[30rem] flex-col justify-between gap-y-1.5 md:min-h-[31rem] xl:min-h-full">
+      <ol className="flex h-full min-h-[30rem] flex-col justify-between gap-y-1.5 md:min-h-[31rem] xl:min-h-full">
+        <Suspense fallback={<BookmarkItemsSkeleton />}>
           <BookmarkItems />
-        </ol>
-      </Suspense>
+        </Suspense>
+      </ol>
     </Section>
   );
 }
