@@ -1,4 +1,4 @@
-import { IconArticle, IconLink, IconMovie, IconPhoto } from "@tabler/icons-react";
+import { IconBlockquote, IconLink, IconPhoto, IconVideo } from "@tabler/icons-react";
 import { Suspense } from "react";
 
 import { MAX_BOOKMARKS_COUNT } from "@/lib/app-constants";
@@ -14,15 +14,15 @@ async function BookmarkItems() {
 
   return bookmarks.items.map((bookmark) => (
     <li className="group" key={bookmark._id}>
-      <div className="grid grid-cols-[auto_1fr] items-center gap-x-1.5">
+      <div className="grid grid-cols-[auto_1fr] items-center gap-x-1">
         <div
-          className="flex h-9 w-12 items-center justify-center rounded bg-gray-900 group-odd:text-secondary group-even:text-primary @2xl/quadrant:h-[6.5rem] @2xl/quadrant:w-[6.5rem]"
+          className="flex h-9 w-12 items-center justify-center transition-colors group-hover:text-primary"
           title={bookmark.type.charAt(0).toUpperCase() + bookmark.type.slice(1)}
         >
-          {bookmark.type === "article" && <IconArticle className="size-6 stroke-[1.5]" />}
-          {bookmark.type === "image" && <IconPhoto className="size-6 stroke-[1.5]" />}
-          {bookmark.type === "link" && <IconLink className="size-6 stroke-[1.5]" />}
-          {bookmark.type === "video" && <IconMovie className="size-6 rotate-90 stroke-[1.5]" />}
+          {bookmark.type === "article" && <IconBlockquote className="size-6" stroke={1.75} />}
+          {bookmark.type === "image" && <IconPhoto className="size-6" stroke={1.75} />}
+          {bookmark.type === "link" && <IconLink className="size-6" stroke={1.75} />}
+          {bookmark.type === "video" && <IconVideo className="size-6" stroke={1.75} />}
         </div>
         <a
           href={bookmark.link}
@@ -36,15 +36,12 @@ async function BookmarkItems() {
             {bookmark.title}
           </h4>
           <div className="flex items-center text-[11px]/4 tracking-tight @2xl/quadrant:text-xs">
-            <time
-              className="group-odd:text-secondary group-even:text-primary"
-              dateTime={bookmark.created}
-            >
+            <time className="text-secondary" dateTime={bookmark.created}>
               {dayjs(bookmark.created).format("D MMM YYYY")}
             </time>
             {bookmark.tags.length > 0 && (
               <p className="before:px-1.5 before:text-gray-500 before:content-['/']">
-                {bookmark.tags[0]}
+                {`#${bookmark.tags[0]}`}
               </p>
             )}
           </div>
