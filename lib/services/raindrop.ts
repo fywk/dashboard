@@ -30,7 +30,7 @@ export async function getBookmarks(limit: Limit): Promise<Bookmarks | null> {
     headers: {
       Authorization: `Bearer ${bearerToken}`,
     },
-    next: { revalidate: 3600 }, // 1 hour in seconds
+    cache: "no-store",
   });
   const result = BookmarksSchema.safeParse(await response.json());
 
