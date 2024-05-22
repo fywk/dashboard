@@ -20,7 +20,7 @@ export default function AboutDialog({ dialogRef }: Props) {
 
   return (
     <dialog
-      className="w-full max-w-[17rem] -translate-y-[5vh] rounded-md border border-gray-600 bg-gray-800/90 backdrop-blur-lg [&::backdrop]:touch-none [&::backdrop]:bg-transparent"
+      className="w-full max-w-[17rem] -translate-y-[5vh] rounded-lg border border-gray-600 bg-gray-800/90 backdrop-blur-lg [&::backdrop]:touch-none [&::backdrop]:bg-transparent"
       ref={dialogRef}
     >
       <form className="flex items-center gap-x-1.5 p-2" method="dialog">
@@ -51,11 +51,10 @@ export default function AboutDialog({ dialogRef }: Props) {
             <h2 className="text-[1.375rem]/7 font-bold text-gray-300">Dashboard</h2>
             <p className="text-[11px] text-gray-500">{appVersion}</p>
           </div>
-          <p className="text-xs">Greetings, programs.</p>
           <div className="grid grid-cols-2 gap-x-2.5 py-2 text-[11px]">
             <p className="text-right text-gray-100">Environment</p>
             <p className="capitalize">{appEnv}</p>
-            <p className="text-right text-gray-100">Git Commit SHA</p>
+            <p className="text-right text-gray-100">Latest commit</p>
             <p className={clsx("uppercase", commitSHA && "font-mono")}>{commitSHA ?? "---"}</p>
             <p className="text-right text-gray-100">React</p>
             <p>{reactVersion}</p>
