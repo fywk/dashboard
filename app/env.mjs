@@ -3,6 +3,7 @@ import { z } from "zod";
 
 export const env = createEnv({
   server: {
+    DASHBOARD_BOOKMARKS_REVALIDATION_TOKEN: z.string().min(1),
     LASTFM_USERNAME: z.string().min(1),
     LASTFM_API_KEY: z.string().min(1),
     SPOTIFY_CLIENT_ID: z.string().min(1),
