@@ -7,7 +7,7 @@ This is the repo for my personal dashboard. The design of which is greatly inspi
 ## TODO
 
 - [x] Hacker News section
-- [ ] Profile section
+- [x] ~~Profile~~ Bookmarks section
 
 ## External Services
 
@@ -15,5 +15,6 @@ The following external APIs are used in this app:
 
 - [Hacker News](https://github.com/HackerNews/API)
 - [Last.fm](https://www.last.fm/api)
-- [Spotify](https://developer.spotify.com/documentation/web-api)
 - [OpenWeather](https://openweathermap.org/api)
+- [Raindrop.io](https://developer.raindrop.io)
+- [Spotify](https://developer.spotify.com/documentation/web-api)
