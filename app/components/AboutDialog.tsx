@@ -63,7 +63,7 @@ export default function AboutDialog({ dialogRef }: Props) {
           </div>
           <a
             href="https://github.com/fywk/dashboard"
-            className="rounded border border-gray-500 bg-gray-600 px-2.5 py-1 text-[13px]/none text-gray-100 ring-secondary focus:outline-none focus:ring-1"
+            className="rounded-md border border-gray-500 bg-gray-600 px-2.5 py-1 text-[13px]/none text-gray-100 ring-secondary focus:outline-none focus:ring-1"
             target="_blank"
             autoFocus
           >
