@@ -54,7 +54,7 @@ export default function AboutDialog({ dialogRef }: Props) {
           <div className="grid grid-cols-2 gap-x-2.5 py-2 text-[11px]">
             <p className="text-right text-gray-100">Environment</p>
             <p className="capitalize">{appEnv}</p>
-            <p className="text-right text-gray-100">Latest commit</p>
+            <p className="text-right text-gray-100">Build commit</p>
             <p className={clsx("uppercase", commitSHA && "font-mono")}>{commitSHA ?? "---"}</p>
             <p className="text-right text-gray-100">React</p>
             <p>{reactVersion}</p>
