@@ -49,7 +49,7 @@ export default function AboutDialog({ dialogRef }: Props) {
         <div className="flex flex-col items-center gap-y-2.5">
           <div className="text-center">
             <h2 className="text-[1.375rem]/7 font-bold text-gray-300">Dashboard</h2>
-            <p className="text-[11px] text-gray-500">{appVersion}</p>
+            <p className="text-[10px] text-gray-500">{appVersion}</p>
           </div>
           <div className="grid grid-cols-2 gap-x-2.5 py-2 text-[11px]">
             <p className="text-right text-gray-100">Environment</p>
