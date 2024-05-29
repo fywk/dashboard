@@ -32,7 +32,7 @@ export default function NowPlaying() {
 
   if (!track || isLoading) {
     return (
-      <div className="grid grid-cols-[4rem_1fr_2.25rem] items-center gap-2.5 overflow-hidden rounded-md border border-primary/55 p-2 @xs/now-playing:gap-[0.6875rem] @[21.25rem]/now-playing:grid-cols-[4.5rem_1fr_2.25rem] @sm/now-playing:grid-cols-[5rem_1fr_2.25rem] @[340px]/now-playing:gap-3">
+      <div className="grid grid-cols-[4rem_1fr_2.25rem] items-center gap-2.5 overflow-hidden rounded-md border border-primary/55 p-2 @xs/now-playing:gap-[.6875rem] @[21.25rem]/now-playing:grid-cols-[4.5rem_1fr_2.25rem] @sm/now-playing:grid-cols-[5rem_1fr_2.25rem] @[340px]/now-playing:gap-3">
         <div className="aspect-square rounded bg-gray-900 ring-1 ring-gray-900"></div>
         <div className="flex flex-col gap-y-1.5 text-gray-900">
           <div className="text-[13px] !leading-none @[340px]/now-playing:text-sm">
@@ -62,7 +62,7 @@ export default function NowPlaying() {
   }
 
   return (
-    <div className="grid grid-cols-[4rem_1fr_2.25rem] items-center gap-2.5 overflow-hidden rounded-md border border-primary/55 p-2 @xs/now-playing:gap-[0.6875rem] @[21.25rem]/now-playing:grid-cols-[4.5rem_1fr_2.25rem] @sm/now-playing:grid-cols-[5rem_1fr_2.25rem] @[340px]/now-playing:gap-3">
+    <div className="grid grid-cols-[4rem_1fr_2.25rem] items-center gap-2.5 overflow-hidden rounded-md border border-primary/55 p-2 @xs/now-playing:gap-[.6875rem] @[21.25rem]/now-playing:grid-cols-[4.5rem_1fr_2.25rem] @sm/now-playing:grid-cols-[5rem_1fr_2.25rem] @[340px]/now-playing:gap-3">
       <div
         className="relative aspect-square overflow-hidden rounded bg-gray-900 ring-1 ring-gray-800/75"
         id="track-album-art"
