@@ -20,7 +20,7 @@ export default function AboutDialog({ dialogRef }: Props) {
 
   return (
     <dialog
-      className="w-full max-w-[17rem] -translate-y-[5vh] rounded-lg border border-gray-600 bg-gray-800/90 backdrop-blur-lg [&::backdrop]:touch-none [&::backdrop]:bg-transparent"
+      className="w-full max-w-[17rem] -translate-y-[5vh] rounded-xl border border-gray-600 bg-gray-800/90 backdrop-blur-lg [&::backdrop]:touch-none [&::backdrop]:bg-transparent"
       ref={dialogRef}
     >
       <form className="flex items-center gap-x-1.5 p-2" method="dialog">
