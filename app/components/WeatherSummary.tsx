@@ -74,33 +74,33 @@ export default function WeatherSummary({ city, country }: SearchParams) {
         <div className="flex items-center gap-x-2 @lg/section:gap-x-2.5">
           <h4
             className="-mb-1 font-oxanium text-[2.5rem] font-medium leading-10 tracking-tight text-gray-200 @xl/section:text-[2.75rem] @1.5xl/section:text-5xl"
-            title={`${temp} °C`}
+            title={`${temp.toString()} °C`}
           >
-            {`${Math.round(temp)}°`}
+            {`${Math.round(temp).toString()}°`}
           </h4>
           <div className="flex w-full flex-col">
             <div
               className="flex items-center gap-x-1 @lg/section:gap-x-1.5"
-              title={`Humidity: ${humidity}%`}
+              title={`Humidity: ${humidity.toString()}%`}
             >
               <IconDropCircle className="size-4" stroke={2.25} />
               <label className="sr-only" htmlFor="humidity">
                 Humidity
               </label>
               <progress id="humidity" max={100} value={humidity}>
-                {`${humidity}%`}
+                {`${humidity.toString()}%`}
               </progress>
             </div>
             <div
               className="flex items-center gap-x-1 @lg/section:gap-x-1.5"
-              title={`Pressure: ${pressure} hPa`}
+              title={`Pressure: ${pressure.toString()} hPa`}
             >
               <IconGauge className="size-4" stroke={2.25} />
               <label className="sr-only" htmlFor="pressure">
                 Pressure
               </label>
               <progress id="pressure" value={(pressure - 975.75) / (1050.75 - 975.75)}>
-                {`${pressure} hPa`}
+                {`${pressure.toString()} hPa`}
               </progress>
             </div>
           </div>
@@ -118,7 +118,7 @@ export default function WeatherSummary({ city, country }: SearchParams) {
               {description}
             </p>
             <p className="text-[10px] leading-3 @lg/section:text-xs">
-              {`H: ${maxTemp}° L: ${minTemp}°`}
+              {`H: ${maxTemp.toString()}° L: ${minTemp.toString()}°`}
             </p>
           </div>
         </div>

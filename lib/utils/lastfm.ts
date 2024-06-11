@@ -12,7 +12,11 @@ export function generateEndpoint(params: LastfmParams): string {
 
   const paramsQueryString = Object.entries(params)
     .filter(([, val]) => val !== undefined)
-    .map(([key, val]) => `${key}=${val}`)
+    .map(
+      ([key, val]) =>
+        val !== undefined &&
+        (typeof val === "number" ? `${key}=${val.toString()}` : `${key}=${val}`),
+    )
     .join("&");
 
   return `${apiRoot}?${paramsQueryString}&user=${username}&api_key=${apiKey}&format=json`;
@@ -23,7 +27,7 @@ export function humanizePeriod(period: Period): string {
     case "overall":
       return "All time";
     default:
-      return `Last ${convertPeriodToDays(period)} days`;
+      return `Last ${convertPeriodToDays(period).toString()} days`;
   }
 }
 

@@ -100,7 +100,7 @@ export default function WeatherChart() {
         suggestedMax: Math.max(...temperatures) + 2,
         ticks: {
           callback: function (value) {
-            return `${value}°`;
+            return `${value.toString()}°`;
           },
           color: "rgb(161 161 170)", // text-gray-400
           font: {

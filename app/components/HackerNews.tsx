@@ -36,7 +36,7 @@ async function Story({ storyID }: { storyID: number }) {
     return <StorySkeleton />;
   }
 
-  const itemURL = `${hackerNewsURL}/item?id=${storyID}`;
+  const itemURL = `${hackerNewsURL}/item?id=${storyID.toString()}`;
   const points = story.score ?? 0;
   const publicationTime = dayjs.unix(story.time ?? 0);
   const pubDateISO = publicationTime.utc().format();
