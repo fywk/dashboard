@@ -10,7 +10,7 @@ type Bookmarks = z.infer<typeof BookmarksSchema>;
 
 const apiEndpoint = "https://api.raindrop.io/rest/v1";
 const bearerToken = env.RAINDROP_BEARER_TOKEN;
-const collectionId = env.RAINDROP_COLLECTION_ID ?? 0;
+const collectionId = env.RAINDROP_COLLECTION_ID ?? "0";
 
 const BookmarksSchema = z.object({
   items: z.array(
@@ -26,12 +26,15 @@ const BookmarksSchema = z.object({
 });
 
 export async function getBookmarks(limit: Limit): Promise<Bookmarks | null> {
-  const response = await fetch(`${apiEndpoint}/raindrops/${collectionId}?perpage=${limit}`, {
-    headers: {
-      Authorization: `Bearer ${bearerToken}`,
+  const response = await fetch(
+    `${apiEndpoint}/raindrops/${collectionId}?perpage=${limit.toString()}`,
+    {
+      headers: {
+        Authorization: `Bearer ${bearerToken}`,
+      },
+      next: { tags: ["bookmarks"] }, // add tag for on-demand revalidation
     },
-    next: { tags: ["bookmarks"] }, // add tag for on-demand revalidation
-  });
+  );
   const result = BookmarksSchema.safeParse(await response.json());
 
   if (!result.success) return null;
