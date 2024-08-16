@@ -83,7 +83,7 @@ export default function AboutDialog({ dialogRef }: Props) {
             View Source
           </a>
           <div className="flex flex-col gap-y-[3px] text-center text-[11px]/none text-gray-500/95">
-            <span>In development</span>
+            <span>In active development</span>
             <span>{`from ${APP_DEV_START_YEAR.toString()} to ${appBuildYear}.`}</span>
             <span>End of Line.</span>
           </div>
