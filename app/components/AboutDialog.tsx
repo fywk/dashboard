@@ -33,25 +33,25 @@ export default function AboutDialog({ dialogRef }: Props) {
     >
       <form className="group flex w-fit items-center gap-x-2 p-[7px]" method="dialog">
         <button
-          className="flex aspect-square size-3 cursor-default items-center justify-center rounded-full bg-[#ff6159] text-[#4d0000]"
+          className="flex aspect-square size-3 cursor-default items-center justify-center rounded-full bg-[#ff6159] text-red-800"
           title="Close"
         >
           <span className="sr-only">Close</span>
-          <IconX className="hidden size-2.5 stroke-[2.75] group-hover:block" />
+          <IconX className="hidden size-2.5 stroke-[2.875] group-hover:block" />
         </button>
         <button
-          className="aspect-square size-3 rounded-full bg-gray-600/75"
+          className="aspect-square size-3 rounded-full bg-neutral-600/75"
           disabled
           aria-hidden
         ></button>
         <button
-          className="aspect-square size-3 rounded-full bg-gray-600/75"
+          className="aspect-square size-3 rounded-full bg-neutral-600/75"
           disabled
           aria-hidden
         ></button>
       </form>
       <div
-        className="group flex flex-col items-center px-4 pb-8 text-gray-400 focus:outline-none"
+        className="group flex flex-col items-center px-4 pb-8 text-neutral-400 focus:outline-none"
         tabIndex={0}
       >
         <div className="mb-20 mt-24 flex w-[5.5rem] scale-125 items-center rounded-[10px] rounded-r-none border-3 border-r-0 border-primary p-1 pr-0 text-primary">
@@ -59,30 +59,30 @@ export default function AboutDialog({ dialogRef }: Props) {
         </div>
         <div className="flex flex-col items-center">
           <div className="flex flex-col gap-y-1.5 text-center">
-            <h2 className="text-[1.375rem]/none font-bold text-gray-200">Dashboard</h2>
-            <p className="text-[10px]/none text-neutral-500/85">{appVersion}</p>
+            <h2 className="text-[1.375rem]/none font-bold text-neutral-200">Dashboard</h2>
+            <p className="text-[10px]/none text-neutral-500/90">{appVersion}</p>
           </div>
           <div className="grid grid-cols-2 gap-x-2.5 py-5 text-[11px]">
-            <span className="text-right text-gray-100">React</span>
+            <span className="text-right text-neutral-100">React</span>
             <span>{reactVersion}</span>
-            <span className="text-right text-gray-100">Next.js</span>
+            <span className="text-right text-neutral-100">Next.js</span>
             <span>{nextjsVersion}</span>
-            <span className="text-right text-gray-100">Build commit</span>
+            <span className="text-right text-neutral-100">Build commit</span>
             <span className={clsx("uppercase", commitSHA && "font-mono")}>
               {commitSHA ?? "---"}
             </span>
-            <span className="text-right text-gray-100">Environment</span>
+            <span className="text-right text-neutral-100">Environment</span>
             <span className="capitalize">{appEnvironment}</span>
           </div>
           <a
             href="https://github.com/fywk/dashboard"
-            className="mb-4 flex h-5 items-center justify-center rounded-[5px] border border-gray-500 bg-neutral-500/75 px-[9px] pb-px text-[13px]/none tracking-tight text-gray-100 ring-secondary/55 focus:outline-none focus:ring-[3px] group-focus:ring-[3px]"
+            className="mb-4 flex h-5 items-center justify-center rounded-[5px] border border-neutral-500 bg-neutral-500/75 px-[9px] pb-px text-[13px]/none tracking-tight text-neutral-100 ring-secondary/55 focus:outline-none focus:ring-[3px] group-focus:ring-[3px]"
             target="_blank"
             autoFocus
           >
             View Source
           </a>
-          <div className="flex flex-col gap-y-[3px] text-center text-[11px]/none text-gray-500/95">
+          <div className="flex flex-col gap-y-[3px] text-center text-[11px]/none text-neutral-500/90">
             <span>In active development</span>
             <span>{`from ${APP_DEV_START_YEAR.toString()} to ${appBuildYear}.`}</span>
             <span>End of Line.</span>
