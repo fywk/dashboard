@@ -30,8 +30,8 @@ export default function Page({ searchParams }: Props) {
       <AboutDialogProvider>
         <AboutDialogOpener
           className="flex w-[5.5rem] items-center rounded-[10px] rounded-r-none border-3 border-r-0 border-primary p-1 pr-0 text-primary"
-          title="About"
-          aria-label="About"
+          title="About This App"
+          aria-label="About This App"
         >
           <Logo />
         </AboutDialogOpener>
