@@ -63,16 +63,14 @@ export default function AboutDialog({ dialogRef }: Props) {
             <p className="text-[10px]/none text-neutral-500/90">{appVersion}</p>
           </div>
           <div className="grid grid-cols-2 gap-x-2.5 py-5 text-[11px]">
-            <span className="text-right text-neutral-100">React</span>
-            <span>{reactVersion}</span>
-            <span className="text-right text-neutral-100">Next.js</span>
-            <span>{nextjsVersion}</span>
-            <span className="text-right text-neutral-100">Build commit</span>
-            <span className={clsx("uppercase", commitSHA && "font-mono")}>
-              {commitSHA ?? "---"}
-            </span>
-            <span className="text-right text-neutral-100">Environment</span>
-            <span className="capitalize">{appEnvironment}</span>
+            <div className="text-right text-neutral-100">React</div>
+            <div>{reactVersion}</div>
+            <div className="text-right text-neutral-100">Next.js</div>
+            <div>{nextjsVersion}</div>
+            <div className="text-right text-neutral-100">Build commit</div>
+            <div className={clsx("uppercase", commitSHA && "font-mono")}>{commitSHA ?? "---"}</div>
+            <div className="text-right text-neutral-100">Environment</div>
+            <div className="capitalize">{appEnvironment}</div>
           </div>
           <a
             href="https://github.com/fywk/dashboard"
@@ -82,10 +80,13 @@ export default function AboutDialog({ dialogRef }: Props) {
           >
             View Source
           </a>
-          <div className="flex flex-col gap-y-[3px] text-center text-[11px]/none text-neutral-500/90">
-            <span>In active development</span>
-            <span>{`from ${APP_DEV_START_YEAR.toString()} to ${appBuildYear}.`}</span>
-            <span>End of Line.</span>
+          <div className="text-center text-[11px]/tight text-neutral-500/90">
+            <p>
+              In active development
+              <br />
+              {`from ${APP_DEV_START_YEAR.toString()} to ${appBuildYear}.`}
+            </p>
+            <p>End of Line.</p>
           </div>
         </div>
       </div>
