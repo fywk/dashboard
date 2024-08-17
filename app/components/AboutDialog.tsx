@@ -76,7 +76,7 @@ export default function AboutDialog({ dialogRef }: Props) {
           </div>
           <a
             href="https://github.com/fywk/dashboard"
-            className="mb-4 flex h-5 items-center justify-center rounded-[5px] border border-neutral-500 bg-neutral-500/75 px-[9px] pb-px text-[13px]/none tracking-tight text-neutral-100 ring-secondary/55 focus:outline-none focus:ring-[3px] group-focus:ring-[3px]"
+            className="mb-4 flex h-5 items-center justify-center rounded-[5px] border border-neutral-500 bg-neutral-500/75 px-[9px] text-[13px]/none tracking-tight text-neutral-100 ring-secondary/55 focus:outline-none focus:ring-[3px] group-focus:ring-[3px]"
             target="_blank"
             autoFocus
           >
