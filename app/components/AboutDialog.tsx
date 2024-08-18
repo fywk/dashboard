@@ -50,10 +50,7 @@ export default function AboutDialog({ dialogRef }: Props) {
           aria-hidden
         ></button>
       </form>
-      <div
-        className="group flex flex-col items-center px-4 pb-8 text-neutral-400 focus:outline-none"
-        tabIndex={0}
-      >
+      <div className="flex flex-col items-center px-4 pb-8 text-neutral-400">
         <div className="mb-20 mt-24 flex w-[5.5rem] scale-125 items-center rounded-[10px] rounded-r-none border-3 border-r-0 border-primary p-1 pr-0 text-primary">
           <Logo />
         </div>
@@ -74,7 +71,7 @@ export default function AboutDialog({ dialogRef }: Props) {
           </div>
           <a
             href="https://github.com/fywk/dashboard"
-            className="mb-4 flex h-5 items-center justify-center rounded-[5px] border border-neutral-500 bg-neutral-500/75 px-[9px] text-[13px]/none tracking-tight text-neutral-100 ring-secondary/55 focus:outline-none focus:ring-[3px] group-focus:ring-[3px]"
+            className="mb-4 flex h-5 items-center justify-center rounded-[5px] border border-neutral-500 bg-neutral-500/75 px-[9px] text-[13px]/none tracking-tight text-neutral-100 ring-secondary/55 focus:outline-none focus:ring-[3px]"
             target="_blank"
             autoFocus
           >
