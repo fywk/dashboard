@@ -81,7 +81,7 @@ export default function AboutDialog({ dialogRef }: Props) {
             <p>
               In active development
               <br />
-              {`from ${APP_DEV_START_YEAR.toString()} to ${appBuildYear}.`}
+              {`during ${APP_DEV_START_YEAR.toString()}-${appBuildYear}.`}
             </p>
             <p>End of Line.</p>
           </div>
