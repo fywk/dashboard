@@ -3,7 +3,7 @@ await import("./app/env.mjs");
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
-    APP_START_TIME: "" + Date.now(),
+    APP_BUILD_TIMESTAMP: Date.now().toString(),
   },
   images: {
     formats: ["image/avif", "image/webp"],
