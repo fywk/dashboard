@@ -23,7 +23,9 @@ export const metadata: Metadata = {
   description: app.description,
 };
 
-export default function Page({ searchParams }: Props) {
+export default async function Page(props: Props) {
+  const searchParams = await props.searchParams;
+
   return (
     <div className="mx-auto grid w-full max-w-[800px] grid-cols-[1fr_auto] items-center gap-x-8 gap-y-6 sm:gap-x-9 xl:max-w-none 2xl:gap-x-10">
       <Header />
