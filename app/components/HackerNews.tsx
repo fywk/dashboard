@@ -14,7 +14,7 @@ function StorySkeleton() {
   return (
     <li className="flex flex-col gap-y-0.5 text-gray-900 @[52rem]/quadrant:gap-y-1">
       <div className="break-all text-[13.5px]/tight @2xl/quadrant:text-sm/snug">
-        {PLACEHOLDER_CHARACTER.repeat(35)}
+        {PLACEHOLDER_CHARACTER.repeat(20)}
       </div>
       <div className="flex items-center text-[11px]/4 @2xl/quadrant:text-xs">
         <div className="after:px-1.5 after:text-gray-800 after:content-['/']">
