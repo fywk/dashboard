@@ -1,3 +1,5 @@
+import { use } from "react";
+
 import { app } from "@/lib/app-config";
 import { AboutDialogProvider } from "@/providers/AboutDialogProvider";
 
@@ -23,8 +25,8 @@ export const metadata: Metadata = {
   description: app.description,
 };
 
-export default async function Page(props: Props) {
-  const searchParams = await props.searchParams;
+export default function Page(props: Props) {
+  const searchParams = use(props.searchParams);
 
   return (
     <div className="mx-auto grid w-full max-w-[800px] grid-cols-[1fr_auto] items-center gap-x-8 gap-y-6 sm:gap-x-9 xl:max-w-none 2xl:gap-x-10">

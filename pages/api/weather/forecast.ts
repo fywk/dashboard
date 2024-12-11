@@ -10,8 +10,8 @@ export const config = {
 };
 
 export default async function handler(request: NextRequest) {
-  const latitude = geolocation(request)?.latitude ?? app.location.latitude;
-  const longitude = geolocation(request)?.longitude ?? app.location.longitude;
+  const latitude = geolocation(request).latitude ?? app.location.latitude;
+  const longitude = geolocation(request).longitude ?? app.location.longitude;
 
   const weatherForecast = await getWeatherForecast(latitude, longitude);
 
