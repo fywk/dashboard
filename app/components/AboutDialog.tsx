@@ -8,7 +8,7 @@ import packageJSON from "../../package.json";
 import Logo from "./Logo";
 
 type Props = {
-  dialogRef: React.RefObject<HTMLDialogElement>;
+  dialogRef: React.RefObject<HTMLDialogElement | null>;
 };
 
 // Remove the leading caret (^) and tilde (~) notations from the version string

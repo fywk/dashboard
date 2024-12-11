@@ -1,3 +1,4 @@
+import { geolocation } from "@vercel/functions";
 import { NextResponse } from "next/server";
 
 import { app } from "./lib/app-config";
@@ -9,7 +10,8 @@ export const config = {
 };
 
 export function middleware(request: NextRequest) {
-  const { nextUrl: url, geo } = request;
+  const { nextUrl: url } = request;
+  const geo = geolocation(request);
 
   // Default values are set since the geo object is only available in production
   const city = geo?.city ?? app.location.city;

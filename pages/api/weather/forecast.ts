@@ -1,3 +1,5 @@
+import { geolocation } from "@vercel/functions";
+
 import { app } from "@/lib/app-config";
 import { getWeatherForecast } from "@/lib/services/openweather";
 
@@ -8,8 +10,8 @@ export const config = {
 };
 
 export default async function handler(request: NextRequest) {
-  const latitude = request.geo?.latitude ?? app.location.latitude;
-  const longitude = request.geo?.longitude ?? app.location.longitude;
+  const latitude = geolocation(request).latitude ?? app.location.latitude;
+  const longitude = geolocation(request).longitude ?? app.location.longitude;
 
   const weatherForecast = await getWeatherForecast(latitude, longitude);
 

@@ -8,9 +8,9 @@ import useWeatherForecast from "@/lib/hooks/useWeatherForecast";
 
 import WeatherConditionIcon from "./icons/WeatherConditionIcon";
 
-import type { SearchParams } from "@/lib/types/app";
+import type { Geolocation } from "@/lib/types/app";
 
-export default function WeatherSummary({ city, country }: SearchParams) {
+export default function WeatherSummary({ city, country }: Geolocation) {
   const { data: currentWeather, isLoading: isLoadingCurrentWeather } = useCurrentWeather();
   const { data: weatherForecast } = useWeatherForecast();
 
