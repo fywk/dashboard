@@ -13,12 +13,14 @@ export type AppConfig = {
    * The location the app will use during development and fallback to
    * in production if the hosting platform does not provide one.
    */
-  location: {
-    city: string;
-    country: string;
-    latitude: string;
-    longitude: string;
-  };
+  location: Geolocation;
 };
 
-export type SearchParams = AppConfig["location"];
+export type Geolocation = {
+  city: string;
+  country: string;
+  latitude: string;
+  longitude: string;
+};
+
+export type SearchParams = Promise<Geolocation>;
