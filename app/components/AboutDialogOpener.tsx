@@ -18,7 +18,7 @@ export default function AboutDialogOpener({ children, ...props }: Props) {
   };
 
   return (
-    <button id="about-dialog-opener" onClick={handleClick} {...props}>
+    <button type="button" id="about-dialog-opener" onClick={handleClick} {...props}>
       {children}
     </button>
   );
