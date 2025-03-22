@@ -13,7 +13,7 @@ const hackerNewsURL = "https://news.ycombinator.com";
 function StorySkeleton() {
   return (
     <li className="flex flex-col gap-y-0.5 text-gray-900 @[52rem]/quadrant:gap-y-1">
-      <div className="break-all text-[13.5px]/tight @2xl/quadrant:text-sm/snug">
+      <div className="text-[13.5px]/tight break-all @2xl/quadrant:text-sm/snug">
         {PLACEHOLDER_CHARACTER.repeat(20)}
       </div>
       <div className="flex items-center text-[11px]/4 @2xl/quadrant:text-xs">
@@ -49,7 +49,7 @@ async function Story({ storyID }: { storyID: number }) {
       <h4>
         <a
           href={story.url ?? itemURL}
-          className="line-clamp-2 w-fit text-balance text-[13.5px]/tight font-medium text-gray-100 @2xl/quadrant:text-sm/snug"
+          className="line-clamp-2 w-fit text-[13.5px]/tight font-medium text-balance text-gray-100 @2xl/quadrant:text-sm/snug"
           title={story.title}
           target="_blank"
         >
@@ -105,7 +105,7 @@ export default function HackerNews() {
       }
       customClasses="order-last @xl/quadrant:order-first"
     >
-      <ol className="flex h-full min-h-[30rem] flex-col justify-between gap-y-1.5 md:min-h-[31rem] xl:min-h-full">
+      <ol className="flex h-full min-h-120 flex-col justify-between gap-y-1.5 md:min-h-124 xl:min-h-full">
         <Suspense fallback={<TopStoriesSkeleton />}>
           <TopStories data={stories} />
         </Suspense>

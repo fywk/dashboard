@@ -27,9 +27,9 @@ async function Total({ data }: { data: Promise<TotalStats | null> }): Promise<st
 
 function Category({ title, icon, children }: CategoryProps) {
   return (
-    <div className="flex w-full flex-col items-center justify-center text-sm font-medium leading-5 tracking-tight odd:text-secondary even:text-primary @lg/section:odd:text-primary @lg/section:even:text-secondary @1.5xl/section:text-[15px]">
+    <div className="flex w-full flex-col items-center justify-center text-sm leading-5 font-medium tracking-tight odd:text-secondary even:text-primary @lg/section:odd:text-primary @lg/section:even:text-secondary @[39rem]/section:text-[15px]">
       {icon}
-      <span className="mt-[3px] @1.5xl/section:mt-1">{title}</span>
+      <span className="mt-0.75 @[39rem]/section:mt-1">{title}</span>
       <span>{children}</span>
     </div>
   );
@@ -56,7 +56,7 @@ export default function Statistics({ period }: { period: Period }) {
     <div className="flex w-full items-center justify-between py-1">
       <Category
         title="Plays"
-        icon={<IconPlayerPlay className="size-7.5 @1.5xl/section:size-8" stroke={1.75} />}
+        icon={<IconPlayerPlay className="size-7.5 @[39rem]/section:size-8" stroke={1.75} />}
       >
         <Suspense fallback={placeholderString}>
           <Total data={playsData} />
@@ -64,7 +64,7 @@ export default function Statistics({ period }: { period: Period }) {
       </Category>
       <Category
         title="Tracks"
-        icon={<IconMusic className="size-7.5 @1.5xl/section:size-8" stroke={1.5} />}
+        icon={<IconMusic className="size-7.5 @[39rem]/section:size-8" stroke={1.5} />}
       >
         <Suspense fallback={placeholderString}>
           <Total data={tracksData} />
@@ -72,7 +72,7 @@ export default function Statistics({ period }: { period: Period }) {
       </Category>
       <Category
         title="Albums"
-        icon={<IconVinyl className="size-7.5 @1.5xl/section:size-8" stroke={1.5} />}
+        icon={<IconVinyl className="size-7.5 @[39rem]/section:size-8" stroke={1.5} />}
       >
         <Suspense fallback={placeholderString}>
           <Total data={albumsData} />
@@ -80,7 +80,7 @@ export default function Statistics({ period }: { period: Period }) {
       </Category>
       <Category
         title="Artists"
-        icon={<IconMicrophone2 className="size-7.5 @1.5xl/section:size-8" stroke={1.5} />}
+        icon={<IconMicrophone2 className="size-7.5 @[39rem]/section:size-8" stroke={1.5} />}
       >
         <Suspense fallback={placeholderString}>
           <Total data={artistsData} />

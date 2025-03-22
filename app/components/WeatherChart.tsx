@@ -24,7 +24,7 @@ export default function WeatherChart() {
   const { data: weatherForecast, isLoading: isLoadingWeatherForecast } = useWeatherForecast();
 
   if (!currentWeather || isLoadingCurrentWeather || !weatherForecast || isLoadingWeatherForecast) {
-    return <div className="h-[10rem] w-full rounded bg-gray-900/50 @1.5xl/section:h-[11rem]"></div>;
+    return <div className="h-40 w-full rounded-sm bg-gray-900/50 @[39rem]/section:h-44"></div>;
   }
 
   // Add current weather to the chart
@@ -113,7 +113,7 @@ export default function WeatherChart() {
   };
 
   return (
-    <div className="relative h-[10rem] w-full overflow-hidden @1.5xl/section:h-[11rem]">
+    <div className="relative h-40 w-full overflow-hidden @[39rem]/section:h-44">
       <Line data={data} options={options} />
     </div>
   );

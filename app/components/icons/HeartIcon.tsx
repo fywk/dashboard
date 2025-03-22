@@ -7,5 +7,5 @@ export default function HeartIcon({ isFilled }: { isFilled: boolean }) {
     Icon = IconHeartFilled;
   }
 
-  return <Icon className="size-4.5 @[340px]/now-playing:size-5" />;
+  return <Icon className="size-4.5 @[21.25rem]/now-playing:size-5" />;
 }
