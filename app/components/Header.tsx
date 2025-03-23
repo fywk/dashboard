@@ -6,7 +6,7 @@ export default function Header() {
   const appBuildDate = dayjs(appBuildTimestamp).utc();
 
   return (
-    <header className="flex items-center justify-between border-y border-primary/25 px-px py-1.5 text-[11px] uppercase !leading-none tracking-tight xs:px-0.5">
+    <header className="flex items-center justify-between border-y border-primary/25 px-px py-1.5 text-[11px] leading-none! tracking-tight uppercase xs:px-0.5">
       <h1>
         <span className="font-medium text-gray-50">{`${app.title} `}</span>
         <span className="text-primary">V</span>

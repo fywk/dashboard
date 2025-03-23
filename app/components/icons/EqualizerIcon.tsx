@@ -2,7 +2,7 @@ export default function EqualizerIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="size-[13px] @[340px]/now-playing:size-[15px]"
+      className="size-3.25 @[21.25rem]/now-playing:size-3.75"
       id="equalizer"
       viewBox="0 0 24 24"
       fill="currentColor"

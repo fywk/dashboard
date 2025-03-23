@@ -43,7 +43,7 @@ async function BookmarkItems() {
     <li className="group" key={bookmark._id}>
       <div className="grid grid-cols-[auto_1fr] items-center gap-x-1.5">
         <div
-          className="flex h-9 w-12 items-center justify-center transition-colors group-hover:group-odd:text-secondary group-hover:group-even:text-primary"
+          className="flex h-9 w-12 items-center justify-center transition-colors group-odd:group-hover:text-secondary group-even:group-hover:text-primary"
           title={bookmark.type.charAt(0).toUpperCase() + bookmark.type.slice(1)}
         >
           {bookmark.type === "article" && <IconBlockquote className="size-6" stroke={1.75} />}
@@ -57,7 +57,7 @@ async function BookmarkItems() {
           target="_blank"
         >
           <h4
-            className="line-clamp-1 w-fit text-balance text-[13.5px]/tight font-medium text-gray-100 @2xl/quadrant:text-sm/snug"
+            className="line-clamp-1 w-fit text-[13.5px]/tight font-medium text-balance text-gray-100 @2xl/quadrant:text-sm/snug"
             title={bookmark.title}
           >
             {bookmark.title}
@@ -87,7 +87,7 @@ export default function Bookmarks() {
       title="Bookmarks"
       customClasses="order-first [--border-accent-color:var(--color-secondary)] @xl/quadrant:order-last @xl/quadrant:[--border-accent-color:var(--color-primary)]"
     >
-      <ol className="flex h-full min-h-[30rem] flex-col justify-between gap-y-1.5 md:min-h-[31rem] xl:min-h-full">
+      <ol className="flex h-full min-h-120 flex-col justify-between gap-y-1.5 md:min-h-124 xl:min-h-full">
         <Suspense fallback={<BookmarkItemsSkeleton />}>
           <BookmarkItems />
         </Suspense>

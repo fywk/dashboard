@@ -24,7 +24,7 @@ function Uptime({ isVisible, duration, durationISO }: UptimeProps) {
 
   return (
     <p
-      className="-translate-y-0.5 text-[11px] !leading-none @md/section:text-xs @lg/section:text-[13px] @1.5xl/section:text-sm"
+      className="-translate-y-0.5 text-[11px] leading-none! @md/section:text-xs @lg/section:text-[13px] @[39rem]/section:text-sm"
       title="Time since last build"
     >
       <span className="font-semibold text-primary">Uptime</span>
@@ -38,12 +38,12 @@ function Uptime({ isVisible, duration, durationISO }: UptimeProps) {
 function City({ name, abbr, time }: CityProps) {
   return (
     <div className="w-full py-1 @xl/section:py-1.5 @2xl/section:py-2">
-      <div className="-mx-0.5 flex flex-col gap-y-0.5 bg-gray-950 py-0.5 text-center @sm/section:gap-y-1 @1.5xl/section:py-1">
-        <p className="text-[9px] uppercase !leading-none @lg/section:text-[10px] @1.5xl/section:text-[11px] @[45rem]/section:text-xs">
+      <div className="-mx-0.5 flex flex-col gap-y-0.5 bg-gray-950 py-0.5 text-center @sm/section:gap-y-1 @[39rem]/section:py-1">
+        <p className="text-[9px] leading-none! uppercase @lg/section:text-[10px] @[39rem]/section:text-[11px] @[45rem]/section:text-xs">
           <abbr className="@xl/section:hidden">{abbr}</abbr>
           <span className="hidden tracking-tight @xl/section:inline">{name}</span>
         </p>
-        <time className="font-oxanium text-[9px] font-medium !leading-none text-gray-100 @sm/section:text-[10px] @xl/section:-mb-px @xl/section:text-xs @1.5xl/section:text-sm">
+        <time className="font-oxanium text-[9px] leading-none! font-medium text-gray-100 @sm/section:text-[10px] @xl/section:-mb-px @xl/section:text-xs @[39rem]/section:text-sm">
           {time}
         </time>
       </div>
@@ -103,24 +103,24 @@ export default function Time() {
       subtitle={uptime && Object.keys(uptime).length > 0 && <Uptime {...uptime} />}
       accentColor="secondary"
     >
-      <div className="mt-1 grid grid-cols-2 gap-x-4 gap-y-1 @md/section:mt-[5px] @xl/section:gap-x-4.5 @1.5xl/section:gap-x-5">
-        <div className="flex flex-col gap-y-2 @container @sm/section:gap-y-2.5">
-          <h3 className="ml-1 w-fit rounded-[3px] px-1 py-0.5 text-[10px] font-bold uppercase !leading-none tracking-tight text-primary ring-1 ring-primary @lg/section:text-[11px] @1.5xl/section:text-xs">
+      <div className="mt-1 grid grid-cols-2 gap-x-4 gap-y-1 @md/section:mt-1.25 @xl/section:gap-x-4.5 @[39rem]/section:gap-x-5">
+        <div className="@container flex flex-col gap-y-2 @sm/section:gap-y-2.5">
+          <h3 className="ml-1 w-fit rounded-[3px] px-1 py-0.5 text-[10px] leading-none! font-bold tracking-tight text-primary uppercase ring-1 ring-primary @lg/section:text-[11px] @[39rem]/section:text-xs">
             Local
           </h3>
           <h4 className="text-center font-oxanium text-[24cqw]/none text-gray-100">
             <time>{timeLocal}</time>
           </h4>
         </div>
-        <div className="flex flex-col gap-y-2 @container @sm/section:gap-y-2.5">
-          <h3 className="ml-1 w-fit rounded-[3px] px-1 py-0.5 text-[10px] font-bold !leading-none tracking-tight text-secondary ring-1 ring-secondary @lg/section:text-[11px] @1.5xl/section:text-xs">
+        <div className="@container flex flex-col gap-y-2 @sm/section:gap-y-2.5">
+          <h3 className="ml-1 w-fit rounded-[3px] px-1 py-0.5 text-[10px] leading-none! font-bold tracking-tight text-secondary ring-1 ring-secondary @lg/section:text-[11px] @[39rem]/section:text-xs">
             UTC
           </h3>
           <h4 className="text-center font-oxanium text-[24cqw]/none text-gray-500">
             <time>{timeUTC}</time>
           </h4>
         </div>
-        <div className="col-span-full flex justify-evenly divide-x divide-primary/60 rounded-sm border border-primary/60">
+        <div className="col-span-full flex justify-evenly divide-x divide-primary/60 rounded-xs border border-primary/60">
           <City name="Los Angeles" abbr="LA" time={timeLA} />
           <City name="New York City" abbr="NYC" time={timeNYC} />
           <City name="London" abbr="LON" time={timeLON} />

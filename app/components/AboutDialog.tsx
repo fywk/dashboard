@@ -28,12 +28,12 @@ export default function AboutDialog({ dialogRef }: Props) {
 
   return (
     <dialog
-      className="w-full max-w-[17.5rem] -translate-y-[5vh] rounded-[10px] border border-neutral-500/75 bg-neutral-800/75 backdrop-blur-xl [&::backdrop]:touch-none [&::backdrop]:bg-transparent"
+      className="w-full max-w-70 -translate-y-[5vh] rounded-[10px] border border-neutral-500/75 bg-neutral-800/75 backdrop-blur-xl backdrop:touch-none backdrop:bg-transparent backdrop:backdrop-blur-[1px]"
       ref={dialogRef}
     >
-      <form className="group flex w-fit items-center gap-x-2 p-[7px]" method="dialog">
+      <form className="group flex w-fit items-center gap-x-2 p-4.25" method="dialog">
         <button
-          className="flex aspect-square size-3 cursor-default items-center justify-center rounded-full bg-[#ff6159] text-red-800"
+          className="flex aspect-square size-3 items-center justify-center rounded-full bg-[#ff6159] text-red-800"
           title="Close"
         >
           <span className="sr-only">Close</span>
@@ -51,7 +51,7 @@ export default function AboutDialog({ dialogRef }: Props) {
         ></button>
       </form>
       <div className="flex flex-col items-center px-4 pb-8 text-neutral-400">
-        <div className="mb-20 mt-24 flex w-[5.5rem] scale-125 items-center rounded-[10px] rounded-r-none border-3 border-r-0 border-primary p-1 pr-0 text-primary">
+        <div className="mt-24 mb-20 flex w-22 scale-125 items-center rounded-[10px] rounded-r-none border-3 border-r-0 border-primary p-1 pr-0 text-primary">
           <Logo />
         </div>
         <div className="flex flex-col items-center">
@@ -71,7 +71,7 @@ export default function AboutDialog({ dialogRef }: Props) {
           </div>
           <a
             href="https://github.com/fywk/dashboard"
-            className="mb-4 flex h-5 items-center justify-center rounded-[5px] border border-neutral-500 bg-neutral-500/75 px-[9px] text-[13px]/none tracking-tight text-neutral-100 ring-secondary/55 focus:outline-none focus:ring-[3px]"
+            className="mb-4 flex h-5 items-center justify-center rounded-[5px] border border-neutral-500 bg-neutral-500/75 px-2.25 text-[13px]/none tracking-tight text-neutral-100 ring-secondary/55 focus:ring-3 focus:outline-hidden"
             target="_blank"
             autoFocus
           >

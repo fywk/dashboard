@@ -13,7 +13,7 @@ import type { Period } from "@/lib/types/lastfm";
 type Category = "statistics" | "topArtists" | "topAlbums";
 
 export default function Music() {
-  const subtitleStyle = clsx("mb-2 text-sm text-gray-600 @1.5xl/section:text-base");
+  const subtitleStyle = clsx("mb-2 text-sm text-gray-600 @[39rem]/section:text-base");
 
   const period = {
     statistics: "7day",
@@ -23,7 +23,7 @@ export default function Music() {
 
   return (
     <Section title="Music" accentColor="secondary">
-      <div className="grid grid-cols-1 gap-3.5 @lg/section:grid-cols-2 @lg/section:gap-x-7 @xl/section:gap-x-7.5 @1.5xl/section:gap-x-8 @2xl/section:gap-x-9">
+      <div className="grid grid-cols-1 gap-3.5 @lg/section:grid-cols-2 @lg/section:gap-x-7 @xl/section:gap-x-7.5 @[39rem]/section:gap-x-8 @2xl/section:gap-x-9">
         <section className="@container/now-playing @lg/section:order-2">
           <h3 className={subtitleStyle}>Recently Played</h3>
           <NowPlaying />

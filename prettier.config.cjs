@@ -20,4 +20,5 @@ module.exports = {
   // prettier-plugin-tailwindcss
   tailwindAttributes: ["customClasses"],
   tailwindFunctions: ["clsx"],
+  tailwindStylesheet: "./app/globals.css",
 };

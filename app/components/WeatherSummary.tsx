@@ -19,13 +19,13 @@ export default function WeatherSummary({ city, country }: Geolocation) {
       <div className="grid w-full grid-cols-[55%_1fr] gap-4 @lg/section:grid-cols-none @lg/section:grid-rows-[max-content_max-content]">
         <div className="flex w-full flex-col overflow-hidden @lg/section:gap-y-px @xl/section:gap-y-0.5">
           <h3
-            className="truncate font-oxanium text-2xl font-bold uppercase text-gray-100 @xl/section:text-[1.625rem] @1.5xl/section:text-[1.75rem]"
+            className="truncate font-oxanium text-2xl font-bold text-gray-100 uppercase @xl/section:text-[1.625rem] @[39rem]/section:text-[1.75rem]"
             title={`${city}, ${country}`}
           >
             {city}
           </h3>
           <div className="flex items-center gap-x-2 @lg/section:gap-x-2.5">
-            <div className="h-9 w-28 rounded bg-gray-900 @xl/section:h-10 @1.5xl/section:h-11"></div>
+            <div className="h-9 w-28 rounded-sm bg-gray-900 @xl/section:h-10 @[39rem]/section:h-11"></div>
             <div className="flex w-full flex-col gap-y-2.5">
               <div className="h-1.5 w-full rounded-full bg-gray-900"></div>
               <div className="h-1.5 w-full rounded-full bg-gray-900"></div>
@@ -34,7 +34,7 @@ export default function WeatherSummary({ city, country }: Geolocation) {
         </div>
         <div className="w-full overflow-hidden">
           <div className="flex h-full flex-col items-end justify-between gap-x-2 @lg/section:flex-row @lg/section:items-center @lg/section:justify-start @lg/section:gap-x-2.5">
-            <div className="size-8.5 rounded bg-gray-900 @lg/section:size-9"></div>
+            <div className="size-8.5 rounded-sm bg-gray-900 @lg/section:size-9"></div>
             <div className="flex flex-col items-end text-gray-900 @lg/section:items-start">
               <div className="text-xs @lg/section:text-sm">{PLACEHOLDER_CHARACTER.repeat(10)}</div>
               <div className="text-[10px] leading-3 @lg/section:text-xs">
@@ -66,14 +66,14 @@ export default function WeatherSummary({ city, country }: Geolocation) {
     >
       <div className="flex w-full flex-col overflow-hidden @lg/section:gap-y-px @xl/section:gap-y-0.5">
         <h3
-          className="truncate font-oxanium text-2xl font-bold uppercase text-gray-100 @xl/section:text-[1.625rem] @1.5xl/section:text-[1.75rem]"
+          className="truncate font-oxanium text-2xl font-bold text-gray-100 uppercase @xl/section:text-[1.625rem] @[39rem]/section:text-[1.75rem]"
           title={`${city}, ${country}`}
         >
           {city}
         </h3>
         <div className="flex items-center gap-x-2 @lg/section:gap-x-2.5">
           <h4
-            className="-mb-1 font-oxanium text-[2.5rem] font-medium leading-10 tracking-tight text-gray-200 @xl/section:text-[2.75rem] @1.5xl/section:text-5xl"
+            className="-mb-1 font-oxanium text-[2.5rem] leading-10 font-medium tracking-tight text-gray-200 @xl/section:text-[2.75rem] @[39rem]/section:text-5xl"
             title={`${temp.toString()} °C`}
           >
             {`${Math.round(temp).toString()}°`}
@@ -114,7 +114,7 @@ export default function WeatherSummary({ city, country }: Geolocation) {
             iconCode={iconCode}
           />
           <div className="flex flex-col items-end tracking-tight @lg/section:items-start">
-            <p className="truncate text-xs font-medium capitalize text-gray-100 @lg/section:text-sm">
+            <p className="truncate text-xs font-medium text-gray-100 capitalize @lg/section:text-sm">
               {description}
             </p>
             <p className="text-[10px] leading-3 @lg/section:text-xs">

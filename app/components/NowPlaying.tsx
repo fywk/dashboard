@@ -32,16 +32,16 @@ export default function NowPlaying() {
 
   if (!track || isLoading) {
     return (
-      <div className="grid grid-cols-[4rem_1fr_2.25rem] items-center gap-2.5 overflow-hidden rounded-md border border-primary/55 p-2 @xs/now-playing:gap-[.6875rem] @[21.25rem]/now-playing:grid-cols-[4.5rem_1fr_2.25rem] @sm/now-playing:grid-cols-[5rem_1fr_2.25rem] @[340px]/now-playing:gap-3">
-        <div className="aspect-square rounded bg-gray-900 ring-1 ring-gray-900"></div>
+      <div className="grid grid-cols-[4rem_1fr_2.25rem] items-center gap-2.5 overflow-hidden rounded-md border border-primary/55 p-2 @xs/now-playing:gap-2.75 @[21.25rem]/now-playing:grid-cols-[4.5rem_1fr_2.25rem] @[21.25rem]/now-playing:gap-3 @sm/now-playing:grid-cols-[5rem_1fr_2.25rem]">
+        <div className="aspect-square rounded-sm bg-gray-900 ring-1 ring-gray-900"></div>
         <div className="flex flex-col gap-y-1.5 text-gray-900">
-          <div className="text-[13px] !leading-none @[340px]/now-playing:text-sm">
+          <div className="text-[13px] leading-none! @[21.25rem]/now-playing:text-sm">
             {PLACEHOLDER_CHARACTER.repeat(6)}
           </div>
-          <div className="text-sm !leading-none @[340px]/now-playing:text-[15px]">
+          <div className="text-sm leading-none! @[21.25rem]/now-playing:text-[15px]">
             {PLACEHOLDER_CHARACTER.repeat(12)}
           </div>
-          <div className="text-[13px] !leading-none @[340px]/now-playing:text-sm">
+          <div className="text-[13px] leading-none! @[21.25rem]/now-playing:text-sm">
             {PLACEHOLDER_CHARACTER.repeat(9)}
           </div>
         </div>
@@ -62,9 +62,9 @@ export default function NowPlaying() {
   }
 
   return (
-    <div className="grid grid-cols-[4rem_1fr_2.25rem] items-center gap-2.5 overflow-hidden rounded-md border border-primary/55 p-2 @xs/now-playing:gap-[.6875rem] @[21.25rem]/now-playing:grid-cols-[4.5rem_1fr_2.25rem] @sm/now-playing:grid-cols-[5rem_1fr_2.25rem] @[340px]/now-playing:gap-3">
+    <div className="grid grid-cols-[4rem_1fr_2.25rem] items-center gap-2.5 overflow-hidden rounded-md border border-primary/55 p-2 @xs/now-playing:gap-2.75 @[21.25rem]/now-playing:grid-cols-[4.5rem_1fr_2.25rem] @[21.25rem]/now-playing:gap-3 @sm/now-playing:grid-cols-[5rem_1fr_2.25rem]">
       <div
-        className="relative aspect-square overflow-hidden rounded bg-gray-900 ring-1 ring-gray-800/75"
+        className="relative aspect-square overflow-hidden rounded-sm bg-gray-900 ring-1 ring-gray-800/75"
         id="track-album-art"
       >
         {imageURL && (
@@ -81,7 +81,7 @@ export default function NowPlaying() {
       </div>
       <div className="flex flex-col gap-y-1.5 overflow-hidden tracking-tight">
         <p
-          className="flex items-center gap-x-[3px] text-[13px] font-medium !leading-none text-[#1ed760] @[340px]/now-playing:gap-x-1 @[340px]/now-playing:text-sm"
+          className="flex items-center gap-x-0.75 text-[13px] leading-none! font-medium text-[#1ed760] @[21.25rem]/now-playing:gap-x-1 @[21.25rem]/now-playing:text-sm"
           id="track-status"
         >
           {track.timestamp ? (
@@ -94,14 +94,14 @@ export default function NowPlaying() {
           )}
         </p>
         <h4
-          className="truncate text-sm font-medium !leading-none text-gray-100 @[340px]/now-playing:text-[15px]"
+          className="truncate text-sm leading-none! font-medium text-gray-100 @[21.25rem]/now-playing:text-[15px]"
           title={track.name}
           id="track-name"
         >
           {track.name}
         </h4>
         <p
-          className="truncate text-[13px] !leading-none @[340px]/now-playing:text-sm"
+          className="truncate text-[13px] leading-none! @[21.25rem]/now-playing:text-sm"
           title={`${track.artist} — ${track.album}`}
           id="track-artist-and-album-name"
         >
