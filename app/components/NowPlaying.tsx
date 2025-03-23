@@ -27,7 +27,9 @@ export default function NowPlaying() {
   );
 
   useEffect(() => {
-    track && setImageURL(track.image);
+    if (track) {
+      setImageURL(track.image);
+    }
   }, [track]);
 
   if (!track || isLoading) {
