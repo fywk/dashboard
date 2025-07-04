@@ -4,11 +4,6 @@ This is the repo for my personal dashboard. The design of which is greatly inspi
 
 ![Screenshot of Dashboard](/public/images/screenshot.png)
 
-## TODO
-
-- [x] Hacker News section
-- [x] ~~Profile~~ Bookmarks section
-
 ## External Services
 
 The following external APIs are used in this app:
