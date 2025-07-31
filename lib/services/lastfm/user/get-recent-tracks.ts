@@ -11,7 +11,7 @@ const RecentTracksSchema = z.object({
         artist: z.object({ name: z.string() }),
         date: z.object({ uts: z.string() }).optional(),
         name: z.string(),
-        image: z.array(z.object({ "#text": z.string().url() })).length(4),
+        image: z.array(z.object({ "#text": z.url() })).length(4),
         album: z.object({ "#text": z.string() }),
         loved: z.enum(["0", "1"]),
       }),

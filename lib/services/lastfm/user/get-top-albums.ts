@@ -9,7 +9,7 @@ const TopAlbumsSchema = z.object({
     album: z.array(
       z.object({
         artist: z.object({ name: z.string() }),
-        image: z.array(z.object({ "#text": z.string().url() })).length(4),
+        image: z.array(z.object({ "#text": z.url() })).length(4),
         playcount: z.string(),
         name: z.string(),
       }),

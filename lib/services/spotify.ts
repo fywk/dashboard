@@ -20,7 +20,7 @@ const AccessTokenSchema = z.object({
 });
 
 const ImageSchema = z.object({
-  url: z.string().url(),
+  url: z.url(),
   width: z.number(),
   height: z.number(),
 });
