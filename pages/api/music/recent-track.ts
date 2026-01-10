@@ -5,9 +5,9 @@ export const config = {
 };
 
 export default async function handler() {
-  const recentTrack = await getRecentTracks();
+  const recentTracks = await getRecentTracks();
 
-  if (!recentTrack) {
+  if (!recentTracks) {
     return new Response(JSON.stringify({ error: "An error occurred while trying to fetch." }), {
       status: 400,
       headers: {
@@ -16,7 +16,7 @@ export default async function handler() {
     });
   }
 
-  return new Response(JSON.stringify(recentTrack), {
+  return new Response(JSON.stringify(recentTracks.at(0)), {
     status: 200,
     headers: {
       "content-type": "application/json",

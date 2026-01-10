@@ -27,7 +27,7 @@ const RecentTracksSchema = z.object({
 export async function getRecentTracks(
   from?: Timestamp,
   limit: Limit = 1,
-): Promise<RecentTrack | null> {
+): Promise<RecentTrack[] | null> {
   const params: LastfmParams = {
     method: "user.getrecenttracks",
     from,
@@ -41,22 +41,22 @@ export async function getRecentTracks(
   if (!result.success) return null;
 
   const { recenttracks } = result.data;
-  const firstTrack = recenttracks.track.at(0);
 
-  if (!firstTrack) return null;
+  const tracks: RecentTrack[] = recenttracks.track.map((track) => {
+    const { artist, date, name, image, album, loved } = track;
+    const timestamp = date !== undefined && +date.uts;
 
-  const { artist, image, album, name, loved } = firstTrack;
-  const timestamp = firstTrack.date !== undefined && +firstTrack.date.uts;
-  const track: RecentTrack = {
-    name,
-    artist: artist.name,
-    album: album["#text"],
-    image: image.at(3)?.["#text"] ?? "/images/album-error.jpg",
-    ...(timestamp && { timestamp }),
-    loved: loved === "1",
-  };
+    return {
+      name,
+      artist: artist.name,
+      album: album["#text"],
+      image: image.at(3)?.["#text"] ?? "/images/album-error.jpg",
+      ...(timestamp && { timestamp }),
+      loved: loved === "1",
+    };
+  });
 
-  return track;
+  return tracks;
 }
 
 /**
