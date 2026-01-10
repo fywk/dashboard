@@ -28,10 +28,10 @@ export default function AboutDialog({ dialogRef }: Props) {
 
   return (
     <dialog
-      className="w-full max-w-70 -translate-y-[5vh] rounded-[10px] border border-neutral-500/75 bg-neutral-800/75 backdrop-blur-xl backdrop:touch-none backdrop:bg-transparent backdrop:backdrop-blur-[1px]"
+      className="w-full max-w-70 -translate-y-[5vh] rounded-[10px] border border-neutral-500/75 bg-neutral-800/75 backdrop-blur-xl"
       ref={dialogRef}
     >
-      <form className="group flex w-fit items-center gap-x-2 p-4.25" method="dialog">
+      <form className="group flex w-fit items-center gap-x-2 p-1.75" method="dialog">
         <button
           className="flex aspect-square size-3 items-center justify-center rounded-full bg-[#ff6159] text-red-800"
           title="Close"
