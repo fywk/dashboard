@@ -2,7 +2,6 @@
 
 import clsx from "clsx";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import useSWR from "swr";
 import TimeAgo from "timeago-react";
 
@@ -17,7 +16,6 @@ import HeartIcon from "./icons/HeartIcon";
 import type { RecentTrack } from "@/lib/types/lastfm";
 
 export default function NowPlaying() {
-  const [imageURL, setImageURL] = useState<string>();
   const { data: track, isLoading } = useSWR<RecentTrack, Error>(
     "/api/music/recent-track",
     fetcher,
@@ -25,12 +23,6 @@ export default function NowPlaying() {
       refreshInterval: 30_000, // refresh every 30 seconds
     },
   );
-
-  useEffect(() => {
-    if (track) {
-      setImageURL(track.image);
-    }
-  }, [track]);
 
   if (!track || isLoading) {
     return (
@@ -69,17 +61,15 @@ export default function NowPlaying() {
         className="relative aspect-square overflow-hidden rounded-sm bg-gray-900 ring-1 ring-gray-800/75"
         id="track-album-art"
       >
-        {imageURL && (
-          <Image
-            src={imageURL}
-            width={300}
-            height={300}
-            alt=""
-            onError={() => setImageURL("/images/album-error.jpg")}
-            loading="eager"
-            unoptimized
-          />
-        )}
+        <Image
+          src={track.image || "/images/album-error.jpg"}
+          alt=""
+          width={300}
+          height={300}
+          onError={(e) => (e.currentTarget.src = "/images/album-error.jpg")}
+          loading="eager"
+          unoptimized
+        />
       </div>
       <div className="flex flex-col gap-y-1.5 overflow-hidden tracking-tight">
         <p
