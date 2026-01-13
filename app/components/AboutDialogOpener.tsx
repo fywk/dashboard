@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import { AboutDialogContext } from "@/providers/AboutDialogContext";
 
@@ -16,6 +16,25 @@ export default function AboutDialogOpener({ children, ...props }: Props) {
 
     dialogContext.showDialog();
   };
+
+  useEffect(() => {
+    if (!dialogContext) return;
+
+    const isOpen = dialogContext.isDialogOpen;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key === "i") {
+        if (isOpen) {
+          dialogContext.closeDialog();
+        } else {
+          dialogContext.showDialog();
+        }
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [dialogContext]);
 
   return (
     <button type="button" id="about-dialog-opener" onClick={handleClick} {...props}>
