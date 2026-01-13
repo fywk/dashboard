@@ -39,7 +39,7 @@ export function GET(request: NextRequest) {
   }
 
   try {
-    revalidateTag(tag);
+    revalidateTag(tag, "max");
   } catch (error) {
     return new Response(
       JSON.stringify({
