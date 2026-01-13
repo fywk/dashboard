@@ -40,7 +40,7 @@ async function TopAlbums({ period }: { period: Period }) {
           key={album.name}
         >
           <div className="aspect-square basis-[30%] overflow-hidden rounded-sm bg-gray-900 ring-1 ring-gray-800/75">
-            <Image src={album.image} width={300} height={300} alt="" />
+            <Image src={album.image} alt="" width={300} height={300} />
           </div>
           <div className="flex basis-[70%] flex-col overflow-hidden tracking-tight @xl/section:gap-y-px">
             <h4

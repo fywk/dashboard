@@ -15,7 +15,7 @@ async function ArtistAvatar({ name }: { name: string }) {
   const { url, width, height } = artistImage;
 
   return (
-    <Image src={url} className="size-full object-cover" width={width} height={height} alt="" />
+    <Image src={url} alt="" width={width} height={height} className="size-full object-cover" />
   );
 }
 
