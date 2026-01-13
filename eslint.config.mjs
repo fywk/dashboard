@@ -1,24 +1,20 @@
 // @ts-check
 
-import { FlatCompat } from "@eslint/eslintrc";
 import eslint from "@eslint/js";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
+import { defineConfig, globalIgnores } from "eslint/config";
 import tseslint from "typescript-eslint";
 
-const compat = new FlatCompat({
-  baseDirectory: import.meta.dirname,
-});
+const eslintConfig = defineConfig(eslint.configs.recommended);
 
-export default tseslint.config(
-  compat.config({ extends: ["next/core-web-vitals"] }),
-  eslint.configs.recommended,
+const typescriptConfig = defineConfig([
   tseslint.configs.strictTypeChecked,
   tseslint.configs.stylisticTypeChecked,
   {
     languageOptions: {
-      parser: tseslint.parser,
       parserOptions: {
         projectService: true,
-        tsconfigRootDir: import.meta.dirname,
       },
     },
   },
@@ -41,4 +37,12 @@ export default tseslint.config(
       ],
     },
   },
-);
+]);
+
+const nextConfig = defineConfig([
+  ...nextVitals,
+  ...nextTs,
+  globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts"]),
+]);
+
+export default defineConfig([...eslintConfig, ...typescriptConfig, ...nextConfig]);

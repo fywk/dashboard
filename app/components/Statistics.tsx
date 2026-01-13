@@ -42,7 +42,7 @@ export default function Statistics({ period }: { period: Period }) {
     playsData = getTotalPlays();
   } else {
     const periodInSeconds = dayjs.duration(convertPeriodToDays(period), "days").asSeconds(); // convert period to seconds (e.g. 7day = 604,800 seconds)
-    const unixTimestamp = Math.floor(Date.now() / 1000); // get the current Unix timestamp in seconds format (10-digit)
+    const unixTimestamp = dayjs().unix(); // get the current Unix timestamp in seconds format (10-digit)
     const beginningTimestamp = unixTimestamp - periodInSeconds;
 
     playsData = getTotalPlays(beginningTimestamp);
