@@ -105,7 +105,7 @@ export default function Time() {
     >
       <div className="mt-1 grid grid-cols-2 gap-x-4 gap-y-1 @md/section:mt-1.25 @xl/section:gap-x-4.5 @[39rem]/section:gap-x-5">
         <div className="@container flex flex-col gap-y-2 @sm/section:gap-y-2.5">
-          <h3 className="ml-1 w-fit rounded-[3px] px-1 py-0.5 text-[10px] leading-none! font-bold tracking-tight text-primary uppercase ring-1 ring-primary @lg/section:text-[11px] @[39rem]/section:text-xs">
+          <h3 className="ml-1 w-fit rounded-[3px] p-1.25 text-[10px] leading-none font-bold tracking-tight text-primary uppercase ring-1 ring-primary text-trim-both @lg/section:text-[11px] @[39rem]/section:text-xs">
             Local
           </h3>
           <h4 className="text-center font-oxanium text-[24cqw]/none text-gray-100">
@@ -113,14 +113,14 @@ export default function Time() {
           </h4>
         </div>
         <div className="@container flex flex-col gap-y-2 @sm/section:gap-y-2.5">
-          <h3 className="ml-1 w-fit rounded-[3px] px-1 py-0.5 text-[10px] leading-none! font-bold tracking-tight text-secondary ring-1 ring-secondary @lg/section:text-[11px] @[39rem]/section:text-xs">
+          <h3 className="ml-1 w-fit rounded-[3px] p-1.25 text-[10px] leading-none font-bold tracking-tight text-secondary ring-1 ring-secondary text-trim-both @lg/section:text-[11px] @[39rem]/section:text-xs">
             UTC
           </h3>
           <h4 className="text-center font-oxanium text-[24cqw]/none text-gray-500">
             <time>{timeUTC}</time>
           </h4>
         </div>
-        <div className="col-span-full flex justify-evenly divide-x divide-primary/60 rounded-xs border border-primary/60">
+        <div className="col-span-full flex justify-evenly divide-x divide-primary/50 border border-primary/50">
           <City name="Los Angeles" abbr="LA" time={timeLA} />
           <City name="New York City" abbr="NYC" time={timeNYC} />
           <City name="London" abbr="LON" time={timeLON} />
