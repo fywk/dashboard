@@ -16,15 +16,15 @@ import HeartIcon from "./icons/HeartIcon";
 import type { RecentTrack } from "@/lib/types/lastfm";
 
 export default function NowPlaying() {
-  const { data: track, isLoading } = useSWR<RecentTrack, Error>(
-    "/api/music/recent-track",
-    fetcher,
-    {
-      refreshInterval: 30_000, // refresh every 30 seconds
-    },
-  );
+  const {
+    data: track,
+    isLoading,
+    error,
+  } = useSWR<RecentTrack, Error>("/api/music/recent-track", fetcher, {
+    refreshInterval: 30_000, // refresh every 30 seconds
+  });
 
-  if (!track || isLoading) {
+  if (!track || isLoading || error) {
     return (
       <div className="grid grid-cols-[4rem_1fr_2.25rem] items-center gap-2.5 overflow-hidden rounded-md border border-primary/55 p-2 @xs/now-playing:gap-2.75 @[21.25rem]/now-playing:grid-cols-[4.5rem_1fr_2.25rem] @[21.25rem]/now-playing:gap-3 @sm/now-playing:grid-cols-[5rem_1fr_2.25rem]">
         <div className="aspect-square rounded-sm bg-gray-900 ring-1 ring-gray-900"></div>
