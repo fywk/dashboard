@@ -59,7 +59,7 @@ async function TopArtists({ period }: { period: Period }) {
           </div>
           <div className="flex flex-col text-center tracking-tight @xl/section:gap-y-px">
             <h4
-              className="truncate text-xs font-medium text-gray-100 @xl/section:text-[13px] @[39rem]/section:text-sm"
+              className="truncate text-xs font-medium text-gray-100 select-all @xl/section:text-[13px] @[39rem]/section:text-sm"
               title={artist.name}
             >
               {artist.name}

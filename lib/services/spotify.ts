@@ -63,13 +63,26 @@ async function getAccessToken(): Promise<AccessToken | null> {
   return result.data;
 }
 
-function getArtistSpotifyID(artistName: string): string | null {
-  const artist = topArtists.find((artist) => artist.name === artistName);
-  return artist ? artist.id : null;
-}
+/**
+ * Precomputed lookup table for fast artist name → Spotify ID resolution from
+ * the top artists list.
+ *
+ * Artist names are normalized to lowercase to allow case-insensitive lookups.
+ */
+const artistIDMap = new Map<string, string>(
+  topArtists.map((artist) => [artist.name.toLowerCase(), artist.id]),
+);
 
+/**
+ * Fetches an artist image from the Spotify Web API.
+ *
+ * Resolution strategy:
+ * 1. Attempt to retrieve the artist's Spotify ID from the predefined list (local lookup).
+ * 2. If an ID is found, get the artist's image via the "Get Artist" API.
+ * 3. If no ID is found, fall back to the Spotify Search API.
+ */
 export async function getArtistImage(artistName: string): Promise<Image | null> {
-  const artistSpotifyID = getArtistSpotifyID(artistName);
+  const artistSpotifyID = artistIDMap.get(artistName.toLowerCase()) ?? null;
 
   const responseAccessToken = await getAccessToken();
 
@@ -111,8 +124,8 @@ export async function getArtistImage(artistName: string): Promise<Image | null> 
 
     const image: Image = {
       url: artists.items[0].images[1].url,
-      width: artists.items[0].images[1].width,
-      height: artists.items[0].images[1].height,
+      width: artists.items[0].images[1].width, // 320
+      height: artists.items[0].images[1].height, // 320
     };
 
     return image;
