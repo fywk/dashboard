@@ -42,7 +42,7 @@ const typescriptConfig = defineConfig([
 const nextConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
-  globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts"]),
+  globalIgnores([".next/**", ".vercel/**", "out/**", "build/**", "next-env.d.ts"]),
 ]);
 
 export default defineConfig([...eslintConfig, ...typescriptConfig, ...nextConfig]);
