@@ -5,9 +5,6 @@ const nextConfig = {
   env: {
     APP_BUILD_TIMESTAMP: Date.now().toString(),
   },
-  experimental: {
-    useTypeScriptCli: true,
-  },
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
