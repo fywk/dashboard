@@ -5,8 +5,8 @@
     "dev": "next dev",
     "build": "pnpm run lint && next build",
     "start": "next start",
-    "lint": "eslint",
-    "lint:fix": "eslint --fix"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@t3-oss/env-nextjs": "^0.13.11",
