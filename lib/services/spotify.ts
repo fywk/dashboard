@@ -11,7 +11,6 @@ const tokenEndpoint = "https://accounts.spotify.com/api/token";
 const apiEndpoint = "https://api.spotify.com/v1";
 const clientID = env.SPOTIFY_CLIENT_ID;
 const clientSecret = env.SPOTIFY_CLIENT_SECRET;
-const refreshToken = env.SPOTIFY_REFRESH_TOKEN;
 
 const AccessTokenSchema = z.object({
   access_token: z.string(),
@@ -42,25 +41,26 @@ const SearchArtistSchema = z.object({
 });
 
 async function getAccessToken(): Promise<AccessToken | null> {
-  const authToken = btoa(`${clientID}:${clientSecret}`);
+  const authToken = Buffer.from(`${clientID}:${clientSecret}`).toString("base64");
 
   const response = await fetch(tokenEndpoint, {
-    body: new URLSearchParams({
-      grant_type: "refresh_token",
-      refresh_token: refreshToken,
-    }),
-    cache: "no-store",
+    method: "POST",
     headers: {
       Authorization: `Basic ${authToken}`,
       "Content-Type": "application/x-www-form-urlencoded",
     },
-    method: "POST",
+    body: new URLSearchParams({
+      grant_type: "client_credentials",
+    }),
+    cache: "no-store",
   });
-  const result = AccessTokenSchema.safeParse(await response.json());
 
-  if (!result.success) return null;
+  if (!response.ok) {
+    console.error(await response.text());
+    return null;
+  }
 
-  return result.data;
+  return AccessTokenSchema.parse(await response.json());
 }
 
 /**
@@ -98,6 +98,11 @@ export async function getArtistImage(artistName: string): Promise<Image | null> 
       next: { revalidate: 3600 }, // 1 hour in seconds
     });
 
+    if (!getArtistResponse.ok) {
+      console.error(await getArtistResponse.text());
+      return null;
+    }
+
     const result = GetArtistSchema.safeParse(await getArtistResponse.json());
 
     if (!result.success) return null;
@@ -107,7 +112,7 @@ export async function getArtistImage(artistName: string): Promise<Image | null> 
     return images[1];
   } else {
     const searchArtistsResponse = await fetch(
-      `${apiEndpoint}/search?q=${artistName.toLowerCase()}&type=artist&limit=2`,
+      `${apiEndpoint}/search?q=${encodeURIComponent(artistName)}&type=artist&limit=2`,
       {
         headers: {
           Authorization: `Bearer ${access_token}`,

@@ -12,6 +12,12 @@ const appConfig: Readonly<AppConfig> = {
     latitude: "3.1415",
     longitude: "101.6865",
   },
+  // location: {
+  //   city: "London",
+  //   country: "England",
+  //   latitude: "51.507351",
+  //   longitude: "-0.127758",
+  // },
 };
 
 export { appConfig as app };
